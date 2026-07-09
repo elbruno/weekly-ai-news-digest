@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="{{ description }}" />
+  <meta property="og:title" content="{{ title }} — {{ week_label }}" />
+  <meta property="og:description" content="{{ description }}" />
+  <meta property="og:url" content="{{ site_url }}" />
+  <meta property="og:type" content="website" />
+  <title>{{ title }} — {{ week_label }}</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:        #0d1117;
+      --bg-card:   #161b22;
+      --bg-hover:  #1c2129;
+      --border:    #30363d;
+      --accent:    #58a6ff;
+      --accent2:   #3fb950;
+      --accent3:   #d2a8ff;
+      --text:      #e6edf3;
+      --text-muted:#8b949e;
+      --tag-bg:    #21262d;
+      --radius:    10px;
+      --max-w:     860px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 2.5rem 1.5rem 2rem;
+      text-align: center;
+    }
+    header .badge {
+      display: inline-block;
+      background: rgba(88,166,255,.12);
+      border: 1px solid rgba(88,166,255,.3);
+      color: var(--accent);
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      padding: .25rem .75rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      margin-bottom: .4rem;
+    }
+    header h1 span { color: var(--accent); }
+    header .week { color: var(--text-muted); font-size: .95rem; margin-bottom: .25rem; }
+    header .meta { color: var(--text-muted); font-size: .82rem; }
+    header .meta a { color: var(--accent); text-decoration: none; }
+    header .meta a:hover { text-decoration: underline; }
+
+    /* ── Layout ── */
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+    /* ── Stats bar ── */
+    .stats {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .stat {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: .65rem 1.1rem;
+      font-size: .82rem;
+      color: var(--text-muted);
+    }
+    .stat strong { color: var(--accent); }
+
+    /* ── Story cards ── */
+    .story-list { display: flex; flex-direction: column; gap: 1.2rem; }
+
+    .story-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.5rem;
+      transition: border-color .2s, background .2s;
+      position: relative;
+    }
+    .story-card:hover {
+      border-color: var(--accent);
+      background: var(--bg-hover);
+    }
+
+    .story-header {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      margin-bottom: .75rem;
+    }
+    .story-num {
+      flex-shrink: 0;
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 50%;
+      background: rgba(88,166,255,.15);
+      color: var(--accent);
+      font-size: .75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .story-title-block { flex: 1; }
+    .story-source {
+      font-size: .72rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: .25rem;
+    }
+    .story-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .story-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .story-title a:hover { color: var(--accent); }
+
+    .story-tldr {
+      font-size: .9rem;
+      color: #c9d1d9;
+      margin-bottom: .65rem;
+      line-height: 1.55;
+    }
+    .story-why {
+      font-size: .85rem;
+      color: var(--text-muted);
+      border-left: 3px solid var(--accent3);
+      padding-left: .75rem;
+      margin-bottom: .8rem;
+      font-style: italic;
+    }
+
+    .story-footer {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+    .tag {
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: .72rem;
+      font-weight: 500;
+      padding: .2rem .55rem;
+      border-radius: 20px;
+    }
+    .story-date {
+      margin-left: auto;
+      font-size: .75rem;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .read-more {
+      font-size: .78rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .read-more:hover { text-decoration: underline; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 2rem 1.5rem;
+      color: var(--text-muted);
+      font-size: .82rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .robot { font-size: 1.5rem; display: block; margin-bottom: .5rem; }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.5rem; }
+      .story-card { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="badge">🤖 AI-Generated Digest</div>
+  <h1>Weekly <span>AI & Tech</span> News</h1>
+  <p class="week">{{ week_label }}</p>
+  <p class="meta">
+    {{ story_count }} stories · last {{ days_back }} days ·
+    generated {{ generated_at }} ·
+    <a href="{{ repo_url }}" target="_blank" rel="noopener">view source ↗</a>
+  </p>
+</header>
+
+<div class="container">
+
+  <!-- Stats bar -->
+  <div class="stats">
+    <div class="stat">📰 <strong>{{ story_count }}</strong> stories</div>
+    {% for source, count in sources.items() %}
+    <div class="stat">{{ count }} from <strong>{{ source }}</strong></div>
+    {% endfor %}
+  </div>
+
+  <!-- Story list -->
+  <div class="story-list">
+    {% for story in stories %}
+    <article class="story-card">
+      <div class="story-header">
+        <div class="story-num">{{ loop.index }}</div>
+        <div class="story-title-block">
+          <div class="story-source">{{ story.icon }} {{ story.source }}</div>
+          <div class="story-title">
+            <a href="{{ story.url }}" target="_blank" rel="noopener">{{ story.title }}</a>
+          </div>
+        </div>
+      </div>
+
+      {% if story.tldr %}
+      <p class="story-tldr">{{ story.tldr }}</p>
+      {% endif %}
+
+      {% if story.why_it_matters %}
+      <p class="story-why">💡 {{ story.why_it_matters }}</p>
+      {% endif %}
+
+      <div class="story-footer">
+        {% for tag in story.tags %}
+        <span class="tag">{{ tag }}</span>
+        {% endfor %}
+        <a href="{{ story.url }}" class="read-more" target="_blank" rel="noopener">Read full story →</a>
+        <span class="story-date">{{ story.published.strftime('%b %d') }}</span>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+
+</div>
+
+<footer>
+  <span class="robot">🤖</span>
+  Curated &amp; summarised by <strong>GitHub Models ({{ "gpt-4o-mini" }})</strong> ·
+  Deployed via <a href="{{ repo_url }}/actions" target="_blank" rel="noopener">GitHub Actions</a> ·
+  Built by <a href="{{ author_url }}" target="_blank" rel="noopener">{{ author }}</a>
+  <br />
+  <small>Stories sourced from public RSS feeds. Summaries are AI-generated — always check the original source.</small>
+</footer>
+
+</body>
+</html>
