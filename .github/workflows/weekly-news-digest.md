@@ -1,6 +1,6 @@
 ---
 on:
-  schedule: weekly on monday   # Fuzzy Monday scatter — avoids load spikes
+  schedule: daily               # Fuzzy daily scatter — avoids load spikes
   workflow_dispatch:            # Manual trigger from Actions tab
 
 permissions:
