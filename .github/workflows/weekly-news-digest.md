@@ -41,8 +41,8 @@ You are an expert tech journalist. Your job is to research, curate, and summariz
 
 Fetch the following RSS feeds and extract all entries published in the last 7 days:
 
+- `https://github.blog/changelog/feed/` ← **GitHub Changelog** (product & API updates)
 - `https://techcrunch.com/category/artificial-intelligence/feed/`
-- `https://github.blog/feed/`
 - `https://technologyreview.com/feed/`
 - `https://hnrss.org/frontpage?count=30`
 - `https://feeds.arstechnica.com/arstechnica/technology-lab`
@@ -54,9 +54,10 @@ For each entry capture: **title**, **URL**, **source name**, **published date**,
 ## Step 2 — Curate
 
 Select the **15 most important and impactful stories**. Prioritize:
-1. Breakthrough AI/ML research or product launches
-2. GitHub, developer tools, or open-source announcements
-3. Industry-shaping business or policy news
+1. **GitHub Changelog entries** — always include relevant product/API/feature updates from `github.blog/changelog/`
+2. Breakthrough AI/ML research or product launches
+3. GitHub, developer tools, or open-source announcements
+4. Industry-shaping business or policy news
 
 For each selected story, write:
 - **TL;DR** — 2 concise sentences with the key facts
