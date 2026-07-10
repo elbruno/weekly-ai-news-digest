@@ -671,7 +671,7 @@ If you're still stuck:
 **Example 1: User asks to generate an image**
 ```text
 User: "Create a logo for my startup"
-Agent: 
+Agent:
 1. Checks: "Have you configured t2i? Run 't2i doctor' to verify."
 2. User confirms setup is done
 3. Agent runs: t2i "modern startup logo, minimalist design" --out logo.png
