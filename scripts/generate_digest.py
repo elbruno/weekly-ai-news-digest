@@ -33,13 +33,21 @@ def main():
     logger.info("Step 1/3 — Fetching stories from RSS feeds …")
     stories = fetch_stories()
     if not stories:
-        logger.warning("No stories found. Exiting.")
-        sys.exit(0)
-    logger.info("  → %d stories fetched", len(stories))
+        logger.warning("No stories found — generating empty digest page.")
+    else:
+        logger.info("  → %d stories fetched", len(stories))
 
     logger.info("Step 2/3 — Summarising with GitHub Models …")
-    stories = summarise_all(stories)
-    logger.info("  → All stories summarised")
+    try:
+        stories = summarise_all(stories)
+        logger.info("  → All stories summarised")
+    except Exception as exc:
+        logger.error("Summarisation failed: %s — continuing without AI summaries", exc)
+        # Populate fallback fields so the template still renders
+        for s in stories:
+            s.setdefault("tldr", s.get("summary", "")[:200])
+            s.setdefault("why_it_matters", "")
+            s.setdefault("tags", [])
 
     logger.info("Step 3/3 — Generating HTML page …")
     out = generate_page(stories)
