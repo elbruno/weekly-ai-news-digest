@@ -14,6 +14,10 @@ In other words: an agent researches, curates, writes the page, and proposes the 
 
 That balance is the whole point.
 
+![Generated illustration of an AI-news workflow moving through a review checkpoint to a web digest.](assets/agentic-workflow-hero.png)
+
+_Generated illustration. It represents the workflow concept and is not a screenshot of the product._
+
 ## I did not want another news scraper
 
 A normal news scraper is easy to imagine:
@@ -77,6 +81,10 @@ The workflow begins with a small set of sources:
 
 The agent extracts the title, URL, source, publication date, and plain-text excerpt for each recent entry. Then it curates the list.
 
+![Generated illustration of multiple news sources flowing into a curated developer digest.](assets/agentic-workflow-sources.png)
+
+_Generated illustration. It represents the source-to-digest concept and is not a screenshot of the product._
+
 The curation rules deliberately make GitHub the default lens. At least seven of the 15 selected stories come from GitHub Changelog when that many are available. Other sources cannot dominate the page.
 
 That does not mean “ignore the rest of the industry.” It means that, when I open this page, I should quickly see the developer-platform changes that may affect my daily work.
@@ -98,6 +106,10 @@ It uses a GitHub-inspired dark theme, with system, light, and dark modes. It als
 The source filter starts with GitHub-related sources selected.
 
 Again, that is intentional. A visitor can expand the view, but the default answer to “what changed this week?” starts close to the tools many developers already use.
+
+![Product screenshot of the generated weekly digest in dark mode with its GitHub-first source filter.](assets/screenshots/digest-default-github-filter.png)
+
+_Product screenshot captured locally on July 10, 2026 at `http://127.0.0.1:4173/`. It shows the generated digest with the default GitHub-first filter._
 
 Small UX decisions like this are useful because they turn a generated page into something that feels curated. The agent can produce information. The product still needs an opinion about how people should consume it.
 
@@ -123,6 +135,10 @@ Agent (read-only, sandboxed)
 The workflow creates a pull request with the `digest` and `automated` labels. A separate automation can merge that trusted digest PR. GitHub Pages then serves the `docs/` folder from `main`.
 
 This is a much better model than “an AI wrote directly to production.”
+
+![Generated illustration of a secure agent workflow progressing through a safety checkpoint and pull request review to a deployed site.](assets/agentic-workflow-safety-path.png)
+
+_Generated illustration. It represents the safety and delivery model and is not a screenshot of the product._
 
 The agent is useful where it has an advantage: reading, comparing, summarizing, and drafting. The platform keeps the repository mutation in a narrow, auditable path.
 
@@ -192,9 +208,12 @@ For now, the goal is simpler: open one page, catch up on useful news, and unders
 
 The project is open source on GitHub: [elbruno/weekly-ai-news-digest](https://github.com/elbruno/weekly-ai-news-digest).
 
+![GitHub Changelog page used as an approved source for the digest.](assets/screenshots/github-changelog.png)
+
+_Source screenshot captured from [GitHub Changelog](https://github.blog/changelog/) on July 10, 2026. It documents an input source, not a feature of this project._
+
 If you build your own agentic workflow, my recommendation is not “give the agent all the permissions.”
 
 Start with a narrow problem. Describe the output. Keep the boundary visible. Let the agent do the part where it is good.
 
 And let your pull request do the part where you are good.
-

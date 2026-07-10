@@ -5,20 +5,39 @@
 | Property | Value |
 | --- | --- |
 | Purpose | Lead the blog post without presenting a generated image as product evidence. |
-| Full-size filename | `agentic-workflow-hero.png` |
-| Full-size dimensions | 1360 x 768 |
-| Half-size filename | `agentic-workflow-hero-half.png` |
-| Half-size dimensions | 680 x 384 |
+| Filename | `agentic-workflow-hero.png` |
+| Dimensions | 1024 x 1024 |
 | Alt text | Generated illustration of a safe, automated AI-news workflow moving from a code repository through review to a web digest. |
 | Caption | Generated illustration. It represents the workflow concept and is not a screenshot of the product. |
-| Prompt | A cinematic editorial hero illustration for a technical developer blog: an automated news pipeline represented by glowing cards flowing from a GitHub-style octocat-inspired code repository through a safe review checkpoint into a clean dark web dashboard, deep charcoal background, electric blue accents, subtle cyan highlights, modern flat-isometric style, high contrast, polished professional technology editorial art, ample dark negative space for title overlay, no text, no letters, no logos, no watermark, 16:9. |
+| Prompt file | `agentic-workflow-hero.prompt.txt` |
+
+## Safety path illustration
+
+| Property | Value |
+| --- | --- |
+| Filename | `agentic-workflow-safety-path.png` |
+| Dimensions | 1024 x 1024 |
+| Alt text | Generated illustration of a secure agent workflow progressing through safety review and a pull request to a deployed site. |
+| Caption | Generated illustration. It represents the safety and delivery model and is not a screenshot of the product. |
+| Prompt file | `agentic-workflow-safety-path.prompt.txt` |
+
+## Source curation illustration
+
+| Property | Value |
+| --- | --- |
+| Filename | `agentic-workflow-sources.png` |
+| Dimensions | 1024 x 1024 |
+| Alt text | Generated illustration of news sources flowing into a curated developer digest. |
+| Caption | Generated illustration. It represents source curation and is not a screenshot of the product. |
+| Prompt file | `agentic-workflow-sources.prompt.txt` |
+
+## Product and source screenshots
+
+| File | Capture context | Alt text | Caption |
+| --- | --- | --- | --- |
+| `screenshots/digest-default-github-filter.png` | `http://127.0.0.1:4173/`, July 10, 2026, 1440 x 1100 dark-mode viewport | Product screenshot of the generated weekly digest with GitHub-first source filtering. | Product screenshot captured locally. |
+| `screenshots/github-changelog.png` | `https://github.blog/changelog/`, July 10, 2026, 1440 x 1100 viewport | GitHub Changelog, an approved digest source. | Source screenshot; it is not a feature of this project. |
 
 ## Generation status
 
-Generation was attempted on 2026-07-10 with `t2i`:
-
-* `foundry-mai2` could not resolve its configured Azure endpoint.
-* `foundry-mai25` and `foundry-mai25-flash` rejected the CLI's `png` output format even though the service advertises `image/png`.
-* A retry using only the default `t2i` parameters selected `foundry-mai25` and returned the same output-format rejection.
-
-The post intentionally does not embed the hero image until the configured provider succeeds. When it does, generate the full asset at 1360 x 768, then resize it to 680 x 384 without changing the aspect ratio.
+Generated successfully on July 10, 2026 with `t2i` v1.4.0, its configured default provider (`foundry-mai25` / MAI-Image-2.5), and default image parameters. Each image is 1024 x 1024.

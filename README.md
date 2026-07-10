@@ -1,225 +1,92 @@
-# 📰 Weekly AI News Digest
+[![Editorial illustration of a weekly AI news digest](docs/assets/weekly-ai-news-digest-header.png)](docs/assets/weekly-ai-news-digest-header.png)
 
-> **Agentic weekly digest of the best AI & tech news — auto-generated every Monday via [GitHub Agentic Workflows](https://github.github.com/gh-aw/).**
+# Weekly AI News Digest
+
+> **Agentic weekly digest of the best AI and technology news, generated every Monday with [GitHub Agentic Workflows](https://github.github.com/gh-aw/).**
 
 [![Weekly Digest](https://github.com/elbruno/weekly-ai-news-digest/actions/workflows/weekly-news-digest.lock.yml/badge.svg)](https://github.com/elbruno/weekly-ai-news-digest/actions/workflows/weekly-news-digest.lock.yml)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen)](https://elbruno.github.io/weekly-ai-news-digest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## 🌐 Live Site
+## Live Site
 
-👉 **[https://elbruno.github.io/weekly-ai-news-digest](https://elbruno.github.io/weekly-ai-news-digest)**
+**[Read the latest digest](https://elbruno.github.io/weekly-ai-news-digest)**
 
-A new digest is published every **Monday** — or trigger one manually via [Actions → Run workflow](../../actions/workflows/weekly-news-digest.lock.yml).
+A new digest is published every Monday. You can also trigger a run manually from [Actions](../../actions/workflows/weekly-news-digest.lock.yml).
 
----
+## How It Works
 
-## 🤖 How It Works
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│          GitHub Agentic Workflows  (every Monday)               │
-│                                                                 │
-│  1. Agent fetches 7 RSS feeds  →  AI/Tech sources (last 7 days)│
-│  2. Agent curates top 15 stories  →  ranked by importance      │
-│  3. Agent writes  docs/index.html  →  dark-themed digest page  │
-│  4. Safe output  →  create-pull-request  (sandboxed write)     │
-│  5. Auto-merge workflow  →  squash-merges the digest PR        │
-│  6. GitHub Pages  →  serves from docs/ on main                 │
-└─────────────────────────────────────────────────────────────────┘
+```text
+GitHub Agentic Workflows (every Monday)
+  -> Research seven RSS feeds from the last 14 days
+  -> Curate 15 developer-relevant stories
+  -> Write docs/index.html
+  -> Create a scoped safe-outputs pull request
+  -> Auto-merge the trusted digest PR
+  -> Deploy docs/ with GitHub Pages
 ```
 
-### Security Architecture (gh-aw)
+The agent has read-only repository permissions in a sandboxed container. It researches approved sources and prepares its output; a separate `safe_outputs` job creates the pull request after threat detection. The agent never writes directly to the repository.
 
-GitHub Agentic Workflows runs the agent with **read-only permissions** inside a sandboxed container with a network firewall. The only write operation — creating the pull request — is handled in a **separate, scoped `safe_outputs` job** after threat detection. The agent never has direct write access to the repository.
+## What the Digest Includes
 
-```
-Agent (read-only, sandboxed) → agent_output artifact → Threat Detection → safe_outputs job → PR
-```
+- A GitHub-first selection of AI and developer-platform news.
+- A GitHub-only TL;DR highlights section.
+- Concise summaries and developer impact notes for every story.
+- Source and tag filters, full-text search, and a responsive dark, light, or system theme.
 
 ### News Sources
 
 | Source | Feed |
-|--------|------|
-| 🤖 TechCrunch AI | `techcrunch.com/category/artificial-intelligence/feed/` |
-| 🐙 GitHub Blog | `github.blog/feed/` |
-| 🔬 MIT Tech Review | `technologyreview.com/feed/` |
-| 🔶 Hacker News | `hnrss.org/frontpage` |
-| 🔭 Ars Technica | `feeds.arstechnica.com/arstechnica/technology-lab` |
-| 📡 The Verge | `theverge.com/rss/tech/index.xml` |
-| 🧠 VentureBeat AI | `venturebeat.com/category/ai/feed/` |
+| --- | --- |
+| GitHub Changelog | `github.blog/changelog/feed/` |
+| TechCrunch AI | `techcrunch.com/category/artificial-intelligence/feed/` |
+| MIT Technology Review | `technologyreview.com/feed/` |
+| Hacker News | `hnrss.org/frontpage` |
+| Ars Technica | `feeds.arstechnica.com/arstechnica/technology-lab` |
+| The Verge | `theverge.com/rss/tech/index.xml` |
+| VentureBeat AI | `venturebeat.com/category/ai/feed/` |
 
----
+## Project Structure
 
-## 📂 Project Structure
-
-```
+```text
 weekly-ai-news-digest/
 ├── .github/
-│   ├── aw/
-│   │   └── actions-lock.json            # Pinned action SHA cache (gh-aw managed)
-│   ├── agents/
-│   │   └── agentic-workflows.md         # Agent instructions
-│   ├── skills/
-│   │   └── agentic-workflows/SKILL.md   # gh-aw skill reference
-│   └── workflows/
-│       ├── weekly-news-digest.md        # ← Edit this: agent prompt + frontmatter
-│       ├── weekly-news-digest.lock.yml  # ← Compiled: do not edit manually
-│       ├── auto-merge-digest.yml        # Auto-merges PRs labeled 'digest'
-│       └── copilot-setup-steps.yml      # Copilot environment setup
+│   ├── agents/agentic-workflows.md       # Agent instructions
+│   ├── workflows/weekly-news-digest.md   # Workflow prompt and frontmatter
+│   ├── workflows/weekly-news-digest.lock.yml # Compiled workflow
+│   └── workflows/auto-merge-digest.yml   # Trusted digest PR auto-merge
 ├── docs/
-│   ├── template.html                    # Reference design for the agent
-│   └── index.html                       # ← Generated by agent (auto-updated weekly)
-├── LICENSE
+│   ├── assets/                           # README media
+│   ├── blog/                             # Blog post, visuals, and screenshots
+│   ├── index.html                        # Generated digest site
+│   └── template.html                     # Reference design for the agent
 └── README.md
 ```
 
----
+## Customizing the Workflow
 
-## ✏️ Customizing the Workflow
-
-The agent prompt lives in `.github/workflows/weekly-news-digest.md` — edit the markdown body freely (changes take effect on next run). If you modify the **frontmatter** (triggers, network rules, safe outputs), recompile:
+Edit [`.github/workflows/weekly-news-digest.md`](.github/workflows/weekly-news-digest.md) to change the prompt. If you change frontmatter such as triggers, network rules, or safe outputs, recompile it:
 
 ```bash
 gh extension install github/gh-aw
 gh aw compile .github/workflows/weekly-news-digest.md
 ```
 
-Then commit both the `.md` and the updated `.lock.yml`.
+Commit both the Markdown definition and its updated `.lock.yml` file.
 
-### Manual Trigger
+## About the Author
 
-```bash
-gh workflow run weekly-news-digest.lock.yml --repo elbruno/weekly-ai-news-digest
-```
+Hi! I'm **ElBruno** 🧡, a passionate developer and content creator exploring AI, .NET, and modern development practices.
 
----
+**Made with ❤️ by [ElBruno](https://github.com/elbruno)**
 
-## 🤝 Contributing
+- Podcast: [No Tienen Nombre](https://notienenombre.com) — Spanish-language episodes on AI, development, and tech culture.
+- Blog: [ElBruno.com](https://elbruno.com) — Deep dives on embeddings, RAG, .NET, and local AI.
+- YouTube: [youtube.com/elbruno](https://www.youtube.com/elbruno) — Demos, tutorials, and live coding.
+- LinkedIn: [@elbruno](https://www.linkedin.com/in/elbruno/) — Professional updates and insights.
+- X: [@elbruno](https://www.x.com/elbruno/) — Quick tips, releases, and tech news.
 
-Suggestions for new news sources or improvements? Open an [issue](../../issues) or a PR!
+## License
 
----
-
-## 📄 License
-
-[MIT](LICENSE) © [El Bruno](https://github.com/elbruno)
-
-
-## 🌐 Live Site
-
-👉 **[https://elbruno.github.io/weekly-ai-news-digest](https://elbruno.github.io/weekly-ai-news-digest)**
-
-A new digest is published every **Monday at 9:00 AM UTC** — or trigger one manually via [Actions → Run workflow](../../actions/workflows/weekly-news.yml).
-
----
-
-## 🤖 How It Works
-
-```
-┌─────────────────────────────────────────────────────────┐
-│                  GitHub Actions (Monday 9am UTC)         │
-│                                                         │
-│  1. Fetch RSS feeds  →  AI/Tech sources (last 7 days)   │
-│  2. Rank stories     →  Score by recency + engagement   │
-│  3. Summarize        →  GitHub Models (GPT-4o-mini)     │
-│  4. Generate HTML    →  Beautiful static page           │
-│  5. Deploy           →  GitHub Pages (gh-pages branch)  │
-└─────────────────────────────────────────────────────────┘
-```
-
-### News Sources
-
-| Source | Feed |
-|--------|------|
-| 🤖 TechCrunch AI | `techcrunch.com/category/artificial-intelligence/feed/` |
-| 🔬 MIT Tech Review | `technologyreview.com/feed/` |
-| 🛠️ Hacker News | `hnrss.org/frontpage` |
-| 🔭 Ars Technica | `feeds.arstechnica.com/arstechnica/technology-lab` |
-| 🧠 VentureBeat AI | `feeds.feedburner.com/venturebeat/SFSN` |
-| 📡 The Verge Tech | `theverge.com/rss/tech/index.xml` |
-| 🐙 GitHub Blog | `github.blog/feed/` |
-
-### AI Summarization
-
-Summaries are generated using **[GitHub Models](https://github.com/marketplace/models)** (`gpt-4o-mini`) — free with your GitHub token, no extra API keys needed.
-
-Each story gets:
-- 📌 **TL;DR** — 2-sentence summary
-- 🔑 **Why it matters** — impact explanation  
-- 🔗 **Source link**
-
----
-
-## 🛠️ Local Development
-
-### Prerequisites
-
-```bash
-python >= 3.12
-pip install -r requirements.txt
-```
-
-### Run Locally
-
-```bash
-# Set your GitHub token (for GitHub Models)
-export GITHUB_TOKEN=ghp_your_token_here
-
-# Generate digest for last 7 days
-python scripts/generate_digest.py
-
-# Output will be in ./output/index.html
-```
-
-### Manual Workflow Trigger
-
-You can trigger the workflow manually from the [Actions tab](../../actions/workflows/weekly-news.yml) — no code push needed.
-
----
-
-## ⚙️ Configuration
-
-Edit [`scripts/config.py`](scripts/config.py) to customize:
-
-| Setting | Default | Description |
-|---------|---------|-------------|
-| `MAX_STORIES` | `15` | Max stories per digest |
-| `DAYS_BACK` | `7` | Days of news to fetch |
-| `MODEL` | `gpt-4o-mini` | GitHub Models model |
-| `FEEDS` | (list) | RSS feeds to include |
-
----
-
-## 📂 Project Structure
-
-```
-weekly-ai-news-digest/
-├── .github/
-│   └── workflows/
-│       └── weekly-news.yml     # Scheduled workflow
-├── scripts/
-│   ├── config.py               # Configuration
-│   ├── fetch_news.py           # RSS fetcher + scorer
-│   ├── summarize_news.py       # GitHub Models AI summarizer
-│   ├── generate_page.py        # HTML page generator
-│   └── generate_digest.py      # Main entrypoint
-├── docs/
-│   └── template.html           # Page HTML template
-├── output/                     # Generated site (git-ignored)
-│   └── index.html
-├── requirements.txt
-└── README.md
-```
-
----
-
-## 🤝 Contributing
-
-Suggestions for new news sources or improvements? Open an [issue](../../issues) or a PR!
-
----
-
-## 📄 License
-
-[MIT](LICENSE) © [El Bruno](https://github.com/elbruno)
+[MIT](LICENSE) © [ElBruno](https://github.com/elbruno)
