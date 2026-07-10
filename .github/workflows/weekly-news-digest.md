@@ -70,6 +70,10 @@ For each selected story, write:
 - **Why it matters** — 1 sentence on real-world impact
 - **Tags** — 2–4 tags chosen from: `AI`, `LLMs`, `Open Source`, `Security`, `Cloud`, `GitHub`, `Startups`, `Research`, `Tools`, `Policy`
 
+Also produce a separate **GitHub-only highlights set**:
+- Exactly 5 concise bullets for a top-page section named **"TL;DR — GitHub highlights"**
+- These 5 bullets must be derived **only** from GitHub sources (`github.blog/changelog/` and any GitHub Blog items), not from other outlets
+
 ## Step 3 — Generate Page
 
 Read the reference design from `docs/template.html` to understand the visual style, then write a **complete, self-contained HTML5 file** to `docs/index.html`.
@@ -81,6 +85,8 @@ Requirements:
 - Add a **"TL;DR — Top takeaways" section at the top** (above the story list) with exactly 5 concise bullets summarizing the week
 - Implement **theme modes**: `system` (default), `light`, and `dark`; include a visible theme selector and persist user choice in `localStorage`
 - Implement **filters**:
+  - Source filter chips (e.g., GitHub Changelog, TechCrunch, Ars Technica, The Verge, etc.) with multi-select support
+  - Source filter must default to **GitHub sources selected only** on first load
   - Free-text keyword search that filters stories by title, source, TL;DR, why-it-matters text, and tags
   - Label/tag filter chips that can be toggled (multi-select)
   - Display "Showing X of 15 stories" based on active filters

@@ -255,7 +255,7 @@
     </section>
 
     <section class="tldr-summary">
-      <h2>TL;DR - Top takeaways</h2>
+      <h2>TL;DR - GitHub highlights</h2>
       <ul>
         <li>{{ top_tldr_1 }}</li>
         <li>{{ top_tldr_2 }}</li>
@@ -265,6 +265,7 @@
       </ul>
     </section>
 
+    <section class="filter-labels" id="sourceFilters"></section>
     <section class="filter-labels" id="labelFilters"></section>
     <p class="result-line" id="resultLine"></p>
 
@@ -273,6 +274,7 @@
       <article
         class="story-card"
         data-tags="{{ story.tags | join(',') }}"
+        data-source="{{ story.source }}"
         data-search="{{ story.title }} {{ story.source }} {{ story.tldr }} {{ story.why_it_matters }} {{ story.tags | join(' ') }}"
       >
         <div class="story-head">
@@ -305,9 +307,11 @@
     (function () {
       var themeSelect = document.getElementById("themeSelect");
       var searchInput = document.getElementById("searchInput");
+      var sourceFilters = document.getElementById("sourceFilters");
       var labelFilters = document.getElementById("labelFilters");
       var resultLine = document.getElementById("resultLine");
       var cards = Array.prototype.slice.call(document.querySelectorAll(".story-card"));
+      var selectedSources = new Set();
       var selectedTags = new Set();
 
       function systemTheme() {
@@ -333,6 +337,44 @@
         return Array.from(all).sort();
       }
 
+      function isGitHubSource(source) {
+        return (source || "").toLowerCase().indexOf("github") !== -1;
+      }
+
+      function collectSources() {
+        var all = new Set();
+        cards.forEach(function (card) {
+          var source = (card.dataset.source || "").trim();
+          if (source) all.add(source);
+        });
+        return Array.from(all).sort();
+      }
+
+      function renderSourceFilters() {
+        var sources = collectSources();
+        var githubSources = sources.filter(isGitHubSource);
+        if (githubSources.length > 0) {
+          githubSources.forEach(function (source) { selectedSources.add(source); });
+        } else {
+          sources.forEach(function (source) { selectedSources.add(source); });
+        }
+
+        sources.forEach(function (source) {
+          var btn = document.createElement("button");
+          btn.className = "chip";
+          btn.type = "button";
+          btn.textContent = source;
+          btn.dataset.source = source;
+          if (selectedSources.has(source)) btn.classList.add("active");
+          btn.addEventListener("click", function () {
+            if (selectedSources.has(source)) selectedSources.delete(source); else selectedSources.add(source);
+            btn.classList.toggle("active", selectedSources.has(source));
+            applyFilters();
+          });
+          sourceFilters.appendChild(btn);
+        });
+      }
+
       function renderTagFilters() {
         collectTags().forEach(function (tag) {
           var btn = document.createElement("button");
@@ -356,10 +398,12 @@
         cards.forEach(function (card) {
           var text = (card.dataset.search || "").toLowerCase();
           var tags = (card.dataset.tags || "").split(",").map(function (t) { return t.trim(); }).filter(Boolean);
+          var source = (card.dataset.source || "").trim();
 
           var matchesQuery = query === "" || text.indexOf(query) !== -1;
+          var matchesSource = selectedSources.size === 0 || selectedSources.has(source);
           var matchesTags = selectedTags.size === 0 || Array.from(selectedTags).every(function (tag) { return tags.indexOf(tag) !== -1; });
-          var show = matchesQuery && matchesTags;
+          var show = matchesQuery && matchesSource && matchesTags;
           card.style.display = show ? "" : "none";
           if (show) visible += 1;
         });
@@ -383,6 +427,7 @@
       searchInput.addEventListener("input", applyFilters);
 
       loadTheme();
+      renderSourceFilters();
       renderTagFilters();
       applyFilters();
     })();
