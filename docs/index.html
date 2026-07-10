@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Top 15 AI and technology stories for the week of July 4–10, 2026, curated from GitHub Changelog, TechCrunch, Ars Technica, and more." />
+  <meta property="og:title" content="Weekly AI &amp; Tech News — July 4–10, 2026" />
+  <meta property="og:description" content="Top 15 AI and technology stories curated weekly." />
+  <meta property="og:type" content="website" />
+  <title>Weekly AI &amp; Tech News — July 4–10, 2026</title>
+
+  <style>
+    :root {
+      --bg:        #0d1117;
+      --bg-card:   #161b22;
+      --bg-hover:  #1c2129;
+      --border:    #30363d;
+      --accent:    #58a6ff;
+      --accent2:   #3fb950;
+      --accent3:   #d2a8ff;
+      --text:      #e6edf3;
+      --text-muted:#8b949e;
+      --tag-bg:    #21262d;
+      --radius:    10px;
+      --max-w:     860px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 2.5rem 1.5rem 2rem;
+      text-align: center;
+    }
+    header .badge {
+      display: inline-block;
+      background: rgba(88,166,255,.12);
+      border: 1px solid rgba(88,166,255,.3);
+      color: var(--accent);
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      padding: .25rem .75rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      margin-bottom: .4rem;
+    }
+    header h1 span { color: var(--accent); }
+    header .week { color: var(--text-muted); font-size: .95rem; margin-bottom: .25rem; }
+    header .meta { color: var(--text-muted); font-size: .82rem; }
+    header .meta a { color: var(--accent); text-decoration: none; }
+    header .meta a:hover { text-decoration: underline; }
+
+    /* ── Layout ── */
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+    /* ── Stats bar ── */
+    .stats {
+      display: flex;
+      gap: .75rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .stat {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: .55rem 1rem;
+      font-size: .82rem;
+      color: var(--text-muted);
+    }
+    .stat strong { color: var(--accent); }
+
+    /* ── Story cards ── */
+    .story-list { display: flex; flex-direction: column; gap: 1.2rem; }
+
+    .story-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.5rem;
+      transition: border-color .15s, background .15s;
+    }
+    .story-card:hover {
+      border-color: var(--accent);
+      background: var(--bg-hover);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: .75rem;
+    }
+
+    .rank-badge {
+      flex-shrink: 0;
+      width: 2rem;
+      height: 2rem;
+      background: rgba(88,166,255,.15);
+      border: 1px solid rgba(88,166,255,.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: .15rem;
+    }
+
+    .card-meta {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .source-line {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      margin-bottom: .35rem;
+      font-size: .78rem;
+      color: var(--text-muted);
+    }
+    .source-icon {
+      font-size: .9rem;
+    }
+    .source-name { font-weight: 600; }
+    .pub-date { margin-left: auto; white-space: nowrap; }
+
+    .story-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+    .story-title a {
+      color: var(--text);
+      text-decoration: none;
+    }
+    .story-title a:hover { color: var(--accent); }
+
+    .tldr {
+      font-size: .88rem;
+      color: var(--text-muted);
+      margin: .6rem 0 .75rem;
+    }
+
+    .why-matters {
+      background: rgba(63,185,80,.08);
+      border-left: 3px solid var(--accent2);
+      border-radius: 0 6px 6px 0;
+      padding: .55rem .85rem;
+      font-size: .85rem;
+      color: #cae8ca;
+      margin-bottom: .85rem;
+    }
+    .why-matters strong { color: var(--accent2); }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    .tags { display: flex; flex-wrap: wrap; gap: .35rem; }
+    .tag {
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: .15rem .6rem;
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .tag.ai { color: #d2a8ff; border-color: rgba(210,168,255,.3); background: rgba(210,168,255,.08); }
+    .tag.github { color: var(--accent); border-color: rgba(88,166,255,.3); background: rgba(88,166,255,.08); }
+    .tag.security { color: #ffa657; border-color: rgba(255,166,87,.3); background: rgba(255,166,87,.08); }
+    .tag.open-source { color: var(--accent2); border-color: rgba(63,185,80,.3); background: rgba(63,185,80,.08); }
+    .tag.tools { color: #79c0ff; border-color: rgba(121,192,255,.3); background: rgba(121,192,255,.08); }
+    .tag.llms { color: #d2a8ff; border-color: rgba(210,168,255,.3); background: rgba(210,168,255,.08); }
+    .tag.cloud { color: #79c0ff; border-color: rgba(121,192,255,.3); background: rgba(121,192,255,.08); }
+    .tag.startups { color: #ffa657; border-color: rgba(255,166,87,.3); background: rgba(255,166,87,.08); }
+    .tag.research { color: var(--accent3); border-color: rgba(210,168,255,.3); background: rgba(210,168,255,.08); }
+    .tag.policy { color: #e3b341; border-color: rgba(227,179,65,.3); background: rgba(227,179,65,.08); }
+
+    .read-link {
+      font-size: .82rem;
+      color: var(--accent);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .read-link:hover { text-decoration: underline; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      border-top: 1px solid var(--border);
+      font-size: .82rem;
+      color: var(--text-muted);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.45rem; }
+      .story-card { padding: 1rem 1.1rem; }
+      .card-header { gap: .7rem; }
+      .pub-date { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="badge">📰 Weekly Digest</div>
+  <h1>Weekly <span>AI &amp; Tech</span> News</h1>
+  <div class="week">July 4–10, 2026</div>
+  <div class="meta">15 stories curated from GitHub Changelog, TechCrunch, Ars Technica &amp; more</div>
+</header>
+
+<div class="container">
+
+  <!-- Stats bar -->
+  <div class="stats">
+    <div class="stat">📦 <strong>15</strong> stories this week</div>
+    <div class="stat">🐙 <strong>7</strong> GitHub Changelog</div>
+    <div class="stat">🔬 <strong>4</strong> TechCrunch</div>
+    <div class="stat">🛡️ <strong>3</strong> Ars Technica</div>
+    <div class="stat">💬 <strong>1</strong> Hacker News</div>
+  </div>
+
+  <!-- Stories -->
+  <div class="story-list">
+
+    <!-- 1 -->
+    <div class="story-card">
+      <div class="card-header">
+        <div class="rank-badge">1</div>
+        <div class="card-meta">
+          <div class="source-line">
+            <span class="source-icon">🐙</span>
+            <span class="source-name">GitHub Changelog</span>
+            <span class="pub-date">Jul 9, 2026</span>
+          </div>
+          <div class="story-title"><a href="https://github.blog/changelog/2026-07-09-openais-gpt-5-6-sol-terra-and-luna-are-now-available-in-github-copilot" target="_blank" rel="noopener">OpenAI's GPT-5.6 Sol, Terra, and Luna are now available in GitHub Copilot</a></div>
+        </div>
+      </div>
+      <div class="tldr">OpenAI's GPT-5.6 model family — Sol, Terra, and Luna — is rolling out inside GitHub Copilot, giving developers three specialized variants tailored to different workload types. The models bring improvements in coding accuracy, cybersecurity reasoning, and large-context tasks.</div>
+      <div class="why-matters">💡 <strong>Why it matters:</strong> Developers using Copilot gain immediate access to state-of-the-art GPT-5.6 capabilities without leaving their IDE, accelerating real-world AI adoption.</div>
+      <div class="card-footer">
+        <div class="tags">
+          <span class="tag ai">AI</span>
+          <span class="tag llms">LLMs</span>
+          <span class="tag github">GitHub</span>
+          <span class="tag tools">Tools</span>
+        </div>
+        <a class="read-link" href="https://github.blog/changelog/2026-07-09-openais-gpt-5-6-sol-terra-and-luna-are-now-available-in-github-copilot" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="story-card">
+      <div class="card-header">
+        <div class="rank-badge">2</div>
+        <div class="card-meta">
+          <div class="source-line">
+            <span class="source-icon">🐙</span>
+            <span class="source-name">GitHub Changelog</span>
+            <span class="pub-date">Jul 8, 2026</span>
+          </div>
+          <div class="story-title"><a href="https://github.blog/changelog/2026-07-08-github-copilot-in-visual-studio-code-june-2026-releases" target="_blank" rel="noopener">GitHub Copilot in Visual Studio Code, June 2026 releases</a></div>
+        </div>
+      </div>
+      <div class="tldr">GitHub's June 2026 VS Code release notes (v1.123–v1.127) detail a raft of Copilot improvements shipped throughout the month, including smarter inline completions, better chat context, and agentic workflow enhancements. The updates cement Copilot as the default AI coding layer inside the editor.</div>
+      <div class="why-matters">💡 <strong>Why it matters:</strong> Millions of VS Code users receive a continuous stream of AI enhancements, raising the baseline quality of AI-assisted development for the entire ecosystem.</div>
+      <div class="card-footer">
+        <div class="tags">
+          <span class="tag ai">AI</span>
+          <span class="tag github">GitHub</span>
+          <span class="tag tools">Tools</span>
+        </div>
+        <a class="read-link" href="https://github.blog/changelog/2026-07-08-github-copilot-in-visual-studio-code-june-2026-releases" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="story-card">
+      <div class="card-header">
+        <div class="rank-badge">3</div>
+        <div class="card-meta">
+          <div class="source-line">
+            <span class="source-icon">🐙</span>
+            <span class="source-name">GitHub Changelog</span>
+            <span class="pub-date">Jul 10, 2026</span>
+          </div>
+          <div class="story-title"><a href="https://github.blog/changelog/2026-07-10-github-mobile-improved-filters-and-sorting-for-copilot-sessions" target="_blank" rel="noopener">GitHub Mobile: Improved filters and sorting for Copilot sessions</a></div>
+        </div>
+      </div>
+      <div class="tldr">GitHub Mobile now supports advanced filters and sorting for Copilot sessions, making it far easier to locate the right session as your history grows. Users can narrow by status, date, and more directly from their phone.</div>
+      <div class="why-matters">💡 <strong>Why it matters:</strong> As agentic Copilot sessions multiply, mobile session management becomes a productivity necessity for developers on the go.</div>
+      <div class="card-footer">
+        <div class="tags">
+          <span class="tag github">GitHub</span>
+          <span class="tag ai">AI</span>
+          <span class="tag tools">Tools</span>
+        </div>
+        <a class="read-link" href="https://github.blog/changelog/2026-07-10-github-mobile-improved-filters-and-sorting-for-copilot-sessions" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="story-card">
+      <div class="card-header">
+        <div class="rank-badge">4</div>
+        <div class="card-meta">
+          <div class="source-line">
+            <span class="source-icon">🐙</span>
+            <span class="source-name">GitHub Changelog</span>
+            <span class="pub-date">Jul 8, 2026</span>
+          </div>
+          <div class="story-title"><a href="https://github.blog/changelog/2026-07-08-npm-install-time-security-and-gat-bypass2fa-deprecation" target="_blank" rel="noopener">npm install-time security and GAT bypass2fa deprecation</a></div>
+        </div>
+      </div>
+      <div class="tldr">npm v12 is now generally available and tagged latest, enabling install-time security defaults announced in June and beginning the deprecation of the GAT bypass2fa granular access token permission. This major release is a significant security milestone for the JavaScript ecosystem.</div>
+      <div class="why-matters">💡 <strong>Why it matters:</strong> Turning on security defaults by default protects millions of JavaScript projects from supply-chain attacks without requiring developer action.</div>
+      <div class="card-footer">
+        <div class="tags">
+          <span class="tag security">Security</span>
+          <span class="tag open-source">Open Source</span>
+          <span class="tag tools">Tools</span>
+        </div>
+        <a class="read-link" href="https://github.blog/changelog/2026-07-08-npm-install-time-security-and-gat-bypass2fa-deprecation" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="story-card">
+      <div class="card-header">
+        <div class="rank-badge">5</div>
+        <div class="card-meta">
+          <div class="source-line">
+            <span class="source-icon">🐙</span>
+            <span class="source-name">GitHub Changelog</span>
+            <span class="pub-date">Jul 8, 2026</span>
+          </div>
+          <div class="story-title"><a href="https://github.blog/changelog/2026-07-08-innersource-security-advisories-are-generally-available" target="_blank" rel="noopener">Innersource security advisories are generally available</a></div>
+        </div>
+      </div>
+      <div class="tldr">GitHub Advanced Security enterprise customers can now publish internal security advisories with visibility restricted to their organization, mirroring the open-source advisory workflow but for private code. This fills a long-standing gap in coordinated vulnerability disclosure for internal projects.</div>
+      <div class="why-matters">💡 <strong>Why it matters:</strong> Enterprises can now manage and disclose internal CVEs with the same rigour as public open-source projects, reducing the window of exposure for critical internal vulnerabilities.</div>
+      <div class="card-footer">
+        <div class="tags">
+          <span class="tag security">Security</span>
+          <span class="tag github">GitHub</span>
+        </div>
+        <a class="read-link" href="https://github.blog/changelog/2026-07-08-innersource-security-advisories-are-generally-available" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="story-card">
+      <div class="card-header">
+        <div class="rank-badge">6</div>
+        <div class="card-meta">
+          <div class="source-line">
+            <span class="source-icon">🐙</span>
+            <span class="source-name">GitHub Changelog</span>
+            <span class="pub-date">Jul 8, 2026</span>
+          </div>
+          <div class="story-title"><a href="https://github.blog/changelog/2026-07-08-enterprise-managed-opentelemetry-export-for-vs-code-and-cli" target="_blank" rel="noopener">Enterprise-managed OpenTelemetry export for VS Code and CLI</a></div>
+        </div>
+      </div>
+      <div class="tldr">Organizations can now mandate where GitHub Copilot sends OpenTelemetry telemetry data, routing it to an approved collector without requiring each developer to set OTEL_* environment variables manually. Configuration is enforced centrally via enterprise policy.</div>
+      <div class="why-matters">💡 <strong>Why it matters:</strong> Centralized telemetry routing makes Copilot compliant with enterprise observability and data-residency policies, removing a key adoption blocker for large organizations.</div>
+      <div class="card-footer">
+        <div class="tags">
+          <span class="tag github">GitHub</span>
+          <span class="tag cloud">Cloud</span>
+          <span class="tag tools">Tools</span>
+        </div>
+        <a class="read-link" href="https://github.blog/changelog/2026-07-08-enterprise-managed-opentelemetry-export-for-vs-code-and-cli" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="story-card">
+      <div class="card-header">
+        <div class="rank-badge">7</div>
+        <div class="card-meta">
+          <div class="source-line">
+            <span class="source-icon">🐙</span>
+            <span class="source-name">GitHub Changelog</span>
+            <span class="pub-date">Jul 9, 2026</span>
+          </div>
+          <div class="story-title"><a href="https://github.blog/changelog/2026-07-09-ask-copilot-for-a-repository-overview" target="_blank" rel="noopener">Ask Copilot for a repository overview</a></div>
+        </div>
+      </div>
+      <div class="tldr">GitHub Copilot can now generate a high-level overview of any repository when you first visit it, summarizing its purpose, architecture, and key components. The feature is surfaced directly on the repository home page for unrecognized repos.</div>
+      <div class="why-matters">💡 <strong>Why it matters:</strong> Instant AI-generated repository orientation dramatically reduces the time engineers spend ramping up on unfamiliar codebases.</div>
+      <div class="card-footer">
+        <div class="tags">
+          <span class="tag ai">AI</span>
+          <span class="tag github">GitHub</span>
+          <span class="tag tools">Tools</span>
+        </div>
+        <a class="read-link" href="https://github.blog/changelog/2026-07-09-ask-copilot-for-a-repository-overview" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="story-card">
+      <div class="card-header">
+        <div class="rank-badge">8</div>
+        <div class="card-meta">
+          <div class="source-line">
+            <span class="source-icon">🔬</span>
+            <span class="source-name">TechCrunch</span>
+            <span class="pub-date">Jul 9, 2026</span>
+          </div>
+          <div class="story-title"><a href="https://techcrunch.com/2026/07/09/openai-launches-its-new-family-of-models-with-gpt-5-6/" target="_blank" rel="noopener">OpenAI launches its new family of models with GPT-5.6</a></div>
+        </div>
+      </div>
+      <div class="tldr">OpenAI officially announced GPT-5.6 and its three variants (Sol, Terra, Luna), promising improvements across coding, cybersecurity analysis, and long-context reasoning tasks. The release marks OpenAI's most significant model update since GPT-5.</div>
+      <div class="why-matters">💡 <strong>Why it matters:</strong> GPT-5.6 sets a new capability baseline for the industry and will ripple across every product — from Copilot to Microsoft 365 — that relies on OpenAI's API.</div>
+      <div class="card-footer">
+        <div class="tags">
+          <span class="tag ai">AI</span>
+          <span class="tag llms">LLMs</span>
+          <span class="tag research">Research</span>
+        </div>
+        <a class="read-link" href="https://techcrunch.com/2026/07/09/openai-launches-its-new-family-of-models-with-gpt-5-6/" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="story-card">
+      <div class="card-header">
+        <div class="rank-badge">9</div>
+        <div class="card-meta">
+          <div class="source-line">
+            <span class="source-icon">🔬</span>
+            <span class="source-name">TechCrunch</span>
+            <span class="pub-date">Jul 9, 2026</span>
+          </div>
+          <div class="story-title"><a href="https://techcrunch.com/2026/07/09/meta-enters-the-crowded-ai-coding-battle-with-muse-spark-1-1/" target="_blank" rel="noopener">Meta enters the crowded AI coding battle with Muse Spark 1.1</a></div>
+        </div>
+      </div>
+      <div class="tldr">Meta launched Muse Spark 1.1, its entry into the AI coding assistant space, focusing on large agentic workloads, bug fixing, and large-scale code migrations that enterprises increasingly rely on AI for. The model is positioned to compete directly with GitHub Copilot and Cursor.</div>
+      <div class="why-matters">💡 <strong>Why it matters:</strong> Meta's entry intensifies competition in the AI coding market, likely accelerating feature parity and driving down costs for developers.</div>
+      <div class="card-footer">
+        <div class="tags">
+          <span class="tag ai">AI</span>
+          <span class="tag tools">Tools</span>
+          <span class="tag open-source">Open Source</span>
+        </div>
+        <a class="read-link" href="https://techcrunch.com/2026/07/09/meta-enters-the-crowded-ai-coding-battle-with-muse-spark-1-1/" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="story-card">
+      <div class="card-header">
+        <div class="rank-badge">10</div>
+        <div class="card-meta">
+          <div class="source-line">
+            <span class="source-icon">🔬</span>
+            <span class="source-name">TechCrunch</span>
+            <span class="pub-date">Jul 9, 2026</span>
+          </div>
+          <div class="story-title"><a href="https://techcrunch.com/2026/07/09/an-ai-agent-startup-just-let-its-agent-run-its-100-million-fundraise/" target="_blank" rel="noopener">An AI agent startup just let its agent run its $100M fundraise</a></div>
+        </div>
+      </div>
+      <div class="tldr">Lyzr, a startup building AI agents for enterprises, used its own AI agent to autonomously manage and execute a $100 million fundraising round — a bold real-world demonstration of agentic AI capability. The round was successfully closed, validating the agent's decision-making in a high-stakes context.</div>
+      <div class="why-matters">💡 <strong>Why it matters:</strong> It's the most visible proof yet that AI agents can handle complex, high-stakes business processes end-to-end, not just narrow automation tasks.</div>
+      <div class="card-footer">
+        <div class="tags">
+          <span class="tag ai">AI</span>
+          <span class="tag startups">Startups</span>
+        </div>
+        <a class="read-link" href="https://techcrunch.com/2026/07/09/an-ai-agent-startup-just-let-its-agent-run-its-100-million-fundraise/" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
+
+    <!-- 11 -->
+    <div class="story-card">
+      <div class="card-header">
+        <div class="rank-badge">11</div>
+        <div class="card-meta">
+          <div class="source-line">
+            <span class="source-icon">🔬</span>
+            <span class="source-name">TechCrunch</span>
+            <span class="pub-date">Jul 9, 2026</span>
+          </div>
+          <div class="story-title"><a href="https://techcrunch.com/2026/07/09/fidji-simo-steps-down-from-openais-no-2-role/" target="_blank" rel="noopener">Fidji Simo steps down from OpenAI's No. 2 role</a></div>
+        </div>
+      </div>
+      <div class="tldr">OpenAI's chief operating officer Fidji Simo is stepping down after her medical leave extended beyond expectations, leaving the company's No. 2 seat vacant at a critical moment as OpenAI navigates a corporate restructuring and intense competition. No immediate replacement has been named.</div>
+      <div class="why-matters">💡 <strong>Why it matters:</strong> A leadership gap at the top of the world's most influential AI company creates uncertainty around OpenAI's operational strategy at a pivotal competitive juncture.</div>
+      <div class="card-footer">
+        <div class="tags">
+          <span class="tag ai">AI</span>
+          <span class="tag startups">Startups</span>
+          <span class="tag policy">Policy</span>
+        </div>
+        <a class="read-link" href="https://techcrunch.com/2026/07/09/fidji-simo-steps-down-from-openais-no-2-role/" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
+
+    <!-- 12 -->
+    <div class="story-card">
+      <div class="card-header">
+        <div class="rank-badge">12</div>
+        <div class="card-meta">
+          <div class="source-line">
+            <span class="source-icon">🛡️</span>
+            <span class="source-name">Ars Technica</span>
+            <span class="pub-date">Jul 8, 2026</span>
+          </div>
+          <div class="story-title"><a href="https://arstechnica.com/security/2026/07/hackers-can-use-9-of-the-most-popular-ai-tools-to-assemble-massive-botnets/" target="_blank" rel="noopener">Hackers can use 9 of the most popular AI tools to assemble massive botnets</a></div>
+        </div>
+      </div>
+      <div class="tldr">Researchers discovered that nine widely used AI tools can be manipulated via "HalluSquatting" — exploiting LLMs' tendency to hallucinate package names — to silently install malware and recruit machines into botnets. The attack requires no code injection, only a convincing prompt.</div>
+      <div class="why-matters">💡 <strong>Why it matters:</strong> This class of attack turns the most trusted AI coding tools into potential supply-chain attack vectors, demanding urgent mitigations from AI vendors and security researchers.</div>
+      <div class="card-footer">
+        <div class="tags">
+          <span class="tag security">Security</span>
+          <span class="tag ai">AI</span>
+          <span class="tag llms">LLMs</span>
+        </div>
+        <a class="read-link" href="https://arstechnica.com/security/2026/07/hackers-can-use-9-of-the-most-popular-ai-tools-to-assemble-massive-botnets/" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
+
+    <!-- 13 -->
+    <div class="story-card">
+      <div class="card-header">
+        <div class="rank-badge">13</div>
+        <div class="card-meta">
+          <div class="source-line">
+            <span class="source-icon">🛡️</span>
+            <span class="source-name">Ars Technica</span>
+            <span class="pub-date">Jul 9, 2026</span>
+          </div>
+          <div class="story-title"><a href="https://arstechnica.com/security/2026/07/patch-for-windows-defender-0-day-could-allow-attackers-to-fill-hard-disk/" target="_blank" rel="noopener">Patch for Windows Defender 0-day could allow attackers to fill hard disk</a></div>
+        </div>
+      </div>
+      <div class="tldr">A newly patched Windows Defender zero-day, disclosed by researcher NightmareEclipse, enables attackers to rapidly fill a target's hard disk by triggering unbounded file writes through the antivirus engine. The ongoing feud between the researcher and Microsoft over disclosure timelines continues.</div>
+      <div class="why-matters">💡 <strong>Why it matters:</strong> Windows Defender is installed on over a billion devices; a denial-of-service exploit at this scale can cripple enterprise systems and critical infrastructure.</div>
+      <div class="card-footer">
+        <div class="tags">
+          <span class="tag security">Security</span>
+          <span class="tag policy">Policy</span>
+        </div>
+        <a class="read-link" href="https://arstechnica.com/security/2026/07/patch-for-windows-defender-0-day-could-allow-attackers-to-fill-hard-disk/" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
+
+    <!-- 14 -->
+    <div class="story-card">
+      <div class="card-header">
+        <div class="rank-badge">14</div>
+        <div class="card-meta">
+          <div class="source-line">
+            <span class="source-icon">🛡️</span>
+            <span class="source-name">Ars Technica</span>
+            <span class="pub-date">Jul 8, 2026</span>
+          </div>
+          <div class="story-title"><a href="https://arstechnica.com/security/2026/07/high-severity-guest-vm-escape-is-1-of-2-linux-vulnerabilities-to-surface-this-week/" target="_blank" rel="noopener">Google pays $250K for Linux vulnerability allowing guest VM escapes</a></div>
+        </div>
+      </div>
+      <div class="tldr">Google awarded a $250,000 bug bounty for a high-severity Linux kernel vulnerability that allows unprivileged guest VM users to escape their sandbox and gain root privileges on the host. It is one of two critical Linux flaws disclosed this week.</div>
+      <div class="why-matters">💡 <strong>Why it matters:</strong> VM escape vulnerabilities threaten the entire cloud-hosting model; a $250K payout signals how seriously hyperscalers treat isolation guarantees.</div>
+      <div class="card-footer">
+        <div class="tags">
+          <span class="tag security">Security</span>
+          <span class="tag cloud">Cloud</span>
+          <span class="tag open-source">Open Source</span>
+        </div>
+        <a class="read-link" href="https://arstechnica.com/security/2026/07/high-severity-guest-vm-escape-is-1-of-2-linux-vulnerabilities-to-surface-this-week/" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
+
+    <!-- 15 -->
+    <div class="story-card">
+      <div class="card-header">
+        <div class="rank-badge">15</div>
+        <div class="card-meta">
+          <div class="source-line">
+            <span class="source-icon">💬</span>
+            <span class="source-name">Hacker News</span>
+            <span class="pub-date">Jul 10, 2026</span>
+          </div>
+          <div class="story-title"><a href="https://ec.europa.eu/commission/presscorner/home/en" target="_blank" rel="noopener">EU Commission: addictive design in Instagram and Facebook breaches the DSA</a></div>
+        </div>
+      </div>
+      <div class="tldr">The European Commission ruled that Meta's addictive design patterns in Instagram and Facebook — including infinite scroll, auto-play, and engagement-maximizing notifications — violate the Digital Services Act's ban on dark patterns that harm users. Significant fines are expected to follow.</div>
+      <div class="why-matters">💡 <strong>Why it matters:</strong> This ruling sets a precedent that AI-driven engagement algorithms driving addictive UX are legally actionable under the DSA, with wide implications for all major social platforms.</div>
+      <div class="card-footer">
+        <div class="tags">
+          <span class="tag policy">Policy</span>
+          <span class="tag ai">AI</span>
+        </div>
+        <a class="read-link" href="https://ec.europa.eu/commission/presscorner/home/en" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
+
+  </div><!-- /.story-list -->
+</div><!-- /.container -->
+
+<footer>
+  Generated by <a href="https://github.github.com/gh-aw/" target="_blank" rel="noopener">GitHub Agentic Workflows</a> &middot; Deployed via GitHub Pages
+</footer>
+
+</body>
+</html>
