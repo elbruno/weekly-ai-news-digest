@@ -54,11 +54,16 @@ For each entry capture: **title**, **URL**, **source name**, **published date**,
 
 ## Step 2 — Curate
 
-Select the **15 most important and impactful stories**. Prioritize:
-1. **GitHub Changelog entries** — always include relevant product/API/feature updates from `github.blog/changelog/`
-2. Breakthrough AI/ML research or product launches
-3. GitHub, developer tools, or open-source announcements
-4. Industry-shaping business or policy news
+Select the **15 most important and impactful stories**. Apply these **hard allocation rules**:
+
+**MANDATORY: The final 15 stories MUST include:**
+- **At least 7 stories from GitHub Changelog** (`github.blog/changelog/feed/`). This is a strict minimum — include ALL GitHub Changelog entries from the last 7 days if there are 7 or fewer; otherwise pick the 7 most significant ones.
+- **At most 4 stories from any single other source** (e.g., TechCrunch, Ars Technica, The Verge, etc.)
+
+If the GitHub Changelog has fewer than 7 entries this week, fill remaining slots with stories from other sources in this priority order:
+1. Breakthrough AI/ML research or product launches (non-GitHub)
+2. Developer tools or open-source announcements
+3. Industry-shaping business or policy news
 
 For each selected story, write:
 - **TL;DR** — 2 concise sentences with the key facts
