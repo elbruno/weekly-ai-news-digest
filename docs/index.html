@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Top 15 AI and tech stories from the last 14 days, curated by GitHub Agentic Workflows." />
-  <meta property="og:title" content="Weekly AI &amp; Tech News Digest – Jun 27 – Jul 10, 2026" />
-  <meta property="og:description" content="Top 15 AI and tech stories from the last 14 days." />
+  <meta name="description" content="Weekly AI &amp; Tech News Digest — top 15 stories for the week of Jun 28 – Jul 12, 2026" />
+  <meta property="og:title" content="Weekly AI &amp; Tech News — Jun 28 – Jul 12, 2026" />
+  <meta property="og:description" content="Top 15 AI and tech stories curated from GitHub Changelog, TechCrunch, Ars Technica, and more." />
   <meta property="og:type" content="website" />
-  <title>Weekly AI &amp; Tech News Digest – Jun 27 – Jul 10, 2026</title>
+  <title>Weekly AI &amp; Tech News — Jun 28 – Jul 12, 2026</title>
   <style>
     :root {
       --bg: #0d1117;
@@ -20,20 +20,22 @@
       --tag-bg: #21262d;
       --tag-active: #1f6feb;
       --tag-active-text: #ffffff;
-      --max-w: 960px;
+      --max-w: 980px;
       --radius: 12px;
+      --shadow: 0 1px 3px rgba(0,0,0,.4);
     }
     [data-theme="light"] {
       --bg: #f6f8fa;
       --bg-card: #ffffff;
-      --bg-elev: #f0f3f6;
+      --bg-elev: #eaeef2;
       --border: #d0d7de;
       --accent: #0969da;
       --text: #1f2328;
       --text-muted: #57606a;
-      --tag-bg: #f6f8fa;
+      --tag-bg: #eaeef2;
       --tag-active: #0969da;
       --tag-active-text: #ffffff;
+      --shadow: 0 1px 3px rgba(0,0,0,.12);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -42,651 +44,674 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
       font-size: 15px;
       line-height: 1.6;
+      transition: background .2s, color .2s;
     }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
     .container { max-width: var(--max-w); margin: 0 auto; padding: 0 1rem; }
+
+    /* ── Header ── */
     header {
       border-bottom: 1px solid var(--border);
       background: linear-gradient(135deg, var(--bg) 0%, var(--bg-card) 100%);
       padding: 2rem 0 1.5rem;
     }
+    .header-row { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; }
     .badge {
       display: inline-block;
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      font-size: .72rem; text-transform: uppercase; letter-spacing: .05em;
       color: var(--accent);
       border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
       background: color-mix(in srgb, var(--accent) 10%, transparent);
-      padding: 0.2rem 0.7rem;
-      border-radius: 999px;
-      margin-bottom: 0.85rem;
-      font-weight: 600;
+      padding: .2rem .7rem; border-radius: 999px; margin-bottom: .85rem; font-weight: 600;
     }
-    h1 { font-size: 2rem; line-height: 1.2; margin-bottom: 0.4rem; }
-    .meta { color: var(--text-muted); font-size: 0.9rem; }
-    .top-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin: 1.25rem 0 0.5rem;
+    h1 { font-size: 1.9rem; line-height: 1.2; margin-bottom: .35rem; }
+    .meta { color: var(--text-muted); font-size: .88rem; }
+
+    /* theme selector */
+    .theme-sel {
+      display: flex; gap: .4rem; align-items: center;
     }
-    .control {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 0.55rem 0.7rem;
-      color: var(--text);
+    .theme-btn {
+      background: var(--bg-elev); border: 1px solid var(--border);
+      color: var(--text-muted); border-radius: 8px; padding: .3rem .65rem;
+      font-size: .8rem; cursor: pointer; transition: all .15s;
     }
-    .control input, .control select {
-      background: transparent;
-      border: none;
-      color: inherit;
-      outline: none;
-      min-width: 180px;
+    .theme-btn.active, .theme-btn:hover {
+      border-color: var(--accent); color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 10%, var(--bg-elev));
     }
-    .stats {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.65rem;
-      margin: 1rem 0 1.2rem;
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      background: var(--bg-card); border-bottom: 1px solid var(--border);
+      padding: .6rem 0; font-size: .82rem; color: var(--text-muted);
     }
-    .stat {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      color: var(--text-muted);
-      padding: 0.45rem 0.75rem;
-      font-size: 0.84rem;
+    .stats-bar .inner { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; align-items: center; }
+    .stat-item { display: flex; align-items: center; gap: .35rem; }
+    .stat-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+    .stat-dot.gh { background: #3fb950; }
+    .stat-dot.tc { background: #f78166; }
+    .stat-dot.ars { background: #d2a8ff; }
+    .stat-dot.hn { background: #ffa657; }
+
+    /* ── TL;DR sections ── */
+    .tldr-box {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.2rem 1.4rem; margin: 1.5rem 0;
     }
-    .tldr-summary {
-      margin: 1rem 0 1.4rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1rem 1.1rem;
+    .tldr-box h2 { font-size: 1rem; margin-bottom: .8rem; display: flex; align-items: center; gap: .5rem; }
+    .tldr-box ul { padding-left: 1.2rem; }
+    .tldr-box li { margin-bottom: .4rem; font-size: .92rem; color: var(--text); }
+    .tldr-box li::marker { color: var(--accent); }
+    .tldr-gh { border-color: color-mix(in srgb, #3fb950 40%, transparent); }
+    .tldr-gh h2 { color: #3fb950; }
+    .tldr-top h2 { color: var(--accent); }
+
+    /* ── Filters ── */
+    .filters-wrap {
+      background: var(--bg-card); border-bottom: 1px solid var(--border); padding: .9rem 0;
+      position: sticky; top: 0; z-index: 100;
     }
-    .tldr-summary h2 { font-size: 1.08rem; margin-bottom: 0.55rem; }
-    .tldr-summary ul { padding-left: 1.2rem; color: var(--text-muted); }
-    .tldr-summary li + li { margin-top: 0.28rem; }
-    .section-label {
-      font-size: 0.78rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-muted);
-      margin: 0.6rem 0 0.3rem;
+    .filters-inner { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
+    .search-box {
+      background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: 8px; padding: .42rem .75rem;
+      color: var(--text); font-size: .88rem; min-width: 200px; flex: 1 1 200px;
     }
-    .filter-labels {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      margin: 0.4rem 0 0.6rem;
-    }
+    .search-box:focus { outline: none; border-color: var(--accent); }
+    .chip-group { display: flex; flex-wrap: wrap; gap: .4rem; }
     .chip {
-      border: 1px solid var(--border);
-      background: var(--tag-bg);
-      color: var(--text-muted);
-      border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 0.2rem 0.58rem;
-      cursor: pointer;
-      user-select: none;
+      background: var(--tag-bg); border: 1px solid var(--border);
+      color: var(--text-muted); border-radius: 999px; padding: .22rem .7rem;
+      font-size: .78rem; cursor: pointer; user-select: none; transition: all .15s;
     }
-    .chip.active {
-      background: var(--tag-active);
-      border-color: var(--tag-active);
-      color: var(--tag-active-text);
+    .chip.active { background: var(--tag-active); color: var(--tag-active-text); border-color: var(--tag-active); }
+    .chip:hover:not(.active) { border-color: var(--accent); color: var(--accent); }
+    .filter-label { font-size: .78rem; color: var(--text-muted); white-space: nowrap; }
+    .count-badge {
+      font-size: .8rem; color: var(--text-muted); margin-left: auto;
+      background: var(--bg-elev); border: 1px solid var(--border);
+      border-radius: 8px; padding: .2rem .7rem; white-space: nowrap;
     }
-    .result-line { color: var(--text-muted); font-size: 0.85rem; margin: 0.3rem 0 0.9rem; }
-    .story-list { display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 2rem; }
+
+    /* ── Story cards ── */
+    .stories { padding: 1.5rem 0 2.5rem; }
     .story-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1rem 1.1rem;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.25rem 1.4rem;
+      margin-bottom: 1rem; box-shadow: var(--shadow);
+      transition: border-color .2s, transform .15s;
     }
-    .story-card[hidden] { display: none; }
-    .story-head {
-      display: flex;
-      gap: 0.75rem;
-      align-items: flex-start;
-      margin-bottom: 0.5rem;
+    .story-card:hover { border-color: color-mix(in srgb, var(--accent) 50%, var(--border)); transform: translateY(-1px); }
+    .story-card[hidden] { display: none !important; }
+    .card-top { display: flex; align-items: flex-start; gap: .9rem; }
+    .num-badge {
+      flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%;
+      background: color-mix(in srgb, var(--accent) 15%, var(--bg-elev));
+      border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .82rem; font-weight: 700; color: var(--accent); margin-top: .1rem;
     }
-    .rank {
-      width: 1.9rem;
-      height: 1.9rem;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.74rem;
-      font-weight: 700;
-      color: var(--accent);
-      border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
-      background: color-mix(in srgb, var(--accent) 12%, transparent);
-      flex-shrink: 0;
+    .card-body { flex: 1; min-width: 0; }
+    .source-line { display: flex; align-items: center; gap: .5rem; margin-bottom: .3rem; flex-wrap: wrap; }
+    .src-icon {
+      font-size: 1rem; line-height: 1;
     }
-    .source { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 600; }
-    .story-title { color: var(--text); font-size: 1.02rem; font-weight: 600; line-height: 1.35; }
-    .tldr { color: var(--text-muted); margin: 0.55rem 0; }
-    .why { border-left: 3px solid var(--accent); padding-left: 0.6rem; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.65rem; }
-    .story-footer {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.45rem;
+    .src-name { font-size: .78rem; color: var(--text-muted); font-weight: 500; }
+    .pub-date { font-size: .75rem; color: var(--text-muted); margin-left: auto; }
+    .story-title { font-size: 1.05rem; font-weight: 700; margin-bottom: .5rem; line-height: 1.35; }
+    .story-title a { color: var(--text); }
+    .story-title a:hover { color: var(--accent); text-decoration: none; }
+    .tldr-text { font-size: .9rem; color: var(--text-muted); margin-bottom: .6rem; }
+    .why-box {
+      background: color-mix(in srgb, var(--accent) 8%, var(--bg-elev));
+      border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0;
+      padding: .5rem .8rem; margin-bottom: .7rem; font-size: .88rem;
     }
+    .why-box strong { color: var(--accent); }
+    .card-footer { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem; margin-top: .6rem; }
     .tag {
-      border: 1px solid var(--border);
-      background: var(--tag-bg);
-      color: var(--text-muted);
-      border-radius: 999px;
-      padding: 0.16rem 0.5rem;
-      font-size: 0.72rem;
+      background: var(--tag-bg); border: 1px solid var(--border);
+      color: var(--text-muted); border-radius: 999px; padding: .15rem .6rem; font-size: .75rem;
     }
-    .date { margin-left: auto; color: var(--text-muted); font-size: 0.76rem; }
+    .read-link {
+      margin-left: auto; font-size: .82rem; color: var(--accent); white-space: nowrap;
+    }
+
+    /* ── Footer ── */
     footer {
-      border-top: 1px solid var(--border);
-      color: var(--text-muted);
-      text-align: center;
-      padding: 1.6rem 1rem 2.2rem;
-      font-size: 0.84rem;
+      border-top: 1px solid var(--border); padding: 1.5rem 0;
+      text-align: center; font-size: .82rem; color: var(--text-muted);
     }
-    @media (max-width: 700px) {
-      h1 { font-size: 1.5rem; }
-      .control input, .control select { min-width: 130px; }
-      .date { margin-left: 0; }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      h1 { font-size: 1.4rem; }
+      .card-top { flex-direction: column; gap: .5rem; }
+      .num-badge { width: 26px; height: 26px; font-size: .75rem; }
+      .pub-date { display: none; }
+      .story-title { font-size: .97rem; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <div class="badge">Weekly Digest</div>
-      <h1>Weekly AI &amp; Tech News</h1>
-      <p class="meta">Jun 27 – Jul 10, 2026 · 15 stories · last 14 days</p>
-      <div class="top-bar">
-        <label class="control">Theme:
-          <select id="themeSelect" aria-label="Select theme">
-            <option value="system">System</option>
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
-          </select>
-        </label>
-        <label class="control">🔍 Search:
-          <input id="searchInput" type="search" placeholder="keyword, source, tag..." aria-label="Search stories" />
-        </label>
+
+<header>
+  <div class="container">
+    <div class="header-row">
+      <div>
+        <div class="badge">🤖 AI &amp; Tech Digest</div>
+        <h1>Weekly AI &amp; Tech News</h1>
+        <p class="meta">Jun 28 – Jul 12, 2026 &nbsp;·&nbsp; 15 stories curated from 4 sources</p>
+      </div>
+      <div class="theme-sel">
+        <button class="theme-btn" data-t="light">☀️ Light</button>
+        <button class="theme-btn active" data-t="dark">🌙 Dark</button>
+        <button class="theme-btn" data-t="system">🖥 System</button>
       </div>
     </div>
-  </header>
+  </div>
+</header>
 
-  <main class="container">
-    <section class="stats">
-      <div class="stat">15 stories</div>
-      <div class="stat">7 from GitHub Changelog</div>
-      <div class="stat">4 from TechCrunch</div>
-      <div class="stat">2 from MIT Tech Review</div>
-      <div class="stat">1 from The Verge</div>
-      <div class="stat">1 from Hacker News</div>
-    </section>
+<div class="stats-bar">
+  <div class="container">
+    <div class="inner">
+      <span class="stat-item"><span class="stat-dot gh"></span>GitHub Changelog: 7</span>
+      <span class="stat-item"><span class="stat-dot tc"></span>TechCrunch: 4</span>
+      <span class="stat-item"><span class="stat-dot ars"></span>Ars Technica: 4</span>
+      <span style="color:var(--text-muted);font-size:.82rem;">Generated: Jul 12, 2026</span>
+    </div>
+  </div>
+</div>
 
-    <!-- TL;DR Top Takeaways -->
-    <section class="tldr-summary">
-      <h2>⚡ TL;DR — Top takeaways</h2>
-      <ul>
-        <li>OpenAI's GPT-5.6 family (Sol, Terra, Luna) is now live in GitHub Copilot, bringing tiered reasoning models to every developer workflow.</li>
-        <li>GitHub's refreshed pull requests dashboard hits GA — a unified hub to track, prioritize, and act on all your open PRs in one place.</li>
-        <li>Anthropic discovered a "hidden reasoning space" inside Claude, offering the clearest look yet at what LLMs do between receiving a prompt and generating a reply.</li>
-        <li>SK Hynix raised $26.5 billion in the largest foreign IPO in US history, underscoring the massive capital flows fueling the AI hardware race.</li>
-        <li>GitHub now enables enterprise teams to manage Copilot settings via MDM and enforce OpenTelemetry destinations — major wins for regulated industries.</li>
-      </ul>
-    </section>
+<div class="container">
 
-    <!-- TL;DR GitHub Highlights -->
-    <section class="tldr-summary">
-      <h2>🐙 TL;DR — GitHub highlights</h2>
-      <ul>
-        <li>GPT-5.6 Sol, Terra &amp; Luna are rolling out in GitHub Copilot — pick the model variant that fits the task.</li>
-        <li>The new pull requests dashboard is GA at github.com/pulls, giving a single home for all PR activity.</li>
-        <li>Innersource security advisories are GA: enterprises can now publish internal advisories with restricted visibility.</li>
-        <li>Copilot can now give you an instant repo overview on first visit — perfect for onboarding to unfamiliar codebases.</li>
-        <li>Enterprise MDM support and managed OTel export let organizations centrally control Copilot settings and telemetry routing.</li>
-      </ul>
-    </section>
+  <!-- GitHub TL;DR -->
+  <div class="tldr-box tldr-gh">
+    <h2>🐙 TL;DR — GitHub Highlights</h2>
+    <ul>
+      <li>CodeQL 2.26.0 ships with <strong>AI prompt-injection detection</strong> — a first for static analysis tooling.</li>
+      <li>OpenAI's <strong>GPT-5.6 family</strong> (Sol, Terra, Luna) is now available inside GitHub Copilot across IDEs.</li>
+      <li>The <strong>new pull requests dashboard</strong> is GA at github.com/pulls, consolidating all PRs needing your attention.</li>
+      <li><strong>Innersource security advisories</strong> are GA — enterprise teams can now publish internal CVEs just like open-source ones.</li>
+      <li>Enterprises can now <strong>mandate OpenTelemetry export endpoints</strong> for Copilot in VS Code and CLI, closing a key observability gap.</li>
+    </ul>
+  </div>
 
-    <p class="section-label">Filter by source</p>
-    <section class="filter-labels" id="sourceFilters" aria-label="Source filters"></section>
-    <p class="section-label">Filter by tag</p>
-    <section class="filter-labels" id="labelFilters" aria-label="Tag filters"></section>
-    <p class="result-line" id="resultLine">Showing 15 of 15 stories</p>
+  <!-- Top Takeaways -->
+  <div class="tldr-box tldr-top">
+    <h2>⚡ TL;DR — Top Takeaways This Week</h2>
+    <ul>
+      <li>OpenAI launched <strong>GPT-5.6</strong> — a tiered model family — and it's already powering Microsoft Copilot 365 and GitHub Copilot.</li>
+      <li>Apple filed a lawsuit against OpenAI alleging <strong>trade secret theft</strong> directed by senior leadership, including a former Apple employee.</li>
+      <li>SK Hynix raised <strong>$26.5 billion</strong> in what is the largest foreign IPO in US history, riding the AI-chip demand wave.</li>
+      <li>Researchers demonstrated that <strong>9 popular AI tools</strong> can be exploited to build large-scale botnets — a sobering security wake-up call.</li>
+      <li>GitHub shipped <strong>7 platform updates</strong> this week, from GPT-5.6 in Copilot to AI prompt-injection detection in CodeQL.</li>
+    </ul>
+  </div>
 
-    <section class="story-list" id="storyList">
+  <!-- Filters -->
+  <div class="filters-wrap">
+    <div class="filters-inner">
+      <input class="search-box" type="search" id="kw-search" placeholder="🔍  Search stories…" autocomplete="off" />
+      <span class="filter-label">Source:</span>
+      <div class="chip-group" id="src-chips">
+        <span class="chip active" data-src="GitHub Changelog">🐙 GitHub Changelog</span>
+        <span class="chip" data-src="TechCrunch">TC TechCrunch</span>
+        <span class="chip" data-src="Ars Technica">🔬 Ars Technica</span>
+      </div>
+      <span class="filter-label">Tag:</span>
+      <div class="chip-group" id="tag-chips">
+        <span class="chip" data-tag="AI">AI</span>
+        <span class="chip" data-tag="LLMs">LLMs</span>
+        <span class="chip" data-tag="Security">Security</span>
+        <span class="chip" data-tag="GitHub">GitHub</span>
+        <span class="chip" data-tag="Open Source">Open Source</span>
+        <span class="chip" data-tag="Cloud">Cloud</span>
+        <span class="chip" data-tag="Tools">Tools</span>
+        <span class="chip" data-tag="Policy">Policy</span>
+        <span class="chip" data-tag="Startups">Startups</span>
+        <span class="chip" data-tag="Research">Research</span>
+      </div>
+      <span class="count-badge" id="story-count">Showing 7 of 15 stories</span>
+    </div>
+  </div>
 
-      <!-- 1 -->
-      <article class="story-card"
-        data-tags="AI,LLMs,GitHub,Tools"
-        data-source="GitHub Changelog"
-        data-search="OpenAI GPT-5.6 Sol Terra Luna GitHub Copilot models AI LLMs GitHub Tools">
-        <div class="story-head">
-          <div class="rank">1</div>
-          <div>
-            <div class="source">🐙 GitHub Changelog</div>
-            <div class="story-title"><a href="https://github.blog/changelog/2026-07-09-openais-gpt-5-6-sol-terra-and-luna-are-now-available-in-github-copilot" target="_blank" rel="noopener">OpenAI's GPT-5.6 Sol, Terra, and Luna are now available in GitHub Copilot</a></div>
+  <!-- Stories -->
+  <section class="stories" id="stories-list">
+
+    <!-- 1 -->
+    <article class="story-card"
+      data-source="GitHub Changelog"
+      data-tags="AI,Security,GitHub,Tools"
+      data-text="codeql 2.26.0 adds kotlin 2.4.0 support and ai prompt injection detection security github tools">
+      <div class="card-top">
+        <div class="num-badge">1</div>
+        <div class="card-body">
+          <div class="source-line">
+            <span class="src-icon">🐙</span>
+            <span class="src-name">GitHub Changelog</span>
+            <span class="pub-date">Jul 10, 2026</span>
+          </div>
+          <h2 class="story-title"><a href="https://github.blog/changelog/2026-07-10-codeql-2-26-0-adds-kotlin-2-4-0-support-and-ai-prompt-injection-detection" target="_blank" rel="noopener">CodeQL 2.26.0 adds Kotlin 2.4.0 support and AI prompt injection detection</a></h2>
+          <p class="tldr-text">GitHub's static analysis engine CodeQL reaches version 2.26.0, adding support for Kotlin 2.4.0 and — for the first time — detection of AI prompt-injection vulnerabilities in code. The update ships as part of GitHub code scanning and is available immediately to all users.</p>
+          <div class="why-box"><strong>💡 Why it matters:</strong> Prompt-injection is one of the top emerging attack surfaces for AI-integrated applications; baking detection into a widely-used SAST tool normalises the security practice at scale.</div>
+          <div class="card-footer">
+            <span class="tag">AI</span><span class="tag">Security</span><span class="tag">GitHub</span><span class="tag">Tools</span>
+            <a class="read-link" href="https://github.blog/changelog/2026-07-10-codeql-2-26-0-adds-kotlin-2-4-0-support-and-ai-prompt-injection-detection" target="_blank" rel="noopener">Read full story →</a>
           </div>
         </div>
-        <p class="tldr">OpenAI's GPT-5.6 family is rolling out across GitHub Copilot in three variants — Sol (fast), Terra (balanced), and Luna (deep reasoning) — so developers can match the model to the task. The models bring improvements in coding, cybersecurity analysis, and multi-step reasoning.</p>
-        <p class="why">💡 Why it matters: Tiered model selection inside Copilot lets every developer — from indie hacker to enterprise team — optimize for speed or accuracy without leaving their IDE.</p>
-        <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">LLMs</span><span class="tag">GitHub</span><span class="tag">Tools</span>
-          <a href="https://github.blog/changelog/2026-07-09-openais-gpt-5-6-sol-terra-and-luna-are-now-available-in-github-copilot" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 09, 2026</span>
-        </div>
-      </article>
+      </div>
+    </article>
 
-      <!-- 2 -->
-      <article class="story-card"
-        data-tags="GitHub,Tools,Open Source"
-        data-source="GitHub Changelog"
-        data-search="pull requests dashboard generally available GitHub Tools Open Source">
-        <div class="story-head">
-          <div class="rank">2</div>
-          <div>
-            <div class="source">🐙 GitHub Changelog</div>
-            <div class="story-title"><a href="https://github.blog/changelog/2026-07-09-new-pull-requests-dashboard-is-now-generally-available" target="_blank" rel="noopener">New pull requests dashboard is now generally available</a></div>
+    <!-- 2 -->
+    <article class="story-card"
+      data-source="GitHub Changelog"
+      data-tags="AI,LLMs,GitHub"
+      data-text="openai gpt-5.6 sol terra luna github copilot models available">
+      <div class="card-top">
+        <div class="num-badge">2</div>
+        <div class="card-body">
+          <div class="source-line">
+            <span class="src-icon">🐙</span>
+            <span class="src-name">GitHub Changelog</span>
+            <span class="pub-date">Jul 9, 2026</span>
+          </div>
+          <h2 class="story-title"><a href="https://github.blog/changelog/2026-07-09-openais-gpt-5-6-sol-terra-and-luna-are-now-available-in-github-copilot" target="_blank" rel="noopener">OpenAI's GPT-5.6 Sol, Terra, and Luna are now available in GitHub Copilot</a></h2>
+          <p class="tldr-text">OpenAI's new GPT-5.6 model family — comprising Sol (lightweight), Terra (balanced), and Luna (highest capability) — is rolling out across GitHub Copilot in all supported IDEs and github.com. Developers can now choose the variant that best fits their task's speed vs. quality trade-off.</p>
+          <div class="why-box"><strong>💡 Why it matters:</strong> Giving developers direct access to a tiered frontier-model family inside their IDE accelerates agentic coding workflows and sets a new baseline for AI pair-programming capability.</div>
+          <div class="card-footer">
+            <span class="tag">AI</span><span class="tag">LLMs</span><span class="tag">GitHub</span>
+            <a class="read-link" href="https://github.blog/changelog/2026-07-09-openais-gpt-5-6-sol-terra-and-luna-are-now-available-in-github-copilot" target="_blank" rel="noopener">Read full story →</a>
           </div>
         </div>
-        <p class="tldr">GitHub's refreshed pull requests dashboard is GA at github.com/pulls, offering a single unified home to track, prioritize, and act on every PR that needs your attention. It replaces the older list view with smarter grouping and action shortcuts.</p>
-        <p class="why">💡 Why it matters: Developers juggling multiple repos finally have one command center for PR review, reducing context-switching and speeding up merge cycles.</p>
-        <div class="story-footer">
-          <span class="tag">GitHub</span><span class="tag">Tools</span><span class="tag">Open Source</span>
-          <a href="https://github.blog/changelog/2026-07-09-new-pull-requests-dashboard-is-now-generally-available" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 09, 2026</span>
-        </div>
-      </article>
+      </div>
+    </article>
 
-      <!-- 3 -->
-      <article class="story-card"
-        data-tags="AI,GitHub,Tools"
-        data-source="GitHub Changelog"
-        data-search="GitHub Copilot Visual Studio Code June 2026 releases VS Code AI GitHub Tools">
-        <div class="story-head">
-          <div class="rank">3</div>
-          <div>
-            <div class="source">🐙 GitHub Changelog</div>
-            <div class="story-title"><a href="https://github.blog/changelog/2026-07-08-github-copilot-in-visual-studio-code-june-2026-releases" target="_blank" rel="noopener">GitHub Copilot in Visual Studio Code, June 2026 releases</a></div>
+    <!-- 3 -->
+    <article class="story-card"
+      data-source="GitHub Changelog"
+      data-tags="GitHub,Tools"
+      data-text="new pull requests dashboard generally available github.com/pulls">
+      <div class="card-top">
+        <div class="num-badge">3</div>
+        <div class="card-body">
+          <div class="source-line">
+            <span class="src-icon">🐙</span>
+            <span class="src-name">GitHub Changelog</span>
+            <span class="pub-date">Jul 9, 2026</span>
+          </div>
+          <h2 class="story-title"><a href="https://github.blog/changelog/2026-07-09-new-pull-requests-dashboard-is-now-generally-available" target="_blank" rel="noopener">New pull requests dashboard is now generally available</a></h2>
+          <p class="tldr-text">GitHub's refreshed pull requests dashboard is now GA at github.com/pulls, providing a unified home to track, prioritise, and act on every PR requiring your attention across all repositories. The new UI improves filtering, sorting, and at-a-glance status visibility.</p>
+          <div class="why-box"><strong>💡 Why it matters:</strong> For developers working across many repos, a single consolidated PR view dramatically cuts context-switching and helps teams stay on top of review queues.</div>
+          <div class="card-footer">
+            <span class="tag">GitHub</span><span class="tag">Tools</span>
+            <a class="read-link" href="https://github.blog/changelog/2026-07-09-new-pull-requests-dashboard-is-now-generally-available" target="_blank" rel="noopener">Read full story →</a>
           </div>
         </div>
-        <p class="tldr">VS Code v1.123–v1.127, shipped throughout June and early July 2026, deliver a wave of Copilot enhancements including improved inline chat, multi-file edits, and expanded agent capabilities. These releases cement Copilot as the default AI layer in the world's most popular code editor.</p>
-        <p class="why">💡 Why it matters: With tens of millions of VS Code users, even incremental Copilot improvements translate into massive productivity gains across the global developer community.</p>
-        <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">GitHub</span><span class="tag">Tools</span>
-          <a href="https://github.blog/changelog/2026-07-08-github-copilot-in-visual-studio-code-june-2026-releases" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 08, 2026</span>
-        </div>
-      </article>
+      </div>
+    </article>
 
-      <!-- 4 -->
-      <article class="story-card"
-        data-tags="AI,GitHub,Tools"
-        data-source="GitHub Changelog"
-        data-search="Ask Copilot repository overview GitHub AI Tools">
-        <div class="story-head">
-          <div class="rank">4</div>
-          <div>
-            <div class="source">🐙 GitHub Changelog</div>
-            <div class="story-title"><a href="https://github.blog/changelog/2026-07-09-ask-copilot-for-a-repository-overview" target="_blank" rel="noopener">Ask Copilot for a repository overview</a></div>
+    <!-- 4 -->
+    <article class="story-card"
+      data-source="GitHub Changelog"
+      data-tags="AI,GitHub"
+      data-text="ask copilot repository overview explore new repos">
+      <div class="card-top">
+        <div class="num-badge">4</div>
+        <div class="card-body">
+          <div class="source-line">
+            <span class="src-icon">🐙</span>
+            <span class="src-name">GitHub Changelog</span>
+            <span class="pub-date">Jul 9, 2026</span>
+          </div>
+          <h2 class="story-title"><a href="https://github.blog/changelog/2026-07-09-ask-copilot-for-a-repository-overview" target="_blank" rel="noopener">Ask Copilot for a repository overview</a></h2>
+          <p class="tldr-text">Developers can now ask GitHub Copilot for a high-level overview of any repository they haven't previously explored. On the repo home page, Copilot synthesises the README, code structure, and recent activity into a plain-language orientation summary.</p>
+          <div class="why-box"><strong>💡 Why it matters:</strong> Onboarding to unfamiliar codebases is one of the biggest time-sinks in open-source contribution; an AI-generated orientation dramatically lowers that barrier.</div>
+          <div class="card-footer">
+            <span class="tag">AI</span><span class="tag">GitHub</span>
+            <a class="read-link" href="https://github.blog/changelog/2026-07-09-ask-copilot-for-a-repository-overview" target="_blank" rel="noopener">Read full story →</a>
           </div>
         </div>
-        <p class="tldr">Visiting a GitHub repository you've never seen before? You can now ask Copilot for a high-level overview right from the repo homepage, getting an instant plain-English summary of the project's purpose, structure, and key files. The feature is available on any public or private repo you have access to.</p>
-        <p class="why">💡 Why it matters: Onboarding to unfamiliar codebases is one of the biggest time sinks in software development — this feature slashes that ramp-up time dramatically.</p>
-        <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">GitHub</span><span class="tag">Tools</span>
-          <a href="https://github.blog/changelog/2026-07-09-ask-copilot-for-a-repository-overview" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 09, 2026</span>
-        </div>
-      </article>
+      </div>
+    </article>
 
-      <!-- 5 -->
-      <article class="story-card"
-        data-tags="Security,GitHub,Open Source"
-        data-source="GitHub Changelog"
-        data-search="Innersource security advisories generally available GitHub Advanced Security Security Open Source">
-        <div class="story-head">
-          <div class="rank">5</div>
-          <div>
-            <div class="source">🐙 GitHub Changelog</div>
-            <div class="story-title"><a href="https://github.blog/changelog/2026-07-08-innersource-security-advisories-are-generally-available" target="_blank" rel="noopener">Innersource security advisories are generally available</a></div>
+    <!-- 5 -->
+    <article class="story-card"
+      data-source="GitHub Changelog"
+      data-tags="Security,GitHub"
+      data-text="innersource security advisories generally available enterprise internal CVE">
+      <div class="card-top">
+        <div class="num-badge">5</div>
+        <div class="card-body">
+          <div class="source-line">
+            <span class="src-icon">🐙</span>
+            <span class="src-name">GitHub Changelog</span>
+            <span class="pub-date">Jul 8, 2026</span>
+          </div>
+          <h2 class="story-title"><a href="https://github.blog/changelog/2026-07-08-innersource-security-advisories-are-generally-available" target="_blank" rel="noopener">Innersource security advisories are generally available</a></h2>
+          <p class="tldr-text">GitHub Advanced Security enterprise customers can now publish internal (innersource) security advisories with restricted visibility — mirroring the public advisory workflow but scoped to the organisation. The feature ships as GA for all GHAS enterprise plans.</p>
+          <div class="why-box"><strong>💡 Why it matters:</strong> Large organisations can now manage and track proprietary vulnerability disclosures with the same tooling used for open-source CVEs, closing a longstanding gap in enterprise security posture.</div>
+          <div class="card-footer">
+            <span class="tag">Security</span><span class="tag">GitHub</span>
+            <a class="read-link" href="https://github.blog/changelog/2026-07-08-innersource-security-advisories-are-generally-available" target="_blank" rel="noopener">Read full story →</a>
           </div>
         </div>
-        <p class="tldr">GitHub Advanced Security enterprise customers can now publish internal security advisories with restricted visibility, mirroring the open-source advisory workflow but scoped to their organization. Advisories can be shared across internal repos without leaking to the public.</p>
-        <p class="why">💡 Why it matters: Enterprises can now coordinate vulnerability disclosure and patching internally — using the same trusted toolchain as the open-source community — without risking public exposure of sensitive CVEs.</p>
-        <div class="story-footer">
-          <span class="tag">Security</span><span class="tag">GitHub</span><span class="tag">Open Source</span>
-          <a href="https://github.blog/changelog/2026-07-08-innersource-security-advisories-are-generally-available" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 08, 2026</span>
-        </div>
-      </article>
+      </div>
+    </article>
 
-      <!-- 6 -->
-      <article class="story-card"
-        data-tags="AI,GitHub,Tools"
-        data-source="GitHub Changelog"
-        data-search="GitHub Mobile improved filters sorting Copilot sessions AI GitHub Tools">
-        <div class="story-head">
-          <div class="rank">6</div>
-          <div>
-            <div class="source">🐙 GitHub Changelog</div>
-            <div class="story-title"><a href="https://github.blog/changelog/2026-07-10-github-mobile-improved-filters-and-sorting-for-copilot-sessions" target="_blank" rel="noopener">GitHub Mobile: Improved filters and sorting for Copilot sessions</a></div>
+    <!-- 6 -->
+    <article class="story-card"
+      data-source="GitHub Changelog"
+      data-tags="Cloud,GitHub,Tools"
+      data-text="enterprise opentelemetry otel export vs code cli copilot telemetry">
+      <div class="card-top">
+        <div class="num-badge">6</div>
+        <div class="card-body">
+          <div class="source-line">
+            <span class="src-icon">🐙</span>
+            <span class="src-name">GitHub Changelog</span>
+            <span class="pub-date">Jul 8, 2026</span>
+          </div>
+          <h2 class="story-title"><a href="https://github.blog/changelog/2026-07-08-enterprise-managed-opentelemetry-export-for-vs-code-and-cli" target="_blank" rel="noopener">Enterprise-managed OpenTelemetry export for VS Code and CLI</a></h2>
+          <p class="tldr-text">GitHub now allows enterprise organisations to centrally mandate where GitHub Copilot sends OpenTelemetry data from VS Code and the CLI. Admins configure an approved collector endpoint and all developers' Copilot telemetry is automatically routed there, without requiring individual OTEL_* env-var configuration.</p>
+          <div class="why-box"><strong>💡 Why it matters:</strong> Centralised telemetry routing is a prerequisite for regulated industries adopting Copilot — this removes one of the last compliance blockers for large enterprise deployments.</div>
+          <div class="card-footer">
+            <span class="tag">Cloud</span><span class="tag">GitHub</span><span class="tag">Tools</span>
+            <a class="read-link" href="https://github.blog/changelog/2026-07-08-enterprise-managed-opentelemetry-export-for-vs-code-and-cli" target="_blank" rel="noopener">Read full story →</a>
           </div>
         </div>
-        <p class="tldr">GitHub Mobile now surfaces richer filter and sort controls for Copilot sessions, making it easier to find the right conversation as session lists grow. Users can filter by date, status, and repository to quickly pick up where they left off.</p>
-        <p class="why">💡 Why it matters: As agentic coding sessions multiply, better session management on mobile keeps developers productive even away from their desks.</p>
-        <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">GitHub</span><span class="tag">Tools</span>
-          <a href="https://github.blog/changelog/2026-07-10-github-mobile-improved-filters-and-sorting-for-copilot-sessions" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 10, 2026</span>
-        </div>
-      </article>
+      </div>
+    </article>
 
-      <!-- 7 -->
-      <article class="story-card"
-        data-tags="GitHub,Security,Cloud,Tools"
-        data-source="GitHub Changelog"
-        data-search="Deploy managed Copilot settings MDM VS Code CLI enterprise GitHub Security Cloud Tools">
-        <div class="story-head">
-          <div class="rank">7</div>
-          <div>
-            <div class="source">🐙 GitHub Changelog</div>
-            <div class="story-title"><a href="https://github.blog/changelog/2026-07-08-deploy-managed-copilot-settings-via-mdm-in-vs-code-and-cli" target="_blank" rel="noopener">Deploy managed Copilot settings via MDM in VS Code and CLI</a></div>
+    <!-- 7 -->
+    <article class="story-card"
+      data-source="GitHub Changelog"
+      data-tags="AI,GitHub,Tools"
+      data-text="github mobile improved filters sorting copilot sessions">
+      <div class="card-top">
+        <div class="num-badge">7</div>
+        <div class="card-body">
+          <div class="source-line">
+            <span class="src-icon">🐙</span>
+            <span class="src-name">GitHub Changelog</span>
+            <span class="pub-date">Jul 10, 2026</span>
+          </div>
+          <h2 class="story-title"><a href="https://github.blog/changelog/2026-07-10-github-mobile-improved-filters-and-sorting-for-copilot-sessions" target="_blank" rel="noopener">GitHub Mobile: Improved filters and sorting for Copilot sessions</a></h2>
+          <p class="tldr-text">GitHub Mobile now features improved filters and sorting for Copilot sessions, helping users navigate an ever-growing session list. Users can filter by status, date, and session type, making on-the-go Copilot management significantly more practical.</p>
+          <div class="why-box"><strong>💡 Why it matters:</strong> As agentic Copilot sessions multiply, discoverability from mobile becomes essential for teams managing long-running tasks from anywhere.</div>
+          <div class="card-footer">
+            <span class="tag">AI</span><span class="tag">GitHub</span><span class="tag">Tools</span>
+            <a class="read-link" href="https://github.blog/changelog/2026-07-10-github-mobile-improved-filters-and-sorting-for-copilot-sessions" target="_blank" rel="noopener">Read full story →</a>
           </div>
         </div>
-        <p class="tldr">Enterprise admins can now push GitHub Copilot configuration to developer machines via MDM (e.g., Jamf, Intune) or file-based policy, removing the need for each developer to manually set environment variables. Alongside this, organizations can mandate a central OTel collector endpoint for all Copilot telemetry.</p>
-        <p class="why">💡 Why it matters: Regulated industries like finance and healthcare can now enforce consistent Copilot settings and telemetry routing at scale, unblocking enterprise-wide rollouts.</p>
-        <div class="story-footer">
-          <span class="tag">GitHub</span><span class="tag">Security</span><span class="tag">Cloud</span><span class="tag">Tools</span>
-          <a href="https://github.blog/changelog/2026-07-08-deploy-managed-copilot-settings-via-mdm-in-vs-code-and-cli" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 08, 2026</span>
-        </div>
-      </article>
+      </div>
+    </article>
 
-      <!-- 8 -->
-      <article class="story-card"
-        data-tags="AI,LLMs,Research"
-        data-source="TechCrunch"
-        data-search="OpenAI GPT-5.6 new family models launch AI LLMs Research cybersecurity">
-        <div class="story-head">
-          <div class="rank">8</div>
-          <div>
-            <div class="source">📰 TechCrunch</div>
-            <div class="story-title"><a href="https://techcrunch.com/2026/07/09/openai-launches-its-new-family-of-models-with-gpt-5-6/" target="_blank" rel="noopener">OpenAI launches its new family of models with GPT-5.6</a></div>
+    <!-- 8 -->
+    <article class="story-card"
+      data-source="TechCrunch"
+      data-tags="AI,LLMs,Startups"
+      data-text="openai launches gpt-5.6 models sol terra luna cybersecurity coding">
+      <div class="card-top">
+        <div class="num-badge">8</div>
+        <div class="card-body">
+          <div class="source-line">
+            <span class="src-icon">📰</span>
+            <span class="src-name">TechCrunch</span>
+            <span class="pub-date">Jul 9, 2026</span>
+          </div>
+          <h2 class="story-title"><a href="https://techcrunch.com/2026/07/09/openai-launches-its-new-family-of-models-with-gpt-5-6/" target="_blank" rel="noopener">OpenAI launches its new family of models with GPT-5.6</a></h2>
+          <p class="tldr-text">OpenAI unveiled GPT-5.6, a new tiered model family with three variants designed for different latency-capability trade-offs, including improved performance in cybersecurity tasks. The models are immediately available via the API and are rolling out across consumer products including ChatGPT.</p>
+          <div class="why-box"><strong>💡 Why it matters:</strong> A freely accessible tiered frontier model lowers the barrier for enterprises to match AI capability to cost, potentially accelerating widespread adoption across industries.</div>
+          <div class="card-footer">
+            <span class="tag">AI</span><span class="tag">LLMs</span><span class="tag">Startups</span>
+            <a class="read-link" href="https://techcrunch.com/2026/07/09/openai-launches-its-new-family-of-models-with-gpt-5-6/" target="_blank" rel="noopener">Read full story →</a>
           </div>
         </div>
-        <p class="tldr">OpenAI released GPT-5.6, a new flagship model family with three performance tiers and notable improvements in coding, cybersecurity, and multi-step reasoning. The launch comes alongside integrations into Microsoft Copilot 365 and GitHub Copilot.</p>
-        <p class="why">💡 Why it matters: GPT-5.6 raises the ceiling for commercial AI applications and signals OpenAI's intent to dominate enterprise AI despite growing open-source competition from Hugging Face and others.</p>
-        <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">LLMs</span><span class="tag">Research</span>
-          <a href="https://techcrunch.com/2026/07/09/openai-launches-its-new-family-of-models-with-gpt-5-6/" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 09, 2026</span>
-        </div>
-      </article>
+      </div>
+    </article>
 
-      <!-- 9 -->
-      <article class="story-card"
-        data-tags="AI,Startups,Policy"
-        data-source="TechCrunch"
-        data-search="Fidji Simo steps down OpenAI No.2 role leadership AI Startups Policy">
-        <div class="story-head">
-          <div class="rank">9</div>
-          <div>
-            <div class="source">📰 TechCrunch</div>
-            <div class="story-title"><a href="https://techcrunch.com/2026/07/09/fidji-simo-steps-down-from-openais-no-2-role/" target="_blank" rel="noopener">Fidji Simo steps down from OpenAI's No. 2 role</a></div>
+    <!-- 9 -->
+    <article class="story-card"
+      data-source="TechCrunch"
+      data-tags="AI,Policy"
+      data-text="apple sues openai trade secret theft senior leadership former employee">
+      <div class="card-top">
+        <div class="num-badge">9</div>
+        <div class="card-body">
+          <div class="source-line">
+            <span class="src-icon">📰</span>
+            <span class="src-name">TechCrunch</span>
+            <span class="pub-date">Jul 10, 2026</span>
+          </div>
+          <h2 class="story-title"><a href="https://techcrunch.com/2026/07/10/apple-sues-openai-over-alleged-trade-secret-theft/" target="_blank" rel="noopener">Apple sues OpenAI over alleged trade secret theft</a></h2>
+          <p class="tldr-text">Apple has filed a lawsuit against OpenAI alleging the theft of trade secrets, claiming the misconduct was directed by OpenAI's senior leadership and involved a longtime former Apple employee. The case is set to intensify scrutiny around the movement of talent between Big Tech and AI labs.</p>
+          <div class="why-box"><strong>💡 Why it matters:</strong> High-profile litigation between two of the world's most influential tech companies could reshape how AI labs recruit from established tech giants and what IP agreements apply to departing employees.</div>
+          <div class="card-footer">
+            <span class="tag">AI</span><span class="tag">Policy</span>
+            <a class="read-link" href="https://techcrunch.com/2026/07/10/apple-sues-openai-over-alleged-trade-secret-theft/" target="_blank" rel="noopener">Read full story →</a>
           </div>
         </div>
-        <p class="tldr">Fidji Simo, OpenAI's president and second-in-command, is departing after an extended medical leave, creating a leadership vacuum at a critical juncture as the company eyes a potential IPO and navigates a high-profile partnership with Microsoft. Sam Altman will take on additional responsibilities in the interim.</p>
-        <p class="why">💡 Why it matters: Leadership stability at OpenAI directly affects investor confidence, product roadmap execution, and the pace of enterprise AI adoption worldwide.</p>
-        <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">Startups</span><span class="tag">Policy</span>
-          <a href="https://techcrunch.com/2026/07/09/fidji-simo-steps-down-from-openais-no-2-role/" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 09, 2026</span>
-        </div>
-      </article>
+      </div>
+    </article>
 
-      <!-- 10 -->
-      <article class="story-card"
-        data-tags="AI,Open Source,LLMs"
-        data-source="TechCrunch"
-        data-search="Hugging Face CEO companies done renting AI open source AI Open Source LLMs Startups">
-        <div class="story-head">
-          <div class="rank">10</div>
-          <div>
-            <div class="source">📰 TechCrunch</div>
-            <div class="story-title"><a href="https://techcrunch.com/2026/07/10/hugging-faces-ceo-on-why-companies-are-done-renting-their-ai/" target="_blank" rel="noopener">Hugging Face's CEO on why companies are done renting their AI</a></div>
+    <!-- 10 -->
+    <article class="story-card"
+      data-source="TechCrunch"
+      data-tags="AI,Startups"
+      data-text="sk hynix 26.5 billion ipo biggest foreign us history ai chip memory">
+      <div class="card-top">
+        <div class="num-badge">10</div>
+        <div class="card-body">
+          <div class="source-line">
+            <span class="src-icon">📰</span>
+            <span class="src-name">TechCrunch</span>
+            <span class="pub-date">Jul 10, 2026</span>
+          </div>
+          <h2 class="story-title"><a href="https://techcrunch.com/2026/07/10/sk-hynix-raises-26-5b-in-the-biggest-foreign-ipo-in-us-history-is-urged-to-build-new-us-fabs/" target="_blank" rel="noopener">SK Hynix raises $26.5B in the biggest foreign IPO in US history</a></h2>
+          <p class="tldr-text">South Korean memory chip giant SK Hynix raised $26.5 billion in its US IPO — the largest ever by a foreign company — capitalising on soaring AI-driven demand for HBM and high-bandwidth memory. US officials have urged the company to invest those proceeds in domestic semiconductor fabrication.</p>
+          <div class="why-box"><strong>💡 Why it matters:</strong> The record listing underscores how AI infrastructure spending is reshaping global capital markets and intensifying geopolitical competition for semiconductor self-sufficiency.</div>
+          <div class="card-footer">
+            <span class="tag">AI</span><span class="tag">Startups</span>
+            <a class="read-link" href="https://techcrunch.com/2026/07/10/sk-hynix-raises-26-5b-in-the-biggest-foreign-ipo-in-us-history-is-urged-to-build-new-us-fabs/" target="_blank" rel="noopener">Read full story →</a>
           </div>
         </div>
-        <p class="tldr">Hugging Face CEO Clem Delangue argues that the era of "renting" AI from a single cloud vendor is ending, as open-source models now match or exceed proprietary ones for most enterprise use cases. Hugging Face has grown into the de facto hub for model sharing, with hundreds of thousands of community-contributed models.</p>
-        <p class="why">💡 Why it matters: The shift from API subscriptions to self-hosted open models fundamentally changes AI pricing, vendor lock-in risk, and data privacy for enterprises.</p>
-        <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">Open Source</span><span class="tag">LLMs</span>
-          <a href="https://techcrunch.com/2026/07/10/hugging-faces-ceo-on-why-companies-are-done-renting-their-ai/" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 10, 2026</span>
-        </div>
-      </article>
+      </div>
+    </article>
 
-      <!-- 11 -->
-      <article class="story-card"
-        data-tags="AI,Startups,Cloud"
-        data-source="TechCrunch"
-        data-search="SK Hynix IPO US history biggest foreign AI chips Cloud Startups">
-        <div class="story-head">
-          <div class="rank">11</div>
-          <div>
-            <div class="source">📰 TechCrunch</div>
-            <div class="story-title"><a href="https://techcrunch.com/2026/07/10/sk-hynix-raises-26-5b-in-the-biggest-foreign-ipo-in-us-history-is-urged-to-build-new-us-fabs/" target="_blank" rel="noopener">SK Hynix raises $26.5B in the biggest foreign IPO in US history</a></div>
+    <!-- 11 -->
+    <article class="story-card"
+      data-source="TechCrunch"
+      data-tags="AI,Open Source"
+      data-text="hugging face clem delangue open source ai companies done renting models">
+      <div class="card-top">
+        <div class="num-badge">11</div>
+        <div class="card-body">
+          <div class="source-line">
+            <span class="src-icon">📰</span>
+            <span class="src-name">TechCrunch</span>
+            <span class="pub-date">Jul 10, 2026</span>
+          </div>
+          <h2 class="story-title"><a href="https://techcrunch.com/2026/07/10/hugging-faces-ceo-on-why-companies-are-done-renting-their-ai/" target="_blank" rel="noopener">Hugging Face's CEO on why companies are done renting their AI</a></h2>
+          <p class="tldr-text">Hugging Face CEO Clem Delangue argues that a major shift is underway: enterprises are abandoning API-only AI relationships in favour of owning and fine-tuning open models. Hugging Face, which he likens to "a GitHub for AI", has seen exponential growth in model downloads as this trend accelerates.</p>
+          <div class="why-box"><strong>💡 Why it matters:</strong> A move from rented AI to owned, fine-tunable models could fundamentally rebalance market power away from closed-model incumbents toward the open-source ecosystem.</div>
+          <div class="card-footer">
+            <span class="tag">AI</span><span class="tag">Open Source</span>
+            <a class="read-link" href="https://techcrunch.com/2026/07/10/hugging-faces-ceo-on-why-companies-are-done-renting-their-ai/" target="_blank" rel="noopener">Read full story →</a>
           </div>
         </div>
-        <p class="tldr">South Korean memory-chip giant SK Hynix raised $26.5 billion in its US stock market debut — the largest foreign IPO in American history — driven by surging demand for its HBM chips that power Nvidia's AI accelerators. US lawmakers urged the company to build domestic fabs.</p>
-        <p class="why">💡 Why it matters: The record IPO is a direct barometer of the AI hardware supercycle; HBM supply constraints are currently the single biggest bottleneck in scaling frontier AI models.</p>
-        <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">Startups</span><span class="tag">Cloud</span>
-          <a href="https://techcrunch.com/2026/07/10/sk-hynix-raises-26-5b-in-the-biggest-foreign-ipo-in-us-history-is-urged-to-build-new-us-fabs/" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 10, 2026</span>
-        </div>
-      </article>
+      </div>
+    </article>
 
-      <!-- 12 -->
-      <article class="story-card"
-        data-tags="AI,LLMs,Research"
-        data-source="MIT Tech Review"
-        data-search="Anthropic hidden space Claude puzzles concepts interpretability research AI LLMs Research">
-        <div class="story-head">
-          <div class="rank">12</div>
-          <div>
-            <div class="source">🔬 MIT Tech Review</div>
-            <div class="story-title"><a href="https://www.technologyreview.com/2026/07/09/1140293/anthropic-found-a-hidden-space-where-claude-puzzles-over-concepts/" target="_blank" rel="noopener">Anthropic found a hidden space where Claude puzzles over concepts</a></div>
+    <!-- 12 -->
+    <article class="story-card"
+      data-source="Ars Technica"
+      data-tags="AI,Security"
+      data-text="hackers 9 popular ai tools assemble botnets exploit agent vulnerabilities">
+      <div class="card-top">
+        <div class="num-badge">12</div>
+        <div class="card-body">
+          <div class="source-line">
+            <span class="src-icon">🔬</span>
+            <span class="src-name">Ars Technica</span>
+            <span class="pub-date">Jul 8, 2026</span>
+          </div>
+          <h2 class="story-title"><a href="https://arstechnica.com/security/2026/07/hackers-can-use-9-of-the-most-popular-ai-tools-to-assemble-massive-botnets/" target="_blank" rel="noopener">Hackers can use 9 of the most popular AI tools to assemble massive botnets</a></h2>
+          <p class="tldr-text">Security researchers have demonstrated that nine widely deployed AI agentic tools can be exploited — without modifying the tools themselves — to orchestrate large-scale botnet assembly. The attack leverages the tools' ability to execute arbitrary tasks and make network connections.</p>
+          <div class="why-box"><strong>💡 Why it matters:</strong> As AI agents gain broad network and system access, the attack surface for infrastructure-scale abuse grows exponentially — a challenge the industry has yet to address systematically.</div>
+          <div class="card-footer">
+            <span class="tag">AI</span><span class="tag">Security</span>
+            <a class="read-link" href="https://arstechnica.com/security/2026/07/hackers-can-use-9-of-the-most-popular-ai-tools-to-assemble-massive-botnets/" target="_blank" rel="noopener">Read full story →</a>
           </div>
         </div>
-        <p class="tldr">Anthropic researchers discovered an internal "reasoning space" inside Claude that activates between receiving a prompt and generating a response — a latent zone where the model appears to work through ambiguous concepts before committing to an answer. The finding offers the clearest mechanistic view yet of LLM cognition.</p>
-        <p class="why">💡 Why it matters: Understanding how models reason internally is foundational to AI alignment, interpretability, and the eventual ability to reliably audit AI decision-making.</p>
-        <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">LLMs</span><span class="tag">Research</span>
-          <a href="https://www.technologyreview.com/2026/07/09/1140293/anthropic-found-a-hidden-space-where-claude-puzzles-over-concepts/" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 09, 2026</span>
-        </div>
-      </article>
+      </div>
+    </article>
 
-      <!-- 13 -->
-      <article class="story-card"
-        data-tags="Research,Cloud,Policy"
-        data-source="MIT Tech Review"
-        data-search="nuclear reactors milestone US criticality power energy Research Cloud Policy">
-        <div class="story-head">
-          <div class="rank">13</div>
-          <div>
-            <div class="source">🔬 MIT Tech Review</div>
-            <div class="story-title"><a href="https://www.technologyreview.com/2026/07/09/1140235/nuclear-reactor-milestone-criticality/" target="_blank" rel="noopener">Four nuclear reactors hit a big milestone in the US</a></div>
+    <!-- 13 -->
+    <article class="story-card"
+      data-source="Ars Technica"
+      data-tags="Security"
+      data-text="windows defender 0-day patch hard disk fill attack cve">
+      <div class="card-top">
+        <div class="num-badge">13</div>
+        <div class="card-body">
+          <div class="source-line">
+            <span class="src-icon">🔬</span>
+            <span class="src-name">Ars Technica</span>
+            <span class="pub-date">Jul 9, 2026</span>
+          </div>
+          <h2 class="story-title"><a href="https://arstechnica.com/security/2026/07/patch-for-windows-defender-0-day-could-allow-attackers-to-fill-hard-disk/" target="_blank" rel="noopener">Patch for Windows Defender 0-day could allow attackers to fill hard disk</a></h2>
+          <p class="tldr-text">Microsoft has patched a zero-day vulnerability in Windows Defender that could allow an attacker to trigger uncontrolled disk-space consumption, effectively causing a denial-of-service by filling the target's storage. The flaw was disclosed as part of July Patch Tuesday.</p>
+          <div class="why-box"><strong>💡 Why it matters:</strong> A DoS vector in the world's most widely deployed endpoint-security product highlights the risk of attackers weaponising security software itself — and the urgency of prompt patching.</div>
+          <div class="card-footer">
+            <span class="tag">Security</span>
+            <a class="read-link" href="https://arstechnica.com/security/2026/07/patch-for-windows-defender-0-day-could-allow-attackers-to-fill-hard-disk/" target="_blank" rel="noopener">Read full story →</a>
           </div>
         </div>
-        <p class="tldr">Four new US nuclear reactors reached "first criticality" — a key step before commercial power generation — marking a significant inflection for the domestic nuclear industry after years of stalled projects. The milestone coincides with surging demand for carbon-free baseload power to feed AI data centers.</p>
-        <p class="why">💡 Why it matters: AI's insatiable electricity appetite makes clean baseload power a strategic necessity; nuclear restarts could determine which cloud regions can credibly scale AI infrastructure sustainably.</p>
-        <div class="story-footer">
-          <span class="tag">Research</span><span class="tag">Cloud</span><span class="tag">Policy</span>
-          <a href="https://www.technologyreview.com/2026/07/09/1140235/nuclear-reactor-milestone-criticality/" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 09, 2026</span>
-        </div>
-      </article>
+      </div>
+    </article>
 
-      <!-- 14 -->
-      <article class="story-card"
-        data-tags="AI,Cloud,Startups"
-        data-source="The Verge"
-        data-search="Nvidia RAM supplier SK Hynix trillion dollar Wall Street debut AI Cloud Startups">
-        <div class="story-head">
-          <div class="rank">14</div>
-          <div>
-            <div class="source">🖥️ The Verge</div>
-            <div class="story-title"><a href="https://www.theverge.com/tech/964121/sk-hynix-nvidia-ram-stock-market-debut" target="_blank" rel="noopener">Nvidia's biggest RAM supplier just had a trillion-dollar debut on Wall Street</a></div>
+    <!-- 14 -->
+    <article class="story-card"
+      data-source="Ars Technica"
+      data-tags="Security,Research"
+      data-text="google 250k linux vulnerability guest vm escape high severity kernel">
+      <div class="card-top">
+        <div class="num-badge">14</div>
+        <div class="card-body">
+          <div class="source-line">
+            <span class="src-icon">🔬</span>
+            <span class="src-name">Ars Technica</span>
+            <span class="pub-date">Jul 8, 2026</span>
+          </div>
+          <h2 class="story-title"><a href="https://arstechnica.com/security/2026/07/high-severity-guest-vm-escape-is-1-of-2-linux-vulnerabilities-to-surface-this-week/" target="_blank" rel="noopener">Google pays $250K for Linux vulnerability allowing guest VM escapes</a></h2>
+          <p class="tldr-text">Google awarded a $250,000 bug bounty for the discovery of a high-severity Linux kernel vulnerability enabling guest virtual-machine escapes, one of two significant Linux flaws surfaced in a single week. The record payout reflects the critical importance of hypervisor security in cloud infrastructure.</p>
+          <div class="why-box"><strong>💡 Why it matters:</strong> VM-escape vulnerabilities undermine the fundamental security isolation model of cloud computing; this record bounty signals how seriously hyperscalers now value Linux kernel security research.</div>
+          <div class="card-footer">
+            <span class="tag">Security</span><span class="tag">Research</span>
+            <a class="read-link" href="https://arstechnica.com/security/2026/07/high-severity-guest-vm-escape-is-1-of-2-linux-vulnerabilities-to-surface-this-week/" target="_blank" rel="noopener">Read full story →</a>
           </div>
         </div>
-        <p class="tldr">SK Hynix opened at $170 per share on the NYSE, briefly touching a market cap in the hundreds of billions of dollars as investors bet on continued AI-driven demand for its high-bandwidth memory chips. The listing gives US investors direct exposure to the AI memory supply chain for the first time.</p>
-        <p class="why">💡 Why it matters: The debut creates a new publicly traded bellwether for AI infrastructure spending, giving markets a real-time gauge of demand for the memory that powers LLM training and inference at scale.</p>
-        <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">Cloud</span><span class="tag">Startups</span>
-          <a href="https://www.theverge.com/tech/964121/sk-hynix-nvidia-ram-stock-market-debut" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 10, 2026</span>
-        </div>
-      </article>
+      </div>
+    </article>
 
-      <!-- 15 -->
-      <article class="story-card"
-        data-tags="AI,LLMs,Research"
-        data-source="Hacker News"
-        data-search="GPT-5.6 Sol Ultra Cycle Double Cover Conjecture proof math AI LLMs Research">
-        <div class="story-head">
-          <div class="rank">15</div>
-          <div>
-            <div class="source">🟠 Hacker News</div>
-            <div class="story-title"><a href="https://news.ycombinator.com/item?id=48863490" target="_blank" rel="noopener">GPT-5.6 Sol Ultra produces proof of the Cycle Double Cover Conjecture</a></div>
+    <!-- 15 -->
+    <article class="story-card"
+      data-source="Ars Technica"
+      data-tags="Cloud,Tools"
+      data-text="allstate broadcom vmware audit compliance lawsuit ca licensing">
+      <div class="card-top">
+        <div class="num-badge">15</div>
+        <div class="card-body">
+          <div class="source-line">
+            <span class="src-icon">🔬</span>
+            <span class="src-name">Ars Technica</span>
+            <span class="pub-date">Jul 9, 2026</span>
+          </div>
+          <h2 class="story-title"><a href="https://arstechnica.com/information-technology/2026/07/allstate-accuses-broadcom-of-auditing-it-because-it-quit-vmware-ca/" target="_blank" rel="noopener">Allstate accuses Broadcom of auditing it because it quit VMware, CA</a></h2>
+          <p class="tldr-text">Insurance giant Allstate has filed suit alleging that Broadcom launched a software-license audit as retaliatory punishment after Allstate stopped using VMware and CA products. The complaint adds to a growing chorus of enterprises pushing back against Broadcom's post-acquisition licensing strategies.</p>
+          <div class="why-box"><strong>💡 Why it matters:</strong> The case could set precedent for how software vendors may (or may not) use compliance audits as competitive weapons — a critical issue for enterprises mid-migration off legacy infrastructure.</div>
+          <div class="card-footer">
+            <span class="tag">Cloud</span><span class="tag">Tools</span>
+            <a class="read-link" href="https://arstechnica.com/information-technology/2026/07/allstate-accuses-broadcom-of-auditing-it-because-it-quit-vmware-ca/" target="_blank" rel="noopener">Read full story →</a>
           </div>
         </div>
-        <p class="tldr">OpenAI's GPT-5.6 Sol Ultra model reportedly produced a formal proof of the Cycle Double Cover Conjecture, a long-standing open problem in graph theory — a result that, if verified, would mark a landmark moment for AI-assisted mathematical research. The PDF proof was linked directly from OpenAI's CDN.</p>
-        <p class="why">💡 Why it matters: If the proof withstands peer review, it signals that frontier LLMs are crossing from "code autocomplete" into genuine mathematical discovery — with profound implications for science and research automation.</p>
-        <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">LLMs</span><span class="tag">Research</span>
-          <a href="https://news.ycombinator.com/item?id=48863490" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 10, 2026</span>
-        </div>
-      </article>
+      </div>
+    </article>
 
-    </section>
-  </main>
+  </section>
+</div>
 
-  <footer>
-    Generated by <a href="https://github.github.com/gh-aw/" target="_blank" rel="noopener">GitHub Agentic Workflows</a> · Deployed via GitHub Pages
-  </footer>
+<footer>
+  <div class="container">
+    <p>Generated by <a href="https://github.github.com/gh-aw/" target="_blank" rel="noopener">GitHub Agentic Workflows</a> · Deployed via GitHub Pages</p>
+  </div>
+</footer>
 
-  <script>
-  (function () {
-    var themeSelect = document.getElementById("themeSelect");
-    var searchInput = document.getElementById("searchInput");
-    var sourceFiltersEl = document.getElementById("sourceFilters");
-    var labelFiltersEl = document.getElementById("labelFilters");
-    var resultLine = document.getElementById("resultLine");
-    var cards = Array.prototype.slice.call(document.querySelectorAll(".story-card"));
-    var selectedSources = new Set();
-    var selectedTags = new Set();
+<script>
+  // ── Theme ──────────────────────────────────────────────
+  const html = document.documentElement;
+  const themeBtns = document.querySelectorAll('.theme-btn');
+  function applyTheme(t) {
+    const pref = t === 'system'
+      ? (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+      : t;
+    html.dataset.theme = pref;
+    themeBtns.forEach(b => b.classList.toggle('active', b.dataset.t === t));
+  }
+  const saved = localStorage.getItem('theme') || 'dark';
+  applyTheme(saved);
+  themeBtns.forEach(b => b.addEventListener('click', () => {
+    localStorage.setItem('theme', b.dataset.t);
+    applyTheme(b.dataset.t);
+  }));
 
-    function systemTheme() {
-      return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    }
-    function applyTheme(mode) {
-      document.documentElement.setAttribute("data-theme", mode === "system" ? systemTheme() : mode);
-    }
-    function loadTheme() {
-      var saved = localStorage.getItem("digest-theme") || "system";
-      themeSelect.value = saved;
-      applyTheme(saved);
-    }
-    themeSelect.addEventListener("change", function () {
-      localStorage.setItem("digest-theme", themeSelect.value);
-      applyTheme(themeSelect.value);
+  // ── Filters ────────────────────────────────────────────
+  const cards = Array.from(document.querySelectorAll('.story-card'));
+  const countEl = document.getElementById('story-count');
+  const srcChips = document.querySelectorAll('#src-chips .chip');
+  const tagChips = document.querySelectorAll('#tag-chips .chip');
+  const kwInput = document.getElementById('kw-search');
+
+  function getActive(chips) {
+    return Array.from(chips).filter(c => c.classList.contains('active')).map(c => c.dataset.src || c.dataset.tag);
+  }
+
+  function applyFilters() {
+    const activeSrcs = getActive(srcChips);
+    const activeTags = getActive(tagChips);
+    const kw = kwInput.value.toLowerCase().trim();
+    let shown = 0;
+    cards.forEach(card => {
+      const src = card.dataset.source;
+      const tags = card.dataset.tags.split(',');
+      const text = card.dataset.text + ' ' + card.querySelector('.story-title').textContent.toLowerCase()
+        + ' ' + card.querySelector('.tldr-text').textContent.toLowerCase()
+        + ' ' + card.querySelector('.why-box').textContent.toLowerCase();
+
+      const srcOk = activeSrcs.length === 0 || activeSrcs.includes(src);
+      const tagOk = activeTags.length === 0 || activeTags.some(t => tags.includes(t));
+      const kwOk  = !kw || text.includes(kw);
+
+      const vis = srcOk && tagOk && kwOk;
+      card.hidden = !vis;
+      if (vis) shown++;
     });
-    if (window.matchMedia) {
-      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () {
-        if ((localStorage.getItem("digest-theme") || "system") === "system") applyTheme("system");
-      });
-    }
+    countEl.textContent = `Showing ${shown} of ${cards.length} stories`;
+  }
 
-    function collectValues(attr) {
-      var all = new Set();
-      cards.forEach(function (c) {
-        (c.dataset[attr] || "").split(",").map(function(s){return s.trim();}).filter(Boolean).forEach(function(v){all.add(v);});
-      });
-      return Array.from(all).sort();
-    }
-    function collectSources() {
-      var all = new Set();
-      cards.forEach(function(c){ var s=(c.dataset.source||"").trim(); if(s) all.add(s); });
-      return Array.from(all).sort();
-    }
-    function isGitHub(s){ return (s||"").toLowerCase().indexOf("github") !== -1; }
+  srcChips.forEach(c => c.addEventListener('click', () => {
+    c.classList.toggle('active'); applyFilters();
+  }));
+  tagChips.forEach(c => c.addEventListener('click', () => {
+    c.classList.toggle('active'); applyFilters();
+  }));
+  kwInput.addEventListener('input', applyFilters);
 
-    function renderSourceFilters() {
-      var sources = collectSources();
-      var ghSources = sources.filter(isGitHub);
-      (ghSources.length ? ghSources : sources).forEach(function(s){ selectedSources.add(s); });
-      sources.forEach(function(source) {
-        var btn = document.createElement("button");
-        btn.className = "chip" + (selectedSources.has(source) ? " active" : "");
-        btn.type = "button"; btn.textContent = source; btn.dataset.source = source;
-        btn.addEventListener("click", function() {
-          if (selectedSources.has(source)) selectedSources.delete(source); else selectedSources.add(source);
-          btn.classList.toggle("active", selectedSources.has(source));
-          applyFilters();
-        });
-        sourceFiltersEl.appendChild(btn);
-      });
-    }
-
-    function renderTagFilters() {
-      collectValues("tags").forEach(function(tag) {
-        var btn = document.createElement("button");
-        btn.className = "chip"; btn.type = "button"; btn.textContent = tag; btn.dataset.tag = tag;
-        btn.addEventListener("click", function() {
-          if (selectedTags.has(tag)) selectedTags.delete(tag); else selectedTags.add(tag);
-          btn.classList.toggle("active", selectedTags.has(tag));
-          applyFilters();
-        });
-        labelFiltersEl.appendChild(btn);
-      });
-    }
-
-    function applyFilters() {
-      var query = (searchInput.value || "").trim().toLowerCase();
-      var visible = 0;
-      cards.forEach(function(card) {
-        var text = (card.dataset.search || "").toLowerCase();
-        var tags = (card.dataset.tags || "").split(",").map(function(t){return t.trim();}).filter(Boolean);
-        var source = (card.dataset.source || "").trim();
-        var matchSrc = selectedSources.size === 0 || selectedSources.has(source);
-        var matchTag = selectedTags.size === 0 || tags.some(function(t){ return selectedTags.has(t); });
-        var matchQ = !query || text.indexOf(query) !== -1;
-        var show = matchSrc && matchTag && matchQ;
-        card.hidden = !show;
-        if (show) visible++;
-      });
-      resultLine.textContent = "Showing " + visible + " of " + cards.length + " stories";
-    }
-
-    searchInput.addEventListener("input", applyFilters);
-
-    loadTheme();
-    renderSourceFilters();
-    renderTagFilters();
-    applyFilters();
-  })();
-  </script>
+  // Initial apply (GitHub sources selected by default)
+  applyFilters();
+</script>
 </body>
 </html>
