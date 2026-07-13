@@ -2,7 +2,7 @@
 
 # Weekly AI News Digest
 
-> **Agentic weekly digest of the best AI and technology news, generated every Monday with [GitHub Agentic Workflows](https://github.github.com/gh-aw/).**
+> **Agentic digest of the best AI and technology news, generated daily with [GitHub Agentic Workflows](https://github.github.com/gh-aw/).**
 
 [![Weekly Digest](https://github.com/elbruno/weekly-ai-news-digest/actions/workflows/weekly-news-digest.lock.yml/badge.svg)](https://github.com/elbruno/weekly-ai-news-digest/actions/workflows/weekly-news-digest.lock.yml)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen)](https://elbruno.github.io/weekly-ai-news-digest)
@@ -12,12 +12,12 @@
 
 **[Read the latest digest](https://elbruno.github.io/weekly-ai-news-digest)**
 
-A new digest is published every Monday. You can also trigger a run manually from [Actions](../../actions/workflows/weekly-news-digest.lock.yml).
+A new digest is published every day. You can also trigger a run manually from [Actions](../../actions/workflows/weekly-news-digest.lock.yml).
 
 ## How It Works
 
 ```text
-GitHub Agentic Workflows (every Monday)
+GitHub Agentic Workflows (daily)
   -> Research seven RSS feeds from the last 14 days
   -> Curate 15 developer-relevant stories
   -> Write docs/index.html
