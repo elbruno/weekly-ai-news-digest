@@ -3,11 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Weekly AI &amp; Tech News Digest — top 15 stories for the week of Jun 28 – Jul 12, 2026" />
-  <meta property="og:title" content="Weekly AI &amp; Tech News — Jun 28 – Jul 12, 2026" />
-  <meta property="og:description" content="Top 15 AI and tech stories curated from GitHub Changelog, TechCrunch, Ars Technica, and more." />
-  <meta property="og:type" content="website" />
-  <title>Weekly AI &amp; Tech News — Jun 28 – Jul 12, 2026</title>
+  <meta name="description" content="Top 15 AI and technology stories of the week, curated and summarized." />
+  <title>Weekly AI &amp; Tech News — Jul 7–13, 2026</title>
   <style>
     :root {
       --bg: #0d1117;
@@ -20,178 +17,73 @@
       --tag-bg: #21262d;
       --tag-active: #1f6feb;
       --tag-active-text: #ffffff;
-      --max-w: 980px;
+      --max-w: 960px;
       --radius: 12px;
-      --shadow: 0 1px 3px rgba(0,0,0,.4);
     }
     [data-theme="light"] {
       --bg: #f6f8fa;
       --bg-card: #ffffff;
-      --bg-elev: #eaeef2;
+      --bg-elev: #f0f3f6;
       --border: #d0d7de;
       --accent: #0969da;
       --text: #1f2328;
       --text-muted: #57606a;
-      --tag-bg: #eaeef2;
+      --tag-bg: #f6f8fa;
       --tag-active: #0969da;
       --tag-active-text: #ffffff;
-      --shadow: 0 1px 3px rgba(0,0,0,.12);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-      font-size: 15px;
-      line-height: 1.6;
-      transition: background .2s, color .2s;
-    }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.6; }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
     .container { max-width: var(--max-w); margin: 0 auto; padding: 0 1rem; }
-
-    /* ── Header ── */
-    header {
-      border-bottom: 1px solid var(--border);
-      background: linear-gradient(135deg, var(--bg) 0%, var(--bg-card) 100%);
-      padding: 2rem 0 1.5rem;
-    }
-    .header-row { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; }
-    .badge {
-      display: inline-block;
-      font-size: .72rem; text-transform: uppercase; letter-spacing: .05em;
-      color: var(--accent);
-      border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
-      background: color-mix(in srgb, var(--accent) 10%, transparent);
-      padding: .2rem .7rem; border-radius: 999px; margin-bottom: .85rem; font-weight: 600;
-    }
-    h1 { font-size: 1.9rem; line-height: 1.2; margin-bottom: .35rem; }
-    .meta { color: var(--text-muted); font-size: .88rem; }
-
-    /* theme selector */
-    .theme-sel {
-      display: flex; gap: .4rem; align-items: center;
-    }
-    .theme-btn {
-      background: var(--bg-elev); border: 1px solid var(--border);
-      color: var(--text-muted); border-radius: 8px; padding: .3rem .65rem;
-      font-size: .8rem; cursor: pointer; transition: all .15s;
-    }
-    .theme-btn.active, .theme-btn:hover {
-      border-color: var(--accent); color: var(--accent);
-      background: color-mix(in srgb, var(--accent) 10%, var(--bg-elev));
-    }
-
-    /* ── Stats bar ── */
-    .stats-bar {
-      background: var(--bg-card); border-bottom: 1px solid var(--border);
-      padding: .6rem 0; font-size: .82rem; color: var(--text-muted);
-    }
-    .stats-bar .inner { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; align-items: center; }
-    .stat-item { display: flex; align-items: center; gap: .35rem; }
-    .stat-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-    .stat-dot.gh { background: #3fb950; }
-    .stat-dot.tc { background: #f78166; }
-    .stat-dot.ars { background: #d2a8ff; }
-    .stat-dot.hn { background: #ffa657; }
-
-    /* ── TL;DR sections ── */
-    .tldr-box {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 1.2rem 1.4rem; margin: 1.5rem 0;
-    }
-    .tldr-box h2 { font-size: 1rem; margin-bottom: .8rem; display: flex; align-items: center; gap: .5rem; }
-    .tldr-box ul { padding-left: 1.2rem; }
-    .tldr-box li { margin-bottom: .4rem; font-size: .92rem; color: var(--text); }
-    .tldr-box li::marker { color: var(--accent); }
-    .tldr-gh { border-color: color-mix(in srgb, #3fb950 40%, transparent); }
-    .tldr-gh h2 { color: #3fb950; }
-    .tldr-top h2 { color: var(--accent); }
-
-    /* ── Filters ── */
-    .filters-wrap {
-      background: var(--bg-card); border-bottom: 1px solid var(--border); padding: .9rem 0;
-      position: sticky; top: 0; z-index: 100;
-    }
-    .filters-inner { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
-    .search-box {
-      background: var(--bg-elev); border: 1px solid var(--border);
-      border-radius: 8px; padding: .42rem .75rem;
-      color: var(--text); font-size: .88rem; min-width: 200px; flex: 1 1 200px;
-    }
-    .search-box:focus { outline: none; border-color: var(--accent); }
-    .chip-group { display: flex; flex-wrap: wrap; gap: .4rem; }
-    .chip {
-      background: var(--tag-bg); border: 1px solid var(--border);
-      color: var(--text-muted); border-radius: 999px; padding: .22rem .7rem;
-      font-size: .78rem; cursor: pointer; user-select: none; transition: all .15s;
-    }
-    .chip.active { background: var(--tag-active); color: var(--tag-active-text); border-color: var(--tag-active); }
-    .chip:hover:not(.active) { border-color: var(--accent); color: var(--accent); }
-    .filter-label { font-size: .78rem; color: var(--text-muted); white-space: nowrap; }
-    .count-badge {
-      font-size: .8rem; color: var(--text-muted); margin-left: auto;
-      background: var(--bg-elev); border: 1px solid var(--border);
-      border-radius: 8px; padding: .2rem .7rem; white-space: nowrap;
-    }
-
-    /* ── Story cards ── */
-    .stories { padding: 1.5rem 0 2.5rem; }
-    .story-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 1.25rem 1.4rem;
-      margin-bottom: 1rem; box-shadow: var(--shadow);
-      transition: border-color .2s, transform .15s;
-    }
-    .story-card:hover { border-color: color-mix(in srgb, var(--accent) 50%, var(--border)); transform: translateY(-1px); }
-    .story-card[hidden] { display: none !important; }
-    .card-top { display: flex; align-items: flex-start; gap: .9rem; }
-    .num-badge {
-      flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%;
-      background: color-mix(in srgb, var(--accent) 15%, var(--bg-elev));
-      border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
-      display: flex; align-items: center; justify-content: center;
-      font-size: .82rem; font-weight: 700; color: var(--accent); margin-top: .1rem;
-    }
-    .card-body { flex: 1; min-width: 0; }
-    .source-line { display: flex; align-items: center; gap: .5rem; margin-bottom: .3rem; flex-wrap: wrap; }
-    .src-icon {
-      font-size: 1rem; line-height: 1;
-    }
-    .src-name { font-size: .78rem; color: var(--text-muted); font-weight: 500; }
-    .pub-date { font-size: .75rem; color: var(--text-muted); margin-left: auto; }
-    .story-title { font-size: 1.05rem; font-weight: 700; margin-bottom: .5rem; line-height: 1.35; }
-    .story-title a { color: var(--text); }
-    .story-title a:hover { color: var(--accent); text-decoration: none; }
-    .tldr-text { font-size: .9rem; color: var(--text-muted); margin-bottom: .6rem; }
-    .why-box {
-      background: color-mix(in srgb, var(--accent) 8%, var(--bg-elev));
-      border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0;
-      padding: .5rem .8rem; margin-bottom: .7rem; font-size: .88rem;
-    }
-    .why-box strong { color: var(--accent); }
-    .card-footer { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem; margin-top: .6rem; }
-    .tag {
-      background: var(--tag-bg); border: 1px solid var(--border);
-      color: var(--text-muted); border-radius: 999px; padding: .15rem .6rem; font-size: .75rem;
-    }
-    .read-link {
-      margin-left: auto; font-size: .82rem; color: var(--accent); white-space: nowrap;
-    }
-
-    /* ── Footer ── */
-    footer {
-      border-top: 1px solid var(--border); padding: 1.5rem 0;
-      text-align: center; font-size: .82rem; color: var(--text-muted);
-    }
-
-    /* ── Responsive ── */
+    header { border-bottom: 1px solid var(--border); background: linear-gradient(135deg, var(--bg) 0%, var(--bg-card) 100%); padding: 2rem 0 1.5rem; }
+    .header-top { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .badge { display: inline-block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); border: 1px solid rgba(88,166,255,0.35); background: rgba(88,166,255,0.1); padding: 0.2rem 0.7rem; border-radius: 999px; margin-bottom: 0.85rem; font-weight: 600; }
+    h1 { font-size: 2rem; line-height: 1.2; margin-bottom: 0.4rem; }
+    .meta { color: var(--text-muted); font-size: 0.9rem; }
+    .theme-selector { display: flex; align-items: center; gap: 0.4rem; }
+    .theme-selector label { font-size: 0.8rem; color: var(--text-muted); }
+    .theme-selector select { background: var(--bg-card); border: 1px solid var(--border); color: var(--text); border-radius: 8px; padding: 0.3rem 0.5rem; font-size: 0.8rem; cursor: pointer; }
+    .top-bar { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.25rem 0 0.5rem; }
+    .control { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 0.55rem 0.7rem; color: var(--text); display: flex; align-items: center; gap: 0.4rem; }
+    .control input { background: transparent; border: none; color: inherit; outline: none; min-width: 200px; font-size: 0.9rem; }
+    .control input::placeholder { color: var(--text-muted); }
+    .stats { display: flex; flex-wrap: wrap; gap: 0.65rem; margin: 1rem 0 1.2rem; }
+    .stat { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; color: var(--text-muted); padding: 0.45rem 0.75rem; font-size: 0.84rem; }
+    .stat strong { color: var(--text); }
+    .tldr-summary { margin: 1rem 0 1.4rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.1rem; }
+    .tldr-summary h2 { font-size: 1.05rem; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.4rem; }
+    .tldr-summary ul { padding-left: 1.2rem; color: var(--text-muted); }
+    .tldr-summary li { margin-bottom: 0.3rem; }
+    .filter-section { margin-bottom: 0.6rem; }
+    .filter-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; margin-bottom: 0.4rem; }
+    .filter-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.8rem; }
+    .chip { border: 1px solid var(--border); background: var(--tag-bg); color: var(--text-muted); border-radius: 999px; font-size: 0.75rem; font-weight: 600; padding: 0.22rem 0.6rem; cursor: pointer; user-select: none; transition: background 0.15s, color 0.15s; }
+    .chip.active { background: var(--tag-active); border-color: var(--tag-active); color: var(--tag-active-text); }
+    .result-line { color: var(--text-muted); font-size: 0.85rem; margin: 0.3rem 0 0.9rem; }
+    .story-list { display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 2rem; }
+    .story-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.1rem; transition: border-color 0.15s; }
+    .story-card:hover { border-color: var(--accent); }
+    .story-head { display: flex; gap: 0.75rem; align-items: flex-start; margin-bottom: 0.5rem; }
+    .rank { width: 1.9rem; height: 1.9rem; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.74rem; font-weight: 700; color: var(--accent); border: 1px solid rgba(88,166,255,0.45); background: rgba(88,166,255,0.12); flex-shrink: 0; margin-top: 0.1rem; }
+    .story-meta { flex: 1; }
+    .source { color: var(--text-muted); font-size: 0.73rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.04em; margin-bottom: 0.2rem; }
+    .title { color: var(--text); font-size: 1.02rem; font-weight: 600; line-height: 1.35; }
+    .title a { color: var(--text); }
+    .title a:hover { color: var(--accent); text-decoration: none; }
+    .tldr { color: var(--text-muted); margin: 0.55rem 0 0.5rem; font-size: 0.93rem; }
+    .why { border-left: 3px solid var(--accent); padding-left: 0.65rem; color: var(--text-muted); font-size: 0.88rem; margin-bottom: 0.65rem; }
+    .story-footer { display: flex; align-items: center; flex-wrap: wrap; gap: 0.45rem; }
+    .tag { background: var(--tag-bg); border: 1px solid var(--border); border-radius: 999px; font-size: 0.7rem; font-weight: 600; padding: 0.15rem 0.5rem; color: var(--text-muted); }
+    .pub-date { margin-left: auto; font-size: 0.75rem; color: var(--text-muted); }
+    .read-link { font-size: 0.82rem; font-weight: 600; color: var(--accent); margin-left: 0.5rem; }
+    footer { border-top: 1px solid var(--border); padding: 1.5rem 0; text-align: center; color: var(--text-muted); font-size: 0.82rem; }
+    .hidden { display: none !important; }
     @media (max-width: 600px) {
       h1 { font-size: 1.4rem; }
-      .card-top { flex-direction: column; gap: .5rem; }
-      .num-badge { width: 26px; height: 26px; font-size: .75rem; }
+      .control input { min-width: 140px; }
       .pub-date { display: none; }
-      .story-title { font-size: .97rem; }
     }
   </style>
 </head>
@@ -199,519 +91,391 @@
 
 <header>
   <div class="container">
-    <div class="header-row">
+    <div class="header-top">
       <div>
-        <div class="badge">🤖 AI &amp; Tech Digest</div>
+        <div class="badge">📡 Weekly Digest</div>
         <h1>Weekly AI &amp; Tech News</h1>
-        <p class="meta">Jun 28 – Jul 12, 2026 &nbsp;·&nbsp; 15 stories curated from 4 sources</p>
+        <p class="meta">Jul 7–13, 2026 &nbsp;·&nbsp; 15 stories curated</p>
       </div>
-      <div class="theme-sel">
-        <button class="theme-btn" data-t="light">☀️ Light</button>
-        <button class="theme-btn active" data-t="dark">🌙 Dark</button>
-        <button class="theme-btn" data-t="system">🖥 System</button>
+      <div class="theme-selector">
+        <label for="themeSelect">🎨 Theme</label>
+        <select id="themeSelect" onchange="setTheme(this.value)">
+          <option value="system">System</option>
+          <option value="dark" selected>Dark</option>
+          <option value="light">Light</option>
+        </select>
       </div>
     </div>
   </div>
 </header>
 
-<div class="stats-bar">
-  <div class="container">
-    <div class="inner">
-      <span class="stat-item"><span class="stat-dot gh"></span>GitHub Changelog: 7</span>
-      <span class="stat-item"><span class="stat-dot tc"></span>TechCrunch: 4</span>
-      <span class="stat-item"><span class="stat-dot ars"></span>Ars Technica: 4</span>
-      <span style="color:var(--text-muted);font-size:.82rem;">Generated: Jul 12, 2026</span>
-    </div>
-  </div>
-</div>
+<main class="container">
 
-<div class="container">
-
-  <!-- GitHub TL;DR -->
-  <div class="tldr-box tldr-gh">
-    <h2>🐙 TL;DR — GitHub Highlights</h2>
+  <!-- TL;DR GitHub Highlights -->
+  <div class="tldr-summary" style="margin-top:1.4rem; border-color: rgba(88,166,255,0.4);">
+    <h2>⚡ TL;DR — GitHub Highlights</h2>
     <ul>
-      <li>CodeQL 2.26.0 ships with <strong>AI prompt-injection detection</strong> — a first for static analysis tooling.</li>
-      <li>OpenAI's <strong>GPT-5.6 family</strong> (Sol, Terra, Luna) is now available inside GitHub Copilot across IDEs.</li>
-      <li>The <strong>new pull requests dashboard</strong> is GA at github.com/pulls, consolidating all PRs needing your attention.</li>
-      <li><strong>Innersource security advisories</strong> are GA — enterprise teams can now publish internal CVEs just like open-source ones.</li>
-      <li>Enterprises can now <strong>mandate OpenTelemetry export endpoints</strong> for Copilot in VS Code and CLI, closing a key observability gap.</li>
+      <li>OpenAI's GPT-5.6 family (Sol, Terra, Luna) is now rolling out in GitHub Copilot, giving developers three model tiers to match task complexity.</li>
+      <li>The new pull requests dashboard is generally available at github.com/pulls, offering a unified, prioritized view of all your PRs.</li>
+      <li>CodeQL 2.26.0 adds Kotlin 2.4.0 support <em>and</em> AI prompt injection detection — security scanning now targets emerging LLM attack vectors.</li>
+      <li>GitHub Mobile gets improved filters and sorting for Copilot sessions, and you can now ask Copilot for an instant repository overview on any unfamiliar repo.</li>
+      <li>Innersource security advisories reach GA, letting GitHub Advanced Security customers share internal vulnerability reports across enterprise repos.</li>
     </ul>
   </div>
 
-  <!-- Top Takeaways -->
-  <div class="tldr-box tldr-top">
-    <h2>⚡ TL;DR — Top Takeaways This Week</h2>
+  <!-- TL;DR Top Takeaways -->
+  <div class="tldr-summary">
+    <h2>📋 TL;DR — Top Takeaways</h2>
     <ul>
-      <li>OpenAI launched <strong>GPT-5.6</strong> — a tiered model family — and it's already powering Microsoft Copilot 365 and GitHub Copilot.</li>
-      <li>Apple filed a lawsuit against OpenAI alleging <strong>trade secret theft</strong> directed by senior leadership, including a former Apple employee.</li>
-      <li>SK Hynix raised <strong>$26.5 billion</strong> in what is the largest foreign IPO in US history, riding the AI-chip demand wave.</li>
-      <li>Researchers demonstrated that <strong>9 popular AI tools</strong> can be exploited to build large-scale botnets — a sobering security wake-up call.</li>
-      <li>GitHub shipped <strong>7 platform updates</strong> this week, from GPT-5.6 in Copilot to AI prompt-injection detection in CodeQL.</li>
+      <li>Apple filed a landmark trade secrets lawsuit against OpenAI, alleging senior leadership directed employees to improperly access Apple systems.</li>
+      <li>GitHub Copilot now offers OpenAI's GPT-5.6 in three variants (Sol, Terra, Luna), making multi-model AI coding mainstream on the platform.</li>
+      <li>Security researchers found that 9 top AI tools can be exploited to build botnets via "HalluSquatting" — weaponizing LLM hallucinations.</li>
+      <li>Anthropic localizes Claude pricing for India (its #2 market), signaling a major push to capture the global developer population.</li>
+      <li>Defenders are fighting back against prompt injection with "context bombing" — flooding attacker agents with noise until they abort.</li>
     </ul>
   </div>
 
   <!-- Filters -->
-  <div class="filters-wrap">
-    <div class="filters-inner">
-      <input class="search-box" type="search" id="kw-search" placeholder="🔍  Search stories…" autocomplete="off" />
-      <span class="filter-label">Source:</span>
-      <div class="chip-group" id="src-chips">
-        <span class="chip active" data-src="GitHub Changelog">🐙 GitHub Changelog</span>
-        <span class="chip" data-src="TechCrunch">TC TechCrunch</span>
-        <span class="chip" data-src="Ars Technica">🔬 Ars Technica</span>
-      </div>
-      <span class="filter-label">Tag:</span>
-      <div class="chip-group" id="tag-chips">
-        <span class="chip" data-tag="AI">AI</span>
-        <span class="chip" data-tag="LLMs">LLMs</span>
-        <span class="chip" data-tag="Security">Security</span>
-        <span class="chip" data-tag="GitHub">GitHub</span>
-        <span class="chip" data-tag="Open Source">Open Source</span>
-        <span class="chip" data-tag="Cloud">Cloud</span>
-        <span class="chip" data-tag="Tools">Tools</span>
-        <span class="chip" data-tag="Policy">Policy</span>
-        <span class="chip" data-tag="Startups">Startups</span>
-        <span class="chip" data-tag="Research">Research</span>
-      </div>
-      <span class="count-badge" id="story-count">Showing 7 of 15 stories</span>
+  <div class="top-bar">
+    <div class="control">
+      <span>🔍</span>
+      <input type="text" id="searchInput" placeholder="Search stories…" oninput="applyFilters()" />
     </div>
   </div>
 
+  <div class="filter-section">
+    <div class="filter-label">Source</div>
+    <div class="filter-chips" id="sourceChips"></div>
+  </div>
+  <div class="filter-section">
+    <div class="filter-label">Tags</div>
+    <div class="filter-chips" id="tagChips"></div>
+  </div>
+
+  <div class="result-line" id="resultLine">Showing 15 of 15 stories</div>
+
+  <!-- Stats -->
+  <div class="stats" id="statsBar"></div>
+
   <!-- Stories -->
-  <section class="stories" id="stories-list">
+  <div class="story-list" id="storyList"></div>
 
-    <!-- 1 -->
-    <article class="story-card"
-      data-source="GitHub Changelog"
-      data-tags="AI,Security,GitHub,Tools"
-      data-text="codeql 2.26.0 adds kotlin 2.4.0 support and ai prompt injection detection security github tools">
-      <div class="card-top">
-        <div class="num-badge">1</div>
-        <div class="card-body">
-          <div class="source-line">
-            <span class="src-icon">🐙</span>
-            <span class="src-name">GitHub Changelog</span>
-            <span class="pub-date">Jul 10, 2026</span>
-          </div>
-          <h2 class="story-title"><a href="https://github.blog/changelog/2026-07-10-codeql-2-26-0-adds-kotlin-2-4-0-support-and-ai-prompt-injection-detection" target="_blank" rel="noopener">CodeQL 2.26.0 adds Kotlin 2.4.0 support and AI prompt injection detection</a></h2>
-          <p class="tldr-text">GitHub's static analysis engine CodeQL reaches version 2.26.0, adding support for Kotlin 2.4.0 and — for the first time — detection of AI prompt-injection vulnerabilities in code. The update ships as part of GitHub code scanning and is available immediately to all users.</p>
-          <div class="why-box"><strong>💡 Why it matters:</strong> Prompt-injection is one of the top emerging attack surfaces for AI-integrated applications; baking detection into a widely-used SAST tool normalises the security practice at scale.</div>
-          <div class="card-footer">
-            <span class="tag">AI</span><span class="tag">Security</span><span class="tag">GitHub</span><span class="tag">Tools</span>
-            <a class="read-link" href="https://github.blog/changelog/2026-07-10-codeql-2-26-0-adds-kotlin-2-4-0-support-and-ai-prompt-injection-detection" target="_blank" rel="noopener">Read full story →</a>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- 2 -->
-    <article class="story-card"
-      data-source="GitHub Changelog"
-      data-tags="AI,LLMs,GitHub"
-      data-text="openai gpt-5.6 sol terra luna github copilot models available">
-      <div class="card-top">
-        <div class="num-badge">2</div>
-        <div class="card-body">
-          <div class="source-line">
-            <span class="src-icon">🐙</span>
-            <span class="src-name">GitHub Changelog</span>
-            <span class="pub-date">Jul 9, 2026</span>
-          </div>
-          <h2 class="story-title"><a href="https://github.blog/changelog/2026-07-09-openais-gpt-5-6-sol-terra-and-luna-are-now-available-in-github-copilot" target="_blank" rel="noopener">OpenAI's GPT-5.6 Sol, Terra, and Luna are now available in GitHub Copilot</a></h2>
-          <p class="tldr-text">OpenAI's new GPT-5.6 model family — comprising Sol (lightweight), Terra (balanced), and Luna (highest capability) — is rolling out across GitHub Copilot in all supported IDEs and github.com. Developers can now choose the variant that best fits their task's speed vs. quality trade-off.</p>
-          <div class="why-box"><strong>💡 Why it matters:</strong> Giving developers direct access to a tiered frontier-model family inside their IDE accelerates agentic coding workflows and sets a new baseline for AI pair-programming capability.</div>
-          <div class="card-footer">
-            <span class="tag">AI</span><span class="tag">LLMs</span><span class="tag">GitHub</span>
-            <a class="read-link" href="https://github.blog/changelog/2026-07-09-openais-gpt-5-6-sol-terra-and-luna-are-now-available-in-github-copilot" target="_blank" rel="noopener">Read full story →</a>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- 3 -->
-    <article class="story-card"
-      data-source="GitHub Changelog"
-      data-tags="GitHub,Tools"
-      data-text="new pull requests dashboard generally available github.com/pulls">
-      <div class="card-top">
-        <div class="num-badge">3</div>
-        <div class="card-body">
-          <div class="source-line">
-            <span class="src-icon">🐙</span>
-            <span class="src-name">GitHub Changelog</span>
-            <span class="pub-date">Jul 9, 2026</span>
-          </div>
-          <h2 class="story-title"><a href="https://github.blog/changelog/2026-07-09-new-pull-requests-dashboard-is-now-generally-available" target="_blank" rel="noopener">New pull requests dashboard is now generally available</a></h2>
-          <p class="tldr-text">GitHub's refreshed pull requests dashboard is now GA at github.com/pulls, providing a unified home to track, prioritise, and act on every PR requiring your attention across all repositories. The new UI improves filtering, sorting, and at-a-glance status visibility.</p>
-          <div class="why-box"><strong>💡 Why it matters:</strong> For developers working across many repos, a single consolidated PR view dramatically cuts context-switching and helps teams stay on top of review queues.</div>
-          <div class="card-footer">
-            <span class="tag">GitHub</span><span class="tag">Tools</span>
-            <a class="read-link" href="https://github.blog/changelog/2026-07-09-new-pull-requests-dashboard-is-now-generally-available" target="_blank" rel="noopener">Read full story →</a>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- 4 -->
-    <article class="story-card"
-      data-source="GitHub Changelog"
-      data-tags="AI,GitHub"
-      data-text="ask copilot repository overview explore new repos">
-      <div class="card-top">
-        <div class="num-badge">4</div>
-        <div class="card-body">
-          <div class="source-line">
-            <span class="src-icon">🐙</span>
-            <span class="src-name">GitHub Changelog</span>
-            <span class="pub-date">Jul 9, 2026</span>
-          </div>
-          <h2 class="story-title"><a href="https://github.blog/changelog/2026-07-09-ask-copilot-for-a-repository-overview" target="_blank" rel="noopener">Ask Copilot for a repository overview</a></h2>
-          <p class="tldr-text">Developers can now ask GitHub Copilot for a high-level overview of any repository they haven't previously explored. On the repo home page, Copilot synthesises the README, code structure, and recent activity into a plain-language orientation summary.</p>
-          <div class="why-box"><strong>💡 Why it matters:</strong> Onboarding to unfamiliar codebases is one of the biggest time-sinks in open-source contribution; an AI-generated orientation dramatically lowers that barrier.</div>
-          <div class="card-footer">
-            <span class="tag">AI</span><span class="tag">GitHub</span>
-            <a class="read-link" href="https://github.blog/changelog/2026-07-09-ask-copilot-for-a-repository-overview" target="_blank" rel="noopener">Read full story →</a>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- 5 -->
-    <article class="story-card"
-      data-source="GitHub Changelog"
-      data-tags="Security,GitHub"
-      data-text="innersource security advisories generally available enterprise internal CVE">
-      <div class="card-top">
-        <div class="num-badge">5</div>
-        <div class="card-body">
-          <div class="source-line">
-            <span class="src-icon">🐙</span>
-            <span class="src-name">GitHub Changelog</span>
-            <span class="pub-date">Jul 8, 2026</span>
-          </div>
-          <h2 class="story-title"><a href="https://github.blog/changelog/2026-07-08-innersource-security-advisories-are-generally-available" target="_blank" rel="noopener">Innersource security advisories are generally available</a></h2>
-          <p class="tldr-text">GitHub Advanced Security enterprise customers can now publish internal (innersource) security advisories with restricted visibility — mirroring the public advisory workflow but scoped to the organisation. The feature ships as GA for all GHAS enterprise plans.</p>
-          <div class="why-box"><strong>💡 Why it matters:</strong> Large organisations can now manage and track proprietary vulnerability disclosures with the same tooling used for open-source CVEs, closing a longstanding gap in enterprise security posture.</div>
-          <div class="card-footer">
-            <span class="tag">Security</span><span class="tag">GitHub</span>
-            <a class="read-link" href="https://github.blog/changelog/2026-07-08-innersource-security-advisories-are-generally-available" target="_blank" rel="noopener">Read full story →</a>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- 6 -->
-    <article class="story-card"
-      data-source="GitHub Changelog"
-      data-tags="Cloud,GitHub,Tools"
-      data-text="enterprise opentelemetry otel export vs code cli copilot telemetry">
-      <div class="card-top">
-        <div class="num-badge">6</div>
-        <div class="card-body">
-          <div class="source-line">
-            <span class="src-icon">🐙</span>
-            <span class="src-name">GitHub Changelog</span>
-            <span class="pub-date">Jul 8, 2026</span>
-          </div>
-          <h2 class="story-title"><a href="https://github.blog/changelog/2026-07-08-enterprise-managed-opentelemetry-export-for-vs-code-and-cli" target="_blank" rel="noopener">Enterprise-managed OpenTelemetry export for VS Code and CLI</a></h2>
-          <p class="tldr-text">GitHub now allows enterprise organisations to centrally mandate where GitHub Copilot sends OpenTelemetry data from VS Code and the CLI. Admins configure an approved collector endpoint and all developers' Copilot telemetry is automatically routed there, without requiring individual OTEL_* env-var configuration.</p>
-          <div class="why-box"><strong>💡 Why it matters:</strong> Centralised telemetry routing is a prerequisite for regulated industries adopting Copilot — this removes one of the last compliance blockers for large enterprise deployments.</div>
-          <div class="card-footer">
-            <span class="tag">Cloud</span><span class="tag">GitHub</span><span class="tag">Tools</span>
-            <a class="read-link" href="https://github.blog/changelog/2026-07-08-enterprise-managed-opentelemetry-export-for-vs-code-and-cli" target="_blank" rel="noopener">Read full story →</a>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- 7 -->
-    <article class="story-card"
-      data-source="GitHub Changelog"
-      data-tags="AI,GitHub,Tools"
-      data-text="github mobile improved filters sorting copilot sessions">
-      <div class="card-top">
-        <div class="num-badge">7</div>
-        <div class="card-body">
-          <div class="source-line">
-            <span class="src-icon">🐙</span>
-            <span class="src-name">GitHub Changelog</span>
-            <span class="pub-date">Jul 10, 2026</span>
-          </div>
-          <h2 class="story-title"><a href="https://github.blog/changelog/2026-07-10-github-mobile-improved-filters-and-sorting-for-copilot-sessions" target="_blank" rel="noopener">GitHub Mobile: Improved filters and sorting for Copilot sessions</a></h2>
-          <p class="tldr-text">GitHub Mobile now features improved filters and sorting for Copilot sessions, helping users navigate an ever-growing session list. Users can filter by status, date, and session type, making on-the-go Copilot management significantly more practical.</p>
-          <div class="why-box"><strong>💡 Why it matters:</strong> As agentic Copilot sessions multiply, discoverability from mobile becomes essential for teams managing long-running tasks from anywhere.</div>
-          <div class="card-footer">
-            <span class="tag">AI</span><span class="tag">GitHub</span><span class="tag">Tools</span>
-            <a class="read-link" href="https://github.blog/changelog/2026-07-10-github-mobile-improved-filters-and-sorting-for-copilot-sessions" target="_blank" rel="noopener">Read full story →</a>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- 8 -->
-    <article class="story-card"
-      data-source="TechCrunch"
-      data-tags="AI,LLMs,Startups"
-      data-text="openai launches gpt-5.6 models sol terra luna cybersecurity coding">
-      <div class="card-top">
-        <div class="num-badge">8</div>
-        <div class="card-body">
-          <div class="source-line">
-            <span class="src-icon">📰</span>
-            <span class="src-name">TechCrunch</span>
-            <span class="pub-date">Jul 9, 2026</span>
-          </div>
-          <h2 class="story-title"><a href="https://techcrunch.com/2026/07/09/openai-launches-its-new-family-of-models-with-gpt-5-6/" target="_blank" rel="noopener">OpenAI launches its new family of models with GPT-5.6</a></h2>
-          <p class="tldr-text">OpenAI unveiled GPT-5.6, a new tiered model family with three variants designed for different latency-capability trade-offs, including improved performance in cybersecurity tasks. The models are immediately available via the API and are rolling out across consumer products including ChatGPT.</p>
-          <div class="why-box"><strong>💡 Why it matters:</strong> A freely accessible tiered frontier model lowers the barrier for enterprises to match AI capability to cost, potentially accelerating widespread adoption across industries.</div>
-          <div class="card-footer">
-            <span class="tag">AI</span><span class="tag">LLMs</span><span class="tag">Startups</span>
-            <a class="read-link" href="https://techcrunch.com/2026/07/09/openai-launches-its-new-family-of-models-with-gpt-5-6/" target="_blank" rel="noopener">Read full story →</a>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- 9 -->
-    <article class="story-card"
-      data-source="TechCrunch"
-      data-tags="AI,Policy"
-      data-text="apple sues openai trade secret theft senior leadership former employee">
-      <div class="card-top">
-        <div class="num-badge">9</div>
-        <div class="card-body">
-          <div class="source-line">
-            <span class="src-icon">📰</span>
-            <span class="src-name">TechCrunch</span>
-            <span class="pub-date">Jul 10, 2026</span>
-          </div>
-          <h2 class="story-title"><a href="https://techcrunch.com/2026/07/10/apple-sues-openai-over-alleged-trade-secret-theft/" target="_blank" rel="noopener">Apple sues OpenAI over alleged trade secret theft</a></h2>
-          <p class="tldr-text">Apple has filed a lawsuit against OpenAI alleging the theft of trade secrets, claiming the misconduct was directed by OpenAI's senior leadership and involved a longtime former Apple employee. The case is set to intensify scrutiny around the movement of talent between Big Tech and AI labs.</p>
-          <div class="why-box"><strong>💡 Why it matters:</strong> High-profile litigation between two of the world's most influential tech companies could reshape how AI labs recruit from established tech giants and what IP agreements apply to departing employees.</div>
-          <div class="card-footer">
-            <span class="tag">AI</span><span class="tag">Policy</span>
-            <a class="read-link" href="https://techcrunch.com/2026/07/10/apple-sues-openai-over-alleged-trade-secret-theft/" target="_blank" rel="noopener">Read full story →</a>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- 10 -->
-    <article class="story-card"
-      data-source="TechCrunch"
-      data-tags="AI,Startups"
-      data-text="sk hynix 26.5 billion ipo biggest foreign us history ai chip memory">
-      <div class="card-top">
-        <div class="num-badge">10</div>
-        <div class="card-body">
-          <div class="source-line">
-            <span class="src-icon">📰</span>
-            <span class="src-name">TechCrunch</span>
-            <span class="pub-date">Jul 10, 2026</span>
-          </div>
-          <h2 class="story-title"><a href="https://techcrunch.com/2026/07/10/sk-hynix-raises-26-5b-in-the-biggest-foreign-ipo-in-us-history-is-urged-to-build-new-us-fabs/" target="_blank" rel="noopener">SK Hynix raises $26.5B in the biggest foreign IPO in US history</a></h2>
-          <p class="tldr-text">South Korean memory chip giant SK Hynix raised $26.5 billion in its US IPO — the largest ever by a foreign company — capitalising on soaring AI-driven demand for HBM and high-bandwidth memory. US officials have urged the company to invest those proceeds in domestic semiconductor fabrication.</p>
-          <div class="why-box"><strong>💡 Why it matters:</strong> The record listing underscores how AI infrastructure spending is reshaping global capital markets and intensifying geopolitical competition for semiconductor self-sufficiency.</div>
-          <div class="card-footer">
-            <span class="tag">AI</span><span class="tag">Startups</span>
-            <a class="read-link" href="https://techcrunch.com/2026/07/10/sk-hynix-raises-26-5b-in-the-biggest-foreign-ipo-in-us-history-is-urged-to-build-new-us-fabs/" target="_blank" rel="noopener">Read full story →</a>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- 11 -->
-    <article class="story-card"
-      data-source="TechCrunch"
-      data-tags="AI,Open Source"
-      data-text="hugging face clem delangue open source ai companies done renting models">
-      <div class="card-top">
-        <div class="num-badge">11</div>
-        <div class="card-body">
-          <div class="source-line">
-            <span class="src-icon">📰</span>
-            <span class="src-name">TechCrunch</span>
-            <span class="pub-date">Jul 10, 2026</span>
-          </div>
-          <h2 class="story-title"><a href="https://techcrunch.com/2026/07/10/hugging-faces-ceo-on-why-companies-are-done-renting-their-ai/" target="_blank" rel="noopener">Hugging Face's CEO on why companies are done renting their AI</a></h2>
-          <p class="tldr-text">Hugging Face CEO Clem Delangue argues that a major shift is underway: enterprises are abandoning API-only AI relationships in favour of owning and fine-tuning open models. Hugging Face, which he likens to "a GitHub for AI", has seen exponential growth in model downloads as this trend accelerates.</p>
-          <div class="why-box"><strong>💡 Why it matters:</strong> A move from rented AI to owned, fine-tunable models could fundamentally rebalance market power away from closed-model incumbents toward the open-source ecosystem.</div>
-          <div class="card-footer">
-            <span class="tag">AI</span><span class="tag">Open Source</span>
-            <a class="read-link" href="https://techcrunch.com/2026/07/10/hugging-faces-ceo-on-why-companies-are-done-renting-their-ai/" target="_blank" rel="noopener">Read full story →</a>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- 12 -->
-    <article class="story-card"
-      data-source="Ars Technica"
-      data-tags="AI,Security"
-      data-text="hackers 9 popular ai tools assemble botnets exploit agent vulnerabilities">
-      <div class="card-top">
-        <div class="num-badge">12</div>
-        <div class="card-body">
-          <div class="source-line">
-            <span class="src-icon">🔬</span>
-            <span class="src-name">Ars Technica</span>
-            <span class="pub-date">Jul 8, 2026</span>
-          </div>
-          <h2 class="story-title"><a href="https://arstechnica.com/security/2026/07/hackers-can-use-9-of-the-most-popular-ai-tools-to-assemble-massive-botnets/" target="_blank" rel="noopener">Hackers can use 9 of the most popular AI tools to assemble massive botnets</a></h2>
-          <p class="tldr-text">Security researchers have demonstrated that nine widely deployed AI agentic tools can be exploited — without modifying the tools themselves — to orchestrate large-scale botnet assembly. The attack leverages the tools' ability to execute arbitrary tasks and make network connections.</p>
-          <div class="why-box"><strong>💡 Why it matters:</strong> As AI agents gain broad network and system access, the attack surface for infrastructure-scale abuse grows exponentially — a challenge the industry has yet to address systematically.</div>
-          <div class="card-footer">
-            <span class="tag">AI</span><span class="tag">Security</span>
-            <a class="read-link" href="https://arstechnica.com/security/2026/07/hackers-can-use-9-of-the-most-popular-ai-tools-to-assemble-massive-botnets/" target="_blank" rel="noopener">Read full story →</a>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- 13 -->
-    <article class="story-card"
-      data-source="Ars Technica"
-      data-tags="Security"
-      data-text="windows defender 0-day patch hard disk fill attack cve">
-      <div class="card-top">
-        <div class="num-badge">13</div>
-        <div class="card-body">
-          <div class="source-line">
-            <span class="src-icon">🔬</span>
-            <span class="src-name">Ars Technica</span>
-            <span class="pub-date">Jul 9, 2026</span>
-          </div>
-          <h2 class="story-title"><a href="https://arstechnica.com/security/2026/07/patch-for-windows-defender-0-day-could-allow-attackers-to-fill-hard-disk/" target="_blank" rel="noopener">Patch for Windows Defender 0-day could allow attackers to fill hard disk</a></h2>
-          <p class="tldr-text">Microsoft has patched a zero-day vulnerability in Windows Defender that could allow an attacker to trigger uncontrolled disk-space consumption, effectively causing a denial-of-service by filling the target's storage. The flaw was disclosed as part of July Patch Tuesday.</p>
-          <div class="why-box"><strong>💡 Why it matters:</strong> A DoS vector in the world's most widely deployed endpoint-security product highlights the risk of attackers weaponising security software itself — and the urgency of prompt patching.</div>
-          <div class="card-footer">
-            <span class="tag">Security</span>
-            <a class="read-link" href="https://arstechnica.com/security/2026/07/patch-for-windows-defender-0-day-could-allow-attackers-to-fill-hard-disk/" target="_blank" rel="noopener">Read full story →</a>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- 14 -->
-    <article class="story-card"
-      data-source="Ars Technica"
-      data-tags="Security,Research"
-      data-text="google 250k linux vulnerability guest vm escape high severity kernel">
-      <div class="card-top">
-        <div class="num-badge">14</div>
-        <div class="card-body">
-          <div class="source-line">
-            <span class="src-icon">🔬</span>
-            <span class="src-name">Ars Technica</span>
-            <span class="pub-date">Jul 8, 2026</span>
-          </div>
-          <h2 class="story-title"><a href="https://arstechnica.com/security/2026/07/high-severity-guest-vm-escape-is-1-of-2-linux-vulnerabilities-to-surface-this-week/" target="_blank" rel="noopener">Google pays $250K for Linux vulnerability allowing guest VM escapes</a></h2>
-          <p class="tldr-text">Google awarded a $250,000 bug bounty for the discovery of a high-severity Linux kernel vulnerability enabling guest virtual-machine escapes, one of two significant Linux flaws surfaced in a single week. The record payout reflects the critical importance of hypervisor security in cloud infrastructure.</p>
-          <div class="why-box"><strong>💡 Why it matters:</strong> VM-escape vulnerabilities undermine the fundamental security isolation model of cloud computing; this record bounty signals how seriously hyperscalers now value Linux kernel security research.</div>
-          <div class="card-footer">
-            <span class="tag">Security</span><span class="tag">Research</span>
-            <a class="read-link" href="https://arstechnica.com/security/2026/07/high-severity-guest-vm-escape-is-1-of-2-linux-vulnerabilities-to-surface-this-week/" target="_blank" rel="noopener">Read full story →</a>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <!-- 15 -->
-    <article class="story-card"
-      data-source="Ars Technica"
-      data-tags="Cloud,Tools"
-      data-text="allstate broadcom vmware audit compliance lawsuit ca licensing">
-      <div class="card-top">
-        <div class="num-badge">15</div>
-        <div class="card-body">
-          <div class="source-line">
-            <span class="src-icon">🔬</span>
-            <span class="src-name">Ars Technica</span>
-            <span class="pub-date">Jul 9, 2026</span>
-          </div>
-          <h2 class="story-title"><a href="https://arstechnica.com/information-technology/2026/07/allstate-accuses-broadcom-of-auditing-it-because-it-quit-vmware-ca/" target="_blank" rel="noopener">Allstate accuses Broadcom of auditing it because it quit VMware, CA</a></h2>
-          <p class="tldr-text">Insurance giant Allstate has filed suit alleging that Broadcom launched a software-license audit as retaliatory punishment after Allstate stopped using VMware and CA products. The complaint adds to a growing chorus of enterprises pushing back against Broadcom's post-acquisition licensing strategies.</p>
-          <div class="why-box"><strong>💡 Why it matters:</strong> The case could set precedent for how software vendors may (or may not) use compliance audits as competitive weapons — a critical issue for enterprises mid-migration off legacy infrastructure.</div>
-          <div class="card-footer">
-            <span class="tag">Cloud</span><span class="tag">Tools</span>
-            <a class="read-link" href="https://arstechnica.com/information-technology/2026/07/allstate-accuses-broadcom-of-auditing-it-because-it-quit-vmware-ca/" target="_blank" rel="noopener">Read full story →</a>
-          </div>
-        </div>
-      </div>
-    </article>
-
-  </section>
-</div>
+</main>
 
 <footer>
-  <div class="container">
-    <p>Generated by <a href="https://github.github.com/gh-aw/" target="_blank" rel="noopener">GitHub Agentic Workflows</a> · Deployed via GitHub Pages</p>
-  </div>
+  <p>Generated by <a href="https://github.github.com/gh-aw/">GitHub Agentic Workflows</a> &nbsp;·&nbsp; Deployed via GitHub Pages</p>
 </footer>
 
 <script>
-  // ── Theme ──────────────────────────────────────────────
-  const html = document.documentElement;
-  const themeBtns = document.querySelectorAll('.theme-btn');
-  function applyTheme(t) {
-    const pref = t === 'system'
-      ? (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
-      : t;
-    html.dataset.theme = pref;
-    themeBtns.forEach(b => b.classList.toggle('active', b.dataset.t === t));
+const STORIES = [
+  {
+    rank: 1,
+    source: "GitHub Changelog",
+    title: "OpenAI's GPT-5.6 Sol, Terra, and Luna are now available in GitHub Copilot",
+    url: "https://github.blog/changelog/2026-07-09-openais-gpt-5-6-sol-terra-and-luna-are-now-available-in-github-copilot",
+    date: "Jul 9, 2026",
+    tldr: "OpenAI's GPT-5.6 family is now rolling out in GitHub Copilot with three variants — Sol, Terra, and Luna — letting developers match the model tier to their task. The family spans lightweight to high-reasoning workloads within a single Copilot subscription.",
+    why: "Multi-model flexibility inside a single product lowers the barrier for developers to use best-in-class AI without juggling accounts.",
+    tags: ["AI", "LLMs", "GitHub", "Tools"]
+  },
+  {
+    rank: 2,
+    source: "TechCrunch",
+    title: "Apple sues OpenAI over alleged trade secret theft",
+    url: "https://techcrunch.com/2026/07/10/apple-sues-openai-over-alleged-trade-secret-theft/",
+    date: "Jul 10, 2026",
+    tldr: "Apple filed a lawsuit alleging OpenAI systematically stole Apple trade secrets, with misconduct reportedly directed by senior OpenAI leadership including a longtime former Apple employee. The suit claims job candidates were asked to bring Apple confidential materials.",
+    why: "A major legal clash between two AI giants could reshape hiring practices and trade-secret law across the entire tech industry.",
+    tags: ["AI", "Policy", "Startups"]
+  },
+  {
+    rank: 3,
+    source: "GitHub Changelog",
+    title: "New pull requests dashboard is now generally available",
+    url: "https://github.blog/changelog/2026-07-09-new-pull-requests-dashboard-is-now-generally-available",
+    date: "Jul 9, 2026",
+    tldr: "The refreshed pull requests dashboard at github.com/pulls is now GA, offering a single home to track, prioritize, and act on all pull requests that need attention. It replaces the older, fragmented PR view with a cleaner, unified experience.",
+    why: "A more actionable PR dashboard directly reduces code review bottlenecks, one of the most common developer productivity pain points.",
+    tags: ["GitHub", "Tools"]
+  },
+  {
+    rank: 4,
+    source: "GitHub Changelog",
+    title: "CodeQL 2.26.0 adds Kotlin 2.4.0 support and AI prompt injection detection",
+    url: "https://github.blog/changelog/2026-07-10-codeql-2-26-0-adds-kotlin-2-4-0-support-and-ai-prompt-injection-detection",
+    date: "Jul 10, 2026",
+    tldr: "CodeQL 2.26.0, the engine behind GitHub code scanning, now supports Kotlin 2.4.0 and adds detection rules for AI prompt injection vulnerabilities. This brings static analysis to a brand-new class of security bugs introduced by LLM integrations.",
+    why: "As developers embed LLMs into applications, prompt injection becomes a real attack surface — automated detection is the first line of defense.",
+    tags: ["Security", "AI", "GitHub", "Tools"]
+  },
+  {
+    rank: 5,
+    source: "Ars Technica",
+    title: "Hackers can use 9 of the most popular AI tools to assemble massive botnets",
+    url: "https://arstechnica.com/security/2026/07/hackers-can-use-9-of-the-most-popular-ai-tools-to-assemble-massive-botnets/",
+    date: "Jul 8, 2026",
+    tldr: "Researchers discovered that nine leading AI tools can be manipulated via 'HalluSquatting' — exploiting LLM hallucinations about non-existent packages or domains — to silently recruit devices into botnets. All nine vendors were notified before publication.",
+    why: "LLM hallucinations are no longer just a nuisance; they are an exploitable attack vector that scales across millions of AI-assisted workflows.",
+    tags: ["AI", "Security", "LLMs"]
+  },
+  {
+    rank: 6,
+    source: "GitHub Changelog",
+    title: "Ask Copilot for a repository overview",
+    url: "https://github.blog/changelog/2026-07-09-ask-copilot-for-a-repository-overview",
+    date: "Jul 9, 2026",
+    tldr: "GitHub Copilot can now generate a high-level overview of any repository a developer visits for the first time, summarizing purpose, architecture, and key entry points. The feature triggers automatically on unfamiliar repos.",
+    why: "Instant repo onboarding slashes the time developers spend reading READMEs and tracing code, especially in large open-source projects.",
+    tags: ["GitHub", "AI", "Tools"]
+  },
+  {
+    rank: 7,
+    source: "TechCrunch",
+    title: "Anthropic starts localizing Claude pricing for India, its biggest market after the US",
+    url: "https://techcrunch.com/2026/07/13/anthropic-starts-localizing-claude-pricing-for-india-its-biggest-market-after-the-us/",
+    date: "Jul 13, 2026",
+    tldr: "Anthropic has begun offering Indian-rupee-denominated subscription plans for Claude in India, its largest market outside the United States. The move mirrors a broader industry trend of localized AI pricing to capture emerging-market developers and consumers.",
+    why: "Price localization can exponentially expand the addressable user base in high-growth markets, intensifying the global LLM race.",
+    tags: ["AI", "LLMs", "Startups"]
+  },
+  {
+    rank: 8,
+    source: "GitHub Changelog",
+    title: "GitHub Mobile: Improved filters and sorting for Copilot sessions",
+    url: "https://github.blog/changelog/2026-07-10-github-mobile-improved-filters-and-sorting-for-copilot-sessions",
+    date: "Jul 10, 2026",
+    tldr: "GitHub Mobile now lets users filter and sort their growing list of Copilot sessions by status, date, and project, making it easier to resume in-progress work from a phone. The update responds to feedback from users with large session histories.",
+    why: "Better mobile session management makes AI-assisted coding truly portable, bridging desktop and on-the-go development.",
+    tags: ["GitHub", "AI", "Tools"]
+  },
+  {
+    rank: 9,
+    source: "Ars Technica",
+    title: "Now, defenders are embracing the prompt injection, too",
+    url: "https://arstechnica.com/security/2026/07/now-defenders-are-embracing-the-prompt-injection-too/",
+    date: "Jul 13, 2026",
+    tldr: "Security researchers have developed a defensive technique called 'context bombing' that floods attacking AI agents with irrelevant text, causing them to exhaust their context window and abort before causing harm. Early tests show it can neutralize automated hacking agents.",
+    why: "Using AI's own limitations as a weapon flips the script on adversarial LLM attacks and points toward a new category of AI-native security tooling.",
+    tags: ["Security", "AI", "Research"]
+  },
+  {
+    rank: 10,
+    source: "GitHub Changelog",
+    title: "Innersource security advisories are generally available",
+    url: "https://github.blog/changelog/2026-07-08-innersource-security-advisories-are-generally-available",
+    date: "Jul 8, 2026",
+    tldr: "GitHub Advanced Security enterprise customers can now publish internal (innersource) security advisories that are visible only within their organization. The feature mirrors public advisory workflows but keeps sensitive vulnerability details private.",
+    why: "Private coordinated disclosure within an enterprise reduces the window between vulnerability discovery and patch deployment in corporate codebases.",
+    tags: ["Security", "GitHub", "Open Source"]
+  },
+  {
+    rank: 11,
+    source: "TechCrunch",
+    title: "Meta removes controversial AI feature on Instagram after backlash",
+    url: "https://techcrunch.com/2026/07/10/meta-removes-controversial-ai-feature-on-instagram-after-backlash/",
+    date: "Jul 10, 2026",
+    tldr: "Meta pulled an Instagram AI feature that allowed the model to reference users' public posts in generated content, following significant user backlash over consent and creative control. The company acknowledged it had misjudged how people would react.",
+    why: "The rapid reversal signals that public tolerance for AI features using personal content without explicit opt-in has real limits — with direct consequences for product roadmaps.",
+    tags: ["AI", "Policy"]
+  },
+  {
+    rank: 12,
+    source: "GitHub Changelog",
+    title: "Separate SSO and Organizations pages in Settings",
+    url: "https://github.blog/changelog/2026-07-13-separate-sso-and-organizations-pages-in-settings",
+    date: "Jul 13, 2026",
+    tldr: "GitHub split the previously combined 'SSO &amp; Organizations' settings page into two dedicated pages, making enterprise identity management clearer and reducing accidental mis-configuration. The change affects all users who manage multiple org memberships.",
+    why: "Clearer settings architecture for SSO reduces misconfiguration risk, a common cause of enterprise access-control incidents.",
+    tags: ["GitHub", "Security"]
+  },
+  {
+    rank: 13,
+    source: "Ars Technica",
+    title: "Google pays $250K for Linux vulnerability allowing guest VM escapes",
+    url: "https://arstechnica.com/security/2026/07/high-severity-guest-vm-escape-is-1-of-2-linux-vulnerabilities-to-surface-this-week/",
+    date: "Jul 8, 2026",
+    tldr: "Google awarded a $250,000 bug bounty for two high-severity Linux kernel vulnerabilities that allow unprivileged users to escape guest virtual machines and gain root privileges on the host. Both flaws were patched before public disclosure.",
+    why: "VM escape vulnerabilities undermine the isolation guarantees that entire cloud infrastructure — from AWS to GCP — relies on.",
+    tags: ["Security", "Cloud", "Research"]
+  },
+  {
+    rank: 14,
+    source: "TechCrunch",
+    title: "OpenAI bets on families as ChatGPT goes deeper into households",
+    url: "https://techcrunch.com/2026/07/11/openai-bets-on-families-as-chatgpt-goes-deeper-into-households/",
+    date: "Jul 11, 2026",
+    tldr: "OpenAI is hiring a dedicated product manager focused on building ChatGPT experiences for families, caregivers, and older adults, according to a job posting. The move signals an intentional push to move AI beyond individual power users into everyday household use.",
+    why: "Consumer AI expanding into family contexts will accelerate mainstream adoption while raising new questions about safety guardrails for children.",
+    tags: ["AI", "LLMs", "Startups"]
+  },
+  {
+    rank: 15,
+    source: "Ars Technica",
+    title: "Patch for Windows Defender 0-day could allow attackers to fill hard disk",
+    url: "https://arstechnica.com/security/2026/07/patch-for-windows-defender-0-day-could-allow-attackers-to-fill-hard-disk/",
+    date: "Jul 9, 2026",
+    tldr: "Microsoft patched a Windows Defender zero-day that could allow remote attackers to fill a victim's hard drive by triggering repeated scans on crafted files, causing a denial-of-service. The vulnerability is part of an ongoing public feud between the discoverer and Microsoft.",
+    why: "A DoS flaw in the OS's built-in security tool is particularly damaging since disabling Defender is often not an enterprise option.",
+    tags: ["Security", "Tools"]
   }
-  const saved = localStorage.getItem('theme') || 'dark';
-  applyTheme(saved);
-  themeBtns.forEach(b => b.addEventListener('click', () => {
-    localStorage.setItem('theme', b.dataset.t);
-    applyTheme(b.dataset.t);
-  }));
+];
 
-  // ── Filters ────────────────────────────────────────────
-  const cards = Array.from(document.querySelectorAll('.story-card'));
-  const countEl = document.getElementById('story-count');
-  const srcChips = document.querySelectorAll('#src-chips .chip');
-  const tagChips = document.querySelectorAll('#tag-chips .chip');
-  const kwInput = document.getElementById('kw-search');
+const SOURCE_ICONS = {
+  "GitHub Changelog": "🐙",
+  "TechCrunch": "🟢",
+  "Ars Technica": "🔬",
+};
 
-  function getActive(chips) {
-    return Array.from(chips).filter(c => c.classList.contains('active')).map(c => c.dataset.src || c.dataset.tag);
-  }
+function getIcon(source) {
+  return SOURCE_ICONS[source] || "📰";
+}
 
-  function applyFilters() {
-    const activeSrcs = getActive(srcChips);
-    const activeTags = getActive(tagChips);
-    const kw = kwInput.value.toLowerCase().trim();
-    let shown = 0;
-    cards.forEach(card => {
-      const src = card.dataset.source;
-      const tags = card.dataset.tags.split(',');
-      const text = card.dataset.text + ' ' + card.querySelector('.story-title').textContent.toLowerCase()
-        + ' ' + card.querySelector('.tldr-text').textContent.toLowerCase()
-        + ' ' + card.querySelector('.why-box').textContent.toLowerCase();
+// Collect unique sources and tags
+const allSources = [...new Set(STORIES.map(s => s.source))];
+const allTags = [...new Set(STORIES.flatMap(s => s.tags))].sort();
 
-      const srcOk = activeSrcs.length === 0 || activeSrcs.includes(src);
-      const tagOk = activeTags.length === 0 || activeTags.some(t => tags.includes(t));
-      const kwOk  = !kw || text.includes(kw);
+// State
+let activeSources = new Set(["GitHub Changelog"]);
+let activeTags = new Set();
+let searchQuery = "";
 
-      const vis = srcOk && tagOk && kwOk;
-      card.hidden = !vis;
-      if (vis) shown++;
+function buildSourceChips() {
+  const container = document.getElementById("sourceChips");
+  allSources.forEach(src => {
+    const chip = document.createElement("button");
+    chip.className = "chip" + (activeSources.has(src) ? " active" : "");
+    chip.textContent = getIcon(src) + " " + src;
+    chip.setAttribute("data-source", src);
+    chip.addEventListener("click", () => {
+      if (activeSources.has(src)) activeSources.delete(src);
+      else activeSources.add(src);
+      chip.classList.toggle("active");
+      applyFilters();
     });
-    countEl.textContent = `Showing ${shown} of ${cards.length} stories`;
+    container.appendChild(chip);
+  });
+  // "All" button
+  const allBtn = document.createElement("button");
+  allBtn.className = "chip";
+  allBtn.textContent = "✨ All Sources";
+  allBtn.addEventListener("click", () => {
+    if (activeSources.size === allSources.length) {
+      activeSources.clear();
+    } else {
+      allSources.forEach(s => activeSources.add(s));
+    }
+    document.querySelectorAll("#sourceChips .chip[data-source]").forEach(c => {
+      c.classList.toggle("active", activeSources.has(c.getAttribute("data-source")));
+    });
+    applyFilters();
+  });
+  container.appendChild(allBtn);
+}
+
+function buildTagChips() {
+  const container = document.getElementById("tagChips");
+  allTags.forEach(tag => {
+    const chip = document.createElement("button");
+    chip.className = "chip";
+    chip.textContent = tag;
+    chip.setAttribute("data-tag", tag);
+    chip.addEventListener("click", () => {
+      if (activeTags.has(tag)) activeTags.delete(tag);
+      else activeTags.add(tag);
+      chip.classList.toggle("active");
+      applyFilters();
+    });
+    container.appendChild(chip);
+  });
+}
+
+function buildStories() {
+  const container = document.getElementById("storyList");
+  STORIES.forEach(s => {
+    const card = document.createElement("article");
+    card.className = "story-card";
+    card.setAttribute("data-source", s.source);
+    card.setAttribute("data-tags", s.tags.join(","));
+    card.setAttribute("data-search", (s.title + " " + s.source + " " + s.tldr + " " + s.why + " " + s.tags.join(" ")).toLowerCase());
+    card.innerHTML = `
+      <div class="story-head">
+        <div class="rank">${s.rank}</div>
+        <div class="story-meta">
+          <div class="source">${getIcon(s.source)} ${s.source}</div>
+          <div class="title"><a href="${s.url}" target="_blank" rel="noopener">${s.title}</a></div>
+        </div>
+      </div>
+      <p class="tldr">${s.tldr}</p>
+      <div class="why">💡 <strong>Why it matters:</strong> ${s.why}</div>
+      <div class="story-footer">
+        ${s.tags.map(t => `<span class="tag">${t}</span>`).join("")}
+        <span class="pub-date">${s.date}</span>
+        <a class="read-link" href="${s.url}" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function buildStats() {
+  const bar = document.getElementById("statsBar");
+  const counts = {};
+  STORIES.forEach(s => { counts[s.source] = (counts[s.source] || 0) + 1; });
+  const totalStat = document.createElement("div");
+  totalStat.className = "stat";
+  totalStat.innerHTML = `<strong>${STORIES.length}</strong> stories this week`;
+  bar.appendChild(totalStat);
+  Object.entries(counts).forEach(([src, cnt]) => {
+    const el = document.createElement("div");
+    el.className = "stat";
+    el.innerHTML = `${getIcon(src)} <strong>${cnt}</strong> ${src}`;
+    bar.appendChild(el);
+  });
+}
+
+function applyFilters() {
+  searchQuery = document.getElementById("searchInput").value.toLowerCase();
+  const cards = document.querySelectorAll(".story-card");
+  let shown = 0;
+  cards.forEach(card => {
+    const src = card.getAttribute("data-source");
+    const tags = card.getAttribute("data-tags").split(",");
+    const searchText = card.getAttribute("data-search");
+
+    const srcMatch = activeSources.size === 0 || activeSources.has(src);
+    const tagMatch = activeTags.size === 0 || tags.some(t => activeTags.has(t));
+    const searchMatch = !searchQuery || searchText.includes(searchQuery);
+
+    if (srcMatch && tagMatch && searchMatch) {
+      card.classList.remove("hidden");
+      shown++;
+    } else {
+      card.classList.add("hidden");
+    }
+  });
+  document.getElementById("resultLine").textContent = `Showing ${shown} of ${STORIES.length} stories`;
+}
+
+function setTheme(value) {
+  let theme = value;
+  if (value === "system") {
+    theme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
   }
+  document.documentElement.setAttribute("data-theme", theme);
+  localStorage.setItem("theme-pref", value);
+}
 
-  srcChips.forEach(c => c.addEventListener('click', () => {
-    c.classList.toggle('active'); applyFilters();
-  }));
-  tagChips.forEach(c => c.addEventListener('click', () => {
-    c.classList.toggle('active'); applyFilters();
-  }));
-  kwInput.addEventListener('input', applyFilters);
-
-  // Initial apply (GitHub sources selected by default)
+// Init
+(function init() {
+  const saved = localStorage.getItem("theme-pref") || "dark";
+  document.getElementById("themeSelect").value = saved;
+  setTheme(saved);
+  buildSourceChips();
+  buildTagChips();
+  buildStories();
+  buildStats();
   applyFilters();
+})();
 </script>
 </body>
 </html>
