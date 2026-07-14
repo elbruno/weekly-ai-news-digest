@@ -20,6 +20,7 @@ network:
     - "venturebeat.com"
     - "github.blog"
     - "feeds.feedburner.com"
+    - "techcommunity.microsoft.com"
 
 safe-outputs:
   create-pull-request:
@@ -49,6 +50,7 @@ Fetch the following RSS feeds and extract all entries published in the last 14 d
 - `https://feeds.arstechnica.com/arstechnica/technology-lab`
 - `https://theverge.com/rss/tech/index.xml`
 - `https://venturebeat.com/category/ai/feed/`
+- `https://techcommunity.microsoft.com/gwrs/rss/board?board.id=AzureAIFoundryBlog` ← **Azure AI Foundry Blog** (Microsoft)
 
 For each entry capture: **title**, **URL**, **source name**, **published date**, and a **plain-text excerpt**.
 
