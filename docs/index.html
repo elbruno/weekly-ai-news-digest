@@ -1,14 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Top 15 AI & technology stories for the week of Jul 5–18, 2026" />
-  <meta property="og:title" content="Weekly AI & Tech News — Jul 5–18, 2026" />
-  <meta property="og:description" content="Top 15 AI & technology stories for the week of Jul 5–18, 2026" />
-  <meta property="og:type" content="website" />
-  <title>Weekly AI &amp; Tech News — Jul 5–18, 2026</title>
-
+  <meta name="description" content="Weekly AI & Tech News Digest — top 15 stories from July 6–19, 2026" />
+  <title>Weekly AI & Tech News — July 6–19, 2026</title>
   <style>
     :root {
       --bg: #0d1117;
@@ -24,7 +20,6 @@
       --max-w: 960px;
       --radius: 12px;
     }
-
     [data-theme="light"] {
       --bg: #f6f8fa;
       --bg-card: #ffffff;
@@ -37,704 +32,552 @@
       --tag-active: #0969da;
       --tag-active-text: #ffffff;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-      font-size: 15px;
-      line-height: 1.6;
-    }
-
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.6; }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
-
     .container { max-width: var(--max-w); margin: 0 auto; padding: 0 1rem; }
-
-    header {
-      border-bottom: 1px solid var(--border);
-      background: linear-gradient(135deg, var(--bg) 0%, var(--bg-card) 100%);
-      padding: 2rem 0 1.5rem;
-    }
-
-    .badge {
-      display: inline-block;
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--accent);
-      border: 1px solid rgba(88,166,255,0.35);
-      background: rgba(88,166,255,0.1);
-      padding: 0.2rem 0.7rem;
-      border-radius: 999px;
-      margin-bottom: 0.85rem;
-      font-weight: 600;
-    }
-
+    header { border-bottom: 1px solid var(--border); background: linear-gradient(135deg, var(--bg) 0%, var(--bg-card) 100%); padding: 2rem 0 1.5rem; }
+    .header-row { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .badge { display: inline-block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); border: 1px solid rgba(88,166,255,0.35); background: rgba(88,166,255,0.1); padding: 0.2rem 0.7rem; border-radius: 999px; margin-bottom: 0.85rem; font-weight: 600; }
     h1 { font-size: 2rem; line-height: 1.2; margin-bottom: 0.4rem; }
     .meta { color: var(--text-muted); font-size: 0.9rem; }
-
-    .top-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin: 1.25rem 0 0.5rem;
-    }
-
-    .control {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 0.55rem 0.7rem;
-      color: var(--text);
-    }
-
-    .control input, .control select {
-      background: transparent;
-      border: none;
-      color: inherit;
-      outline: none;
-      min-width: 180px;
-      font-size: 0.9rem;
-    }
-
-    .stats {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.65rem;
-      margin: 1rem 0 1.2rem;
-    }
-
-    .stat {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      color: var(--text-muted);
-      padding: 0.45rem 0.75rem;
-      font-size: 0.84rem;
-    }
-
-    .tldr-summary {
-      margin: 1rem 0 1.4rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1rem 1.1rem;
-    }
-
-    .tldr-summary h2 { font-size: 1.08rem; margin-bottom: 0.55rem; }
-    .tldr-summary ul { padding-left: 1rem; color: var(--text-muted); }
-    .tldr-summary li + li { margin-top: 0.28rem; }
-
-    .filter-section { margin: 0.8rem 0 0.5rem; }
-    .filter-section label { font-size: 0.78rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.04em; }
-
-    .filter-labels {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .chip {
-      border: 1px solid var(--border);
-      background: var(--tag-bg);
-      color: var(--text-muted);
-      border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 0.2rem 0.58rem;
-      cursor: pointer;
-      user-select: none;
-      transition: background 0.15s, border-color 0.15s, color 0.15s;
-    }
-
-    .chip.active {
-      background: var(--tag-active);
-      border-color: var(--tag-active);
-      color: var(--tag-active-text);
-    }
-
-    .chip:hover:not(.active) {
-      border-color: var(--accent);
-      color: var(--text);
-    }
-
+    .theme-select { display: flex; align-items: center; gap: 0.5rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 0.4rem 0.75rem; font-size: 0.82rem; color: var(--text-muted); cursor: pointer; }
+    .theme-select select { background: transparent; border: none; color: var(--text); outline: none; font-size: 0.82rem; cursor: pointer; }
+    .top-bar { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.25rem 0 0.5rem; }
+    .control { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 0.55rem 0.7rem; color: var(--text); display: flex; align-items: center; gap: 0.4rem; }
+    .control input { background: transparent; border: none; color: inherit; outline: none; min-width: 200px; font-size: 0.9rem; }
+    .control input::placeholder { color: var(--text-muted); }
+    .stats { display: flex; flex-wrap: wrap; gap: 0.65rem; margin: 1rem 0 1.2rem; }
+    .stat { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; color: var(--text-muted); padding: 0.45rem 0.75rem; font-size: 0.84rem; }
+    .tldr-summary { margin: 1rem 0 1.4rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.2rem; }
+    .tldr-summary h2 { font-size: 1.05rem; margin-bottom: 0.6rem; color: var(--accent); }
+    .tldr-summary ul { padding-left: 1.2rem; color: var(--text-muted); }
+    .tldr-summary li { margin-bottom: 0.3rem; }
+    .filter-section { margin: 0.5rem 0 0.8rem; }
+    .filter-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted); font-weight: 600; margin-bottom: 0.4rem; }
+    .filter-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.7rem; }
+    .chip { border: 1px solid var(--border); background: var(--tag-bg); color: var(--text-muted); border-radius: 999px; font-size: 0.75rem; font-weight: 600; padding: 0.22rem 0.6rem; cursor: pointer; user-select: none; transition: background 0.15s, color 0.15s, border-color 0.15s; }
+    .chip.active { background: var(--tag-active); border-color: var(--tag-active); color: var(--tag-active-text); }
+    .chip:hover:not(.active) { border-color: var(--accent); color: var(--accent); }
     .result-line { color: var(--text-muted); font-size: 0.85rem; margin: 0.3rem 0 0.9rem; }
-
     .story-list { display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 2rem; }
-
-    .story-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1rem 1.1rem;
-      transition: border-color 0.15s;
-    }
-
-    .story-card:hover { border-color: rgba(88,166,255,0.4); }
-
-    .story-head {
-      display: flex;
-      gap: 0.75rem;
-      align-items: flex-start;
-      margin-bottom: 0.5rem;
-    }
-
-    .rank {
-      width: 1.9rem;
-      height: 1.9rem;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.74rem;
-      font-weight: 700;
-      color: var(--accent);
-      border: 1px solid rgba(88,166,255,0.45);
-      background: rgba(88,166,255,0.12);
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    .source { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 600; margin-bottom: 0.15rem; }
+    .story-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.15rem; transition: border-color 0.15s; }
+    .story-card:hover { border-color: var(--accent); }
+    .story-head { display: flex; gap: 0.75rem; align-items: flex-start; margin-bottom: 0.5rem; }
+    .rank { width: 1.9rem; height: 1.9rem; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.74rem; font-weight: 700; color: var(--accent); border: 1px solid rgba(88,166,255,0.45); background: rgba(88,166,255,0.12); flex-shrink: 0; margin-top: 0.1rem; }
+    .story-meta { flex: 1; min-width: 0; }
+    .source-row { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.2rem; }
+    .source-icon { font-size: 0.9rem; }
+    .source { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.04em; }
+    .pub-date { color: var(--text-muted); font-size: 0.72rem; margin-left: auto; }
     .title { color: var(--text); font-size: 1.02rem; font-weight: 600; line-height: 1.35; }
-    .tldr { color: var(--text-muted); margin: 0.55rem 0; font-size: 0.92rem; }
-    .why { border-left: 3px solid var(--accent); padding-left: 0.6rem; color: var(--text-muted); font-size: 0.88rem; margin-bottom: 0.65rem; }
-
-    .story-footer {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-    }
-
-    .tag {
-      border: 1px solid var(--border);
-      background: var(--tag-bg);
-      color: var(--text-muted);
-      border-radius: 999px;
-      padding: 0.16rem 0.5rem;
-      font-size: 0.72rem;
-    }
-
-    .read-link { font-size: 0.82rem; }
-    .date { margin-left: auto; color: var(--text-muted); font-size: 0.76rem; }
-
-    footer {
-      border-top: 1px solid var(--border);
-      color: var(--text-muted);
-      text-align: center;
-      padding: 1.6rem 1rem 2.2rem;
-      font-size: 0.84rem;
-    }
-
+    .title a { color: var(--text); }
+    .title a:hover { color: var(--accent); text-decoration: none; }
+    .tldr { color: var(--text-muted); margin: 0.55rem 0 0.5rem; font-size: 0.9rem; }
+    .why { border-left: 3px solid var(--accent); padding-left: 0.65rem; color: var(--text-muted); font-size: 0.88rem; margin-bottom: 0.65rem; background: rgba(88,166,255,0.05); padding: 0.4rem 0.65rem; border-radius: 0 6px 6px 0; }
+    .story-footer { display: flex; align-items: center; flex-wrap: wrap; gap: 0.4rem; }
+    .tag { border: 1px solid var(--border); background: var(--tag-bg); color: var(--text-muted); border-radius: 999px; font-size: 0.72rem; font-weight: 600; padding: 0.15rem 0.5rem; }
+    .read-link { margin-left: auto; font-size: 0.82rem; color: var(--accent); white-space: nowrap; }
+    .github-highlights { background: var(--bg-card); border: 1px solid rgba(88,166,255,0.3); border-radius: var(--radius); padding: 1.1rem 1.2rem; margin: 1rem 0 1.4rem; }
+    .github-highlights h2 { font-size: 1.05rem; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.5rem; }
+    .github-highlights ul { padding-left: 1.2rem; color: var(--text-muted); }
+    .github-highlights li { margin-bottom: 0.3rem; }
+    footer { border-top: 1px solid var(--border); padding: 1.5rem 0; text-align: center; color: var(--text-muted); font-size: 0.82rem; margin-top: 2rem; }
     .hidden { display: none !important; }
-
-    @media (max-width: 700px) {
-      h1 { font-size: 1.5rem; }
-      .control input, .control select { min-width: 130px; }
-      .date { margin-left: 0; }
-    }
+    @media (max-width: 600px) { h1 { font-size: 1.5rem; } .control input { min-width: 140px; } .pub-date { display: none; } }
   </style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <div class="badge">Weekly Digest</div>
-      <h1>Weekly AI &amp; Tech News</h1>
-      <p class="meta">Jul 5–18, 2026 &mdash; 15 stories &mdash; last 14 days</p>
 
-      <div class="top-bar">
-        <label class="control">Theme:
-          <select id="themeSelect" aria-label="Select theme">
-            <option value="system">System</option>
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
-          </select>
-        </label>
-        <label class="control">🔍 Search:
-          <input id="searchInput" type="search" placeholder="keyword, source, tag..." aria-label="Search stories" />
-        </label>
+<header>
+  <div class="container">
+    <div class="header-row">
+      <div>
+        <div class="badge">📰 Weekly Digest</div>
+        <h1>Weekly AI &amp; Tech News</h1>
+        <p class="meta">July 6–19, 2026 &nbsp;·&nbsp; 15 stories curated</p>
+      </div>
+      <div class="theme-select">
+        <span>🎨</span>
+        <select id="themeSelect" onchange="setTheme(this.value)" aria-label="Theme selector">
+          <option value="dark">Dark</option>
+          <option value="light">Light</option>
+          <option value="system">System</option>
+        </select>
       </div>
     </div>
-  </header>
 
-  <main class="container">
-    <section class="stats">
-      <div class="stat">📰 15 stories</div>
-      <div class="stat">🐙 7 from GitHub Changelog</div>
-      <div class="stat">🟠 4 from TechCrunch</div>
-      <div class="stat">🔴 2 from Ars Technica</div>
-      <div class="stat">🟣 1 from VentureBeat</div>
-      <div class="stat">⚫ 1 from The Verge</div>
-    </section>
-
-    <section class="tldr-summary">
-      <h2>⚡ TL;DR — Top takeaways this week</h2>
-      <ul>
-        <li>GitHub rolled out major Copilot improvements: repository-level usage metrics are GA, mobile PR fixing with cloud agent, and code review customization with custom runners.</li>
-        <li>GitHub Projects gets advanced AND/OR search (GA) and admins can now archive pull requests — two long-requested workflow features ship together.</li>
-        <li>Databricks hits a $188B valuation while Apple sues OpenAI for trade secrets, threatening OpenAI's IPO timeline.</li>
-        <li>Microsoft's Patch Tuesday revealed Secure Boot has been broken for nearly a decade and a Windows 0-day dropped the same day — a double security whammy.</li>
-        <li>AI scrapers are being actively blocked (Patreon → Cloudflare), 54% of enterprises have already had an AI agent security incident, and TikTok launches an AI likeness detection tool.</li>
-      </ul>
-    </section>
-
-    <section class="tldr-summary" id="githubHighlights">
-      <h2>🐙 TL;DR — GitHub highlights</h2>
-      <ul>
-        <li>Copilot usage metrics API now reports per-repository breakdowns and GitHub Copilot app usage — giving org admins full visibility into agent activity.</li>
-        <li>Copilot code review can now use custom runners, firewall rules, and setup steps, and reads instructions from the head branch for easier PR-level testing.</li>
-        <li>GitHub Mobile lets developers tap "Fix with Copilot" directly from code review comments, closing the loop between mobile review and agentic fixes.</li>
-        <li>Advanced search in GitHub Projects reaches GA, enabling complex AND/OR filter logic; repository admins also gain a new archive option for pull requests.</li>
-        <li>Secret scanning adds Resend and Anthropic as partner services, and Xcode 27 runner images are now available in public preview for Apple developers.</li>
-      </ul>
-    </section>
-
-    <div class="filter-section">
-      <label>Filter by source</label>
-      <div class="filter-labels" id="sourceFilters"></div>
+    <div class="top-bar">
+      <div class="control">
+        <span>🔍</span>
+        <input type="text" id="searchInput" placeholder="Search stories, tags, sources…" oninput="applyFilters()" />
+      </div>
     </div>
-    <div class="filter-section">
-      <label>Filter by tag</label>
-      <div class="filter-labels" id="labelFilters"></div>
+
+    <div class="stats">
+      <div class="stat">📚 15 stories total</div>
+      <div class="stat">🐙 7 GitHub Changelog</div>
+      <div class="stat">📰 3 TechCrunch AI</div>
+      <div class="stat">🔬 2 MIT Tech Review</div>
+      <div class="stat">⚙️ 2 Ars Technica</div>
+      <div class="stat">🚀 1 VentureBeat AI</div>
     </div>
-    <p class="result-line" id="resultLine"></p>
+  </div>
+</header>
 
-    <section class="story-list" id="storyList">
+<main class="container" style="margin-top:1.4rem;">
 
-      <article class="story-card"
-        data-tags="GitHub,AI,Tools"
-        data-source="GitHub Changelog"
-        data-search="Repository-level GitHub Copilot usage metrics generally available GitHub Changelog AI Tools">
-        <div class="story-head">
-          <div class="rank">1</div>
-          <div>
-            <div class="source">🐙 GitHub Changelog</div>
-            <div class="title"><a href="https://github.blog/changelog/2026-07-17-repository-level-github-copilot-usage-metrics-generally-available" target="_blank" rel="noopener">Repository-level GitHub Copilot usage metrics generally available</a></div>
+  <!-- TL;DR Top Takeaways -->
+  <div class="tldr-summary">
+    <h2>⚡ TL;DR — Top takeaways</h2>
+    <ul>
+      <li>GitHub ships repository-level Copilot metrics GA, enabling precise AI coding ROI tracking per repo</li>
+      <li>GitHub Projects advanced search goes GA with logical AND/OR filtering; PR archiving comes to repo admins</li>
+      <li>OpenAI's GPT-Red is a purpose-built "super-hacker" LLM designed to make its own models safer via adversarial testing</li>
+      <li>54% of surveyed enterprises report AI agent security incidents — yet most still allow agents to share credentials</li>
+      <li>Energy IPOs surge at the fastest pace this century as investors race to fund AI infrastructure power demands</li>
+    </ul>
+  </div>
+
+  <!-- GitHub Highlights -->
+  <div class="github-highlights">
+    <h2><span>🐙</span> TL;DR — GitHub highlights</h2>
+    <ul>
+      <li>Copilot usage metrics API now exposes per-repository PR activity for coding agent and code review sessions</li>
+      <li>Copilot code review gains custom setup steps, firewall support, and reads instructions from the PR head branch</li>
+      <li>GitHub Mobile users can now trigger a Copilot cloud agent fix directly from inline code review comments</li>
+      <li>Advanced search in GitHub Projects goes GA — filter views with logical AND/OR without maintaining separate saved views</li>
+      <li>Repository admins can archive pull requests, closing and locking them while keeping history intact</li>
+    </ul>
+  </div>
+
+  <!-- Source filter -->
+  <div class="filter-section">
+    <div class="filter-label">Filter by source</div>
+    <div class="filter-chips" id="sourceChips">
+      <span class="chip active" data-source="GitHub Changelog" onclick="toggleChip(this,'source')">🐙 GitHub Changelog</span>
+      <span class="chip" data-source="TechCrunch AI" onclick="toggleChip(this,'source')">📰 TechCrunch AI</span>
+      <span class="chip" data-source="MIT Tech Review" onclick="toggleChip(this,'source')">🔬 MIT Tech Review</span>
+      <span class="chip" data-source="Ars Technica" onclick="toggleChip(this,'source')">⚙️ Ars Technica</span>
+      <span class="chip" data-source="VentureBeat AI" onclick="toggleChip(this,'source')">🚀 VentureBeat AI</span>
+    </div>
+    <div class="filter-label">Filter by tag</div>
+    <div class="filter-chips" id="tagChips">
+      <span class="chip" data-tag="AI" onclick="toggleChip(this,'tag')">AI</span>
+      <span class="chip" data-tag="GitHub" onclick="toggleChip(this,'tag')">GitHub</span>
+      <span class="chip" data-tag="LLMs" onclick="toggleChip(this,'tag')">LLMs</span>
+      <span class="chip" data-tag="Security" onclick="toggleChip(this,'tag')">Security</span>
+      <span class="chip" data-tag="Tools" onclick="toggleChip(this,'tag')">Tools</span>
+      <span class="chip" data-tag="Cloud" onclick="toggleChip(this,'tag')">Cloud</span>
+      <span class="chip" data-tag="Open Source" onclick="toggleChip(this,'tag')">Open Source</span>
+      <span class="chip" data-tag="Research" onclick="toggleChip(this,'tag')">Research</span>
+      <span class="chip" data-tag="Policy" onclick="toggleChip(this,'tag')">Policy</span>
+      <span class="chip" data-tag="Startups" onclick="toggleChip(this,'tag')">Startups</span>
+    </div>
+  </div>
+
+  <p class="result-line" id="resultLine">Showing <strong id="visibleCount">7</strong> of 15 stories</p>
+
+  <div class="story-list" id="storyList">
+
+    <!-- Story 1 -->
+    <div class="story-card" data-source="GitHub Changelog" data-tags="GitHub,AI,Tools">
+      <div class="story-head">
+        <div class="rank">1</div>
+        <div class="story-meta">
+          <div class="source-row">
+            <span class="source-icon">🐙</span>
+            <span class="source">GitHub Changelog</span>
+            <span class="pub-date">Jul 17, 2026</span>
           </div>
+          <div class="title"><a href="https://github.blog/changelog/2026-07-17-repository-level-github-copilot-usage-metrics-generally-available" target="_blank" rel="noopener">Repository-level GitHub Copilot usage metrics generally available</a></div>
         </div>
-        <p class="tldr">The Copilot usage metrics REST API now reports repository-level activity, with two new endpoints delivering daily per-repository breakdowns of pull request activity for both Copilot coding agent and Copilot code review. Enterprise and organization admins can now drill down to understand which repositories are driving Copilot adoption.</p>
-        <p class="why">💡 Why it matters: Fine-grained usage data lets engineering leaders measure ROI and guide Copilot rollouts at the repo level, not just the org level.</p>
-        <div class="story-footer">
-          <span class="tag">GitHub</span><span class="tag">AI</span><span class="tag">Tools</span>
-          <a class="read-link" href="https://github.blog/changelog/2026-07-17-repository-level-github-copilot-usage-metrics-generally-available" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 17</span>
-        </div>
-      </article>
+      </div>
+      <p class="tldr">The Copilot usage metrics REST API now surfaces a daily, per-repository breakdown of pull request activity for both the Copilot coding agent and Copilot code review. Two new endpoints make it easy for enterprise and org admins to track exactly which repos are getting the most AI-assisted development.</p>
+      <div class="why">💡 <strong>Why it matters:</strong> Organizations can now attribute AI productivity gains to specific repositories, making ROI calculations and team-level reporting far more precise.</div>
+      <div class="story-footer">
+        <span class="tag">GitHub</span><span class="tag">AI</span><span class="tag">Tools</span>
+        <a class="read-link" href="https://github.blog/changelog/2026-07-17-repository-level-github-copilot-usage-metrics-generally-available" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
 
-      <article class="story-card"
-        data-tags="GitHub,AI,Tools"
-        data-source="GitHub Changelog"
-        data-search="GitHub Copilot app now available in the usage metrics API GitHub Changelog AI Tools">
-        <div class="story-head">
-          <div class="rank">2</div>
-          <div>
-            <div class="source">🐙 GitHub Changelog</div>
-            <div class="title"><a href="https://github.blog/changelog/2026-07-17-github-copilot-app-now-available-in-the-usage-metrics-api" target="_blank" rel="noopener">GitHub Copilot app now available in the usage metrics API</a></div>
+    <!-- Story 2 -->
+    <div class="story-card" data-source="GitHub Changelog" data-tags="GitHub,AI,Tools,Security">
+      <div class="story-head">
+        <div class="rank">2</div>
+        <div class="story-meta">
+          <div class="source-row">
+            <span class="source-icon">🐙</span>
+            <span class="source">GitHub Changelog</span>
+            <span class="pub-date">Jul 17, 2026</span>
           </div>
+          <div class="title"><a href="https://github.blog/changelog/2026-07-17-copilot-code-review-customization-and-configurability-improvements" target="_blank" rel="noopener">Copilot code review: Customization and configurability improvements</a></div>
         </div>
-        <p class="tldr">The Copilot usage metrics API now surfaces GitHub Copilot app usage inside the enterprise and organization 1-day and 28-day reports. Admins get visibility into the GitHub Copilot app alongside editor-based usage, providing a complete picture of AI assistant consumption.</p>
-        <p class="why">💡 Why it matters: Unified metrics across all Copilot surfaces — editor, mobile, and web app — close the blind spots in AI governance dashboards.</p>
-        <div class="story-footer">
-          <span class="tag">GitHub</span><span class="tag">AI</span><span class="tag">Tools</span>
-          <a class="read-link" href="https://github.blog/changelog/2026-07-17-github-copilot-app-now-available-in-the-usage-metrics-api" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 17</span>
-        </div>
-      </article>
+      </div>
+      <p class="tldr">Copilot code review now supports a firewall, custom setup steps, and independent runner configurations. It also reads custom instructions from the PR's head branch, letting teams test and validate new review rules without touching the default branch.</p>
+      <div class="why">💡 <strong>Why it matters:</strong> Enterprise teams can now enforce org-specific review policies while keeping the review agent isolated and auditable through dedicated runner configs.</div>
+      <div class="story-footer">
+        <span class="tag">GitHub</span><span class="tag">AI</span><span class="tag">Tools</span><span class="tag">Security</span>
+        <a class="read-link" href="https://github.blog/changelog/2026-07-17-copilot-code-review-customization-and-configurability-improvements" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
 
-      <article class="story-card"
-        data-tags="GitHub,AI,Tools,Security"
-        data-source="GitHub Changelog"
-        data-search="Copilot code review customization configurability improvements GitHub Changelog AI Tools Security">
-        <div class="story-head">
-          <div class="rank">3</div>
-          <div>
-            <div class="source">🐙 GitHub Changelog</div>
-            <div class="title"><a href="https://github.blog/changelog/2026-07-17-copilot-code-review-customization-and-configurability-improvements" target="_blank" rel="noopener">Copilot code review: Customization and configurability improvements</a></div>
+    <!-- Story 3 -->
+    <div class="story-card" data-source="GitHub Changelog" data-tags="GitHub,AI,Tools">
+      <div class="story-head">
+        <div class="rank">3</div>
+        <div class="story-meta">
+          <div class="source-row">
+            <span class="source-icon">🐙</span>
+            <span class="source">GitHub Changelog</span>
+            <span class="pub-date">Jul 17, 2026</span>
           </div>
+          <div class="title"><a href="https://github.blog/changelog/2026-07-17-github-mobile-fix-pull-request-comments-with-copilot-cloud-agent" target="_blank" rel="noopener">GitHub Mobile: Fix pull request comments with Copilot cloud agent</a></div>
         </div>
-        <p class="tldr">Copilot code review now supports a firewall, custom setup steps, and independent runner configurations, and reads custom instructions from the head branch so teams can test review behavior on a per-PR basis. These changes align code review infrastructure with the same controls available to GitHub Actions.</p>
-        <p class="why">💡 Why it matters: Enterprise teams can now enforce security policies and configure Copilot's review environment just like any other CI job — a major step toward production-grade AI review.</p>
-        <div class="story-footer">
-          <span class="tag">GitHub</span><span class="tag">AI</span><span class="tag">Tools</span><span class="tag">Security</span>
-          <a class="read-link" href="https://github.blog/changelog/2026-07-17-copilot-code-review-customization-and-configurability-improvements" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 17</span>
-        </div>
-      </article>
+      </div>
+      <p class="tldr">Developers can now tap "Fix with Copilot" directly from Copilot code review comments inside the GitHub Mobile app. The button appears both on the PR's main view and inline on individual comment threads, triggering the cloud agent to auto-apply the suggested fix.</p>
+      <div class="why">💡 <strong>Why it matters:</strong> Mobile-first workflows get a major boost — reviewers can assign Copilot agent fixes on the go without switching to a desktop environment.</div>
+      <div class="story-footer">
+        <span class="tag">GitHub</span><span class="tag">AI</span><span class="tag">Tools</span>
+        <a class="read-link" href="https://github.blog/changelog/2026-07-17-github-mobile-fix-pull-request-comments-with-copilot-cloud-agent" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
 
-      <article class="story-card"
-        data-tags="GitHub,AI,Tools"
-        data-source="GitHub Changelog"
-        data-search="GitHub Mobile fix pull request comments with Copilot cloud agent GitHub Changelog AI Tools">
-        <div class="story-head">
-          <div class="rank">4</div>
-          <div>
-            <div class="source">🐙 GitHub Changelog</div>
-            <div class="title"><a href="https://github.blog/changelog/2026-07-17-github-mobile-fix-pull-request-comments-with-copilot-cloud-agent" target="_blank" rel="noopener">GitHub Mobile: Fix pull request comments with Copilot cloud agent</a></div>
+    <!-- Story 4 -->
+    <div class="story-card" data-source="GitHub Changelog" data-tags="GitHub,Tools">
+      <div class="story-head">
+        <div class="rank">4</div>
+        <div class="story-meta">
+          <div class="source-row">
+            <span class="source-icon">🐙</span>
+            <span class="source">GitHub Changelog</span>
+            <span class="pub-date">Jul 16, 2026</span>
           </div>
+          <div class="title"><a href="https://github.blog/changelog/2026-07-16-advanced-search-for-projects-is-generally-available" target="_blank" rel="noopener">Advanced search for Projects is generally available</a></div>
         </div>
-        <p class="tldr">Developers can now tap "Fix with Copilot" directly from Copilot code review pull request comments inside GitHub Mobile, available from both the main PR view and within individual comment threads. This bridges mobile code review with the agentic coding workflow.</p>
-        <p class="why">💡 Why it matters: Reviewers can trigger agentic fixes from their phone while on-the-go, dramatically shortening the feedback loop between review and remediation.</p>
-        <div class="story-footer">
-          <span class="tag">GitHub</span><span class="tag">AI</span><span class="tag">Tools</span>
-          <a class="read-link" href="https://github.blog/changelog/2026-07-17-github-mobile-fix-pull-request-comments-with-copilot-cloud-agent" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 17</span>
-        </div>
-      </article>
+      </div>
+      <p class="tldr">The filter bar in GitHub Projects now supports advanced search with logical AND and OR operators, replacing the need to maintain multiple saved views. Teams can build precise, compound queries directly in the filter bar across any project field.</p>
+      <div class="why">💡 <strong>Why it matters:</strong> Complex project management use cases — like filtering by assignee AND label OR milestone — are now first-class citizens without workarounds.</div>
+      <div class="story-footer">
+        <span class="tag">GitHub</span><span class="tag">Tools</span>
+        <a class="read-link" href="https://github.blog/changelog/2026-07-16-advanced-search-for-projects-is-generally-available" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
 
-      <article class="story-card"
-        data-tags="GitHub,Tools"
-        data-source="GitHub Changelog"
-        data-search="Advanced search for Projects generally available GitHub Changelog Tools">
-        <div class="story-head">
-          <div class="rank">5</div>
-          <div>
-            <div class="source">🐙 GitHub Changelog</div>
-            <div class="title"><a href="https://github.blog/changelog/2026-07-16-advanced-search-for-projects-is-generally-available" target="_blank" rel="noopener">Advanced search for Projects is generally available</a></div>
+    <!-- Story 5 -->
+    <div class="story-card" data-source="GitHub Changelog" data-tags="GitHub,Tools">
+      <div class="story-head">
+        <div class="rank">5</div>
+        <div class="story-meta">
+          <div class="source-row">
+            <span class="source-icon">🐙</span>
+            <span class="source">GitHub Changelog</span>
+            <span class="pub-date">Jul 16, 2026</span>
           </div>
+          <div class="title"><a href="https://github.blog/changelog/2026-07-16-repository-admins-can-archive-pull-requests" target="_blank" rel="noopener">Repository admins can archive pull requests</a></div>
         </div>
-        <p class="tldr">The filter bar in GitHub Projects views now supports advanced search, enabling complex queries with logical AND and OR operators instead of requiring separate saved views. Teams can now build the exact view they need without duplicating project configurations.</p>
-        <p class="why">💡 Why it matters: Power users of GitHub Projects can finally express nuanced filtering logic in a single view, reducing the project management overhead that slows large engineering teams.</p>
-        <div class="story-footer">
-          <span class="tag">GitHub</span><span class="tag">Tools</span>
-          <a class="read-link" href="https://github.blog/changelog/2026-07-16-advanced-search-for-projects-is-generally-available" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 16</span>
-        </div>
-      </article>
+      </div>
+      <p class="tldr">Repository admins can now archive pull requests to remove them from public view without permanently deleting them. Archived PRs are automatically closed and locked, preserving history while clearing clutter from the default PR list.</p>
+      <div class="why">💡 <strong>Why it matters:</strong> Large open-source repos with hundreds of stale PRs can now maintain a cleaner, more actionable queue without losing audit history.</div>
+      <div class="story-footer">
+        <span class="tag">GitHub</span><span class="tag">Tools</span>
+        <a class="read-link" href="https://github.blog/changelog/2026-07-16-repository-admins-can-archive-pull-requests" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
 
-      <article class="story-card"
-        data-tags="GitHub,Tools"
-        data-source="GitHub Changelog"
-        data-search="Repository admins can archive pull requests GitHub Changelog Tools">
-        <div class="story-head">
-          <div class="rank">6</div>
-          <div>
-            <div class="source">🐙 GitHub Changelog</div>
-            <div class="title"><a href="https://github.blog/changelog/2026-07-16-repository-admins-can-archive-pull-requests" target="_blank" rel="noopener">Repository admins can archive pull requests</a></div>
+    <!-- Story 6 -->
+    <div class="story-card" data-source="GitHub Changelog" data-tags="GitHub,Tools,Cloud">
+      <div class="story-head">
+        <div class="rank">6</div>
+        <div class="story-meta">
+          <div class="source-row">
+            <span class="source-icon">🐙</span>
+            <span class="source">GitHub Changelog</span>
+            <span class="pub-date">Jul 16, 2026</span>
           </div>
+          <div class="title"><a href="https://github.blog/changelog/2026-07-16-xcode-27-runner-image-now-in-public-preview" target="_blank" rel="noopener">Xcode 27 runner image now in public preview</a></div>
         </div>
-        <p class="tldr">Repository admins can now archive pull requests to remove them from public view without permanently deleting them. Archived PRs are automatically closed and locked, keeping project history clean while preserving the record.</p>
-        <p class="why">💡 Why it matters: This fills a long-standing gap in repository hygiene, letting teams declutter active PR lists without losing the audit trail that compliance often requires.</p>
-        <div class="story-footer">
-          <span class="tag">GitHub</span><span class="tag">Tools</span>
-          <a class="read-link" href="https://github.blog/changelog/2026-07-16-repository-admins-can-archive-pull-requests" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 16</span>
-        </div>
-      </article>
+      </div>
+      <p class="tldr">GitHub Actions now offers Xcode 27 on GitHub-hosted macOS runners in public preview. Apple developers can build and test against the latest Xcode release without managing their own CI infrastructure, giving teams early access ahead of the official stable release.</p>
+      <div class="why">💡 <strong>Why it matters:</strong> iOS and macOS developers can validate app compatibility with Xcode 27 in CI pipelines weeks before the Xcode stable release lands.</div>
+      <div class="story-footer">
+        <span class="tag">GitHub</span><span class="tag">Tools</span><span class="tag">Cloud</span>
+        <a class="read-link" href="https://github.blog/changelog/2026-07-16-xcode-27-runner-image-now-in-public-preview" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
 
-      <article class="story-card"
-        data-tags="GitHub,Security"
-        data-source="GitHub Changelog"
-        data-search="Improvements to secret scanning and public monitoring GitHub Changelog Security">
-        <div class="story-head">
-          <div class="rank">7</div>
-          <div>
-            <div class="source">🐙 GitHub Changelog</div>
-            <div class="title"><a href="https://github.blog/changelog/2026-07-15-improvements-to-secret-scanning-and-public-monitoring" target="_blank" rel="noopener">Improvements to secret scanning and public monitoring</a></div>
+    <!-- Story 7 -->
+    <div class="story-card" data-source="GitHub Changelog" data-tags="GitHub,Security,Tools">
+      <div class="story-head">
+        <div class="rank">7</div>
+        <div class="story-meta">
+          <div class="source-row">
+            <span class="source-icon">🐙</span>
+            <span class="source">GitHub Changelog</span>
+            <span class="pub-date">Jul 15, 2026</span>
           </div>
+          <div class="title"><a href="https://github.blog/changelog/2026-07-15-improvements-to-secret-scanning-and-public-monitoring" target="_blank" rel="noopener">Improvements to secret scanning and public monitoring</a></div>
         </div>
-        <p class="tldr">GitHub secret scanning gains Resend and Anthropic as new partner services, expanding detection coverage for API keys across popular AI and communication platforms. The update is part of an ongoing push to catch more credential leaks before they can be exploited.</p>
-        <p class="why">💡 Why it matters: As Anthropic and Resend keys appear in more codebases, native detection prevents a new class of AI credential leaks that could expose LLM API budgets or production systems.</p>
-        <div class="story-footer">
-          <span class="tag">GitHub</span><span class="tag">Security</span>
-          <a class="read-link" href="https://github.blog/changelog/2026-07-15-improvements-to-secret-scanning-and-public-monitoring" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 15</span>
-        </div>
-      </article>
+      </div>
+      <p class="tldr">GitHub secret scanning added Resend as a new partner and expanded detection to cover new secret types from additional providers. Public monitoring improvements increase coverage of leaked credentials across the broader GitHub ecosystem.</p>
+      <div class="why">💡 <strong>Why it matters:</strong> Broader secret-type coverage means fewer accidental API key leaks slip through — a critical defense layer as developer toolchains multiply.</div>
+      <div class="story-footer">
+        <span class="tag">GitHub</span><span class="tag">Security</span><span class="tag">Tools</span>
+        <a class="read-link" href="https://github.blog/changelog/2026-07-15-improvements-to-secret-scanning-and-public-monitoring" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
 
-      <article class="story-card"
-        data-tags="AI,Startups,LLMs"
-        data-source="TechCrunch"
-        data-search="Databricks hits 188B valuation AI favorite second act TechCrunch AI Startups LLMs">
-        <div class="story-head">
-          <div class="rank">8</div>
-          <div>
-            <div class="source">🟠 TechCrunch</div>
-            <div class="title"><a href="https://techcrunch.com/2026/07/17/databricks-hits-188b-valuation-extending-its-run-as-ais-favorite-second-act/" target="_blank" rel="noopener">Databricks hits $188B valuation, extending its run as AI's favorite second act</a></div>
+    <!-- Story 8 -->
+    <div class="story-card" data-source="TechCrunch AI" data-tags="AI,LLMs,Research,Policy">
+      <div class="story-head">
+        <div class="rank">8</div>
+        <div class="story-meta">
+          <div class="source-row">
+            <span class="source-icon">📰</span>
+            <span class="source">TechCrunch AI</span>
+            <span class="pub-date">Jul 19, 2026</span>
           </div>
+          <div class="title"><a href="https://techcrunch.com/2026/07/19/odyssey-director-christopher-nolan-calls-ai-an-obvious-trojan-horse/" target="_blank" rel="noopener">'Odyssey' director Christopher Nolan calls AI an obvious 'Trojan horse'</a></div>
         </div>
-        <p class="tldr">Databricks has secured a new funding round that values the data and AI company at $188 billion, cementing its position as one of the most valuable private companies in tech. The company has also published research highlighting the cost savings of open-weight AI models for coding workloads.</p>
-        <p class="why">💡 Why it matters: Databricks' valuation trajectory signals that enterprise AI infrastructure — not just model labs — is commanding stratospheric investor confidence in 2026.</p>
-        <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">Startups</span><span class="tag">LLMs</span>
-          <a class="read-link" href="https://techcrunch.com/2026/07/17/databricks-hits-188b-valuation-extending-its-run-as-ais-favorite-second-act/" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 17</span>
-        </div>
-      </article>
+      </div>
+      <p class="tldr">Filmmaker Christopher Nolan publicly compared AI to a Trojan horse, warning that the technology's creative promise conceals risks that the industry is not yet taking seriously. Speaking around the release of his film "Odyssey," Nolan argued that broad adoption is happening faster than meaningful accountability frameworks.</p>
+      <div class="why">💡 <strong>Why it matters:</strong> A high-profile creative voice entering the AI policy debate signals growing mainstream concern about unchecked generative AI in the arts.</div>
+      <div class="story-footer">
+        <span class="tag">AI</span><span class="tag">Policy</span><span class="tag">LLMs</span>
+        <a class="read-link" href="https://techcrunch.com/2026/07/19/odyssey-director-christopher-nolan-calls-ai-an-obvious-trojan-horse/" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
 
-      <article class="story-card"
-        data-tags="AI,LLMs,Policy,Startups"
-        data-source="TechCrunch"
-        data-search="Apple lawsuit disrupt OpenAI IPO plans TechCrunch AI LLMs Policy Startups">
-        <div class="story-head">
-          <div class="rank">9</div>
-          <div>
-            <div class="source">🟠 TechCrunch</div>
-            <div class="title"><a href="https://techcrunch.com/video/how-apples-big-lawsuit-could-disrupt-openais-ipo-plans/" target="_blank" rel="noopener">How Apple's big lawsuit could disrupt OpenAI's IPO plans</a></div>
+    <!-- Story 9 -->
+    <div class="story-card" data-source="TechCrunch AI" data-tags="AI,Open Source,Startups">
+      <div class="story-head">
+        <div class="rank">9</div>
+        <div class="story-meta">
+          <div class="source-row">
+            <span class="source-icon">📰</span>
+            <span class="source">TechCrunch AI</span>
+            <span class="pub-date">Jul 19, 2026</span>
           </div>
+          <div class="title"><a href="https://techcrunch.com/2026/07/19/nonprofit-current-ai-is-racing-to-build-the-world-wide-web-of-ai-free-for-all/" target="_blank" rel="noopener">Nonprofit Current AI is racing to build the World Wide Web of AI, free for all</a></div>
         </div>
-        <p class="tldr">Apple filed a trade secrets lawsuit against OpenAI alleging a pattern of misconduct involving OpenAI's chief hardware officer and systematic misappropriation of confidential Apple engineering work. The lawsuit casts a shadow over OpenAI's anticipated IPO by creating legal uncertainty that institutional investors typically avoid.</p>
-        <p class="why">💡 Why it matters: A major legal battle between two of tech's most influential companies could reshape the AI talent market and delay OpenAI's path to becoming a public company.</p>
-        <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">LLMs</span><span class="tag">Policy</span><span class="tag">Startups</span>
-          <a class="read-link" href="https://techcrunch.com/video/how-apples-big-lawsuit-could-disrupt-openais-ipo-plans/" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 17</span>
-        </div>
-      </article>
+      </div>
+      <p class="tldr">Current AI, a nonprofit, is building an open AI infrastructure it describes as "the World Wide Web of AI" — designed to be culturally inclusive and freely accessible across devices. The organization has made notable progress on AI chat, on-device models, and cross-cultural language support.</p>
+      <div class="why">💡 <strong>Why it matters:</strong> A free, decentralized AI commons could counterbalance the concentration of AI capabilities in a handful of well-funded corporations.</div>
+      <div class="story-footer">
+        <span class="tag">AI</span><span class="tag">Open Source</span><span class="tag">Startups</span>
+        <a class="read-link" href="https://techcrunch.com/2026/07/19/nonprofit-current-ai-is-racing-to-build-the-world-wide-web-of-ai-free-for-all/" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
 
-      <article class="story-card"
-        data-tags="AI,Policy,Security"
-        data-source="TechCrunch"
-        data-search="Patreon stops asking AI bots not to scrape starts blocking them TechCrunch AI Policy Security">
-        <div class="story-head">
-          <div class="rank">10</div>
-          <div>
-            <div class="source">🟠 TechCrunch</div>
-            <div class="title"><a href="https://techcrunch.com/2026/07/17/patreon-stops-asking-ai-bots-not-to-scrape-and-starts-blocking-them/" target="_blank" rel="noopener">Patreon stops asking AI bots not to scrape — and starts blocking them</a></div>
+    <!-- Story 10 -->
+    <div class="story-card" data-source="TechCrunch AI" data-tags="AI,LLMs,Research">
+      <div class="story-head">
+        <div class="rank">10</div>
+        <div class="story-meta">
+          <div class="source-row">
+            <span class="source-icon">📰</span>
+            <span class="source">TechCrunch AI</span>
+            <span class="pub-date">Jul 18, 2026</span>
           </div>
+          <div class="title"><a href="https://techcrunch.com/2026/07/18/kimi-threat-or-menace/" target="_blank" rel="noopener">Kimi: Threat or menace?</a></div>
         </div>
-        <p class="tldr">Patreon has partnered with Cloudflare to actively block AI training bots that scrape creators' content without permission, moving beyond the honor-system of robots.txt. The platform says it will enforce a zero-tolerance policy on unauthorized AI data collection from creator pages.</p>
-        <p class="why">💡 Why it matters: When a major creator platform stops relying on voluntary compliance and deploys real technical controls, it signals a broader shift in the web's relationship with AI data harvesting.</p>
-        <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">Policy</span><span class="tag">Security</span>
-          <a class="read-link" href="https://techcrunch.com/2026/07/17/patreon-stops-asking-ai-bots-not-to-scrape-and-starts-blocking-them/" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 17</span>
-        </div>
-      </article>
+      </div>
+      <p class="tldr">Moonshot AI released a significant new version of its Kimi model this week, reigniting debate about Chinese AI capabilities and competitive dynamics. The release prompted concerns in Western tech circles about what some dubbed "full AI communism" — i.e., state-backed models competing on an unlevel playing field.</p>
+      <div class="why">💡 <strong>Why it matters:</strong> Kimi's advances underscore that the frontier AI race is genuinely global, with Chinese labs closing the gap on state-of-the-art benchmarks.</div>
+      <div class="story-footer">
+        <span class="tag">AI</span><span class="tag">LLMs</span><span class="tag">Research</span>
+        <a class="read-link" href="https://techcrunch.com/2026/07/18/kimi-threat-or-menace/" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
 
-      <article class="story-card"
-        data-tags="AI,Cloud,Research"
-        data-source="TechCrunch"
-        data-search="AI driven memory crunch jolts India smartphone market TechCrunch AI Cloud Research">
-        <div class="story-head">
-          <div class="rank">11</div>
-          <div>
-            <div class="source">🟠 TechCrunch</div>
-            <div class="title"><a href="https://techcrunch.com/2026/07/17/ai-driven-memory-crunch-jolts-indias-smartphone-market/" target="_blank" rel="noopener">AI-driven memory crunch jolts India's smartphone market</a></div>
+    <!-- Story 11 -->
+    <div class="story-card" data-source="MIT Tech Review" data-tags="AI,LLMs,Security,Research">
+      <div class="story-head">
+        <div class="rank">11</div>
+        <div class="story-meta">
+          <div class="source-row">
+            <span class="source-icon">🔬</span>
+            <span class="source">MIT Tech Review</span>
+            <span class="pub-date">Jul 16, 2026</span>
           </div>
+          <div class="title"><a href="https://www.technologyreview.com/2026/07/16/1140600/the-download-openai-unveils-gpt-red-heat-pumps-rise-us/" target="_blank" rel="noopener">Meet GPT-Red: OpenAI's LLM super-hacker built to make its models safer</a></div>
         </div>
-        <p class="tldr">India's smartphone market is experiencing a slowdown tied to a global AI-driven memory shortage, as chipmakers prioritize high-bandwidth memory for data center AI accelerators over consumer-grade DRAM. Smartphone manufacturers are hiking prices or shipping with constrained memory specs as a result.</p>
-        <p class="why">💡 Why it matters: The AI compute buildout is already creating tangible hardware scarcity for everyday devices, illustrating how the LLM gold rush has second-order effects across the entire semiconductor supply chain.</p>
-        <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">Cloud</span><span class="tag">Research</span>
-          <a class="read-link" href="https://techcrunch.com/2026/07/17/ai-driven-memory-crunch-jolts-indias-smartphone-market/" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 17</span>
-        </div>
-      </article>
+      </div>
+      <p class="tldr">OpenAI has unveiled GPT-Red, a specialized LLM trained to act as an adversarial red-team agent against OpenAI's own production models. The system autonomously probes for safety failures, jailbreaks, and policy violations at a scale impossible for human testers to match.</p>
+      <div class="why">💡 <strong>Why it matters:</strong> Automated adversarial AI testing represents a paradigm shift in safety engineering — letting labs discover vulnerabilities faster than bad actors can exploit them.</div>
+      <div class="story-footer">
+        <span class="tag">AI</span><span class="tag">LLMs</span><span class="tag">Security</span><span class="tag">Research</span>
+        <a class="read-link" href="https://www.technologyreview.com/2026/07/16/1140600/the-download-openai-unveils-gpt-red-heat-pumps-rise-us/" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
 
-      <article class="story-card"
-        data-tags="Security"
-        data-source="Ars Technica"
-        data-search="Windows 0-day drops same day Microsoft releases record number patches Ars Technica Security">
-        <div class="story-head">
-          <div class="rank">12</div>
-          <div>
-            <div class="source">🔴 Ars Technica</div>
-            <div class="title"><a href="https://arstechnica.com/security/2026/07/windows-0-day-drops-the-same-day-microsoft-releases-record-number-of-patches/" target="_blank" rel="noopener">Windows 0-day drops the same day Microsoft releases record number of patches</a></div>
+    <!-- Story 12 -->
+    <div class="story-card" data-source="MIT Tech Review" data-tags="Security,Policy,Research">
+      <div class="story-head">
+        <div class="rank">12</div>
+        <div class="story-meta">
+          <div class="source-row">
+            <span class="source-icon">🔬</span>
+            <span class="source">MIT Tech Review</span>
+            <span class="pub-date">Jul 17, 2026</span>
           </div>
+          <div class="title"><a href="https://www.technologyreview.com/2026/07/17/1140622/weather-data-sabotage/" target="_blank" rel="noopener">The risk of weather data sabotage is rising</a></div>
         </div>
-        <p class="tldr">On Patch Tuesday, Microsoft published what researchers called a record number of security fixes, while simultaneously a Windows zero-day named HiveLegacy was publicly disclosed. The vulnerability is described as a "powerful primitive" with capabilities that likely extend well beyond the initial reported attack vector.</p>
-        <p class="why">💡 Why it matters: A same-day 0-day disclosure during Patch Tuesday leaves administrators in an impossible race — patching takes time, but attackers can exploit HiveLegacy immediately.</p>
-        <div class="story-footer">
-          <span class="tag">Security</span>
-          <a class="read-link" href="https://arstechnica.com/security/2026/07/windows-0-day-drops-the-same-day-microsoft-releases-record-number-of-patches/" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 15</span>
-        </div>
-      </article>
+      </div>
+      <p class="tldr">MIT Technology Review reports that the global network of weather sensors feeding forecasts for airlines, power grids, and agriculture is increasingly vulnerable to deliberate sabotage. Attackers manipulating even a small number of input stations can cascade errors into downstream AI-driven forecasts affecting critical infrastructure.</p>
+      <div class="why">💡 <strong>Why it matters:</strong> As AI-driven weather prediction becomes infrastructure-critical, the attack surface for forecast manipulation grows — with potentially catastrophic real-world consequences.</div>
+      <div class="story-footer">
+        <span class="tag">Security</span><span class="tag">Policy</span><span class="tag">Research</span>
+        <a class="read-link" href="https://www.technologyreview.com/2026/07/17/1140622/weather-data-sabotage/" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
 
-      <article class="story-card"
-        data-tags="Security"
-        data-source="Ars Technica"
-        data-search="Microsoft Secure Boot broken decade no one noticed Ars Technica Security">
-        <div class="story-head">
-          <div class="rank">13</div>
-          <div>
-            <div class="source">🔴 Ars Technica</div>
-            <div class="title"><a href="https://arstechnica.com/security/2026/07/microsoft-secure-boot-has-been-broken-for-most-of-its-existence/" target="_blank" rel="noopener">Microsoft's Secure Boot has been broken for a decade and no one noticed until now</a></div>
+    <!-- Story 13 -->
+    <div class="story-card" data-source="Ars Technica" data-tags="AI,Cloud,Startups">
+      <div class="story-head">
+        <div class="rank">13</div>
+        <div class="story-meta">
+          <div class="source-row">
+            <span class="source-icon">⚙️</span>
+            <span class="source">Ars Technica</span>
+            <span class="pub-date">Jul 16, 2026</span>
           </div>
+          <div class="title"><a href="https://arstechnica.com/information-technology/2026/07/energy-ipos-surge-as-investors-hunt-for-ways-to-play-ai-boom/" target="_blank" rel="noopener">Energy IPOs surge as investors hunt for ways to play AI boom</a></div>
         </div>
-        <p class="tldr">Researchers discovered that old and forgotten cryptographic "shims" that Microsoft neglected to revoke have made Secure Boot bypasses trivially easy for most of the feature's existence. The flaw affects a large proportion of Windows systems and requires coordinated revocation to fully remediate.</p>
-        <p class="why">💡 Why it matters: Secure Boot is a foundational trust anchor for billions of PCs — its multi-year silent failure undermines the entire Trusted Platform Module security model that enterprise device management depends on.</p>
-        <div class="story-footer">
-          <span class="tag">Security</span>
-          <a class="read-link" href="https://arstechnica.com/security/2026/07/microsoft-secure-boot-has-been-broken-for-most-of-its-existence/" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 14</span>
-        </div>
-      </article>
+      </div>
+      <p class="tldr">Energy companies are going public at the fastest pace this century as investors seek exposure to the AI infrastructure buildout's enormous power demands. Data center energy consumption projections are driving unprecedented capital into power generation and grid companies that historically saw modest investor interest.</p>
+      <div class="why">💡 <strong>Why it matters:</strong> The AI boom's energy appetite is reshaping capital markets, creating a new class of "AI-adjacent" investment plays in traditional energy sectors.</div>
+      <div class="story-footer">
+        <span class="tag">AI</span><span class="tag">Cloud</span><span class="tag">Startups</span>
+        <a class="read-link" href="https://arstechnica.com/information-technology/2026/07/energy-ipos-surge-as-investors-hunt-for-ways-to-play-ai-boom/" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
 
-      <article class="story-card"
-        data-tags="AI,Security,Research"
-        data-source="VentureBeat"
-        data-search="agent security gap 54 percent enterprises AI agent incident credentials VentureBeat AI Security Research">
-        <div class="story-head">
-          <div class="rank">14</div>
-          <div>
-            <div class="source">🟣 VentureBeat</div>
-            <div class="title"><a href="https://venturebeat.com/ai/the-agent-security-gap-54-of-enterprises-have-already-had-an-ai-agent-incident-and-most-still-let-agents-share-credentials" target="_blank" rel="noopener">The agent security gap: 54% of enterprises have already had an AI agent incident, and most still let agents share credentials</a></div>
+    <!-- Story 14 -->
+    <div class="story-card" data-source="Ars Technica" data-tags="Security,Policy">
+      <div class="story-head">
+        <div class="rank">14</div>
+        <div class="story-meta">
+          <div class="source-row">
+            <span class="source-icon">⚙️</span>
+            <span class="source">Ars Technica</span>
+            <span class="pub-date">Jul 16, 2026</span>
           </div>
+          <div class="title"><a href="https://arstechnica.com/security/2026/07/now-even-russias-most-elite-hackers-are-using-clickfix-to-infect-devices/" target="_blank" rel="noopener">Now, even Russia's most elite hackers are using ClickFix to infect devices</a></div>
         </div>
-        <p class="tldr">A survey of 107 enterprises found that more than half have already experienced a confirmed AI agent security incident, yet the majority of organizations still allow agents to share credentials rather than operating under least-privilege access controls. Deployment is outpacing governance by a wide margin.</p>
-        <p class="why">💡 Why it matters: As AI agents are granted real access to production systems and data, the credential sharing practice creates a single point of compromise that could expose entire organizational environments.</p>
-        <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">Security</span><span class="tag">Research</span>
-          <a class="read-link" href="https://venturebeat.com/ai/the-agent-security-gap-54-of-enterprises-have-already-had-an-ai-agent-incident-and-most-still-let-agents-share-credentials" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 16</span>
-        </div>
-      </article>
+      </div>
+      <p class="tldr">The ClickFix social-engineering technique — long the domain of financially motivated cybercriminals — has been adopted by Russia's most sophisticated state-sponsored threat actors. The method tricks victims into running malicious PowerShell commands by displaying fake error dialogs, and its simplicity is proving irresistible even to elite APT groups.</p>
+      <div class="why">💡 <strong>Why it matters:</strong> When nation-state hackers adopt consumer-grade tricks, it signals that low-barrier social engineering now outperforms complex zero-days for initial access.</div>
+      <div class="story-footer">
+        <span class="tag">Security</span><span class="tag">Policy</span>
+        <a class="read-link" href="https://arstechnica.com/security/2026/07/now-even-russias-most-elite-hackers-are-using-clickfix-to-infect-devices/" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
 
-      <article class="story-card"
-        data-tags="AI,Policy,Tools"
-        data-source="The Verge"
-        data-search="TikTok testing AI likeness detection tool creators The Verge AI Policy Tools">
-        <div class="story-head">
-          <div class="rank">15</div>
-          <div>
-            <div class="source">⚫ The Verge</div>
-            <div class="title"><a href="https://www.theverge.com/tech/967486/tiktok-ai-likeness-detection-tool" target="_blank" rel="noopener">TikTok is testing an AI likeness detection tool</a></div>
+    <!-- Story 15 -->
+    <div class="story-card" data-source="VentureBeat AI" data-tags="AI,Security,Cloud">
+      <div class="story-head">
+        <div class="rank">15</div>
+        <div class="story-meta">
+          <div class="source-row">
+            <span class="source-icon">🚀</span>
+            <span class="source">VentureBeat AI</span>
+            <span class="pub-date">Jul 16, 2026</span>
           </div>
+          <div class="title"><a href="https://venturebeat.com/ai/the-agent-security-gap-54-of-enterprises-have-already-had-an-ai-agent-incident-and-most-still-let-agents-share-credentials" target="_blank" rel="noopener">The agent security gap: 54% of enterprises have already had an AI agent incident, and most still let agents share credentials</a></div>
         </div>
-        <p class="tldr">TikTok is rolling out an opt-in tool that scans for AI-generated likenesses of creators and allows them to report violations to the platform. The feature is initially being tested with select creators before a broader rollout.</p>
-        <p class="why">💡 Why it matters: With AI deepfakes proliferating at scale, creator-facing detection tools on the world's largest short-video platform set a precedent for how platforms can give individuals agency over their synthetic likenesses.</p>
-        <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">Policy</span><span class="tag">Tools</span>
-          <a class="read-link" href="https://www.theverge.com/tech/967486/tiktok-ai-likeness-detection-tool" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 17</span>
-        </div>
-      </article>
+      </div>
+      <p class="tldr">A survey of 107 enterprises finds that 54% have experienced a confirmed AI agent security incident or near-miss — yet the majority still allow agents to share credentials rather than assigning per-agent identities. Only about one-third of organizations grant agents scoped, least-privilege access to the systems they interact with.</p>
+      <div class="why">💡 <strong>Why it matters:</strong> Agentic AI is being deployed at production scale faster than security controls can keep up, creating a systemic risk window that attackers are already exploiting.</div>
+      <div class="story-footer">
+        <span class="tag">AI</span><span class="tag">Security</span><span class="tag">Cloud</span>
+        <a class="read-link" href="https://venturebeat.com/ai/the-agent-security-gap-54-of-enterprises-have-already-had-an-ai-agent-incident-and-most-still-let-agents-share-credentials" target="_blank" rel="noopener">Read full story →</a>
+      </div>
+    </div>
 
-    </section>
-  </main>
+  </div>
 
-  <footer>
+</main>
+
+<footer>
+  <div class="container">
     Generated by <a href="https://github.github.com/gh-aw/" target="_blank" rel="noopener">GitHub Agentic Workflows</a> · Deployed via GitHub Pages
-  </footer>
+  </div>
+</footer>
 
-  <script>
-    (function () {
-      var themeSelect = document.getElementById("themeSelect");
-      var searchInput = document.getElementById("searchInput");
-      var sourceFiltersEl = document.getElementById("sourceFilters");
-      var labelFiltersEl = document.getElementById("labelFilters");
-      var resultLine = document.getElementById("resultLine");
-      var cards = Array.prototype.slice.call(document.querySelectorAll(".story-card"));
-      var selectedSources = new Set();
-      var selectedTags = new Set();
+<script>
+  // Theme management
+  function applyTheme(theme) {
+    if (theme === 'system') {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+    } else {
+      document.documentElement.setAttribute('data-theme', theme);
+    }
+  }
 
-      function systemTheme() {
-        return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  function setTheme(theme) {
+    localStorage.setItem('digest-theme', theme);
+    applyTheme(theme);
+  }
+
+  (function initTheme() {
+    const saved = localStorage.getItem('digest-theme') || 'dark';
+    document.getElementById('themeSelect').value = saved;
+    applyTheme(saved);
+  })();
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    const saved = localStorage.getItem('digest-theme') || 'system';
+    if (saved === 'system') applyTheme('system');
+  });
+
+  // Filter state
+  const activeSourceFilters = new Set(['GitHub Changelog']);
+  const activeTagFilters = new Set();
+
+  function toggleChip(el, type) {
+    const val = type === 'source' ? el.dataset.source : el.dataset.tag;
+    const set = type === 'source' ? activeSourceFilters : activeTagFilters;
+    if (set.has(val)) {
+      set.delete(val);
+      el.classList.remove('active');
+    } else {
+      set.add(val);
+      el.classList.add('active');
+    }
+    applyFilters();
+  }
+
+  function applyFilters() {
+    const query = document.getElementById('searchInput').value.toLowerCase().trim();
+    const cards = document.querySelectorAll('.story-card');
+    let visible = 0;
+
+    cards.forEach(card => {
+      const cardSource = card.dataset.source || '';
+      const cardTags = (card.dataset.tags || '').split(',');
+      const cardText = card.innerText.toLowerCase();
+
+      const sourceMatch = activeSourceFilters.size === 0 || activeSourceFilters.has(cardSource);
+      const tagMatch = activeTagFilters.size === 0 || cardTags.some(t => activeTagFilters.has(t.trim()));
+      const textMatch = !query || cardText.includes(query);
+
+      if (sourceMatch && tagMatch && textMatch) {
+        card.classList.remove('hidden');
+        visible++;
+      } else {
+        card.classList.add('hidden');
       }
+    });
 
-      function applyTheme(mode) {
-        var resolved = mode === "system" ? systemTheme() : mode;
-        document.documentElement.setAttribute("data-theme", resolved);
-      }
+    document.getElementById('visibleCount').textContent = visible;
+    document.getElementById('resultLine').innerHTML = `Showing <strong>${visible}</strong> of 15 stories`;
+  }
 
-      function loadTheme() {
-        var saved = localStorage.getItem("digest-theme") || "system";
-        themeSelect.value = saved;
-        applyTheme(saved);
-      }
-
-      themeSelect.addEventListener("change", function () {
-        localStorage.setItem("digest-theme", themeSelect.value);
-        applyTheme(themeSelect.value);
-      });
-
-      if (window.matchMedia) {
-        window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () {
-          if (themeSelect.value === "system") applyTheme("system");
-        });
-      }
-
-      function collectSources() {
-        var all = [];
-        cards.forEach(function (card) {
-          var s = (card.dataset.source || "").trim();
-          if (s && all.indexOf(s) === -1) all.push(s);
-        });
-        return all.sort();
-      }
-
-      function collectTags() {
-        var all = [];
-        cards.forEach(function (card) {
-          (card.dataset.tags || "").split(",").forEach(function (t) {
-            t = t.trim();
-            if (t && all.indexOf(t) === -1) all.push(t);
-          });
-        });
-        return all.sort();
-      }
-
-      function isGitHub(source) {
-        return source.toLowerCase().indexOf("github") !== -1;
-      }
-
-      function buildChips(container, items, selectedSet, defaultFn) {
-        container.innerHTML = "";
-        items.forEach(function (item) {
-          var chip = document.createElement("button");
-          chip.className = "chip" + (selectedSet.has(item) ? " active" : "");
-          chip.textContent = item;
-          chip.setAttribute("aria-pressed", selectedSet.has(item) ? "true" : "false");
-          chip.addEventListener("click", function () {
-            if (selectedSet.has(item)) {
-              selectedSet.delete(item);
-              chip.classList.remove("active");
-              chip.setAttribute("aria-pressed", "false");
-            } else {
-              selectedSet.add(item);
-              chip.classList.add("active");
-              chip.setAttribute("aria-pressed", "true");
-            }
-            filterCards();
-          });
-          container.appendChild(chip);
-        });
-      }
-
-      function filterCards() {
-        var query = searchInput.value.trim().toLowerCase();
-        var visible = 0;
-        cards.forEach(function (card) {
-          var srcMatch = selectedSources.size === 0 || selectedSources.has(card.dataset.source);
-          var tags = (card.dataset.tags || "").split(",").map(function (t) { return t.trim(); });
-          var tagMatch = selectedTags.size === 0 || tags.some(function (t) { return selectedTags.has(t); });
-          var searchText = (card.dataset.search || "").toLowerCase();
-          var searchMatch = !query || searchText.indexOf(query) !== -1;
-          if (srcMatch && tagMatch && searchMatch) {
-            card.classList.remove("hidden");
-            visible++;
-          } else {
-            card.classList.add("hidden");
-          }
-        });
-        resultLine.textContent = "Showing " + visible + " of " + cards.length + " stories";
-      }
-
-      function init() {
-        loadTheme();
-
-        var sources = collectSources();
-        var tags = collectTags();
-
-        // Default: GitHub sources selected
-        sources.forEach(function (s) { if (isGitHub(s)) selectedSources.add(s); });
-
-        buildChips(sourceFiltersEl, sources, selectedSources);
-        buildChips(labelFiltersEl, tags, selectedTags);
-
-        searchInput.addEventListener("input", filterCards);
-
-        filterCards();
-      }
-
-      init();
-    })();
-  </script>
+  // Run on load
+  applyFilters();
+</script>
 </body>
 </html>
