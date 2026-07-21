@@ -52,8 +52,8 @@
 name: "Weekly AI & Tech News Digest"
 on:
   schedule:
-  - cron: "34 17 * * *"
-    # Friendly format: daily (scattered)
+  - cron: "0 10 * * *"
+    # Friendly format: 06:00 ET (UTC schedule)
   workflow_dispatch:
     inputs:
       aw_context:
@@ -1595,4 +1595,3 @@ jobs:
             /tmp/gh-aw/safe-output-items.jsonl
             /tmp/gh-aw/temporary-id-map.json
           if-no-files-found: ignore
-
