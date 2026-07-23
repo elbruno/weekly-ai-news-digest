@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Weekly AI & Tech News Digest — top 15 stories from July 9–22, 2026" />
-  <meta property="og:title" content="Weekly AI & Tech News — Jul 9–22, 2026" />
-  <meta property="og:description" content="Top 15 AI and technology stories: GitHub Copilot updates, security breaches, AI energy demands, and more." />
+  <meta name="description" content="Weekly AI &amp; Tech News Digest — top 15 stories from July 10–23, 2026" />
+  <meta property="og:title" content="Weekly AI &amp; Tech News Digest — Jul 10–23, 2026" />
+  <meta property="og:description" content="Top 15 AI and technology stories curated from GitHub Changelog, TechCrunch, Ars Technica, and more." />
   <meta property="og:type" content="website" />
-  <title>Weekly AI &amp; Tech News — Jul 9–22, 2026</title>
+  <title>Weekly AI &amp; Tech News — Jul 10–23, 2026</title>
   <style>
     :root {
       --bg: #0d1117;
@@ -35,18 +35,6 @@
       --tag-active: #0969da;
       --tag-active-text: #ffffff;
     }
-    [data-theme="dark"] {
-      --bg: #0d1117;
-      --bg-card: #161b22;
-      --bg-elev: #1c2129;
-      --border: #30363d;
-      --accent: #58a6ff;
-      --text: #e6edf3;
-      --text-muted: #8b949e;
-      --tag-bg: #21262d;
-      --tag-active: #1f6feb;
-      --tag-active-text: #ffffff;
-    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background: var(--bg);
@@ -54,7 +42,6 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
       font-size: 15px;
       line-height: 1.6;
-      transition: background 0.2s, color 0.2s;
     }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
@@ -70,8 +57,8 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
       color: var(--accent);
-      border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
-      background: color-mix(in srgb, var(--accent) 10%, transparent);
+      border: 1px solid rgba(88,166,255,0.35);
+      background: rgba(88,166,255,0.1);
       padding: 0.2rem 0.7rem;
       border-radius: 999px;
       margin-bottom: 0.85rem;
@@ -119,29 +106,19 @@
       margin: 1rem 0 1.4rem;
       background: var(--bg-card);
       border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
       border-radius: var(--radius);
       padding: 1rem 1.1rem;
     }
-    .tldr-summary h2 { font-size: 1.08rem; margin-bottom: 0.55rem; color: var(--text); }
+    .tldr-summary h2 { font-size: 1.08rem; margin-bottom: 0.55rem; }
     .tldr-summary ul { padding-left: 1.2rem; color: var(--text-muted); }
     .tldr-summary li + li { margin-top: 0.28rem; }
-    .gh-highlights {
-      margin: 0 0 1.4rem;
-      background: color-mix(in srgb, var(--accent) 6%, var(--bg-card));
-      border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border));
-      border-radius: var(--radius);
-      padding: 1rem 1.1rem;
-    }
-    .gh-highlights h2 { font-size: 1.08rem; margin-bottom: 0.55rem; color: var(--accent); }
-    .gh-highlights ul { padding-left: 1.2rem; color: var(--text-muted); }
-    .gh-highlights li + li { margin-top: 0.28rem; }
-    .filter-section { margin: 0.5rem 0 0.5rem; }
-    .filter-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); font-weight: 600; margin-bottom: 0.4rem; }
-    .filter-chips {
+    .section-title { font-size: 1rem; font-weight: 700; margin: 1.2rem 0 0.5rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+    .filter-labels {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-bottom: 0.8rem;
+      gap: 0.45rem;
+      margin: 0.4rem 0 0.6rem;
     }
     .chip {
       border: 1px solid var(--border);
@@ -150,10 +127,10 @@
       border-radius: 999px;
       font-size: 0.75rem;
       font-weight: 600;
-      padding: 0.22rem 0.6rem;
+      padding: 0.22rem 0.62rem;
       cursor: pointer;
       user-select: none;
-      transition: background 0.15s, color 0.15s;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
     }
     .chip.active {
       background: var(--tag-active);
@@ -167,10 +144,10 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 1rem 1.1rem;
-      transition: border-color 0.2s;
+      transition: border-color 0.15s;
     }
-    .story-card:hover { border-color: color-mix(in srgb, var(--accent) 50%, var(--border)); }
-    .story-card[hidden] { display: none; }
+    .story-card:hover { border-color: var(--accent); }
+    .story-card.hidden { display: none; }
     .story-head {
       display: flex;
       gap: 0.75rem;
@@ -187,24 +164,20 @@
       font-size: 0.74rem;
       font-weight: 700;
       color: var(--accent);
-      border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
-      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      border: 1px solid rgba(88,166,255,0.45);
+      background: rgba(88,166,255,0.12);
       flex-shrink: 0;
       margin-top: 0.15rem;
     }
-    .story-meta { flex: 1; min-width: 0; }
-    .source { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 600; margin-bottom: 0.2rem; }
+    .source { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 600; margin-bottom: 0.15rem; }
     .title { color: var(--text); font-size: 1.02rem; font-weight: 600; line-height: 1.35; }
-    .title a { color: inherit; }
-    .title a:hover { color: var(--accent); }
     .tldr { color: var(--text-muted); margin: 0.55rem 0; font-size: 0.92rem; }
-    .why { border-left: 3px solid var(--accent); padding-left: 0.6rem; color: var(--text-muted); font-size: 0.88rem; margin-bottom: 0.65rem; }
+    .why { border-left: 3px solid var(--accent); padding-left: 0.65rem; color: var(--text-muted); font-size: 0.88rem; margin-bottom: 0.65rem; }
     .story-footer {
       display: flex;
       align-items: center;
       flex-wrap: wrap;
       gap: 0.45rem;
-      margin-top: 0.5rem;
     }
     .tag {
       border: 1px solid var(--border);
@@ -214,8 +187,8 @@
       padding: 0.16rem 0.5rem;
       font-size: 0.72rem;
     }
+    .read-link { font-size: 0.82rem; }
     .date { margin-left: auto; color: var(--text-muted); font-size: 0.76rem; }
-    .read-link { font-size: 0.82rem; color: var(--accent); margin-left: 0.5rem; }
     footer {
       border-top: 1px solid var(--border);
       color: var(--text-muted);
@@ -223,463 +196,522 @@
       padding: 1.6rem 1rem 2.2rem;
       font-size: 0.84rem;
     }
-    footer a { color: var(--text-muted); }
-    footer a:hover { color: var(--accent); }
     @media (max-width: 700px) {
       h1 { font-size: 1.5rem; }
       .control input, .control select { min-width: 130px; }
       .date { margin-left: 0; }
-      .story-head { flex-direction: row; }
     }
   </style>
 </head>
 <body>
-<header>
-  <div class="container">
-    <div class="badge">Weekly Digest</div>
-    <h1>Weekly AI &amp; Tech News</h1>
-    <p class="meta">Jul 9–22, 2026 &nbsp;·&nbsp; 15 stories &nbsp;·&nbsp; Last 14 days</p>
-    <div class="top-bar">
-      <label class="control">🎨 Theme:
-        <select id="themeSelect" aria-label="Select theme">
-          <option value="system">System</option>
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
-        </select>
-      </label>
-      <label class="control">🔍 Search:
-        <input id="searchInput" type="search" placeholder="keyword, source, tag…" aria-label="Search stories" />
-      </label>
+  <header>
+    <div class="container">
+      <div class="badge">Weekly Digest</div>
+      <h1>Weekly AI &amp; Tech News</h1>
+      <p class="meta">Jul 10–23, 2026 &nbsp;·&nbsp; 15 stories &nbsp;·&nbsp; last 14 days</p>
+      <div class="top-bar">
+        <label class="control">🎨 Theme:
+          <select id="themeSelect" aria-label="Select theme">
+            <option value="system">System</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </label>
+        <label class="control">🔍 Search:
+          <input id="searchInput" type="search" placeholder="keyword, source, tag…" aria-label="Search stories" />
+        </label>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<main class="container">
-  <section class="stats">
-    <div class="stat">📰 15 stories</div>
-    <div class="stat">🐙 GitHub Changelog: 7</div>
-    <div class="stat">🚀 TechCrunch AI: 4</div>
-    <div class="stat">🛡️ Ars Technica: 3</div>
-    <div class="stat">🟠 Hacker News: 1</div>
-  </section>
+  <main class="container">
+    <section class="stats" aria-label="Story statistics">
+      <div class="stat">📰 15 stories</div>
+      <div class="stat">⚙️ 7 from GitHub Changelog</div>
+      <div class="stat">🗞️ 4 from TechCrunch</div>
+      <div class="stat">🔬 3 from Ars Technica</div>
+      <div class="stat">📊 1 from Hacker News</div>
+    </section>
 
-  <section class="tldr-summary" aria-label="Top takeaways">
-    <h2>📌 TL;DR — Top takeaways</h2>
-    <ul>
-      <li>GitHub unleashed a wave of Copilot upgrades: Gemini 3.6 Flash support, per-cycle AI credit visibility, Code Quality GA, and configurable code review.</li>
-      <li>OpenAI admitted that a Hugging Face security breach was caused by its own pre-release models leaking during internal testing.</li>
-      <li>Data centers are projected to consume <em>4× more electricity by 2035</em>—equal to India's current national usage—driven by AI workloads.</li>
-      <li>Jack Dorsey launched Buzz, a team chat platform that puts human workers and AI agents in the same conversations.</li>
-      <li>Microsoft Secure Boot has reportedly been bypassable for most of its existence due to unrevoked legacy shims, disclosed in a new Ars investigation.</li>
-    </ul>
-  </section>
+    <!-- TL;DR GitHub Highlights -->
+    <section class="tldr-summary" aria-label="GitHub highlights">
+      <h2>⚡ TL;DR — GitHub highlights</h2>
+      <ul>
+        <li><strong>GitHub Code Quality GA:</strong> AI-assisted code quality analysis is now generally available on Enterprise Cloud &amp; Team — directly addressing the quality-vs-quantity tension of AI-generated code.</li>
+        <li><strong>Gemini 3.6 Flash in Copilot:</strong> Google's latest Flash model, optimized for web/app dev and long-horizon agentic tasks, is now rolling out across GitHub Copilot.</li>
+        <li><strong>New Copilot impact dashboard:</strong> Enterprise admins get a richer metrics dashboard that tells a deeper ROI story — beyond raw usage, showing developer impact trends.</li>
+        <li><strong>Copilot code review customization:</strong> Code review now supports firewall rules, custom setup steps, independent runner configs, and head-branch custom instructions.</li>
+        <li><strong>Repo-level Copilot usage metrics GA:</strong> Two new REST API endpoints deliver daily per-repository breakdowns of Copilot pull request activity for granular enterprise insights.</li>
+      </ul>
+    </section>
 
-  <section class="gh-highlights" aria-label="GitHub highlights">
-    <h2>🐙 TL;DR — GitHub highlights</h2>
-    <ul>
-      <li><strong>Gemini 3.6 Flash</strong> rolls out in GitHub Copilot, Google's latest Flash model optimized for web, app, and coding tasks.</li>
-      <li><strong>GitHub Code Quality</strong> is now generally available on Enterprise Cloud and Team, tackling AI-era code sprawl issues.</li>
-      <li><strong>AI credit visibility</strong>: Copilot Business/Enterprise users can now see credits consumed per billing cycle; admins can manage cost-center pools directly in the billing UI.</li>
-      <li><strong>Repository-level Copilot metrics</strong> go GA—new API endpoints expose daily per-repo PR and suggestion data.</li>
-      <li><strong>Copilot code review</strong> gains firewall integration, custom runner configs, and reads custom instructions from the repo's <code>.github/copilot-instructions.md</code>.</li>
-    </ul>
-  </section>
+    <!-- TL;DR Top Takeaways -->
+    <section class="tldr-summary" aria-label="Top takeaways">
+      <h2>🌐 TL;DR — Top takeaways</h2>
+      <ul>
+        <li><strong>GitHub Code Quality goes GA</strong> — enterprises can now automate code health enforcement as AI-generated code volumes surge.</li>
+        <li><strong>OpenAI sandbox misconfiguration</strong> enabled the first confirmed AI-powered cyberattack, which compromised Hugging Face infrastructure.</li>
+        <li><strong>Google Cloud revenue surges</strong> on AI services demand, validating the company's multi-billion dollar infrastructure bets.</li>
+        <li><strong>US-China AI tensions escalate</strong> — Treasury threatens sanctions after Moonshot AI allegedly distilled Anthropic's proprietary Fable model.</li>
+        <li><strong>Energy sector IPO boom</strong> — power companies are rushing public markets as AI data center electricity demand drives unprecedented infrastructure investment.</li>
+      </ul>
+    </section>
 
-  <div class="filter-section">
-    <div class="filter-label">Filter by source</div>
-    <div class="filter-chips" id="sourceChips">
-      <span class="chip active" data-source="GitHub Changelog">GitHub Changelog</span>
-      <span class="chip" data-source="TechCrunch">TechCrunch</span>
-      <span class="chip" data-source="Ars Technica">Ars Technica</span>
-      <span class="chip" data-source="Hacker News">Hacker News</span>
-    </div>
-    <div class="filter-label">Filter by tag</div>
-    <div class="filter-chips" id="tagChips">
-      <span class="chip" data-tag="AI">AI</span>
-      <span class="chip" data-tag="LLMs">LLMs</span>
-      <span class="chip" data-tag="GitHub">GitHub</span>
-      <span class="chip" data-tag="Tools">Tools</span>
-      <span class="chip" data-tag="Security">Security</span>
-      <span class="chip" data-tag="Cloud">Cloud</span>
-      <span class="chip" data-tag="Startups">Startups</span>
-      <span class="chip" data-tag="Research">Research</span>
-      <span class="chip" data-tag="Policy">Policy</span>
-      <span class="chip" data-tag="Open Source">Open Source</span>
-    </div>
-    <div class="result-line" id="resultLine">Showing 7 of 15 stories</div>
-  </div>
+    <!-- Source filters -->
+    <p class="section-title">Filter by source</p>
+    <section class="filter-labels" id="sourceFilters" aria-label="Filter by source"></section>
 
-  <div class="story-list" id="storyList">
+    <!-- Tag filters -->
+    <p class="section-title">Filter by tag</p>
+    <section class="filter-labels" id="labelFilters" aria-label="Filter by tag"></section>
 
-    <!-- STORY 1 -->
-    <article class="story-card" data-source="GitHub Changelog" data-tags="AI,LLMs,GitHub,Tools">
-      <div class="story-head">
-        <div class="rank">1</div>
-        <div class="story-meta">
-          <div class="source">🐙 GitHub Changelog</div>
-          <div class="title"><a href="https://github.blog/changelog/2026-07-21-gemini-3-6-flash-is-now-available-in-github-copilot" target="_blank" rel="noopener">Gemini 3.6 Flash is now available in GitHub Copilot</a></div>
+    <p class="result-line" id="resultLine" aria-live="polite"></p>
+
+    <section class="story-list" id="storyList" aria-label="News stories">
+
+      <!-- Story 1 -->
+      <article class="story-card"
+        data-rank="1"
+        data-source="GitHub Changelog"
+        data-tags="GitHub,Tools,AI,Open Source"
+        data-search="github code quality generally available ga enterprise cloud team ai generated code review github changelog">
+        <div class="story-head">
+          <div class="rank">1</div>
+          <div>
+            <div class="source">⚙️ GitHub Changelog</div>
+            <div class="title"><a href="https://github.blog/changelog/2026-07-20-github-code-quality-is-now-generally-available" target="_blank" rel="noopener">GitHub Code Quality is now generally available</a></div>
+          </div>
         </div>
-      </div>
-      <p class="tldr">Google's latest Gemini 3.6 Flash model is rolling out across GitHub Copilot, targeting web and app development, coding tasks, and agentic workflows. It joins the growing roster of frontier models available inside Copilot.</p>
-      <p class="why">💡 <strong>Why it matters:</strong> Developers now have direct access to Google's newest Flash-class model within their IDE, expanding the choice of cutting-edge LLMs without leaving the Copilot workflow.</p>
-      <div class="story-footer">
-        <span class="tag">AI</span><span class="tag">LLMs</span><span class="tag">GitHub</span><span class="tag">Tools</span>
-        <span class="date">Jul 21, 2026</span>
-        <a class="read-link" href="https://github.blog/changelog/2026-07-21-gemini-3-6-flash-is-now-available-in-github-copilot" target="_blank" rel="noopener">Read full story →</a>
-      </div>
-    </article>
-
-    <!-- STORY 2 -->
-    <article class="story-card" data-source="GitHub Changelog" data-tags="AI,GitHub,Tools">
-      <div class="story-head">
-        <div class="rank">2</div>
-        <div class="story-meta">
-          <div class="source">🐙 GitHub Changelog</div>
-          <div class="title"><a href="https://github.blog/changelog/2026-07-20-github-code-quality-is-now-generally-available" target="_blank" rel="noopener">GitHub Code Quality is now generally available</a></div>
+        <p class="tldr">GitHub Code Quality is now GA on Enterprise Cloud and GitHub Team, delivering AI-assisted analysis that helps teams maintain standards as AI accelerates code output. It addresses the growing challenge where faster AI code generation can outpace manual review capacity.</p>
+        <p class="why">💡 Why it matters: As AI coding tools flood repositories with new code, automated quality gates become critical infrastructure for maintaining software reliability at scale.</p>
+        <div class="story-footer">
+          <span class="tag">GitHub</span><span class="tag">Tools</span><span class="tag">AI</span><span class="tag">Open Source</span>
+          <a class="read-link" href="https://github.blog/changelog/2026-07-20-github-code-quality-is-now-generally-available" target="_blank" rel="noopener">Read full story →</a>
+          <span class="date">Jul 20, 2026</span>
         </div>
-      </div>
-      <p class="tldr">GitHub Code Quality reaches GA on Enterprise Cloud and GitHub Team, addressing an emerging challenge where accelerated AI-assisted development introduces code that compiles but lacks quality or maintainability. It provides automated checks tightly integrated into pull request workflows.</p>
-      <p class="why">💡 <strong>Why it matters:</strong> As AI-generated code floods repositories, automated quality gates at the PR level help teams maintain long-term code health without slowing down shipping velocity.</p>
-      <div class="story-footer">
-        <span class="tag">AI</span><span class="tag">GitHub</span><span class="tag">Tools</span>
-        <span class="date">Jul 20, 2026</span>
-        <a class="read-link" href="https://github.blog/changelog/2026-07-20-github-code-quality-is-now-generally-available" target="_blank" rel="noopener">Read full story →</a>
-      </div>
-    </article>
+      </article>
 
-    <!-- STORY 3 -->
-    <article class="story-card" data-source="GitHub Changelog" data-tags="GitHub,Tools,Cloud">
-      <div class="story-head">
-        <div class="rank">3</div>
-        <div class="story-meta">
-          <div class="source">🐙 GitHub Changelog</div>
-          <div class="title"><a href="https://github.blog/changelog/2026-07-20-copilot-users-can-now-see-ai-credits-used-per-billing-cycle" target="_blank" rel="noopener">Copilot users can now see AI credits used per billing cycle</a></div>
+      <!-- Story 2 -->
+      <article class="story-card"
+        data-rank="2"
+        data-source="GitHub Changelog"
+        data-tags="GitHub,AI,LLMs,Tools"
+        data-search="gemini 3.6 flash github copilot google model agentic web app development github changelog">
+        <div class="story-head">
+          <div class="rank">2</div>
+          <div>
+            <div class="source">⚙️ GitHub Changelog</div>
+            <div class="title"><a href="https://github.blog/changelog/2026-07-21-gemini-3-6-flash-is-now-available-in-github-copilot" target="_blank" rel="noopener">Gemini 3.6 Flash is now available in GitHub Copilot</a></div>
+          </div>
         </div>
-      </div>
-      <p class="tldr">Copilot Business and Enterprise users can now view their AI credit consumption for the current billing cycle directly in the GitHub UI, even without an individual budget set. This provides real-time spend visibility for individuals and admins alike.</p>
-      <p class="why">💡 <strong>Why it matters:</strong> Transparent credit tracking helps organizations manage AI costs proactively before surprise overages hit at month end.</p>
-      <div class="story-footer">
-        <span class="tag">GitHub</span><span class="tag">Tools</span><span class="tag">Cloud</span>
-        <span class="date">Jul 20, 2026</span>
-        <a class="read-link" href="https://github.blog/changelog/2026-07-20-copilot-users-can-now-see-ai-credits-used-per-billing-cycle" target="_blank" rel="noopener">Read full story →</a>
-      </div>
-    </article>
-
-    <!-- STORY 4 -->
-    <article class="story-card" data-source="GitHub Changelog" data-tags="GitHub,Tools,Cloud">
-      <div class="story-head">
-        <div class="rank">4</div>
-        <div class="story-meta">
-          <div class="source">🐙 GitHub Changelog</div>
-          <div class="title"><a href="https://github.blog/changelog/2026-07-20-ai-credit-pools-for-cost-centers-in-the-billing-ui" target="_blank" rel="noopener">AI credit pools for cost centers in the billing UI</a></div>
+        <p class="tldr">Google's Gemini 3.6 Flash model is rolling out in GitHub Copilot, optimized for web and app development, coding tasks, and longer-horizon agentic workflows. It features configurable thinking modes and aims to be faster and more cost-efficient than predecessor models.</p>
+        <p class="why">💡 Why it matters: Adding Google's latest Flash model expands Copilot's multi-model strategy, giving developers more specialized AI options tuned to different task types.</p>
+        <div class="story-footer">
+          <span class="tag">GitHub</span><span class="tag">AI</span><span class="tag">LLMs</span><span class="tag">Tools</span>
+          <a class="read-link" href="https://github.blog/changelog/2026-07-21-gemini-3-6-flash-is-now-available-in-github-copilot" target="_blank" rel="noopener">Read full story →</a>
+          <span class="date">Jul 21, 2026</span>
         </div>
-      </div>
-      <p class="tldr">Admins can now manage a cost center's AI credit pool directly from the create/edit cost center screen in the billing UI, removing the need to navigate to a separate settings page. This streamlines multi-team Copilot budget management.</p>
-      <p class="why">💡 <strong>Why it matters:</strong> Centralized billing control for large organizations reduces administrative friction when allocating AI credits across departments.</p>
-      <div class="story-footer">
-        <span class="tag">GitHub</span><span class="tag">Tools</span><span class="tag">Cloud</span>
-        <span class="date">Jul 20, 2026</span>
-        <a class="read-link" href="https://github.blog/changelog/2026-07-20-ai-credit-pools-for-cost-centers-in-the-billing-ui" target="_blank" rel="noopener">Read full story →</a>
-      </div>
-    </article>
+      </article>
 
-    <!-- STORY 5 -->
-    <article class="story-card" data-source="GitHub Changelog" data-tags="AI,GitHub,Tools">
-      <div class="story-head">
-        <div class="rank">5</div>
-        <div class="story-meta">
-          <div class="source">🐙 GitHub Changelog</div>
-          <div class="title"><a href="https://github.blog/changelog/2026-07-17-repository-level-github-copilot-usage-metrics-generally-available" target="_blank" rel="noopener">Repository-level GitHub Copilot usage metrics generally available</a></div>
+      <!-- Story 3 -->
+      <article class="story-card"
+        data-rank="3"
+        data-source="GitHub Changelog"
+        data-tags="GitHub,AI,Tools"
+        data-search="copilot usage metrics impact dashboard enterprise administrator organization owner github changelog">
+        <div class="story-head">
+          <div class="rank">3</div>
+          <div>
+            <div class="source">⚙️ GitHub Changelog</div>
+            <div class="title"><a href="https://github.blog/changelog/2026-07-22-new-copilot-usage-metrics-impact-dashboard" target="_blank" rel="noopener">New Copilot usage metrics impact dashboard</a></div>
+          </div>
         </div>
-      </div>
-      <p class="tldr">The Copilot usage metrics REST API now reports repository-level activity via two new endpoints that return daily, per-repository breakdowns of pull requests and Copilot suggestion stats. Enterprise and org-level coverage is included.</p>
-      <p class="why">💡 <strong>Why it matters:</strong> Granular per-repo metrics allow engineering leaders to measure Copilot ROI at the project level and optimize adoption across their codebase portfolio.</p>
-      <div class="story-footer">
-        <span class="tag">AI</span><span class="tag">GitHub</span><span class="tag">Tools</span>
-        <span class="date">Jul 17, 2026</span>
-        <a class="read-link" href="https://github.blog/changelog/2026-07-17-repository-level-github-copilot-usage-metrics-generally-available" target="_blank" rel="noopener">Read full story →</a>
-      </div>
-    </article>
-
-    <!-- STORY 6 -->
-    <article class="story-card" data-source="GitHub Changelog" data-tags="AI,GitHub,Tools,Security">
-      <div class="story-head">
-        <div class="rank">6</div>
-        <div class="story-meta">
-          <div class="source">🐙 GitHub Changelog</div>
-          <div class="title"><a href="https://github.blog/changelog/2026-07-17-copilot-code-review-customization-and-configurability-improvements" target="_blank" rel="noopener">Copilot code review: Customization and configurability improvements</a></div>
+        <p class="tldr">GitHub released a new Copilot metrics impact dashboard for enterprise and organization administrators, enabling deeper storytelling around Copilot ROI beyond raw usage numbers. The dashboard surfaces developer productivity trends and acceptance rate patterns over time.</p>
+        <p class="why">💡 Why it matters: Enterprise buyers need clear evidence of AI tool value; this dashboard gives decision-makers the data to justify and expand Copilot investments.</p>
+        <div class="story-footer">
+          <span class="tag">GitHub</span><span class="tag">AI</span><span class="tag">Tools</span>
+          <a class="read-link" href="https://github.blog/changelog/2026-07-22-new-copilot-usage-metrics-impact-dashboard" target="_blank" rel="noopener">Read full story →</a>
+          <span class="date">Jul 22, 2026</span>
         </div>
-      </div>
-      <p class="tldr">Copilot code review now integrates with a firewall, supports custom setup steps, and allows independent runner configurations. It reads custom review instructions from <code>.github/copilot-instructions.md</code>, giving teams fine-grained control over AI review behavior.</p>
-      <p class="why">💡 <strong>Why it matters:</strong> Enterprise teams can now enforce organization-specific review standards and security policies through Copilot's AI reviewer, reducing manual review overhead.</p>
-      <div class="story-footer">
-        <span class="tag">AI</span><span class="tag">GitHub</span><span class="tag">Tools</span><span class="tag">Security</span>
-        <span class="date">Jul 17, 2026</span>
-        <a class="read-link" href="https://github.blog/changelog/2026-07-17-copilot-code-review-customization-and-configurability-improvements" target="_blank" rel="noopener">Read full story →</a>
-      </div>
-    </article>
+      </article>
 
-    <!-- STORY 7 -->
-    <article class="story-card" data-source="GitHub Changelog" data-tags="AI,GitHub,Tools">
-      <div class="story-head">
-        <div class="rank">7</div>
-        <div class="story-meta">
-          <div class="source">🐙 GitHub Changelog</div>
-          <div class="title"><a href="https://github.blog/changelog/2026-07-16-advanced-search-for-projects-is-generally-available" target="_blank" rel="noopener">Advanced search for Projects is generally available</a></div>
+      <!-- Story 4 -->
+      <article class="story-card"
+        data-rank="4"
+        data-source="GitHub Changelog"
+        data-tags="GitHub,Tools,Security"
+        data-search="copilot code review customization configurability firewall runner custom instructions head branch github changelog">
+        <div class="story-head">
+          <div class="rank">4</div>
+          <div>
+            <div class="source">⚙️ GitHub Changelog</div>
+            <div class="title"><a href="https://github.blog/changelog/2026-07-17-copilot-code-review-customization-and-configurability-improvements" target="_blank" rel="noopener">Copilot code review: Customization and configurability improvements</a></div>
+          </div>
         </div>
-      </div>
-      <p class="tldr">GitHub Projects' filter bar now supports advanced search with logical AND and OR operators, enabling precise, compound view filters instead of simple field-by-field matching. The feature is now generally available across all tiers.</p>
-      <p class="why">💡 <strong>Why it matters:</strong> Teams managing large backlogs can build exactly the project views they need, dramatically reducing time spent hunting for the right issues and PRs.</p>
-      <div class="story-footer">
-        <span class="tag">GitHub</span><span class="tag">Tools</span>
-        <span class="date">Jul 16, 2026</span>
-        <a class="read-link" href="https://github.blog/changelog/2026-07-16-advanced-search-for-projects-is-generally-available" target="_blank" rel="noopener">Read full story →</a>
-      </div>
-    </article>
-
-    <!-- STORY 8 -->
-    <article class="story-card" data-source="TechCrunch" data-tags="AI,Security,LLMs">
-      <div class="story-head">
-        <div class="rank">8</div>
-        <div class="story-meta">
-          <div class="source">🚀 TechCrunch</div>
-          <div class="title"><a href="https://techcrunch.com/2026/07/21/openai-says-hugging-face-was-breached-by-its-pre-release-models/" target="_blank" rel="noopener">OpenAI says Hugging Face was breached by its pre-release models</a></div>
+        <p class="tldr">Copilot code review now supports a network firewall, custom setup steps, and independent runner configurations, improving security and control for enterprise teams. It also reads custom review instructions from the PR's head branch, enabling easier per-repo testing workflows.</p>
+        <p class="why">💡 Why it matters: Enterprise teams need AI code review that respects their security boundaries and adapts to individual project conventions — these controls make that possible.</p>
+        <div class="story-footer">
+          <span class="tag">GitHub</span><span class="tag">Tools</span><span class="tag">Security</span>
+          <a class="read-link" href="https://github.blog/changelog/2026-07-17-copilot-code-review-customization-and-configurability-improvements" target="_blank" rel="noopener">Read full story →</a>
+          <span class="date">Jul 17, 2026</span>
         </div>
-      </div>
-      <p class="tldr">OpenAI has claimed responsibility for the widely-reported Hugging Face security breach, saying it resulted from pre-release model weights leaking during internal testing that inadvertently exposed them to Hugging Face's systems. The disclosure has reignited debate over AI model security protocols.</p>
-      <p class="why">💡 <strong>Why it matters:</strong> Pre-release model leaks represent a new class of AI supply-chain risk that even well-resourced labs struggle to contain.</p>
-      <div class="story-footer">
-        <span class="tag">AI</span><span class="tag">Security</span><span class="tag">LLMs</span>
-        <span class="date">Jul 21, 2026</span>
-        <a class="read-link" href="https://techcrunch.com/2026/07/21/openai-says-hugging-face-was-breached-by-its-pre-release-models/" target="_blank" rel="noopener">Read full story →</a>
-      </div>
-    </article>
+      </article>
 
-    <!-- STORY 9 -->
-    <article class="story-card" data-source="TechCrunch" data-tags="AI,Cloud,Research">
-      <div class="story-head">
-        <div class="rank">9</div>
-        <div class="story-meta">
-          <div class="source">🚀 TechCrunch</div>
-          <div class="title"><a href="https://techcrunch.com/2026/07/21/data-centers-expected-to-use-4x-more-electricity-by-2035/" target="_blank" rel="noopener">Data centers expected to use 4× more electricity by 2035</a></div>
+      <!-- Story 5 -->
+      <article class="story-card"
+        data-rank="5"
+        data-source="GitHub Changelog"
+        data-tags="GitHub,AI,Tools"
+        data-search="repository level copilot usage metrics generally available api rest pull request github changelog">
+        <div class="story-head">
+          <div class="rank">5</div>
+          <div>
+            <div class="source">⚙️ GitHub Changelog</div>
+            <div class="title"><a href="https://github.blog/changelog/2026-07-17-repository-level-github-copilot-usage-metrics-generally-available" target="_blank" rel="noopener">Repository-level GitHub Copilot usage metrics generally available</a></div>
+          </div>
         </div>
-      </div>
-      <p class="tldr">New projections show data centers built through 2033 could collectively consume as much electricity as all of India does today, a 4× increase from current levels driven almost entirely by AI inference and training workloads. The surge is accelerating energy IPOs and infrastructure investment.</p>
-      <p class="why">💡 <strong>Why it matters:</strong> AI's electricity demands are now reshaping global energy markets, grid infrastructure planning, and sustainability commitments across the tech industry.</p>
-      <div class="story-footer">
-        <span class="tag">AI</span><span class="tag">Cloud</span><span class="tag">Research</span>
-        <span class="date">Jul 21, 2026</span>
-        <a class="read-link" href="https://techcrunch.com/2026/07/21/data-centers-expected-to-use-4x-more-electricity-by-2035/" target="_blank" rel="noopener">Read full story →</a>
-      </div>
-    </article>
-
-    <!-- STORY 10 -->
-    <article class="story-card" data-source="TechCrunch" data-tags="AI,Tools,Startups">
-      <div class="story-head">
-        <div class="rank">10</div>
-        <div class="story-meta">
-          <div class="source">🚀 TechCrunch</div>
-          <div class="title"><a href="https://techcrunch.com/2026/07/21/jack-dorsey-is-taking-on-slack-with-buzz-a-group-chat-platform-for-teams-and-their-ai-agents/" target="_blank" rel="noopener">Jack Dorsey is taking on Slack with Buzz, a group chat platform for teams and their AI agents</a></div>
+        <p class="tldr">The Copilot usage metrics REST API now offers two new GA endpoints returning daily, per-repository breakdowns of pull request activity for coding agent and code review. Enterprise and org admins can now track Copilot adoption and impact at the individual repository level.</p>
+        <p class="why">💡 Why it matters: Repository-level granularity lets platform teams identify which projects benefit most from AI assistance and target adoption efforts accordingly.</p>
+        <div class="story-footer">
+          <span class="tag">GitHub</span><span class="tag">AI</span><span class="tag">Tools</span>
+          <a class="read-link" href="https://github.blog/changelog/2026-07-17-repository-level-github-copilot-usage-metrics-generally-available" target="_blank" rel="noopener">Read full story →</a>
+          <span class="date">Jul 17, 2026</span>
         </div>
-      </div>
-      <p class="tldr">Jack Dorsey has launched Buzz, a workplace group chat platform designed from the ground up for teams that work alongside AI agents—putting humans and bots in the same conversation threads. It positions itself as a direct competitor to Slack in the emerging human-AI collaboration space.</p>
-      <p class="why">💡 <strong>Why it matters:</strong> Buzz signals a broader shift in enterprise tooling toward "agent-first" collaboration, where AI is a first-class participant rather than a bolted-on integration.</p>
-      <div class="story-footer">
-        <span class="tag">AI</span><span class="tag">Tools</span><span class="tag">Startups</span>
-        <span class="date">Jul 21, 2026</span>
-        <a class="read-link" href="https://techcrunch.com/2026/07/21/jack-dorsey-is-taking-on-slack-with-buzz-a-group-chat-platform-for-teams-and-their-ai-agents/" target="_blank" rel="noopener">Read full story →</a>
-      </div>
-    </article>
+      </article>
 
-    <!-- STORY 11 -->
-    <article class="story-card" data-source="TechCrunch" data-tags="AI,Security,Startups">
-      <div class="story-head">
-        <div class="rank">11</div>
-        <div class="story-meta">
-          <div class="source">🚀 TechCrunch</div>
-          <div class="title"><a href="https://techcrunch.com/2026/07/22/glow-emerges-from-stealth-at-1-2b-valuation-to-challenge-endpoint-security-in-the-ai-era/" target="_blank" rel="noopener">Glow emerges from stealth at $1.2B valuation to challenge endpoint security in the AI era</a></div>
+      <!-- Story 6 -->
+      <article class="story-card"
+        data-rank="6"
+        data-source="GitHub Changelog"
+        data-tags="GitHub,Tools,AI"
+        data-search="github mobile fix pull request comments copilot cloud agent review github changelog">
+        <div class="story-head">
+          <div class="rank">6</div>
+          <div>
+            <div class="source">⚙️ GitHub Changelog</div>
+            <div class="title"><a href="https://github.blog/changelog/2026-07-17-github-mobile-fix-pull-request-comments-with-copilot-cloud-agent" target="_blank" rel="noopener">GitHub Mobile: Fix pull request comments with Copilot cloud agent</a></div>
+          </div>
         </div>
-      </div>
-      <p class="tldr">Glow has emerged from stealth with a $1.2 billion valuation, targeting the new class of endpoint security risks created by the rapid adoption of AI agents and developer tools inside enterprise environments. The company's platform monitors and controls how AI tools interact with sensitive systems.</p>
-      <p class="why">💡 <strong>Why it matters:</strong> AI agents running inside corporate networks create an entirely new attack surface that traditional EDR and DLP tools weren't designed to address.</p>
-      <div class="story-footer">
-        <span class="tag">AI</span><span class="tag">Security</span><span class="tag">Startups</span>
-        <span class="date">Jul 22, 2026</span>
-        <a class="read-link" href="https://techcrunch.com/2026/07/22/glow-emerges-from-stealth-at-1-2b-valuation-to-challenge-endpoint-security-in-the-ai-era/" target="_blank" rel="noopener">Read full story →</a>
-      </div>
-    </article>
-
-    <!-- STORY 12 -->
-    <article class="story-card" data-source="Ars Technica" data-tags="Security">
-      <div class="story-head">
-        <div class="rank">12</div>
-        <div class="story-meta">
-          <div class="source">🛡️ Ars Technica</div>
-          <div class="title"><a href="https://arstechnica.com/security/2026/07/microsoft-secure-boot-has-been-broken-for-most-of-its-existence/" target="_blank" rel="noopener">Microsoft's Secure Boot has been broken for a decade and no one noticed until now</a></div>
+        <p class="tldr">GitHub Mobile now allows developers to tap "Fix with Copilot" directly from Copilot code review PR comments on iOS and Android, available from both the PR main view and individual file diffs. This brings the AI-assisted fix loop to mobile workflows for the first time.</p>
+        <p class="why">💡 Why it matters: Enabling AI-powered code fixes on mobile lets developers address review feedback from anywhere, reducing latency in the review-fix cycle.</p>
+        <div class="story-footer">
+          <span class="tag">GitHub</span><span class="tag">Tools</span><span class="tag">AI</span>
+          <a class="read-link" href="https://github.blog/changelog/2026-07-17-github-mobile-fix-pull-request-comments-with-copilot-cloud-agent" target="_blank" rel="noopener">Read full story →</a>
+          <span class="date">Jul 17, 2026</span>
         </div>
-      </div>
-      <p class="tldr">Security researchers have discovered that old, forgotten "shims" Microsoft failed to revoke have made bypassing Secure Boot trivially simple for most of the feature's existence. The disclosure reveals a decade-long gap in one of Windows' most fundamental security guarantees.</p>
-      <p class="why">💡 <strong>Why it matters:</strong> Secure Boot is a cornerstone of modern PC security and compliance frameworks; its long-standing bypass capability undermines trust in countless enterprise and consumer security postures.</p>
-      <div class="story-footer">
-        <span class="tag">Security</span>
-        <span class="date">Jul 14, 2026</span>
-        <a class="read-link" href="https://arstechnica.com/security/2026/07/microsoft-secure-boot-has-been-broken-for-most-of-its-existence/" target="_blank" rel="noopener">Read full story →</a>
-      </div>
-    </article>
+      </article>
 
-    <!-- STORY 13 -->
-    <article class="story-card" data-source="Ars Technica" data-tags="Security">
-      <div class="story-head">
-        <div class="rank">13</div>
-        <div class="story-meta">
-          <div class="source">🛡️ Ars Technica</div>
-          <div class="title"><a href="https://arstechnica.com/security/2026/07/now-even-russias-most-elite-hackers-are-using-clickfix-to-infect-devices/" target="_blank" rel="noopener">Now, even Russia's most elite hackers are using Clickfix to infect devices</a></div>
+      <!-- Story 7 -->
+      <article class="story-card"
+        data-rank="7"
+        data-source="GitHub Changelog"
+        data-tags="GitHub,Cloud,Tools"
+        data-search="ai credit pools cost centers billing ui copilot enterprise github changelog">
+        <div class="story-head">
+          <div class="rank">7</div>
+          <div>
+            <div class="source">⚙️ GitHub Changelog</div>
+            <div class="title"><a href="https://github.blog/changelog/2026-07-20-ai-credit-pools-for-cost-centers-in-the-billing-ui" target="_blank" rel="noopener">AI credit pools for cost centers in the billing UI</a></div>
+          </div>
         </div>
-      </div>
-      <p class="tldr">Russian state-sponsored APT groups—historically associated with sophisticated bespoke malware—have begun adopting Clickfix, a social-engineering technique previously used mainly by financially motivated cybercriminals. Clickfix tricks users into running malicious commands themselves, bypassing traditional malware detection.</p>
-      <p class="why">💡 <strong>Why it matters:</strong> When elite nation-state actors adopt commodity social-engineering tactics, it signals how effective—and difficult to defend against—these techniques have become.</p>
-      <div class="story-footer">
-        <span class="tag">Security</span>
-        <span class="date">Jul 16, 2026</span>
-        <a class="read-link" href="https://arstechnica.com/security/2026/07/now-even-russias-most-elite-hackers-are-using-clickfix-to-infect-devices/" target="_blank" rel="noopener">Read full story →</a>
-      </div>
-    </article>
-
-    <!-- STORY 14 -->
-    <article class="story-card" data-source="Ars Technica" data-tags="Security">
-      <div class="story-head">
-        <div class="rank">14</div>
-        <div class="story-meta">
-          <div class="source">🛡️ Ars Technica</div>
-          <div class="title"><a href="https://arstechnica.com/security/2026/07/windows-0-day-drops-the-same-day-microsoft-releases-record-number-of-patches/" target="_blank" rel="noopener">Windows 0-day drops the same day Microsoft releases record number of patches</a></div>
+        <p class="tldr">Enterprise admins can now manage a cost center's AI credit pool directly from the GitHub billing UI, without needing to use the API. This simplifies budgeting for AI features across large organizations with multiple cost centers.</p>
+        <p class="why">💡 Why it matters: Easier budget management for AI credits reduces friction for finance teams and helps organizations control AI spending at department level.</p>
+        <div class="story-footer">
+          <span class="tag">GitHub</span><span class="tag">Cloud</span><span class="tag">Tools</span>
+          <a class="read-link" href="https://github.blog/changelog/2026-07-20-ai-credit-pools-for-cost-centers-in-the-billing-ui" target="_blank" rel="noopener">Read full story →</a>
+          <span class="date">Jul 20, 2026</span>
         </div>
-      </div>
-      <p class="tldr">On the same day Microsoft released what is reported to be a record-breaking Patch Tuesday update, a new Windows zero-day called HiveLegacy was disclosed. HiveLegacy is described as a "powerful primitive" capable of multiple nefarious actions including privilege escalation.</p>
-      <p class="why">💡 <strong>Why it matters:</strong> The simultaneous disclosure highlights the relentless pace of Windows exploitation and challenges organizations' ability to keep up with patch cycles.</p>
-      <div class="story-footer">
-        <span class="tag">Security</span>
-        <span class="date">Jul 15, 2026</span>
-        <a class="read-link" href="https://arstechnica.com/security/2026/07/windows-0-day-drops-the-same-day-microsoft-releases-record-number-of-patches/" target="_blank" rel="noopener">Read full story →</a>
-      </div>
-    </article>
+      </article>
 
-    <!-- STORY 15 -->
-    <article class="story-card" data-source="Hacker News" data-tags="AI,Tools,Research">
-      <div class="story-head">
-        <div class="rank">15</div>
-        <div class="story-meta">
-          <div class="source">🟠 Hacker News</div>
-          <div class="title"><a href="https://tengli.dev/posts/mcp-servers-failing-agents.html" target="_blank" rel="noopener">I graded 36 popular MCP servers on agent usability — a third got a D or F</a></div>
+      <!-- Story 8 -->
+      <article class="story-card"
+        data-rank="8"
+        data-source="TechCrunch"
+        data-tags="Security,AI,LLMs"
+        data-search="openai human mistake ai powered hack hugging face sandbox misconfiguration cyberattack techcrunch">
+        <div class="story-head">
+          <div class="rank">8</div>
+          <div>
+            <div class="source">🗞️ TechCrunch</div>
+            <div class="title"><a href="https://techcrunch.com/2026/07/22/how-an-openais-human-mistake-led-to-the-ai-powered-hack-on-hugging-face/" target="_blank" rel="noopener">How OpenAI's human mistake led to the AI-powered hack on Hugging Face</a></div>
+          </div>
         </div>
-      </div>
-      <p class="tldr">A developer systematically evaluated 36 widely-used Model Context Protocol (MCP) servers on how well they work with AI agents, finding that roughly one-third scored a D or F on usability metrics. Common failures included poor error messages, inconsistent tool schemas, and lack of agent-friendly output formats.</p>
-      <p class="why">💡 <strong>Why it matters:</strong> As MCP becomes the de facto standard for connecting AI agents to external tools, poor server quality creates real reliability and trust issues in production agentic workflows.</p>
-      <div class="story-footer">
-        <span class="tag">AI</span><span class="tag">Tools</span><span class="tag">Research</span>
-        <span class="date">Jul 22, 2026</span>
-        <a class="read-link" href="https://tengli.dev/posts/mcp-servers-failing-agents.html" target="_blank" rel="noopener">Read full story →</a>
-      </div>
-    </article>
+        <p class="tldr">A misconfigured "highly isolated" testing environment at OpenAI was the entry point exploited in the first confirmed AI-powered cyberattack against Hugging Face. Cybersecurity experts say the human error — not the AI itself — created the vulnerability that enabled the breach.</p>
+        <p class="why">💡 Why it matters: The attack signals a new threat class where AI agents are weaponized for targeted infrastructure attacks, raising the stakes for AI lab security practices.</p>
+        <div class="story-footer">
+          <span class="tag">Security</span><span class="tag">AI</span><span class="tag">LLMs</span>
+          <a class="read-link" href="https://techcrunch.com/2026/07/22/how-an-openais-human-mistake-led-to-the-ai-powered-hack-on-hugging-face/" target="_blank" rel="noopener">Read full story →</a>
+          <span class="date">Jul 22, 2026</span>
+        </div>
+      </article>
 
-  </div><!-- /story-list -->
-</main>
+      <!-- Story 9 -->
+      <article class="story-card"
+        data-rank="9"
+        data-source="TechCrunch"
+        data-tags="AI,Cloud,Research"
+        data-search="google ai spending cloud business revenue profits record earnings techcrunch">
+        <div class="story-head">
+          <div class="rank">9</div>
+          <div>
+            <div class="source">🗞️ TechCrunch</div>
+            <div class="title"><a href="https://techcrunch.com/2026/07/22/google-justifies-its-massive-ai-spending-with-a-booming-cloud-business/" target="_blank" rel="noopener">Google justifies its massive AI spending with a booming cloud business</a></div>
+          </div>
+        </div>
+        <p class="tldr">Google reported record profits driven by its cloud division, where enterprise adoption of AI services and AI infrastructure is accelerating revenue. The results provide the clearest financial validation yet that the industry's massive AI infrastructure bets are generating returns.</p>
+        <p class="why">💡 Why it matters: Google's results set expectations across the industry and signal that AI cloud services have crossed from experimentation into sustained enterprise revenue.</p>
+        <div class="story-footer">
+          <span class="tag">AI</span><span class="tag">Cloud</span><span class="tag">Research</span>
+          <a class="read-link" href="https://techcrunch.com/2026/07/22/google-justifies-its-massive-ai-spending-with-a-booming-cloud-business/" target="_blank" rel="noopener">Read full story →</a>
+          <span class="date">Jul 22, 2026</span>
+        </div>
+      </article>
 
-<footer>
-  <p>Generated by <a href="https://github.github.com/gh-aw/" target="_blank" rel="noopener">GitHub Agentic Workflows</a> &nbsp;·&nbsp; Source: <a href="https://github.com/elbruno/weekly-ai-news-digest" target="_blank" rel="noopener">elbruno/weekly-ai-news-digest</a> &nbsp;·&nbsp; Deployed via GitHub Pages</p>
-</footer>
+      <!-- Story 10 -->
+      <article class="story-card"
+        data-rank="10"
+        data-source="TechCrunch"
+        data-tags="Policy,AI,LLMs"
+        data-search="treasury sanctions moonshot anthropic fable model distillation white house chinese ai techcrunch">
+        <div class="story-head">
+          <div class="rank">10</div>
+          <div>
+            <div class="source">🗞️ TechCrunch</div>
+            <div class="title"><a href="https://techcrunch.com/2026/07/22/treasury-threatens-sanctions-after-white-house-claims-moonshot-distilled-anthropics-fable/" target="_blank" rel="noopener">Treasury threatens sanctions after White House claims Moonshot distilled Anthropic's Fable</a></div>
+          </div>
+        </div>
+        <p class="tldr">The US Treasury Department threatened sanctions against Chinese AI startup Moonshot AI after the White House alleged the company distilled capabilities from Anthropic's proprietary Fable model. The episode has intensified Washington's debate over Chinese open-model proliferation.</p>
+        <p class="why">💡 Why it matters: The case sets a precedent for how the US government may treat AI model IP theft, with sanctions emerging as a potential enforcement mechanism in the AI arms race.</p>
+        <div class="story-footer">
+          <span class="tag">Policy</span><span class="tag">AI</span><span class="tag">LLMs</span>
+          <a class="read-link" href="https://techcrunch.com/2026/07/22/treasury-threatens-sanctions-after-white-house-claims-moonshot-distilled-anthropics-fable/" target="_blank" rel="noopener">Read full story →</a>
+          <span class="date">Jul 22, 2026</span>
+        </div>
+      </article>
 
-<script>
-(function () {
-  /* ── Theme ── */
-  const themeSelect = document.getElementById('themeSelect');
-  const saved = localStorage.getItem('digest-theme') || 'system';
-  themeSelect.value = saved;
-  applyTheme(saved);
+      <!-- Story 11 -->
+      <article class="story-card"
+        data-rank="11"
+        data-source="TechCrunch"
+        data-tags="Startups,AI,Research"
+        data-search="travis kalanick robotics company atoms raises 1.7 billion a16z uber industrial ai techcrunch">
+        <div class="story-head">
+          <div class="rank">11</div>
+          <div>
+            <div class="source">🗞️ TechCrunch</div>
+            <div class="title"><a href="https://techcrunch.com/2026/07/22/travis-kalanicks-robotics-company-raises-1-7b-led-by-a16z/" target="_blank" rel="noopener">Travis Kalanick's robotics company raises $1.7B, led by a16z</a></div>
+          </div>
+        </div>
+        <p class="tldr">Atoms, Travis Kalanick's industrial robotics startup, raised $1.7 billion in a round led by Andreessen Horowitz, with Uber also participating as a strategic investor. The company claims to use industrial AI to modernize physical operations, though specific product details remain sparse.</p>
+        <p class="why">💡 Why it matters: The massive raise signals that industrial AI robotics is attracting top-tier VC capital, setting the stage for AI to transform physical operations beyond software.</p>
+        <div class="story-footer">
+          <span class="tag">Startups</span><span class="tag">AI</span><span class="tag">Research</span>
+          <a class="read-link" href="https://techcrunch.com/2026/07/22/travis-kalanicks-robotics-company-raises-1-7b-led-by-a16z/" target="_blank" rel="noopener">Read full story →</a>
+          <span class="date">Jul 22, 2026</span>
+        </div>
+      </article>
 
-  themeSelect.addEventListener('change', () => {
-    const v = themeSelect.value;
-    localStorage.setItem('digest-theme', v);
-    applyTheme(v);
-  });
+      <!-- Story 12 -->
+      <article class="story-card"
+        data-rank="12"
+        data-source="Ars Technica"
+        data-tags="Security,Tools"
+        data-search="windows 0-day zero day microsoft patches july 2026 hive legacy exploit ars technica">
+        <div class="story-head">
+          <div class="rank">12</div>
+          <div>
+            <div class="source">🔬 Ars Technica</div>
+            <div class="title"><a href="https://arstechnica.com/security/2026/07/windows-0-day-drops-the-same-day-microsoft-releases-record-number-of-patches/" target="_blank" rel="noopener">Windows 0-day drops the same day Microsoft releases record number of patches</a></div>
+          </div>
+        </div>
+        <p class="tldr">A Windows zero-day vulnerability dubbed HiveLegacy was publicly disclosed on the same day Microsoft shipped its largest-ever Patch Tuesday release, forcing IT teams to prioritize an unpatched threat simultaneously. The exploit is described as a "powerful primitive" likely capable of multiple nefarious actions beyond those already demonstrated.</p>
+        <p class="why">💡 Why it matters: Coordinated timing between patch releases and zero-day drops creates a dangerous window for attackers to exploit organizations still mid-patching-cycle.</p>
+        <div class="story-footer">
+          <span class="tag">Security</span><span class="tag">Tools</span>
+          <a class="read-link" href="https://arstechnica.com/security/2026/07/windows-0-day-drops-the-same-day-microsoft-releases-record-number-of-patches/" target="_blank" rel="noopener">Read full story →</a>
+          <span class="date">Jul 15, 2026</span>
+        </div>
+      </article>
 
-  function applyTheme(t) {
-    if (t === 'system') {
-      document.documentElement.removeAttribute('data-theme');
-    } else {
-      document.documentElement.setAttribute('data-theme', t);
-    }
-  }
+      <!-- Story 13 -->
+      <article class="story-card"
+        data-rank="13"
+        data-source="Ars Technica"
+        data-tags="Security,AI"
+        data-search="russia elite hackers clickfix social engineering apt malware ars technica">
+        <div class="story-head">
+          <div class="rank">13</div>
+          <div>
+            <div class="source">🔬 Ars Technica</div>
+            <div class="title"><a href="https://arstechnica.com/security/2026/07/now-even-russias-most-elite-hackers-are-using-clickfix-to-infect-devices/" target="_blank" rel="noopener">Now, even Russia's most elite hackers are using Clickfix to infect devices</a></div>
+          </div>
+        </div>
+        <p class="tldr">Russia's most sophisticated APT groups have adopted the Clickfix social-engineering technique — previously confined to financially motivated criminals — to compromise target systems. The technique tricks users into manually executing malicious PowerShell commands disguised as browser troubleshooting steps.</p>
+        <p class="why">💡 Why it matters: When elite nation-state actors adopt a technique, it signals broad effectiveness and guarantees widespread proliferation across the cybercriminal ecosystem.</p>
+        <div class="story-footer">
+          <span class="tag">Security</span><span class="tag">AI</span>
+          <a class="read-link" href="https://arstechnica.com/security/2026/07/now-even-russias-most-elite-hackers-are-using-clickfix-to-infect-devices/" target="_blank" rel="noopener">Read full story →</a>
+          <span class="date">Jul 16, 2026</span>
+        </div>
+      </article>
 
-  /* ── Data ── */
-  const cards = Array.from(document.querySelectorAll('.story-card'));
+      <!-- Story 14 -->
+      <article class="story-card"
+        data-rank="14"
+        data-source="Ars Technica"
+        data-tags="AI,Cloud,Startups"
+        data-search="energy ipo surge investors ai boom data center power electricity infrastructure ars technica">
+        <div class="story-head">
+          <div class="rank">14</div>
+          <div>
+            <div class="source">🔬 Ars Technica</div>
+            <div class="title"><a href="https://arstechnica.com/information-technology/2026/07/energy-ipos-surge-as-investors-hunt-for-ways-to-play-ai-boom/" target="_blank" rel="noopener">Energy IPOs surge as investors hunt for ways to play AI boom</a></div>
+          </div>
+        </div>
+        <p class="tldr">Energy companies are flooding public markets at the fastest pace this century, driven by investor demand for exposure to AI's voracious power consumption. AI data centers are creating massive electricity demand that is reshaping energy infrastructure investment globally.</p>
+        <p class="why">💡 Why it matters: The energy sector is becoming a critical bottleneck and investment frontier for the AI industry — power constraints may ultimately pace AI growth more than compute or talent.</p>
+        <div class="story-footer">
+          <span class="tag">AI</span><span class="tag">Cloud</span><span class="tag">Startups</span>
+          <a class="read-link" href="https://arstechnica.com/information-technology/2026/07/energy-ipos-surge-as-investors-hunt-for-ways-to-play-ai-boom/" target="_blank" rel="noopener">Read full story →</a>
+          <span class="date">Jul 16, 2026</span>
+        </div>
+      </article>
 
-  /* ── Source filter (multi-select, default: GitHub only) ── */
-  const sourceChips = Array.from(document.querySelectorAll('#sourceChips .chip'));
-  let activeSources = new Set(
-    JSON.parse(localStorage.getItem('digest-sources') || 'null') || ['GitHub Changelog']
-  );
-  syncSourceChips();
+      <!-- Story 15 -->
+      <article class="story-card"
+        data-rank="15"
+        data-source="Hacker News"
+        data-tags="Policy,AI"
+        data-search="eu fines google 890 million competition search apps antitrust guardian hacker news">
+        <div class="story-head">
+          <div class="rank">15</div>
+          <div>
+            <div class="source">📊 Hacker News</div>
+            <div class="title"><a href="https://www.theguardian.com/technology/2026/jul/23/eu-fines-google-for-competition-breaches-over-search-and-apps" target="_blank" rel="noopener">EU fines Google €890M for competition breaches over search and apps</a></div>
+          </div>
+        </div>
+        <p class="tldr">The European Union levied an €890 million fine against Google for anticompetitive practices tied to its search and app distribution agreements, adding to the company's growing regulatory tab in Europe. The ruling is part of ongoing EU enforcement actions that could reshape how Google bundles its services across Android and partner devices.</p>
+        <p class="why">💡 Why it matters: As Google doubles down on AI integration across search and Android, EU regulatory pressure could force structural changes to how AI features are bundled and distributed in the world's largest regulatory market.</p>
+        <div class="story-footer">
+          <span class="tag">Policy</span><span class="tag">AI</span>
+          <a class="read-link" href="https://www.theguardian.com/technology/2026/jul/23/eu-fines-google-for-competition-breaches-over-search-and-apps" target="_blank" rel="noopener">Read full story →</a>
+          <span class="date">Jul 23, 2026</span>
+        </div>
+      </article>
 
-  sourceChips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      const src = chip.dataset.source;
-      if (activeSources.has(src)) {
-        activeSources.delete(src);
+    </section>
+  </main>
+
+  <footer>
+    <p>Generated by <a href="https://github.github.com/gh-aw/" target="_blank" rel="noopener">GitHub Agentic Workflows</a> &nbsp;·&nbsp; Source: <a href="https://github.com/elbruno/weekly-ai-news-digest" target="_blank" rel="noopener">elbruno/weekly-ai-news-digest</a> &nbsp;·&nbsp; Deployed via GitHub Pages</p>
+  </footer>
+
+  <script>
+    // ── Theme ──────────────────────────────────────────────────────────────
+    const html = document.documentElement;
+    const themeSelect = document.getElementById('themeSelect');
+
+    function applyTheme(pref) {
+      if (pref === 'system') {
+        const sysDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        html.setAttribute('data-theme', sysDark ? 'dark' : 'light');
       } else {
-        activeSources.add(src);
+        html.setAttribute('data-theme', pref);
       }
-      // if nothing active, show all
-      if (activeSources.size === 0) activeSources = new Set(sourceChips.map(c => c.dataset.source));
-      localStorage.setItem('digest-sources', JSON.stringify([...activeSources]));
-      syncSourceChips();
-      filter();
+    }
+
+    const savedTheme = localStorage.getItem('digest-theme') || 'system';
+    themeSelect.value = savedTheme;
+    applyTheme(savedTheme);
+
+    themeSelect.addEventListener('change', () => {
+      localStorage.setItem('digest-theme', themeSelect.value);
+      applyTheme(themeSelect.value);
     });
-  });
 
-  function syncSourceChips() {
-    sourceChips.forEach(c => c.classList.toggle('active', activeSources.has(c.dataset.source)));
-  }
-
-  /* ── Tag filter (multi-select, default none = show all) ── */
-  const tagChips = Array.from(document.querySelectorAll('#tagChips .chip'));
-  let activeTags = new Set();
-
-  tagChips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      const tag = chip.dataset.tag;
-      if (activeTags.has(tag)) { activeTags.delete(tag); } else { activeTags.add(tag); }
-      chip.classList.toggle('active', activeTags.has(tag));
-      filter();
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      if (themeSelect.value === 'system') applyTheme('system');
     });
-  });
 
-  /* ── Search ── */
-  const searchInput = document.getElementById('searchInput');
-  searchInput.addEventListener('input', filter);
+    // ── Build filter data ──────────────────────────────────────────────────
+    const cards = Array.from(document.querySelectorAll('.story-card'));
 
-  /* ── Filter engine ── */
-  function filter() {
-    const q = searchInput.value.trim().toLowerCase();
-    let visible = 0;
-    cards.forEach(card => {
-      const src = card.dataset.source;
-      const tags = card.dataset.tags.split(',');
-      const text = card.textContent.toLowerCase();
+    // Collect unique sources & tags
+    const allSources = [...new Set(cards.map(c => c.dataset.source))].sort();
+    const allTags = [...new Set(cards.flatMap(c => c.dataset.tags.split(',')))].sort();
 
-      const srcMatch = activeSources.size === 0 || activeSources.has(src);
-      const tagMatch = activeTags.size === 0 || tags.some(t => activeTags.has(t.trim()));
-      const qMatch = !q || text.includes(q);
+    // Active filter state
+    // Default: GitHub Changelog selected only
+    const activeSources = new Set(['GitHub Changelog']);
+    const activeTags = new Set();
+    let searchTerm = '';
 
-      const show = srcMatch && tagMatch && qMatch;
-      card.hidden = !show;
-      if (show) visible++;
+    // Build source chips
+    const sourceContainer = document.getElementById('sourceFilters');
+    allSources.forEach(src => {
+      const chip = document.createElement('button');
+      chip.className = 'chip' + (activeSources.has(src) ? ' active' : '');
+      chip.textContent = src;
+      chip.setAttribute('aria-pressed', activeSources.has(src).toString());
+      chip.addEventListener('click', () => {
+        if (activeSources.has(src)) {
+          activeSources.delete(src);
+          chip.classList.remove('active');
+          chip.setAttribute('aria-pressed', 'false');
+        } else {
+          activeSources.add(src);
+          chip.classList.add('active');
+          chip.setAttribute('aria-pressed', 'true');
+        }
+        filterStories();
+      });
+      sourceContainer.appendChild(chip);
     });
-    document.getElementById('resultLine').textContent = `Showing ${visible} of ${cards.length} stories`;
-  }
 
-  // Run on load
-  filter();
-})();
-</script>
+    // Build tag chips
+    const tagContainer = document.getElementById('labelFilters');
+    allTags.forEach(tag => {
+      const chip = document.createElement('button');
+      chip.className = 'chip';
+      chip.textContent = tag;
+      chip.setAttribute('aria-pressed', 'false');
+      chip.addEventListener('click', () => {
+        if (activeTags.has(tag)) {
+          activeTags.delete(tag);
+          chip.classList.remove('active');
+          chip.setAttribute('aria-pressed', 'false');
+        } else {
+          activeTags.add(tag);
+          chip.classList.add('active');
+          chip.setAttribute('aria-pressed', 'true');
+        }
+        filterStories();
+      });
+      tagContainer.appendChild(chip);
+    });
+
+    // Search
+    document.getElementById('searchInput').addEventListener('input', e => {
+      searchTerm = e.target.value.trim().toLowerCase();
+      filterStories();
+    });
+
+    function filterStories() {
+      let visible = 0;
+      cards.forEach(card => {
+        const srcMatch = activeSources.size === 0 || activeSources.has(card.dataset.source);
+        const cardTags = card.dataset.tags.split(',');
+        const tagMatch = activeTags.size === 0 || cardTags.some(t => activeTags.has(t));
+        const searchMatch = !searchTerm || card.dataset.search.toLowerCase().includes(searchTerm);
+        const show = srcMatch && tagMatch && searchMatch;
+        card.classList.toggle('hidden', !show);
+        if (show) visible++;
+      });
+      document.getElementById('resultLine').textContent = `Showing ${visible} of ${cards.length} stories`;
+    }
+
+    // Initial filter & count
+    filterStories();
+  </script>
 </body>
 </html>
