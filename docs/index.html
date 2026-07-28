@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Top 15 AI and technology stories from the last 14 days — curated weekly digest." />
-  <meta property="og:title" content="Weekly AI &amp; Tech News Digest – Jul 14–27, 2026" />
-  <meta property="og:description" content="Top 15 AI and technology stories from the last 14 days." />
+  <meta name="description" content="Top 15 AI and tech stories from the past two weeks, curated by GitHub Agentic Workflows." />
+  <meta property="og:title" content="Weekly AI &amp; Tech News Digest – Jul 14–28, 2026" />
+  <meta property="og:description" content="Top 15 AI and tech stories from the past two weeks." />
   <meta property="og:type" content="website" />
-  <title>Weekly AI &amp; Tech News Digest – Jul 14–27, 2026</title>
+  <title>Weekly AI &amp; Tech News Digest – Jul 14–28, 2026</title>
   <style>
     :root {
       --bg: #0d1117;
@@ -42,6 +42,7 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
       font-size: 15px;
       line-height: 1.6;
+      transition: background 0.2s, color 0.2s;
     }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
@@ -57,8 +58,8 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
       color: var(--accent);
-      border: 1px solid rgba(88,166,255,0.35);
-      background: rgba(88,166,255,0.10);
+      border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+      background: color-mix(in srgb, var(--accent) 10%, transparent);
       padding: 0.2rem 0.7rem;
       border-radius: 999px;
       margin-bottom: 0.85rem;
@@ -71,6 +72,7 @@
       flex-wrap: wrap;
       gap: 0.75rem;
       margin: 1.25rem 0 0.5rem;
+      align-items: center;
     }
     .control {
       background: var(--bg-card);
@@ -78,6 +80,10 @@
       border-radius: 10px;
       padding: 0.55rem 0.7rem;
       color: var(--text);
+      font-size: 0.88rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
     }
     .control input, .control select {
       background: transparent;
@@ -85,7 +91,7 @@
       color: inherit;
       outline: none;
       min-width: 180px;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
     }
     .stats {
       display: flex;
@@ -110,20 +116,14 @@
     }
     .tldr-summary h2 { font-size: 1.08rem; margin-bottom: 0.55rem; }
     .tldr-summary ul { padding-left: 1.2rem; color: var(--text-muted); }
-    .tldr-summary li + li { margin-top: 0.3rem; }
-    .section-label {
-      font-size: 0.78rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-muted);
-      margin-bottom: 0.4rem;
-    }
+    .tldr-summary li + li { margin-top: 0.28rem; }
+    .filter-section { margin-bottom: 0.7rem; }
+    .filter-section-label { font-size: 0.78rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.35rem; }
     .filter-labels {
       display: flex;
       flex-wrap: wrap;
       gap: 0.45rem;
-      margin: 0.4rem 0 0.6rem;
+      margin-bottom: 0.5rem;
     }
     .chip {
       border: 1px solid var(--border);
@@ -132,10 +132,10 @@
       border-radius: 999px;
       font-size: 0.75rem;
       font-weight: 600;
-      padding: 0.2rem 0.58rem;
+      padding: 0.22rem 0.65rem;
       cursor: pointer;
       user-select: none;
-      transition: background 0.15s, color 0.15s;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
     }
     .chip.active {
       background: var(--tag-active);
@@ -149,7 +149,10 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 1rem 1.1rem;
+      transition: border-color 0.15s;
     }
+    .story-card:hover { border-color: color-mix(in srgb, var(--accent) 40%, var(--border)); }
+    .story-card.hidden { display: none; }
     .story-head {
       display: flex;
       gap: 0.75rem;
@@ -166,19 +169,23 @@
       font-size: 0.74rem;
       font-weight: 700;
       color: var(--accent);
-      border: 1px solid rgba(88,166,255,0.45);
-      background: rgba(88,166,255,0.12);
+      border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+      background: color-mix(in srgb, var(--accent) 12%, transparent);
       flex-shrink: 0;
+      margin-top: 0.15rem;
     }
-    .source { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 600; }
+    .source { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 600; margin-bottom: 0.15rem; }
     .title { color: var(--text); font-size: 1.02rem; font-weight: 600; line-height: 1.35; }
-    .tldr { color: var(--text-muted); margin: 0.55rem 0; font-size: 0.93rem; }
+    .title a { color: inherit; }
+    .title a:hover { color: var(--accent); text-decoration: none; }
+    .tldr { color: var(--text-muted); margin: 0.55rem 0; font-size: 0.92rem; }
     .why {
       border-left: 3px solid var(--accent);
-      padding-left: 0.6rem;
+      padding-left: 0.65rem;
       color: var(--text-muted);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       margin-bottom: 0.65rem;
+      font-style: italic;
     }
     .story-footer {
       display: flex;
@@ -194,7 +201,8 @@
       padding: 0.16rem 0.5rem;
       font-size: 0.72rem;
     }
-    .date { margin-left: auto; color: var(--text-muted); font-size: 0.76rem; }
+    .read-link { font-size: 0.82rem; }
+    .date { margin-left: auto; color: var(--text-muted); font-size: 0.76rem; white-space: nowrap; }
     footer {
       border-top: 1px solid var(--border);
       color: var(--text-muted);
@@ -214,9 +222,9 @@
     <div class="container">
       <div class="badge">Weekly Digest</div>
       <h1>Weekly AI &amp; Tech News</h1>
-      <p class="meta">Jul 14–27, 2026 &nbsp;·&nbsp; 15 stories &nbsp;·&nbsp; last 14 days</p>
+      <p class="meta">Jul 14 – Jul 28, 2026 &middot; 15 stories &middot; last 14 days</p>
       <div class="top-bar">
-        <label class="control">Theme:
+        <label class="control">🌓 Theme:
           <select id="themeSelect" aria-label="Select theme">
             <option value="system">System</option>
             <option value="light">Light</option>
@@ -232,63 +240,71 @@
 
   <main class="container">
     <section class="stats">
-      <div class="stat">15 stories total</div>
+      <div class="stat">📰 15 stories</div>
       <div class="stat">7 from GitHub Changelog</div>
-      <div class="stat">4 from TechCrunch AI</div>
-      <div class="stat">2 from MIT Tech Review</div>
-      <div class="stat">1 from The Verge</div>
+      <div class="stat">4 from TechCrunch</div>
+      <div class="stat">2 from Ars Technica</div>
+      <div class="stat">1 from MIT Tech Review</div>
       <div class="stat">1 from Hacker News</div>
     </section>
 
-    <!-- TL;DR GitHub Highlights -->
+    <!-- GitHub-only TL;DR -->
     <section class="tldr-summary">
-      <h2>⚡ TL;DR — GitHub highlights</h2>
+      <h2>🐙 TL;DR — GitHub highlights</h2>
       <ul>
-        <li><strong>Claude Opus 5</strong> is now available inside GitHub Copilot, making Anthropic's most capable model accessible directly in your IDE.</li>
-        <li><strong>Copilot cloud agent for Linear</strong> is now generally available — AI-driven coding tasks can be triggered straight from Linear issues.</li>
-        <li><strong>GitHub MCP Server</strong> has been updated to support the latest MCP specification, broadening interoperability with agentic tooling.</li>
-        <li><strong>Agent automation controls</strong> for GitHub Issues entered public preview, letting teams gate what actions AI agents can perform autonomously.</li>
-        <li><strong>Multi-select fields</strong> for Projects and Issues entered public preview, enabling richer structured data management across repositories.</li>
+        <li>Claude Opus 5 is now available in GitHub Copilot for complex, long-horizon coding tasks requiring deep reasoning.</li>
+        <li>Copilot cloud agent is now generally available for Linear — assign issues directly and let Copilot autonomously handle them.</li>
+        <li>GitHub MCP Server supports the new stateless MCP spec ahead of its official July 28 release, keeping integrations future-proof.</li>
+        <li>Enterprise managed settings now govern the GitHub Copilot app and cloud agent, giving admins centralized policy control.</li>
+        <li>GitHub Mobile can now invoke Copilot cloud agent to investigate and fix failing Actions checks directly from your phone.</li>
       </ul>
     </section>
 
-    <!-- Top Takeaways -->
-    <section class="tldr-summary" style="border-color: rgba(88,166,255,0.4);">
-      <h2>🌐 TL;DR — Top takeaways this week</h2>
+    <!-- Overall TL;DR -->
+    <section class="tldr-summary" style="margin-top:-0.4rem;">
+      <h2>⚡ TL;DR — Top takeaways</h2>
       <ul>
-        <li>Anthropic's <strong>Claude Opus 5</strong> launched and is already integrated into GitHub Copilot, raising the bar for frontier model coding assistants.</li>
-        <li>GitHub is rapidly expanding its agentic surface — from Linear integrations to MCP spec support and automation controls, the platform is becoming an AI-first development hub.</li>
-        <li>The US–China AI rivalry intensified: Kimi K3 dropped on HuggingFace, Chinese chipmaker stocks surged 470%, and US policymakers debated open-weight model restrictions.</li>
-        <li>Nvidia and Microsoft launched a joint open AI security alliance, signaling the industry is taking AI-specific threat vectors seriously.</li>
-        <li>AI and energy infrastructure are colliding — from a single power-line failure exposing data-center fragility to AMD's rack-scale Helios system challenging Nvidia's dominance.</li>
+        <li>GitHub ships a wave of Copilot updates: Claude Opus 5, Linear GA, MCP stateless spec support, enterprise governance, and mobile fixes.</li>
+        <li>Claude shared chats and Artifacts were inadvertently indexed by Google, raising fresh privacy concerns for AI platforms.</li>
+        <li>Microsoft debuts its first dedicated cybersecurity AI model alongside a new agentic security platform.</li>
+        <li>OpenAI's Hugging Face breach reignites debate over AI alignment, open-weight models, and who controls increasingly capable AI.</li>
+        <li>A $500 RL fine-tune of a 9B open model outperforms frontier models on a real-world catalog task — efficiency beats scale.</li>
       </ul>
     </section>
 
-    <div class="section-label">Filter by source</div>
-    <section class="filter-labels" id="sourceFilters"></section>
-    <div class="section-label">Filter by tag</div>
-    <section class="filter-labels" id="labelFilters"></section>
-    <p class="result-line" id="resultLine"></p>
+    <!-- Source filters -->
+    <div class="filter-section">
+      <div class="filter-section-label">Filter by source</div>
+      <div class="filter-labels" id="sourceFilters"></div>
+    </div>
+
+    <!-- Tag filters -->
+    <div class="filter-section">
+      <div class="filter-section-label">Filter by tag</div>
+      <div class="filter-labels" id="tagFilters"></div>
+    </div>
+
+    <p class="result-line" id="resultLine">Showing 15 of 15 stories</p>
 
     <section class="story-list" id="storyList">
 
       <!-- 1 -->
       <article class="story-card"
         data-source="GitHub Changelog"
-        data-tags="AI,LLMs,GitHub,Tools"
-        data-search="Claude Opus 5 is now available in GitHub Copilot GitHub Changelog AI LLMs GitHub Tools anthropic copilot ide coding">
+        data-tags="GitHub,AI,LLMs,Tools"
+        data-search="claude opus 5 github copilot anthropic newest model complex long-running coding tasks reasoning tool use GitHub Changelog AI LLMs Tools">
         <div class="story-head">
           <div class="rank">1</div>
           <div>
             <div class="source">🐙 GitHub Changelog</div>
-            <div class="title"><a href="https://github.blog/changelog/2026/07/24/claude-opus-5-is-now-available-in-github-copilot/" target="_blank" rel="noopener">Claude Opus 5 is now available in GitHub Copilot</a></div>
+            <div class="title"><a href="https://github.blog/changelog/2026-07-24-claude-opus-5-is-now-available-in-github-copilot" target="_blank" rel="noopener">Claude Opus 5 is now available in GitHub Copilot</a></div>
           </div>
         </div>
-        <p class="tldr">Anthropic's Claude Opus 5 — its most powerful model to date — is now selectable within GitHub Copilot across supported IDEs and github.com. Developers can switch to Opus 5 for complex reasoning tasks without leaving their workflow.</p>
-        <p class="why">💡 Why it matters: Embedding frontier-class AI directly into the development environment lowers the barrier to using the strongest available models for code generation, review, and debugging.</p>
+        <p class="tldr">Anthropic's newest Opus model is now integrated into GitHub Copilot, purpose-built for complex, long-running coding tasks that require careful reasoning and effective tool use. It joins the growing roster of frontier models developers can access directly inside their IDE.</p>
+        <p class="why">💡 Why it matters: Bringing one of the most capable models available directly into Copilot's workflow means developers can tackle increasingly sophisticated engineering problems without leaving their editor.</p>
         <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">LLMs</span><span class="tag">GitHub</span><span class="tag">Tools</span>
-          <a href="https://github.blog/changelog/2026/07/24/claude-opus-5-is-now-available-in-github-copilot/" target="_blank" rel="noopener">Read full story →</a>
+          <span class="tag">GitHub</span><span class="tag">AI</span><span class="tag">LLMs</span><span class="tag">Tools</span>
+          <a class="read-link" href="https://github.blog/changelog/2026-07-24-claude-opus-5-is-now-available-in-github-copilot" target="_blank" rel="noopener">Read full story →</a>
           <span class="date">Jul 24, 2026</span>
         </div>
       </article>
@@ -296,20 +312,20 @@
       <!-- 2 -->
       <article class="story-card"
         data-source="GitHub Changelog"
-        data-tags="AI,Tools,GitHub,Cloud"
-        data-search="Copilot cloud agent for Linear is now generally available GitHub Changelog AI Tools GitHub Cloud linear issue tracking ga">
+        data-tags="GitHub,AI,Tools,Cloud"
+        data-search="copilot cloud agent linear generally available assign issues autonomously GitHub Changelog AI Tools Cloud">
         <div class="story-head">
           <div class="rank">2</div>
           <div>
             <div class="source">🐙 GitHub Changelog</div>
-            <div class="title"><a href="https://github.blog/changelog/2026/07/23/copilot-cloud-agent-for-linear-is-now-generally-available/" target="_blank" rel="noopener">Copilot cloud agent for Linear is now generally available</a></div>
+            <div class="title"><a href="https://github.blog/changelog/2026-07-23-copilot-cloud-agent-for-linear-is-now-generally-available" target="_blank" rel="noopener">Copilot cloud agent for Linear is now generally available</a></div>
           </div>
         </div>
-        <p class="tldr">GitHub's Copilot cloud agent integration with the Linear project-management tool has graduated from preview to general availability. Teams can now assign Linear issues directly to Copilot, which autonomously creates pull requests to address them.</p>
-        <p class="why">💡 Why it matters: GA status means enterprise reliability guarantees, enabling engineering teams to automate routine issue-to-PR workflows at scale without manual handoffs.</p>
+        <p class="tldr">You can now assign Linear issues to Copilot cloud agent, which will analyze the issue, open a branch, implement a fix, and create a pull request — entirely autonomously. The integration is now out of preview and available to all Copilot Business and Enterprise customers.</p>
+        <p class="why">💡 Why it matters: GA of the Linear integration signals that AI-native issue resolution is entering mainstream engineering workflows, not just experimental use.</p>
         <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">Tools</span><span class="tag">GitHub</span><span class="tag">Cloud</span>
-          <a href="https://github.blog/changelog/2026/07/23/copilot-cloud-agent-for-linear-is-now-generally-available/" target="_blank" rel="noopener">Read full story →</a>
+          <span class="tag">GitHub</span><span class="tag">AI</span><span class="tag">Tools</span><span class="tag">Cloud</span>
+          <a class="read-link" href="https://github.blog/changelog/2026-07-23-copilot-cloud-agent-for-linear-is-now-generally-available" target="_blank" rel="noopener">Read full story →</a>
           <span class="date">Jul 23, 2026</span>
         </div>
       </article>
@@ -317,20 +333,20 @@
       <!-- 3 -->
       <article class="story-card"
         data-source="GitHub Changelog"
-        data-tags="AI,Tools,GitHub,Open Source"
-        data-search="GitHub MCP Server supports the next MCP specification GitHub Changelog AI Tools GitHub Open Source model context protocol mcp spec">
+        data-tags="GitHub,Tools,Open Source"
+        data-search="github mcp server stateless specification protocol next spec GitHub Changelog Tools Open Source">
         <div class="story-head">
           <div class="rank">3</div>
           <div>
             <div class="source">🐙 GitHub Changelog</div>
-            <div class="title"><a href="https://github.blog/changelog/2026/07/23/github-mcp-server-supports-the-next-mcp-specification/" target="_blank" rel="noopener">GitHub MCP Server supports the next MCP specification</a></div>
+            <div class="title"><a href="https://github.blog/changelog/2026-07-23-github-mcp-server-supports-the-next-mcp-specification" target="_blank" rel="noopener">GitHub MCP Server supports the next MCP specification</a></div>
           </div>
         </div>
-        <p class="tldr">The GitHub MCP (Model Context Protocol) Server has been updated to implement the latest version of the MCP spec, improving compatibility with a broad range of AI clients and agent frameworks. The update includes new transport and capability negotiation features.</p>
-        <p class="why">💡 Why it matters: Keeping GitHub's MCP Server in sync with the evolving spec ensures that third-party AI agents can reliably access GitHub data without fragile workarounds.</p>
+        <p class="tldr">The MCP protocol is going stateless on July 28, 2026, and the GitHub MCP Server already supports the new spec ahead of the official release. The update removes session state requirements, making integrations lighter and easier to scale.</p>
+        <p class="why">💡 Why it matters: Staying ahead of the spec transition ensures GitHub's MCP tooling remains compatible with the rapidly evolving AI agent ecosystem from day one.</p>
         <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">Tools</span><span class="tag">GitHub</span><span class="tag">Open Source</span>
-          <a href="https://github.blog/changelog/2026/07/23/github-mcp-server-supports-the-next-mcp-specification/" target="_blank" rel="noopener">Read full story →</a>
+          <span class="tag">GitHub</span><span class="tag">Tools</span><span class="tag">Open Source</span>
+          <a class="read-link" href="https://github.blog/changelog/2026-07-23-github-mcp-server-supports-the-next-mcp-specification" target="_blank" rel="noopener">Read full story →</a>
           <span class="date">Jul 23, 2026</span>
         </div>
       </article>
@@ -338,41 +354,41 @@
       <!-- 4 -->
       <article class="story-card"
         data-source="GitHub Changelog"
-        data-tags="AI,GitHub,Tools"
-        data-search="Agent automation controls in GitHub Issues in public preview GitHub Changelog AI GitHub Tools agentic automation safety guardrails">
+        data-tags="GitHub,AI,Security,Cloud"
+        data-search="enterprise managed settings copilot app cloud agent centralized policy governance GitHub Changelog AI Security Cloud">
         <div class="story-head">
           <div class="rank">4</div>
           <div>
             <div class="source">🐙 GitHub Changelog</div>
-            <div class="title"><a href="https://github.blog/changelog/2026/07/23/agent-automation-controls-in-github-issues-in-public-preview/" target="_blank" rel="noopener">Agent automation controls in GitHub Issues in public preview</a></div>
+            <div class="title"><a href="https://github.blog/changelog/2026-07-27-enterprise-managed-settings-now-apply-to-the-github-copilot-app" target="_blank" rel="noopener">Enterprise managed settings in the GitHub Copilot app and Copilot cloud agent</a></div>
           </div>
         </div>
-        <p class="tldr">GitHub has introduced agent automation controls for Issues, giving maintainers fine-grained governance over what AI agents can do — such as labeling, closing, or commenting on issues — without human approval. The feature is now in public preview for all repositories.</p>
-        <p class="why">💡 Why it matters: As AI agents become more autonomous in codebases, safety controls that keep humans in the loop for critical project-management actions are essential for trust and auditability.</p>
+        <p class="tldr">Enterprise admins can now govern the GitHub Copilot app and Copilot cloud agent through the same centrally managed policies used across the rest of their Copilot deployment. This closes a governance gap that previously left these surfaces outside enterprise policy controls.</p>
+        <p class="why">💡 Why it matters: Unified policy enforcement across all Copilot surfaces is a key compliance requirement for regulated industries adopting AI-assisted development.</p>
         <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">GitHub</span><span class="tag">Tools</span>
-          <a href="https://github.blog/changelog/2026/07/23/agent-automation-controls-in-github-issues-in-public-preview/" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 23, 2026</span>
+          <span class="tag">GitHub</span><span class="tag">AI</span><span class="tag">Security</span><span class="tag">Cloud</span>
+          <a class="read-link" href="https://github.blog/changelog/2026-07-27-enterprise-managed-settings-now-apply-to-the-github-copilot-app" target="_blank" rel="noopener">Read full story →</a>
+          <span class="date">Jul 27, 2026</span>
         </div>
       </article>
 
       <!-- 5 -->
       <article class="story-card"
         data-source="GitHub Changelog"
-        data-tags="GitHub,Tools"
-        data-search="Multi-select fields for Projects and Issues in public preview GitHub Changelog GitHub Tools project management multi-select fields">
+        data-tags="GitHub,AI,Tools"
+        data-search="github mobile fix failing actions checks copilot cloud agent pull request GitHub Changelog AI Tools">
         <div class="story-head">
           <div class="rank">5</div>
           <div>
             <div class="source">🐙 GitHub Changelog</div>
-            <div class="title"><a href="https://github.blog/changelog/2026/07/23/multi-select-fields-for-projects-and-issues-in-public-preview/" target="_blank" rel="noopener">Multi-select fields for Projects and Issues in public preview</a></div>
+            <div class="title"><a href="https://github.blog/changelog/2026-07-23-github-mobile-fix-failing-actions-checks-with-copilot-cloud-agent" target="_blank" rel="noopener">GitHub Mobile: Fix failing Actions checks with Copilot cloud agent</a></div>
           </div>
         </div>
-        <p class="tldr">GitHub Projects and Issues can now have multi-select custom fields, allowing issues to be tagged with multiple values from a predefined list in a single structured field. The capability is rolling out in public preview.</p>
-        <p class="why">💡 Why it matters: Richer structured metadata on issues enables better automated querying, reporting, and AI-driven triage without polluting the free-text label space.</p>
+        <p class="tldr">When a GitHub Actions check fails on your pull request, you can now invoke Copilot cloud agent from the GitHub Mobile app to investigate and push a fix — without opening a laptop. The agent analyzes the failure, proposes a solution, and commits the change directly.</p>
+        <p class="why">💡 Why it matters: Bringing autonomous CI repair to mobile substantially reduces the friction of unblocking a failing build while on the go.</p>
         <div class="story-footer">
-          <span class="tag">GitHub</span><span class="tag">Tools</span>
-          <a href="https://github.blog/changelog/2026/07/23/multi-select-fields-for-projects-and-issues-in-public-preview/" target="_blank" rel="noopener">Read full story →</a>
+          <span class="tag">GitHub</span><span class="tag">AI</span><span class="tag">Tools</span>
+          <a class="read-link" href="https://github.blog/changelog/2026-07-23-github-mobile-fix-failing-actions-checks-with-copilot-cloud-agent" target="_blank" rel="noopener">Read full story →</a>
           <span class="date">Jul 23, 2026</span>
         </div>
       </article>
@@ -380,210 +396,210 @@
       <!-- 6 -->
       <article class="story-card"
         data-source="GitHub Changelog"
-        data-tags="AI,GitHub,Tools"
-        data-search="New Copilot usage metrics impact dashboard GitHub Changelog AI GitHub Tools analytics productivity developer metrics">
+        data-tags="GitHub,AI,Tools,Security"
+        data-search="manage copilot app access dedicated policy enterprise organization GitHub Changelog AI Tools Security">
         <div class="story-head">
           <div class="rank">6</div>
           <div>
             <div class="source">🐙 GitHub Changelog</div>
-            <div class="title"><a href="https://github.blog/changelog/2026/07/22/new-copilot-usage-metrics-impact-dashboard/" target="_blank" rel="noopener">New Copilot usage metrics impact dashboard</a></div>
+            <div class="title"><a href="https://github.blog/changelog/2026-07-27-manage-github-copilot-app-access-with-a-dedicated-policy" target="_blank" rel="noopener">Manage GitHub Copilot app access with a dedicated policy</a></div>
           </div>
         </div>
-        <p class="tldr">GitHub has launched a revamped Copilot impact dashboard that surfaces richer productivity metrics — including code accepted, time saved, and developer adoption trends — broken down by team, language, and time period.</p>
-        <p class="why">💡 Why it matters: Better ROI evidence helps engineering leaders justify and expand Copilot adoption while identifying where AI assistance has the most impact on developer velocity.</p>
+        <p class="tldr">The GitHub Copilot app now has its own dedicated access policy, letting enterprise and organization admins precisely control who can use it independently of other Copilot features. Previously, Copilot app access was bundled with broader Copilot permissions.</p>
+        <p class="why">💡 Why it matters: Granular per-feature access control is essential for organizations rolling out Copilot incrementally or under strict least-privilege policies.</p>
         <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">GitHub</span><span class="tag">Tools</span>
-          <a href="https://github.blog/changelog/2026/07/22/new-copilot-usage-metrics-impact-dashboard/" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 22, 2026</span>
+          <span class="tag">GitHub</span><span class="tag">AI</span><span class="tag">Tools</span><span class="tag">Security</span>
+          <a class="read-link" href="https://github.blog/changelog/2026-07-27-manage-github-copilot-app-access-with-a-dedicated-policy" target="_blank" rel="noopener">Read full story →</a>
+          <span class="date">Jul 27, 2026</span>
         </div>
       </article>
 
       <!-- 7 -->
       <article class="story-card"
         data-source="GitHub Changelog"
-        data-tags="AI,GitHub,Tools"
-        data-search="Gemini 3.6 Flash is now available in GitHub Copilot GitHub Changelog AI GitHub Tools google gemini model ide">
+        data-tags="GitHub,AI,Tools"
+        data-search="copilot jetbrains opentelemetry mcp servers custom agents claude agent flows model management GitHub Changelog AI Tools">
         <div class="story-head">
           <div class="rank">7</div>
           <div>
             <div class="source">🐙 GitHub Changelog</div>
-            <div class="title"><a href="https://github.blog/changelog/2026/07/21/gemini-3-6-flash-is-now-available-in-github-copilot/" target="_blank" rel="noopener">Gemini 3.6 Flash is now available in GitHub Copilot</a></div>
+            <div class="title"><a href="https://github.blog/changelog/2026-07-27-github-copilot-for-jetbrains-adds-improvved-opentelemetry-configuration-and-model-management" target="_blank" rel="noopener">GitHub Copilot for JetBrains adds improved OpenTelemetry configuration and model management</a></div>
           </div>
         </div>
-        <p class="tldr">Google's Gemini 3.6 Flash model is now available as a selectable model in GitHub Copilot, offering a fast, cost-efficient option for code completion, chat, and inline suggestions. It joins Copilot's growing multi-model roster.</p>
-        <p class="why">💡 Why it matters: Multi-model flexibility lets developers choose the best speed/quality trade-off for their task, and keeps GitHub Copilot competitive as model providers release faster, cheaper options.</p>
+        <p class="tldr">The latest JetBrains Copilot update lets developers connect MCP servers and custom agents in Claude agent flows, fine-tune OpenTelemetry telemetry settings, and manage active models directly from the IDE. The update improves visibility and control for teams using Copilot at scale.</p>
+        <p class="why">💡 Why it matters: Deeper observability and model management controls in JetBrains bring enterprise-grade Copilot operations to one of the world's most widely used IDEs.</p>
         <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">GitHub</span><span class="tag">Tools</span>
-          <a href="https://github.blog/changelog/2026/07/21/gemini-3-6-flash-is-now-available-in-github-copilot/" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 21, 2026</span>
+          <span class="tag">GitHub</span><span class="tag">AI</span><span class="tag">Tools</span>
+          <a class="read-link" href="https://github.blog/changelog/2026-07-27-github-copilot-for-jetbrains-adds-improvved-opentelemetry-configuration-and-model-management" target="_blank" rel="noopener">Read full story →</a>
+          <span class="date">Jul 28, 2026</span>
         </div>
       </article>
 
       <!-- 8 -->
       <article class="story-card"
-        data-source="TechCrunch AI"
-        data-tags="AI,LLMs,Research"
-        data-search="Anthropic launches Opus 5 TechCrunch AI AI LLMs Research anthropic claude frontier model reasoning">
+        data-source="TechCrunch"
+        data-tags="AI,Security,LLMs"
+        data-search="claude shared chats artifacts google indexed privacy anthropic share chat feature URL TechCrunch AI Security LLMs">
         <div class="story-head">
           <div class="rank">8</div>
           <div>
-            <div class="source">📰 TechCrunch AI</div>
-            <div class="title"><a href="https://techcrunch.com/2026/07/24/anthropic-launches-opus-5/" target="_blank" rel="noopener">Anthropic launches Opus 5</a></div>
+            <div class="source">📰 TechCrunch</div>
+            <div class="title"><a href="https://techcrunch.com/2026/07/27/psa-your-claude-shared-chats-and-artifacts-may-have-ended-up-on-google/" target="_blank" rel="noopener">PSA: Your Claude shared chats and Artifacts may have ended up on Google</a></div>
           </div>
         </div>
-        <p class="tldr">Anthropic officially launched Claude Opus 5, its most capable model to date, claiming state-of-the-art performance on a wide range of benchmarks including complex reasoning, coding, and long-context tasks. Opus 5 is available via the Claude API, Claude.ai, and now GitHub Copilot.</p>
-        <p class="why">💡 Why it matters: A new frontier model from Anthropic puts competitive pressure on OpenAI's o-series and Google's Gemini Ultra, potentially reshaping enterprise AI adoption choices.</p>
+        <p class="tldr">Claude's "share chat" feature — which creates public URLs for conversations — resulted in many chats and Artifacts being crawled and indexed by Google search. Users who shared chats without realizing the privacy implications may find their AI conversations surfacing in search results.</p>
+        <p class="why">💡 Why it matters: This incident highlights how AI platform sharing features can inadvertently expose user data at scale, prompting calls for clearer defaults and crawl controls.</p>
         <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">LLMs</span><span class="tag">Research</span>
-          <a href="https://techcrunch.com/2026/07/24/anthropic-launches-opus-5/" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 24, 2026</span>
+          <span class="tag">AI</span><span class="tag">Security</span><span class="tag">LLMs</span>
+          <a class="read-link" href="https://techcrunch.com/2026/07/27/psa-your-claude-shared-chats-and-artifacts-may-have-ended-up-on-google/" target="_blank" rel="noopener">Read full story →</a>
+          <span class="date">Jul 27, 2026</span>
         </div>
       </article>
 
       <!-- 9 -->
       <article class="story-card"
-        data-source="TechCrunch AI"
-        data-tags="AI,Cloud,Research"
-        data-search="AMD takes on Nvidia with its Helios AI rack-scale system TechCrunch AI AI Cloud Research amd nvidia helios rack gpu hardware">
+        data-source="TechCrunch"
+        data-tags="AI,Security,Tools,Cloud"
+        data-search="microsoft cybersecurity ai model agentic security platform first launch TechCrunch AI Security Tools Cloud">
         <div class="story-head">
           <div class="rank">9</div>
           <div>
-            <div class="source">📰 TechCrunch AI</div>
-            <div class="title"><a href="https://techcrunch.com/2026/07/23/amd-takes-on-nvidia-with-its-helios-ai-rack-scale-system/" target="_blank" rel="noopener">AMD takes on Nvidia with its Helios AI rack-scale system</a></div>
+            <div class="source">📰 TechCrunch</div>
+            <div class="title"><a href="https://techcrunch.com/2026/07/27/microsoft-launches-its-first-cyber-model-and-a-new-agentic-cybersecurity-system/" target="_blank" rel="noopener">Microsoft launches its first cybersecurity model, plus a new agentic cybersecurity system</a></div>
           </div>
         </div>
-        <p class="tldr">AMD unveiled Helios, a rack-scale AI system integrating its Instinct GPUs with custom networking and memory fabric, designed to compete directly with Nvidia's NVL72 racks. AMD is positioning Helios at hyperscaler and cloud-provider customers building large AI clusters.</p>
-        <p class="why">💡 Why it matters: Credible competition at the rack-scale level could accelerate GPU price improvements and reduce AI infrastructure costs for the broader industry.</p>
+        <p class="tldr">Microsoft unveiled its first purpose-built AI cybersecurity model alongside a new agentic security platform designed to autonomously detect and respond to threats. The company claims both the model and the platform outperform competing solutions at lower cost.</p>
+        <p class="why">💡 Why it matters: Microsoft's move into dedicated security AI signals that agentic threat response — not just detection — is fast becoming the baseline expectation for enterprise security.</p>
         <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">Cloud</span><span class="tag">Research</span>
-          <a href="https://techcrunch.com/2026/07/23/amd-takes-on-nvidia-with-its-helios-ai-rack-scale-system/" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 23, 2026</span>
+          <span class="tag">AI</span><span class="tag">Security</span><span class="tag">Tools</span><span class="tag">Cloud</span>
+          <a class="read-link" href="https://techcrunch.com/2026/07/27/microsoft-launches-its-first-cyber-model-and-a-new-agentic-cybersecurity-system/" target="_blank" rel="noopener">Read full story →</a>
+          <span class="date">Jul 27, 2026</span>
         </div>
       </article>
 
       <!-- 10 -->
       <article class="story-card"
-        data-source="TechCrunch AI"
-        data-tags="AI,Policy,LLMs"
-        data-search="Making sense of the panic over Chinese AI TechCrunch AI AI Policy LLMs china kimi k3 geopolitics open weight models">
+        data-source="TechCrunch"
+        data-tags="AI,LLMs,Policy,Open Source"
+        data-search="dario amodei anthropic open weight models chinese ai fears oppose TechCrunch AI LLMs Policy Open Source">
         <div class="story-head">
           <div class="rank">10</div>
           <div>
-            <div class="source">📰 TechCrunch AI</div>
-            <div class="title"><a href="https://techcrunch.com/2026/07/26/making-sense-of-the-panic-over-chinese-ai/" target="_blank" rel="noopener">Making sense of the panic over Chinese AI</a></div>
+            <div class="source">📰 TechCrunch</div>
+            <div class="title"><a href="https://techcrunch.com/2026/07/27/anthropics-dario-amodei-responds-doesnt-oppose-open-weight-models-but-fears-chinese-ai/" target="_blank" rel="noopener">Anthropic's Dario Amodei: doesn't oppose open-weight models, but fears Chinese AI</a></div>
           </div>
         </div>
-        <p class="tldr">TechCrunch breaks down the wave of concern in financial markets and Washington following the release of Moonshot AI's Kimi K3, which demonstrated competitive reasoning performance and caused Chinese chipmaker stocks to surge. The article examines whether restrictions on open-weight Chinese models are warranted.</p>
-        <p class="why">💡 Why it matters: Government responses to Chinese AI advances — including potential open-weight export controls — could reshape how both research and commercial AI models are distributed globally.</p>
+        <p class="tldr">In a public response, Anthropic CEO Dario Amodei clarified that he does not personally oppose open-weight AI models but expressed serious concern about Chinese AI development and its potential national security implications. His comments come amid heated industry debate over open vs. closed model development.</p>
+        <p class="why">💡 Why it matters: Amodei's nuanced position shapes the geopolitical framing of AI safety debates and will influence US policy discussions around AI export controls.</p>
         <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">Policy</span><span class="tag">LLMs</span>
-          <a href="https://techcrunch.com/2026/07/26/making-sense-of-the-panic-over-chinese-ai/" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 26, 2026</span>
+          <span class="tag">AI</span><span class="tag">LLMs</span><span class="tag">Policy</span><span class="tag">Open Source</span>
+          <a class="read-link" href="https://techcrunch.com/2026/07/27/anthropics-dario-amodei-responds-doesnt-oppose-open-weight-models-but-fears-chinese-ai/" target="_blank" rel="noopener">Read full story →</a>
+          <span class="date">Jul 27, 2026</span>
         </div>
       </article>
 
       <!-- 11 -->
       <article class="story-card"
-        data-source="TechCrunch AI"
-        data-tags="AI,LLMs,Policy"
-        data-search="Hugging Face CEO calls for radical transparency after unprecedented OpenAI hiring TechCrunch AI AI LLMs Policy hugging face openai talent transparency">
+        data-source="TechCrunch"
+        data-tags="AI,LLMs,Security,Research"
+        data-search="openai hugging face breach alignment control debate unprecedented TechCrunch AI LLMs Security Research">
         <div class="story-head">
           <div class="rank">11</div>
           <div>
-            <div class="source">📰 TechCrunch AI</div>
-            <div class="title"><a href="https://techcrunch.com/2026/07/26/hugging-face-ceo-calls-for-radical-transparency-after-unprecedented-openai-hiring/" target="_blank" rel="noopener">Hugging Face CEO calls for 'radical transparency' after 'unprecedented' OpenAI hiring</a></div>
+            <div class="source">📰 TechCrunch</div>
+            <div class="title"><a href="https://techcrunch.com/2026/07/27/openais-hugging-face-breach-has-reignited-the-debate-over-alignment-and-control/" target="_blank" rel="noopener">OpenAI's Hugging Face breach has reignited the debate over alignment and control</a></div>
           </div>
         </div>
-        <p class="tldr">Hugging Face CEO Clem Delangue called for "radical transparency" in the AI industry after OpenAI reportedly recruited multiple senior researchers from the open-source hub in what he described as an "unprecedented" talent drain. He argued that openness is essential for the ecosystem's health.</p>
-        <p class="why">💡 Why it matters: Talent concentration at a handful of well-funded labs risks narrowing the diversity of AI approaches and weakening the open-source ecosystem that much of the research community depends on.</p>
+        <p class="tldr">A breach involving OpenAI and Hugging Face has reignited fierce debate over AI alignment and who should control increasingly capable models. The incident exposed competing views between safety researchers and open-source advocates on whether powerful AI should be tightly controlled or freely accessible.</p>
+        <p class="why">💡 Why it matters: Security incidents at the intersection of frontier AI labs and open-source platforms raise urgent questions about model governance that the industry has not yet resolved.</p>
         <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">LLMs</span><span class="tag">Policy</span>
-          <a href="https://techcrunch.com/2026/07/26/hugging-face-ceo-calls-for-radical-transparency-after-unprecedented-openai-hiring/" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 26, 2026</span>
+          <span class="tag">AI</span><span class="tag">LLMs</span><span class="tag">Security</span><span class="tag">Research</span>
+          <a class="read-link" href="https://techcrunch.com/2026/07/27/openais-hugging-face-breach-has-reignited-the-debate-over-alignment-and-control/" target="_blank" rel="noopener">Read full story →</a>
+          <span class="date">Jul 27, 2026</span>
         </div>
       </article>
 
       <!-- 12 -->
       <article class="story-card"
-        data-source="MIT Tech Review"
-        data-tags="AI,Research,LLMs"
-        data-search="The path to artificial superintelligence MIT Tech Review AI Research LLMs agi asi superintelligence roadmap">
+        data-source="MIT Technology Review"
+        data-tags="AI,LLMs,Research"
+        data-search="path artificial superintelligence ASI multi-agent healthcare MIT Technology Review AI LLMs Research">
         <div class="story-head">
           <div class="rank">12</div>
           <div>
-            <div class="source">🔬 MIT Tech Review</div>
-            <div class="title"><a href="https://www.technologyreview.com/2026/07/27/the-path-to-artificial-superintelligence/" target="_blank" rel="noopener">The path to artificial superintelligence</a></div>
+            <div class="source">🔬 MIT Technology Review</div>
+            <div class="title"><a href="https://www.technologyreview.com/2026/07/27/1140724/the-path-to-artificial-superintelligence/" target="_blank" rel="noopener">The path to artificial superintelligence</a></div>
           </div>
         </div>
-        <p class="tldr">MIT Technology Review examines whether the current trajectory of scaling large language models could plausibly lead to artificial superintelligence, surveying leading researchers on timelines, required breakthroughs, and the key unsolved problems in alignment and capability.</p>
-        <p class="why">💡 Why it matters: As frontier models approach human-expert performance on an expanding range of tasks, understanding the realistic distance to superintelligence is critical for policymakers, researchers, and businesses planning for the next decade.</p>
+        <p class="tldr">MIT Technology Review examines how networks of specialized AI agents — each owning a slice of a complex task — may represent the most credible near-term path toward systems that exceed human-level performance across domains. The analysis draws on real-world multi-agent deployments in healthcare and research.</p>
+        <p class="why">💡 Why it matters: Understanding the architectural roadmap to ASI is essential for policymakers, researchers, and technologists shaping AI governance before capabilities outpace oversight.</p>
         <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">Research</span><span class="tag">LLMs</span>
-          <a href="https://www.technologyreview.com/2026/07/27/the-path-to-artificial-superintelligence/" target="_blank" rel="noopener">Read full story →</a>
+          <span class="tag">AI</span><span class="tag">LLMs</span><span class="tag">Research</span>
+          <a class="read-link" href="https://www.technologyreview.com/2026/07/27/1140724/the-path-to-artificial-superintelligence/" target="_blank" rel="noopener">Read full story →</a>
           <span class="date">Jul 27, 2026</span>
         </div>
       </article>
 
       <!-- 13 -->
       <article class="story-card"
-        data-source="MIT Tech Review"
-        data-tags="AI,Research,Tools"
-        data-search="How AI helps scientists design the next generation of medicines MIT Tech Review AI Research Tools drug discovery molecular design">
+        data-source="Ars Technica"
+        data-tags="Security"
+        data-search="microsoft secure boot broken decade shims revoke bypass simple Ars Technica Security">
         <div class="story-head">
           <div class="rank">13</div>
           <div>
-            <div class="source">🔬 MIT Tech Review</div>
-            <div class="title"><a href="https://www.technologyreview.com/2026/07/23/how-ai-helps-scientists-design-the-next-generation-of-medicines/" target="_blank" rel="noopener">How AI helps scientists design the next generation of medicines</a></div>
+            <div class="source">📡 Ars Technica</div>
+            <div class="title"><a href="https://arstechnica.com/security/2026/07/microsoft-secure-boot-has-been-broken-for-most-of-its-existence/" target="_blank" rel="noopener">Microsoft's Secure Boot has been broken for a decade and no one noticed until now</a></div>
           </div>
         </div>
-        <p class="tldr">MIT Tech Review explores how generative AI models are being used to design novel drug candidates — from protein structure prediction to de-novo molecule generation — with several AI-designed compounds now in clinical trials. The article details the closed-loop pipelines that accelerate the design-make-test cycle.</p>
-        <p class="why">💡 Why it matters: AI-accelerated drug discovery could compress years-long development timelines into months, with broad implications for rare-disease treatments and pandemic preparedness.</p>
+        <p class="tldr">Researchers discovered that old, forgotten "shims" — boot-layer code snippets Microsoft failed to revoke — have been making Secure Boot bypasses trivially easy for nearly a decade. The vulnerability effectively undermined one of Windows' core pre-boot security guarantees across millions of devices.</p>
+        <p class="why">💡 Why it matters: A decade-long Secure Boot weakness on Windows machines means a wide range of enterprise and consumer devices may have been exposed to boot-level malware without any indication of compromise.</p>
         <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">Research</span><span class="tag">Tools</span>
-          <a href="https://www.technologyreview.com/2026/07/23/how-ai-helps-scientists-design-the-next-generation-of-medicines/" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 23, 2026</span>
+          <span class="tag">Security</span>
+          <a class="read-link" href="https://arstechnica.com/security/2026/07/microsoft-secure-boot-has-been-broken-for-most-of-its-existence/" target="_blank" rel="noopener">Read full story →</a>
+          <span class="date">Jul 14, 2026</span>
         </div>
       </article>
 
       <!-- 14 -->
       <article class="story-card"
-        data-source="The Verge"
-        data-tags="AI,Security,Cloud"
-        data-search="Nvidia Microsoft launch open AI security alliance The Verge AI Security Cloud nvidia microsoft coalition safety threat">
+        data-source="Ars Technica"
+        data-tags="Security"
+        data-search="windows zero day patch tuesday record number patches HiveLegacy Ars Technica Security">
         <div class="story-head">
           <div class="rank">14</div>
           <div>
-            <div class="source">📱 The Verge</div>
-            <div class="title"><a href="https://www.theverge.com/2026/7/27/nvidia-microsoft-launch-open-ai-security-alliance" target="_blank" rel="noopener">Nvidia, Microsoft launch open AI security alliance – without OpenAI, Google, or Meta</a></div>
+            <div class="source">📡 Ars Technica</div>
+            <div class="title"><a href="https://arstechnica.com/security/2026/07/windows-0-day-drops-the-same-day-microsoft-releases-record-number-of-patches/" target="_blank" rel="noopener">Windows 0-day drops the same day Microsoft releases record number of patches</a></div>
           </div>
         </div>
-        <p class="tldr">Nvidia and Microsoft announced a joint open AI security alliance aimed at developing shared standards, threat intelligence, and defenses against AI-specific attacks — including model extraction, prompt injection, and adversarial inputs. Notable absences include OpenAI, Google, and Meta.</p>
-        <p class="why">💡 Why it matters: A vendor-agnostic security framework could fill a critical gap in AI deployment safety, though the absence of major AI labs raises questions about adoption breadth and potential fragmentation.</p>
+        <p class="tldr">A Windows zero-day vulnerability dubbed "HiveLegacy" was publicly disclosed on the same day Microsoft shipped its largest-ever monthly Patch Tuesday update. Security researchers describe HiveLegacy as a "powerful primitive" capable of enabling a range of additional exploits.</p>
+        <p class="why">💡 Why it matters: The simultaneous patch-release and zero-day disclosure timing creates a narrow but dangerous window for attackers to exploit unpatched enterprise systems before IT teams can respond.</p>
         <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">Security</span><span class="tag">Cloud</span>
-          <a href="https://www.theverge.com/2026/7/27/nvidia-microsoft-launch-open-ai-security-alliance" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 27, 2026</span>
+          <span class="tag">Security</span>
+          <a class="read-link" href="https://arstechnica.com/security/2026/07/windows-0-day-drops-the-same-day-microsoft-releases-record-number-of-patches/" target="_blank" rel="noopener">Read full story →</a>
+          <span class="date">Jul 15, 2026</span>
         </div>
       </article>
 
       <!-- 15 -->
       <article class="story-card"
         data-source="Hacker News"
-        data-tags="AI,LLMs,Open Source"
-        data-search="Kimi K3 Releases on HuggingFace Hacker News AI LLMs Open Source moonshot kimi k3 chinese model release huggingface">
+        data-tags="AI,LLMs,Research,Open Source"
+        data-search="500 dollar RL fine-tune 9B open model beat frontier models catalog review reinforcement learning Hacker News AI LLMs Research Open Source">
         <div class="story-head">
           <div class="rank">15</div>
           <div>
             <div class="source">🟠 Hacker News</div>
-            <div class="title"><a href="https://huggingface.co/moonshotai/Kimi-K3" target="_blank" rel="noopener">Kimi K3 Releases on HuggingFace</a></div>
+            <div class="title"><a href="https://fermisense.com/when-machines-take-the-wheel/" target="_blank" rel="noopener">A $500 RL fine-tune of a 9B open model beat frontier models on catalog review</a></div>
           </div>
         </div>
-        <p class="tldr">Moonshot AI's Kimi K3, a large reasoning model competitive with top Western counterparts, was released publicly on HuggingFace on July 27. The release triggered significant discussion on Hacker News and contributed to a spike in Chinese chipmaker stock prices.</p>
-        <p class="why">💡 Why it matters: The public release of a competitive Chinese reasoning model raises the stakes in the global AI arms race and demonstrates that open-weight releases remain a powerful tool for international AI labs to gain visibility and influence.</p>
+        <p class="tldr">A team achieved state-of-the-art results on a real-world product catalog review task by spending just $500 on reinforcement learning fine-tuning of a 9-billion-parameter open model — outperforming much larger, more expensive frontier models. The result suggests that task-specific RL training can dramatically compress the cost-to-performance ratio.</p>
+        <p class="why">💡 Why it matters: Proving that a $500 fine-tune can outperform frontier models on a practical enterprise task reshapes assumptions about when to build vs. buy AI capabilities.</p>
         <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">LLMs</span><span class="tag">Open Source</span>
-          <a href="https://huggingface.co/moonshotai/Kimi-K3" target="_blank" rel="noopener">Read full story →</a>
-          <span class="date">Jul 27, 2026</span>
+          <span class="tag">AI</span><span class="tag">LLMs</span><span class="tag">Research</span><span class="tag">Open Source</span>
+          <a class="read-link" href="https://fermisense.com/when-machines-take-the-wheel/" target="_blank" rel="noopener">Read full story →</a>
+          <span class="date">Jul 28, 2026</span>
         </div>
       </article>
 
@@ -591,131 +607,131 @@
   </main>
 
   <footer>
-    Generated by <a href="https://github.github.com/gh-aw/" target="_blank" rel="noopener">GitHub Agentic Workflows</a>
-    &nbsp;·&nbsp; Source: <a href="https://github.com/elbruno/weekly-ai-news-digest" target="_blank" rel="noopener">elbruno/weekly-ai-news-digest</a>
-    &nbsp;·&nbsp; Deployed via GitHub Pages
+    <p>Generated by <a href="https://github.github.com/gh-aw/" target="_blank" rel="noopener">GitHub Agentic Workflows</a> &middot; Source: <a href="https://github.com/elbruno/weekly-ai-news-digest" target="_blank" rel="noopener">elbruno/weekly-ai-news-digest</a> &middot; Deployed via GitHub Pages</p>
   </footer>
 
   <script>
-    (function () {
-      var themeSelect = document.getElementById("themeSelect");
-      var searchInput = document.getElementById("searchInput");
-      var sourceFilters = document.getElementById("sourceFilters");
-      var labelFilters = document.getElementById("labelFilters");
-      var resultLine = document.getElementById("resultLine");
-      var cards = Array.prototype.slice.call(document.querySelectorAll(".story-card"));
-      var selectedSources = new Set();
-      var selectedTags = new Set();
+    // ── Theme ──────────────────────────────────────────────────────────────
+    const themeSelect = document.getElementById('themeSelect');
+    const html = document.documentElement;
+    const mq = window.matchMedia('(prefers-color-scheme: light)');
 
-      function systemTheme() {
-        return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    function applyTheme(val) {
+      if (val === 'system') {
+        html.setAttribute('data-theme', mq.matches ? 'light' : 'dark');
+      } else {
+        html.setAttribute('data-theme', val);
       }
+    }
+    const saved = localStorage.getItem('digest-theme') || 'system';
+    themeSelect.value = saved;
+    applyTheme(saved);
 
-      function applyTheme(mode) {
-        var resolved = mode === "system" ? systemTheme() : mode;
-        document.documentElement.setAttribute("data-theme", resolved);
-      }
+    themeSelect.addEventListener('change', () => {
+      localStorage.setItem('digest-theme', themeSelect.value);
+      applyTheme(themeSelect.value);
+    });
+    mq.addEventListener('change', () => {
+      if (themeSelect.value === 'system') applyTheme('system');
+    });
 
-      function loadTheme() {
-        var saved = localStorage.getItem("digest-theme") || "system";
-        themeSelect.value = saved;
-        applyTheme(saved);
-      }
+    // ── Data ───────────────────────────────────────────────────────────────
+    const SOURCES = ['GitHub Changelog', 'TechCrunch', 'Ars Technica', 'MIT Technology Review', 'Hacker News'];
+    const TAGS = ['AI', 'LLMs', 'Open Source', 'Security', 'Cloud', 'GitHub', 'Startups', 'Research', 'Tools', 'Policy'];
 
-      function collectTags() {
-        var all = new Set();
-        cards.forEach(function (card) {
-          (card.dataset.tags || "").split(",").map(function (t) { return t.trim(); }).filter(Boolean).forEach(function (t) { all.add(t); });
-        });
-        return Array.from(all).sort();
-      }
+    const cards = Array.from(document.querySelectorAll('.story-card'));
 
-      function isGitHubSource(source) {
-        return (source || "").toLowerCase().indexOf("github") !== -1;
-      }
+    // ── Source Filters (default: GitHub only) ─────────────────────────────
+    const activeSourceFilters = new Set(
+      JSON.parse(localStorage.getItem('digest-source-filters') || '["GitHub Changelog"]')
+    );
+    const sourceContainer = document.getElementById('sourceFilters');
 
-      function collectSources() {
-        var all = new Set();
-        cards.forEach(function (card) {
-          var s = (card.dataset.source || "").trim();
-          if (s) all.add(s);
-        });
-        return Array.from(all).sort();
-      }
+    SOURCES.forEach(src => {
+      const chip = document.createElement('button');
+      chip.className = 'chip' + (activeSourceFilters.has(src) ? ' active' : '');
+      chip.textContent = src;
+      chip.setAttribute('aria-pressed', activeSourceFilters.has(src));
+      chip.addEventListener('click', () => {
+        if (activeSourceFilters.has(src)) {
+          activeSourceFilters.delete(src);
+          chip.classList.remove('active');
+          chip.setAttribute('aria-pressed', 'false');
+        } else {
+          activeSourceFilters.add(src);
+          chip.classList.add('active');
+          chip.setAttribute('aria-pressed', 'true');
+        }
+        localStorage.setItem('digest-source-filters', JSON.stringify([...activeSourceFilters]));
+        filter();
+      });
+      sourceContainer.appendChild(chip);
+    });
 
-      function renderSourceFilters() {
-        var sources = collectSources();
-        // Default: only GitHub sources selected
-        var githubSources = sources.filter(isGitHubSource);
-        (githubSources.length > 0 ? githubSources : sources).forEach(function (s) { selectedSources.add(s); });
+    // ── Tag Filters ────────────────────────────────────────────────────────
+    const activeTagFilters = new Set(
+      JSON.parse(localStorage.getItem('digest-tag-filters') || '[]')
+    );
+    const tagContainer = document.getElementById('tagFilters');
 
-        sources.forEach(function (source) {
-          var btn = document.createElement("button");
-          btn.className = "chip" + (selectedSources.has(source) ? " active" : "");
-          btn.type = "button";
-          btn.textContent = source;
-          btn.dataset.source = source;
-          btn.addEventListener("click", function () {
-            if (selectedSources.has(source)) { selectedSources.delete(source); } else { selectedSources.add(source); }
-            btn.classList.toggle("active", selectedSources.has(source));
-            applyFilters();
-          });
-          sourceFilters.appendChild(btn);
-        });
-      }
+    TAGS.forEach(tag => {
+      const chip = document.createElement('button');
+      chip.className = 'chip' + (activeTagFilters.has(tag) ? ' active' : '');
+      chip.textContent = tag;
+      chip.setAttribute('aria-pressed', activeTagFilters.has(tag));
+      chip.addEventListener('click', () => {
+        if (activeTagFilters.has(tag)) {
+          activeTagFilters.delete(tag);
+          chip.classList.remove('active');
+          chip.setAttribute('aria-pressed', 'false');
+        } else {
+          activeTagFilters.add(tag);
+          chip.classList.add('active');
+          chip.setAttribute('aria-pressed', 'true');
+        }
+        localStorage.setItem('digest-tag-filters', JSON.stringify([...activeTagFilters]));
+        filter();
+      });
+      tagContainer.appendChild(chip);
+    });
 
-      function renderTagFilters() {
-        collectTags().forEach(function (tag) {
-          var btn = document.createElement("button");
-          btn.className = "chip";
-          btn.type = "button";
-          btn.textContent = tag;
-          btn.dataset.tag = tag;
-          btn.addEventListener("click", function () {
-            if (selectedTags.has(tag)) { selectedTags.delete(tag); } else { selectedTags.add(tag); }
-            btn.classList.toggle("active", selectedTags.has(tag));
-            applyFilters();
-          });
-          labelFilters.appendChild(btn);
-        });
-      }
+    // ── Search ─────────────────────────────────────────────────────────────
+    const searchInput = document.getElementById('searchInput');
+    const resultLine = document.getElementById('resultLine');
+    const savedQuery = localStorage.getItem('digest-search') || '';
+    searchInput.value = savedQuery;
 
-      function applyFilters() {
-        var query = (searchInput.value || "").trim().toLowerCase();
-        var visible = 0;
-        cards.forEach(function (card) {
-          var text = (card.dataset.search || "").toLowerCase();
-          var tags = (card.dataset.tags || "").split(",").map(function (t) { return t.trim(); }).filter(Boolean);
-          var source = (card.dataset.source || "").trim();
-          var matchesQuery = query === "" || text.indexOf(query) !== -1;
-          var matchesSource = selectedSources.size === 0 || selectedSources.has(source);
-          var matchesTags = selectedTags.size === 0 || Array.from(selectedTags).every(function (tag) { return tags.indexOf(tag) !== -1; });
-          var show = matchesQuery && matchesSource && matchesTags;
-          card.style.display = show ? "" : "none";
-          if (show) visible++;
-        });
-        resultLine.textContent = "Showing " + visible + " of " + cards.length + " stories";
-      }
+    searchInput.addEventListener('input', () => {
+      localStorage.setItem('digest-search', searchInput.value);
+      filter();
+    });
 
-      themeSelect.addEventListener("change", function () {
-        var value = themeSelect.value;
-        localStorage.setItem("digest-theme", value);
-        applyTheme(value);
+    // ── Filter Logic ───────────────────────────────────────────────────────
+    function filter() {
+      const query = searchInput.value.toLowerCase().trim();
+      let visible = 0;
+
+      cards.forEach(card => {
+        const cardSource = card.dataset.source;
+        const cardTags = card.dataset.tags.split(',');
+        const cardSearch = card.dataset.search.toLowerCase();
+
+        const sourceOk = activeSourceFilters.size === 0 || activeSourceFilters.has(cardSource);
+        const tagOk = activeTagFilters.size === 0 || cardTags.some(t => activeTagFilters.has(t));
+        const searchOk = !query || cardSearch.includes(query);
+
+        if (sourceOk && tagOk && searchOk) {
+          card.classList.remove('hidden');
+          visible++;
+        } else {
+          card.classList.add('hidden');
+        }
       });
 
-      if (window.matchMedia) {
-        window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () {
-          if ((localStorage.getItem("digest-theme") || "system") === "system") applyTheme("system");
-        });
-      }
+      resultLine.textContent = `Showing ${visible} of ${cards.length} stories`;
+    }
 
-      searchInput.addEventListener("input", applyFilters);
-
-      loadTheme();
-      renderSourceFilters();
-      renderTagFilters();
-      applyFilters();
-    })();
+    filter(); // initial run
   </script>
 </body>
 </html>
