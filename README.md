@@ -14,7 +14,7 @@
 
 **[View daily, weekly, and monthly AI Credit usage](https://elbruno.github.io/weekly-ai-news-digest/ai-credits.html)**
 
-A new digest is published every day. The project tracks the exact AI Credits used by every successful scheduled and manual run; the dashboard shows the resulting daily, ISO-weekly, and monthly totals. You can also trigger a run manually from [Actions](../../actions/workflows/weekly-news-digest.lock.yml).
+A new digest is published every day. The project retains the exact AI Credits used by every successful scheduled and manual run. For reporting, the dashboard selects one representative run per UTC day: the scheduled run when available, otherwise the latest successful manual run. You can also trigger a run manually from [Actions](../../actions/workflows/weekly-news-digest.lock.yml).
 
 ## How It Works
 
@@ -31,7 +31,7 @@ GitHub Agentic Workflows (daily)
 
 The agent has read-only repository permissions in a sandboxed container. It researches approved sources and prepares its output; a separate `safe_outputs` job creates the pull request after threat detection. The agent never writes directly to the repository.
 
-After auto-merge, a traditional GitHub Actions job reads the authoritative `gh aw audit` total, updates the digest's AI Credit stat, appends the run to `docs/data/ai-credits.json`, and deploys the exact finalized commit. This second job uses no AI. The [AI Credit dashboard](https://elbruno.github.io/weekly-ai-news-digest/ai-credits.html) groups every successful scheduled and manual run by UTC day, ISO week, and calendar month.
+After auto-merge, a traditional GitHub Actions job reads the authoritative `gh aw audit` total, updates the digest's AI Credit stat, appends the run to `docs/data/ai-credits.json`, and deploys the exact finalized commit. This second job uses no AI. The [AI Credit dashboard](https://elbruno.github.io/weekly-ai-news-digest/ai-credits.html) derives daily, ISO-weekly, and monthly totals from one representative run per UTC day.
 
 The merge, credit reconciliation, and Pages deployment jobs share one serialized workflow. Credit updates retry from the latest `main` branch when another writer wins the push race, and Pages deploys the exact reconciled commit rather than a moving branch tip.
 
@@ -55,7 +55,7 @@ The generated digest initially contains a stable pending-credit marker associate
 3. Replaces the published digest's pending marker only when its run ID matches the history record.
 4. Deploys that finalized commit to GitHub Pages.
 
-`scripts/update-ai-credit-usage.mjs` performs the validation and updates using only Node.js standard-library APIs. Scheduled and manually dispatched successful runs are both included; multiple runs on the same day are summed in the UTC period charts.
+`scripts/update-ai-credit-usage.mjs` performs the validation and updates using only Node.js standard-library APIs. The raw JSON retains scheduled and manually dispatched successful runs for auditing. Dashboard calculations prefer that day's scheduled run and otherwise use the latest successful manual run, preventing test reruns from inflating daily, weekly, or monthly totals.
 
 ### News Sources
 

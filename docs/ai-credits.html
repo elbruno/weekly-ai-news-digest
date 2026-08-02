@@ -98,7 +98,7 @@
   <header>
     <div class="container">
       <h1>AI Credit Usage</h1>
-      <p class="subtitle">Total workflow credits for every successful scheduled and manual digest run, grouped by UTC calendar periods. ISO weeks start on Monday.</p>
+      <p class="subtitle">One representative run per UTC day: the scheduled run when available, otherwise the latest successful manual run. ISO weeks start on Monday.</p>
       <div class="toolbar">
         <button type="button" data-period="daily" class="active">Daily</button>
         <button type="button" data-period="weekly">Weekly</button>
@@ -118,8 +118,8 @@
   <main class="container">
     <section class="summary" aria-label="Usage summary">
       <div class="card"><div class="metric-label">Selected total</div><div class="metric-value" id="total">-</div></div>
-      <div class="card"><div class="metric-label">Successful runs</div><div class="metric-value" id="runs">-</div></div>
-      <div class="card"><div class="metric-label">Average per run</div><div class="metric-value" id="average">-</div></div>
+      <div class="card"><div class="metric-label">Represented days</div><div class="metric-value" id="runs">-</div></div>
+      <div class="card"><div class="metric-label">Average per day</div><div class="metric-value" id="average">-</div></div>
     </section>
 
     <section class="card chart-card" aria-labelledby="chartTitle">
@@ -131,17 +131,18 @@
     <section class="card">
       <h2>Period details</h2>
       <table>
-        <thead><tr><th>UTC period</th><th>Runs</th><th>AI Credits</th></tr></thead>
+        <thead><tr><th>UTC period</th><th>Days</th><th>AI Credits</th></tr></thead>
         <tbody id="periodRows"></tbody>
       </table>
     </section>
   </main>
 
-  <footer><div class="container">Collected deterministically from GitHub Agentic Workflows audit data. No AI is used to build this page.</div></footer>
+  <footer><div class="container">The raw history retains every successful run. Dashboard totals select one representative run per UTC day. No AI is used to build this page.</div></footer>
 
+  <script src="./assets/ai-credit-utils.js"></script>
   <script>
     (function () {
-      var state = { runs: [], period: "daily" };
+      var state = { rawRuns: [], runs: [], period: "daily" };
       var formatter = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       var theme = document.getElementById("theme");
       var chart = document.getElementById("chart");
@@ -154,31 +155,6 @@
           resolved = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
         }
         document.documentElement.setAttribute("data-theme", resolved);
-      }
-
-      function isoDay(date) {
-        return date.toISOString().slice(0, 10);
-      }
-
-      function periodKey(timestamp, period) {
-        var date = new Date(timestamp);
-        if (period === "daily") return isoDay(date);
-        if (period === "monthly") return date.toISOString().slice(0, 7);
-        var monday = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
-        monday.setUTCDate(monday.getUTCDate() - ((monday.getUTCDay() + 6) % 7));
-        return isoDay(monday);
-      }
-
-      function aggregate(runs, period) {
-        var groups = new Map();
-        runs.forEach(function (run) {
-          var key = periodKey(run.timestamp, period);
-          var item = groups.get(key) || { key: key, runs: 0, aic: 0 };
-          item.runs += 1;
-          item.aic += Number(run.aic);
-          groups.set(key, item);
-        });
-        return Array.from(groups.values()).sort(function (a, b) { return a.key.localeCompare(b.key); });
       }
 
       function renderChart(data) {
@@ -221,9 +197,9 @@
           bar.setAttribute("rx", 3);
           bar.setAttribute("class", "bar");
           bar.setAttribute("tabindex", "0");
-          bar.setAttribute("aria-label", item.key + ": " + formatter.format(item.aic) + " AI Credits across " + item.runs + " run(s)");
+          bar.setAttribute("aria-label", item.key + ": " + formatter.format(item.aic) + " AI Credits across " + item.days + " represented day(s)");
           var title = document.createElementNS(namespace, "title");
-          title.textContent = item.key + ": " + formatter.format(item.aic) + " AI Credits across " + item.runs + " run(s)";
+          title.textContent = item.key + ": " + formatter.format(item.aic) + " AI Credits across " + item.days + " represented day(s)";
           bar.appendChild(title);
           chart.appendChild(bar);
 
@@ -241,14 +217,14 @@
       }
 
       function render() {
-        var data = aggregate(state.runs, state.period);
+        var data = AiCreditUsage.aggregate(state.runs, state.period);
         var total = state.runs.reduce(function (sum, run) { return sum + Number(run.aic); }, 0);
         document.getElementById("total").textContent = formatter.format(total);
         document.getElementById("runs").textContent = String(state.runs.length);
         document.getElementById("average").textContent = formatter.format(state.runs.length ? total / state.runs.length : 0);
         document.getElementById("chartTitle").textContent = state.period.charAt(0).toUpperCase() + state.period.slice(1) + " AI Credits";
         rows.innerHTML = data.slice().reverse().map(function (item) {
-          return "<tr><td>" + item.key + "</td><td>" + item.runs + "</td><td>" + formatter.format(item.aic) + "</td></tr>";
+          return "<tr><td>" + item.key + "</td><td>" + item.days + "</td><td>" + formatter.format(item.aic) + "</td></tr>";
         }).join("");
         renderChart(data);
       }
@@ -279,7 +255,8 @@
           if (history.schemaVersion !== 1 || !Array.isArray(history.runs)) {
             throw new Error("Unsupported history schema");
           }
-          state.runs = history.runs;
+          state.rawRuns = history.runs;
+          state.runs = AiCreditUsage.selectDailyRuns(history.runs);
           render();
         })
         .catch(function (error) {

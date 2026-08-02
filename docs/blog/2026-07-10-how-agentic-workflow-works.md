@@ -152,7 +152,7 @@ The generated page now shows the exact AI Credits used by the workflow run that 
 
 After auto-merge, a normal GitHub Actions job runs `gh aw audit`, stores the authoritative total in `docs/data/ai-credits.json`, replaces only the matching marker, and deploys the resulting commit. No model is called for this second stage.
 
-The same history powers a static [AI Credit usage dashboard](https://elbruno.github.io/weekly-ai-news-digest/ai-credits.html). Browser-native JavaScript groups every successful scheduled and manual run into UTC daily, ISO-weekly, and monthly totals. There is no charting service, external library, or AI-generated aggregation.
+The same history powers a static [AI Credit usage dashboard](https://elbruno.github.io/weekly-ai-news-digest/ai-credits.html). The raw data retains every successful run, but the charts select one representative run per UTC day: the scheduled run when available, otherwise the latest successful manual run. Browser-native JavaScript then groups those daily records into ISO-weekly and monthly totals. There is no charting service, external library, or AI-generated aggregation.
 
 This is the split I want: use the agent for research and editorial judgment, then use deterministic code for accounting, aggregation, and deployment.
 
