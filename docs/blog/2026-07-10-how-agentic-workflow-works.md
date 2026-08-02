@@ -50,10 +50,10 @@ GitHub Agentic Workflows use a Markdown-based definition: frontmatter describes 
 
 For this digest, the instructions are intentionally specific:
 
-* read seven approved RSS feeds;
+* read eight approved RSS feeds;
 * look back over the most recent 14 days;
-* select 15 useful stories;
-* include at least seven GitHub Changelog stories when available;
+* select up to 30 useful stories;
+* include at least 15 combined GitHub Changelog and Microsoft Developer stories when available;
 * cap the number of stories from every other source;
 * write a TL;DR and a “Why it matters” explanation for every selected story;
 * produce a separate five-item GitHub-only highlights section;
@@ -67,11 +67,12 @@ If I only write “find interesting AI news,” I get a very creative interpreta
 
 Not magic. Just better constraints.
 
-## From seven feeds to one readable page
+## From eight feeds to one readable page
 
 The workflow begins with a small set of sources:
 
 * GitHub Changelog
+* Microsoft Developer Changelog
 * TechCrunch AI
 * MIT Technology Review
 * Hacker News
@@ -85,7 +86,7 @@ The agent extracts the title, URL, source, publication date, and plain-text exce
 
 _Generated illustration. It represents the source-to-digest concept and is not a screenshot of the product._
 
-The curation rules deliberately make GitHub the default lens. At least seven of the 15 selected stories come from GitHub Changelog when that many are available. Other sources cannot dominate the page.
+The curation rules deliberately make GitHub and Microsoft developer updates the default lens. At least 15 of the selected stories come from GitHub Changelog and Microsoft Developer combined when that many qualifying entries are available. Other individual sources cannot dominate the page.
 
 That does not mean “ignore the rest of the industry.” It means that, when I open this page, I should quickly see the developer-platform changes that may affect my daily work.
 
@@ -100,10 +101,10 @@ It uses a GitHub-inspired dark theme, with system, light, and dark modes. It als
 * source filter chips;
 * tag filters;
 * full-text search across titles, sources, summaries, impact notes, and tags;
-* a live “Showing X of 15 stories” counter;
+* a live “Showing X of Y stories” counter based on the generated story count;
 * responsive cards for reading on a desktop or a phone.
 
-The source filter starts with GitHub-related sources selected.
+The source filter starts with GitHub Changelog and Microsoft Developer selected.
 
 Again, that is intentional. A visitor can expand the view, but the default answer to “what changed this week?” starts close to the tools many developers already use.
 
@@ -128,11 +129,12 @@ Agent (read-only, sandboxed)
   -> agent output artifact
   -> threat detection
   -> safe-outputs pull request
-  -> review / auto-merge rule
-  -> GitHub Pages deployment
+  -> serialized auto-merge
+  -> deterministic AI Credit audit and history update
+  -> exact-commit GitHub Pages deployment
 ```
 
-The workflow creates a pull request with the `digest` and `automated` labels. A separate automation can merge that trusted digest PR. GitHub Pages then serves the `docs/` folder from `main`.
+The workflow creates a pull request with the `digest` and `automated` labels. A separate traditional GitHub Actions job merges trusted digest pull requests, records the final AI Credit usage, and deploys the exact reconciled commit from `docs/`.
 
 This is a much better model than “an AI wrote directly to production.”
 
@@ -144,6 +146,16 @@ The agent is useful where it has an advantage: reading, comparing, summarizing, 
 
 That is how I want agentic automation to work: capable by default, but not casually omnipotent.
 
+## The AI work and deterministic work stay separate
+
+The generated page now shows the exact AI Credits used by the workflow run that produced it. That value cannot be known while the agent is still writing the digest, so the page first contains a pending marker tied to the current workflow run ID.
+
+After auto-merge, a normal GitHub Actions job runs `gh aw audit`, stores the authoritative total in `docs/data/ai-credits.json`, replaces only the matching marker, and deploys the resulting commit. No model is called for this second stage.
+
+The same history powers a static [AI Credit usage dashboard](https://elbruno.github.io/weekly-ai-news-digest/ai-credits.html). Browser-native JavaScript groups every successful scheduled and manual run into UTC daily, ISO-weekly, and monthly totals. There is no charting service, external library, or AI-generated aggregation.
+
+This is the split I want: use the agent for research and editorial judgment, then use deterministic code for accounting, aggregation, and deployment.
+
 ## Why use an agent instead of a normal script?
 
 Traditional scripts are still great.
@@ -152,7 +164,7 @@ If the task is “parse this XML,” “rename these files,” or “run these t
 
 But curation is different.
 
-Choosing the 15 stories that matter from a large group of feeds is not only filtering by date or keyword. It involves relevance, duplication, developer impact, and context. Writing a concise explanation of why a release matters also benefits from language and reasoning.
+Choosing up to 30 stories that matter from a large group of feeds is not only filtering by date or keyword. It involves relevance, duplication, developer impact, and context. Writing a concise explanation of why a release matters also benefits from language and reasoning.
 
 That is a reasonable place to use an agent.
 
@@ -173,8 +185,8 @@ You do not need an agent for every cron job. You need one when the workflow has 
 The most useful instructions were not the poetic ones. They were the measurable ones:
 
 * 14-day lookback;
-* 15 stories;
-* at least seven GitHub items;
+* up to 30 stories;
+* at least 15 combined GitHub Changelog and Microsoft Developer items when available;
 * at most four items from any other source;
 * exactly five GitHub-only top highlights;
 * specific fields for each card.
@@ -199,7 +211,7 @@ The digest is intentionally small, but there are many directions to explore:
 
 * better duplicate detection across syndications;
 * recurring-topic summaries;
-* a history page for comparing weeks;
+* richer historical comparisons beyond AI Credit usage;
 * optional user-selected source profiles;
 * richer visual explanations of the workflow;
 * screenshots that document the actual filtering and theme experience.

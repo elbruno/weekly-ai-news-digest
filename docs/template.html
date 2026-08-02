@@ -134,6 +134,12 @@
       font-size: 0.84rem;
     }
 
+    .credit-note {
+      color: var(--text-muted);
+      font-size: 0.84rem;
+      margin: -0.55rem 0 1.2rem;
+    }
+
     .tldr-summary {
       margin: 1rem 0 1.4rem;
       background: var(--bg-card);
@@ -336,10 +342,12 @@
   <main class="container">
     <section class="stats">
       <div class="stat">{{ story_count }} stories</div>
+      <!-- AI_CREDITS_START --><div class="stat" data-ai-credits-run-id="{{ workflow_run_id }}">AI Credits: <span data-ai-credits-value>Pending finalization</span> · <a href="./ai-credits.html">Usage history</a></div><!-- AI_CREDITS_END -->
       {% for source, count in sources.items() %}
       <div class="stat">{{ count }} from {{ source }}</div>
       {% endfor %}
     </section>
+    <p class="credit-note">AI Credit usage is tracked for every successful scheduled and manual digest run. <a href="./ai-credits.html">View daily, weekly, and monthly usage →</a></p>
 
     <section class="tldr-summary">
       <h2>TL;DR - GitHub highlights</h2>

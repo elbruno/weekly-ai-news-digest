@@ -6,6 +6,10 @@ on:
     types: [completed]
   workflow_dispatch:
 
+concurrency:
+  group: digest-publishing
+  cancel-in-progress: false
+
 jobs:
   auto-merge:
     name: Merge open digest PRs
@@ -53,7 +57,7 @@ jobs:
             git fetch origin main
 
             if ! git merge origin/main --no-ff --no-edit; then
-              # Digest PRs only modify docs/index.html; keep PR content when resolving.
+              # Keep the newly generated digest when resolving concurrent digest PRs.
               git checkout --ours docs/index.html
               git add docs/index.html
               git commit -m "Resolve digest merge conflict before auto-merge"
@@ -62,3 +66,136 @@ jobs:
             git push
             gh pr merge "${pr}" --repo "$REPO" --squash --delete-branch
           done
+
+  update-usage:
+    name: Update AI Credit history and pages
+    needs: auto-merge
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      actions: read
+      contents: write
+    outputs:
+      commit_sha: ${{ steps.reconcile.outputs.commit_sha }}
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up gh-aw
+        uses: github/gh-aw/actions/setup-cli@v0.81.6
+
+      - name: Reconcile AI Credit history and digest
+        id: reconcile
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+
+          audit_dir="${RUNNER_TEMP}/ai-credit-audits"
+          mkdir -p "$audit_dir"
+
+          mapfile -t run_ids < <(
+            gh run list \
+              --repo "$REPO" \
+              --workflow weekly-news-digest.lock.yml \
+              --status success \
+              --limit 1000 \
+              --json databaseId \
+              --jq 'reverse | .[].databaseId'
+          )
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          for attempt in 1 2 3; do
+            echo "Reconciliation attempt ${attempt}"
+            git fetch origin main
+            git switch -C ai-credit-update origin/main
+
+            for run_id in "${run_ids[@]}"; do
+              if jq -e --argjson run_id "$run_id" \
+                '.runs[]? | select(.runId == $run_id)' \
+                docs/data/ai-credits.json >/dev/null; then
+                continue
+              fi
+
+              audit_file="${audit_dir}/${run_id}.json"
+              if [[ ! -s "$audit_file" ]]; then
+                echo "Auditing digest run ${run_id}"
+                gh aw audit "$run_id" --json > "$audit_file"
+                rm -rf .github/aw/logs
+              fi
+
+              node scripts/update-ai-credit-usage.mjs \
+                --audit "$audit_file" \
+                --history docs/data/ai-credits.json
+            done
+
+            digest_run_id="$(
+              grep -oE 'data-ai-credits-run-id="[0-9]+"' docs/index.html \
+                | head -1 \
+                | grep -oE '[0-9]+'
+            )"
+
+            if [[ -z "$digest_run_id" ]]; then
+              echo "The published digest does not contain a numeric AI Credit run ID." >&2
+              exit 1
+            fi
+
+            node scripts/update-ai-credit-usage.mjs \
+              --run-id "$digest_run_id" \
+              --history docs/data/ai-credits.json \
+              --digest docs/index.html
+
+            if git diff --quiet -- docs/index.html docs/data/ai-credits.json; then
+              echo "AI Credit history is already current."
+              echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+
+            git add docs/index.html docs/data/ai-credits.json
+            git commit -m "chore: update AI Credit usage"
+            if git push origin HEAD:main; then
+              echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+
+            echo "Main changed during reconciliation; retrying from the latest commit."
+          done
+
+          echo "Unable to update AI Credit usage after 3 attempts." >&2
+          exit 1
+
+  deploy:
+    name: Deploy finalized GitHub Pages
+    needs: update-usage
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - name: Checkout finalized pages
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.update-usage.outputs.commit_sha }}
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./docs
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

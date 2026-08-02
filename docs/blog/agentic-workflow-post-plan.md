@@ -2,6 +2,8 @@
 
 Date: 2026-07-10
 
+Status: Published. The implementation has since expanded to eight feeds, up to 30 stories, GitHub and Microsoft Developer prioritization, deterministic AI Credit tracking, and exact-commit Pages deployment.
+
 ## Hired specialist agent (for this project workflow)
 
 **Agent name:** DigestOps Editor  
@@ -33,7 +35,7 @@ Produce an approval-ready draft for how the new Agentic Workflow works.
    - Daily run and 14-day lookback
    - Curation rules (GitHub-first + source caps)
    - UI behavior (theme, source/tag/search filters)
-   - Safety and delivery path (safe-outputs PR + merge + deploy)
+   - Safety and delivery path (safe-outputs PR + merge + deterministic credit reconciliation + exact-commit deploy)
    - Operational tips and troubleshooting
 3. Approval gate: your review comments on scope, tone, and depth.
 
@@ -81,10 +83,10 @@ Approval gate: final content sign-off from you.
 
 1. Introduction: what changed and why
 2. What is GitHub Agentic Workflows in this project
-3. Workflow anatomy (trigger, research, curate, generate, PR, deploy)
+3. Workflow anatomy (trigger, research, curate, generate, PR, credit reconciliation, deploy)
 4. Why GitHub is the default lens
 5. UX enhancements (TL;DR, source filter, labels, search, themes)
-6. Reliability and safety model
+6. Reliability, safety, and AI Credit accounting model
 7. Supporting visuals and product screenshots
 8. Closing notes
 

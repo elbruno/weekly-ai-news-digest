@@ -12,7 +12,9 @@
 
 **[Read the latest digest](https://elbruno.github.io/weekly-ai-news-digest)**
 
-A new digest is published every day. You can also trigger a run manually from [Actions](../../actions/workflows/weekly-news-digest.lock.yml).
+**[View daily, weekly, and monthly AI Credit usage](https://elbruno.github.io/weekly-ai-news-digest/ai-credits.html)**
+
+A new digest is published every day. The project tracks the exact AI Credits used by every successful scheduled and manual run; the dashboard shows the resulting daily, ISO-weekly, and monthly totals. You can also trigger a run manually from [Actions](../../actions/workflows/weekly-news-digest.lock.yml).
 
 ## How It Works
 
@@ -23,10 +25,15 @@ GitHub Agentic Workflows (daily)
   -> Write docs/index.html
   -> Create a scoped safe-outputs pull request
   -> Auto-merge the trusted digest PR
-  -> Deploy docs/ with GitHub Pages
+  -> Deterministically audit and record final AI Credit usage
+  -> Deploy the finalized docs/ with GitHub Pages
 ```
 
 The agent has read-only repository permissions in a sandboxed container. It researches approved sources and prepares its output; a separate `safe_outputs` job creates the pull request after threat detection. The agent never writes directly to the repository.
+
+After auto-merge, a traditional GitHub Actions job reads the authoritative `gh aw audit` total, updates the digest's AI Credit stat, appends the run to `docs/data/ai-credits.json`, and deploys the exact finalized commit. This second job uses no AI. The [AI Credit dashboard](https://elbruno.github.io/weekly-ai-news-digest/ai-credits.html) groups every successful scheduled and manual run by UTC day, ISO week, and calendar month.
+
+The merge, credit reconciliation, and Pages deployment jobs share one serialized workflow. Credit updates retry from the latest `main` branch when another writer wins the push race, and Pages deploys the exact reconciled commit rather than a moving branch tip.
 
 ## What the Digest Includes
 
@@ -36,6 +43,19 @@ The agent has read-only repository permissions in a sandboxed container. It rese
 - A GitHub-only TL;DR highlights section.
 - Concise summaries, developer impact notes, and Low/Medium/High importance indicators for every story.
 - Source, tag, and importance filters; rank/importance/date sorting; clear-all controls; full-text search; and a responsive dark, light, or system theme.
+- The exact AI Credits used by the workflow run that generated the published digest.
+- A no-AI usage dashboard with per-run history and UTC daily, ISO-weekly, and monthly totals.
+
+## AI Credit Tracking
+
+The generated digest initially contains a stable pending-credit marker associated with its GitHub Actions run ID. After the digest pull request is merged, the deterministic publishing job:
+
+1. Audits successful digest runs with `gh aw audit`.
+2. Upserts exact `metrics.aic` values into `docs/data/ai-credits.json`, keyed by run ID.
+3. Replaces the published digest's pending marker only when its run ID matches the history record.
+4. Deploys that finalized commit to GitHub Pages.
+
+`scripts/update-ai-credit-usage.mjs` performs the validation and updates using only Node.js standard-library APIs. Scheduled and manually dispatched successful runs are both included; multiple runs on the same day are summed in the UTC period charts.
 
 ### News Sources
 
@@ -58,12 +78,17 @@ weekly-ai-news-digest/
 │   ├── agents/agentic-workflows.md       # Agent instructions
 │   ├── workflows/weekly-news-digest.md   # Workflow prompt and frontmatter
 │   ├── workflows/weekly-news-digest.lock.yml # Compiled workflow
-│   └── workflows/auto-merge-digest.yml   # Trusted digest PR auto-merge
+│   └── workflows/auto-merge-digest.yml   # Merge, credit collector, and exact-SHA deploy
 ├── docs/
 │   ├── assets/                           # README media
 │   ├── blog/                             # Blog post, visuals, and screenshots
+│   ├── data/ai-credits.json              # Per-run AI Credit history
+│   ├── ai-credits.html                   # Daily/weekly/monthly usage dashboard
 │   ├── index.html                        # Generated digest site
 │   └── template.html                     # Reference design for the agent
+├── scripts/
+│   ├── update-ai-credit-usage.mjs        # Audit/history/page updater
+│   └── update-ai-credit-usage.test.mjs   # Deterministic updater tests
 └── README.md
 ```
 
@@ -77,6 +102,8 @@ gh aw compile .github/workflows/weekly-news-digest.md
 ```
 
 Commit both the Markdown definition and its updated `.lock.yml` file.
+
+If you change the AI Credit marker, data schema, or publishing flow, update `docs/template.html`, `scripts/update-ai-credit-usage.mjs`, and `.github/workflows/auto-merge-digest.yml` together.
 
 ## About the Author
 
