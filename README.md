@@ -18,8 +18,8 @@ A new digest is published every day. You can also trigger a run manually from [A
 
 ```text
 GitHub Agentic Workflows (daily)
-  -> Research seven RSS feeds from the last 14 days
-  -> Curate 15 developer-relevant stories
+  -> Research eight RSS feeds from the last 14 days
+  -> Deduplicate and curate up to 30 developer-relevant stories
   -> Write docs/index.html
   -> Create a scoped safe-outputs pull request
   -> Auto-merge the trusted digest PR
@@ -30,16 +30,19 @@ The agent has read-only repository permissions in a sandboxed container. It rese
 
 ## What the Digest Includes
 
-- A GitHub-first selection of AI and developer-platform news.
+- A GitHub and Microsoft Developer-priority selection of AI and developer-platform news.
+- At least 15 combined GitHub/Microsoft Developer stories when enough qualifying entries are available.
+- Cross-feed deduplication for stories republished by the unified Microsoft Developer feed.
 - A GitHub-only TL;DR highlights section.
-- Concise summaries and developer impact notes for every story.
-- Source and tag filters, full-text search, and a responsive dark, light, or system theme.
+- Concise summaries, developer impact notes, and Low/Medium/High importance indicators for every story.
+- Source, tag, and importance filters; rank/importance/date sorting; clear-all controls; full-text search; and a responsive dark, light, or system theme.
 
 ### News Sources
 
 | Source | Feed |
 | --- | --- |
 | GitHub Changelog | `github.blog/changelog/feed/` |
+| Microsoft Developer Changelog | `developer.microsoft.com/api/changelog/rss` |
 | TechCrunch AI | `techcrunch.com/category/artificial-intelligence/feed/` |
 | MIT Technology Review | `technologyreview.com/feed/` |
 | Hacker News | `hnrss.org/frontpage` |

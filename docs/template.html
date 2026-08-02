@@ -22,6 +22,9 @@
       --tag-bg: #21262d;
       --tag-active: #1f6feb;
       --tag-active-text: #ffffff;
+      --importance-low: #3fb950;
+      --importance-medium: #d29922;
+      --importance-high: #f85149;
       --max-w: 960px;
       --radius: 12px;
     }
@@ -37,6 +40,9 @@
       --tag-bg: #f6f8fa;
       --tag-active: #0969da;
       --tag-active-text: #ffffff;
+      --importance-low: #1a7f37;
+      --importance-medium: #9a6700;
+      --importance-high: #cf222e;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -81,6 +87,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.75rem;
+      align-items: center;
       margin: 1.25rem 0 0.5rem;
     }
 
@@ -99,6 +106,17 @@
       outline: none;
       min-width: 180px;
     }
+
+    .clear-button {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      cursor: pointer;
+      padding: 0.65rem 0.8rem;
+    }
+
+    .clear-button:hover { border-color: var(--accent); }
 
     .stats {
       display: flex;
@@ -128,11 +146,21 @@
     .tldr-summary ul { padding-left: 1rem; color: var(--text-muted); }
     .tldr-summary li + li { margin-top: 0.28rem; }
 
+    .filter-section { margin: 0.8rem 0; }
+    .filter-label {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.35rem;
+      text-transform: uppercase;
+    }
+
     .filter-labels {
       display: flex;
       flex-wrap: wrap;
       gap: 0.45rem;
-      margin: 0.8rem 0 1rem;
+      margin-bottom: 0.8rem;
     }
 
     .chip {
@@ -153,6 +181,7 @@
       color: var(--tag-active-text);
     }
 
+    .active-filters { color: var(--text-muted); font-size: 0.8rem; margin: 0.25rem 0; }
     .result-line { color: var(--text-muted); font-size: 0.85rem; margin: 0.3rem 0 0.9rem; }
 
     .story-list { display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 2rem; }
@@ -186,7 +215,54 @@
       flex-shrink: 0;
     }
 
+    .story-meta-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      align-items: center;
+      margin-bottom: 0.12rem;
+    }
+
     .source { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 600; }
+
+    .importance {
+      align-items: center;
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      display: inline-flex;
+      font-size: 0.68rem;
+      font-weight: 700;
+      gap: 0.3rem;
+      line-height: 1;
+      padding: 0.18rem 0.45rem;
+      text-transform: uppercase;
+    }
+
+    .importance-low { color: var(--importance-low); }
+    .importance-medium { color: var(--importance-medium); }
+    .importance-high { color: var(--importance-high); }
+
+    .importance-bars {
+      align-items: flex-end;
+      display: inline-flex;
+      gap: 2px;
+      height: 0.75rem;
+    }
+
+    .importance-bars span {
+      background: currentColor;
+      display: block;
+      opacity: 0.22;
+      width: 3px;
+    }
+
+    .importance-bars span:nth-child(1) { height: 35%; }
+    .importance-bars span:nth-child(2) { height: 65%; }
+    .importance-bars span:nth-child(3) { height: 100%; }
+    .importance-low .importance-bars span:nth-child(1),
+    .importance-medium .importance-bars span:nth-child(-n+2),
+    .importance-high .importance-bars span { opacity: 1; }
+
     .title { color: var(--text); font-size: 1.02rem; font-weight: 600; line-height: 1.35; }
     .tldr { color: var(--text-muted); margin: 0.55rem 0; }
     .why { border-left: 3px solid var(--accent); padding-left: 0.6rem; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.65rem; }
@@ -220,6 +296,7 @@
     @media (max-width: 700px) {
       h1 { font-size: 1.5rem; }
       .control input, .control select { min-width: 130px; }
+      .clear-button { width: 100%; }
       .date { margin-left: 0; }
     }
   </style>
@@ -240,8 +317,18 @@
           </select>
         </label>
         <label class="control">Search:
-          <input id="searchInput" type="search" placeholder="keyword, source, tag..." />
+          <input id="searchInput" type="search" placeholder="keyword, source, tag..." aria-label="Search stories" />
         </label>
+        <label class="control">Sort:
+          <select id="sortSelect" aria-label="Sort stories">
+            <option value="rank">Curated rank</option>
+            <option value="importance-desc">Importance: high to low</option>
+            <option value="importance-asc">Importance: low to high</option>
+            <option value="newest">Newest first</option>
+            <option value="oldest">Oldest first</option>
+          </select>
+        </label>
+        <button class="clear-button" id="clearFilters" type="button">Clear all</button>
       </div>
     </div>
   </header>
@@ -265,22 +352,38 @@
       </ul>
     </section>
 
-    <section class="filter-labels" id="sourceFilters"></section>
-    <section class="filter-labels" id="labelFilters"></section>
+    <section class="filter-section" aria-label="Story filters">
+      <div class="filter-label">Filter by source</div>
+      <div class="filter-labels" id="sourceFilters"></div>
+      <div class="filter-label">Filter by importance</div>
+      <div class="filter-labels" id="importanceFilters"></div>
+      <div class="filter-label">Filter by tag</div>
+      <div class="filter-labels" id="labelFilters"></div>
+    </section>
+    <p class="active-filters" id="activeFilters" aria-live="polite"></p>
     <p class="result-line" id="resultLine"></p>
 
     <section class="story-list" id="storyList">
       {% for story in stories %}
       <article
         class="story-card"
+        data-rank="{{ loop.index }}"
+        data-published="{{ story.published.strftime('%Y-%m-%d') }}"
         data-tags="{{ story.tags | join(',') }}"
         data-source="{{ story.source }}"
-        data-search="{{ story.title }} {{ story.source }} {{ story.tldr }} {{ story.why_it_matters }} {{ story.tags | join(' ') }}"
+        data-importance="{{ story.importance }}"
+        data-search="{{ story.title }} {{ story.source }} {{ story.importance }} {{ story.tldr }} {{ story.why_it_matters }} {{ story.tags | join(' ') }}"
       >
         <div class="story-head">
           <div class="rank">{{ loop.index }}</div>
           <div>
-            <div class="source">{{ story.icon }} {{ story.source }}</div>
+            <div class="story-meta-line">
+              <div class="source">{{ story.icon }} {{ story.source }}</div>
+              <div class="importance importance-{{ story.importance | lower }}" aria-label="{{ story.importance }} importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>{{ story.importance }}</span>
+              </div>
+            </div>
             <div class="title"><a href="{{ story.url }}" target="_blank" rel="noopener">{{ story.title }}</a></div>
           </div>
         </div>
@@ -308,12 +411,19 @@
     (function () {
       var themeSelect = document.getElementById("themeSelect");
       var searchInput = document.getElementById("searchInput");
+      var sortSelect = document.getElementById("sortSelect");
+      var clearFilters = document.getElementById("clearFilters");
       var sourceFilters = document.getElementById("sourceFilters");
+      var importanceFilters = document.getElementById("importanceFilters");
       var labelFilters = document.getElementById("labelFilters");
+      var activeFilters = document.getElementById("activeFilters");
       var resultLine = document.getElementById("resultLine");
+      var storyList = document.getElementById("storyList");
       var cards = Array.prototype.slice.call(document.querySelectorAll(".story-card"));
       var selectedSources = new Set();
       var selectedTags = new Set();
+      var selectedImportance = new Set();
+      var importanceOrder = { Low: 1, Medium: 2, High: 3 };
 
       function systemTheme() {
         return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
@@ -330,35 +440,44 @@
         applyTheme(saved);
       }
 
-      function collectTags() {
+      function collectValues(attribute) {
         var all = new Set();
         cards.forEach(function (card) {
-          (card.dataset.tags || "").split(",").map(function (t) { return t.trim(); }).filter(Boolean).forEach(function (t) { all.add(t); });
+          (card.dataset[attribute] || "").split(",").map(function (value) {
+            return value.trim();
+          }).filter(Boolean).forEach(function (value) {
+            all.add(value);
+          });
         });
         return Array.from(all).sort();
       }
 
-      function isGitHubSource(source) {
-        return (source || "").toLowerCase().indexOf("github") !== -1;
+      function isPrioritySource(source) {
+        var value = (source || "").toLowerCase();
+        return value.indexOf("github") !== -1 || value.indexOf("microsoft developer") !== -1;
       }
 
       function collectSources() {
-        var all = new Set();
-        cards.forEach(function (card) {
-          var source = (card.dataset.source || "").trim();
-          if (source) all.add(source);
+        return collectValues("source");
+      }
+
+      function setChipState(button, active) {
+        button.classList.toggle("active", active);
+        button.setAttribute("aria-pressed", active ? "true" : "false");
+      }
+
+      function resetSourceSelection() {
+        var sources = collectSources();
+        var prioritySources = sources.filter(isPrioritySource);
+        selectedSources.clear();
+        (prioritySources.length > 0 ? prioritySources : sources).forEach(function (source) {
+          selectedSources.add(source);
         });
-        return Array.from(all).sort();
       }
 
       function renderSourceFilters() {
         var sources = collectSources();
-        var githubSources = sources.filter(isGitHubSource);
-        if (githubSources.length > 0) {
-          githubSources.forEach(function (source) { selectedSources.add(source); });
-        } else {
-          sources.forEach(function (source) { selectedSources.add(source); });
-        }
+        resetSourceSelection();
 
         sources.forEach(function (source) {
           var btn = document.createElement("button");
@@ -366,10 +485,10 @@
           btn.type = "button";
           btn.textContent = source;
           btn.dataset.source = source;
-          if (selectedSources.has(source)) btn.classList.add("active");
+          setChipState(btn, selectedSources.has(source));
           btn.addEventListener("click", function () {
             if (selectedSources.has(source)) selectedSources.delete(source); else selectedSources.add(source);
-            btn.classList.toggle("active", selectedSources.has(source));
+            setChipState(btn, selectedSources.has(source));
             applyFilters();
           });
           sourceFilters.appendChild(btn);
@@ -377,39 +496,109 @@
       }
 
       function renderTagFilters() {
-        collectTags().forEach(function (tag) {
+        collectValues("tags").forEach(function (tag) {
           var btn = document.createElement("button");
           btn.className = "chip";
           btn.type = "button";
           btn.textContent = tag;
           btn.dataset.tag = tag;
+          setChipState(btn, false);
           btn.addEventListener("click", function () {
             if (selectedTags.has(tag)) selectedTags.delete(tag); else selectedTags.add(tag);
-            btn.classList.toggle("active", selectedTags.has(tag));
+            setChipState(btn, selectedTags.has(tag));
             applyFilters();
           });
           labelFilters.appendChild(btn);
         });
       }
 
+      function renderImportanceFilters() {
+        ["Low", "Medium", "High"].forEach(function (importance) {
+          var btn = document.createElement("button");
+          btn.className = "chip";
+          btn.type = "button";
+          btn.textContent = importance;
+          btn.dataset.importance = importance;
+          setChipState(btn, false);
+          btn.addEventListener("click", function () {
+            if (selectedImportance.has(importance)) selectedImportance.delete(importance); else selectedImportance.add(importance);
+            setChipState(btn, selectedImportance.has(importance));
+            applyFilters();
+          });
+          importanceFilters.appendChild(btn);
+        });
+      }
+
+      function sortCards() {
+        var mode = sortSelect.value;
+        cards.sort(function (a, b) {
+          var rankA = Number(a.dataset.rank || 0);
+          var rankB = Number(b.dataset.rank || 0);
+          var importanceA = importanceOrder[a.dataset.importance] || 0;
+          var importanceB = importanceOrder[b.dataset.importance] || 0;
+          var dateA = Date.parse(a.dataset.published || "") || 0;
+          var dateB = Date.parse(b.dataset.published || "") || 0;
+
+          if (mode === "importance-desc") return (importanceB - importanceA) || (rankA - rankB);
+          if (mode === "importance-asc") return (importanceA - importanceB) || (rankA - rankB);
+          if (mode === "newest") return (dateB - dateA) || (rankA - rankB);
+          if (mode === "oldest") return (dateA - dateB) || (rankA - rankB);
+          return rankA - rankB;
+        });
+        cards.forEach(function (card) { storyList.appendChild(card); });
+      }
+
+      function updateActiveFilters(query) {
+        var details = [];
+        details.push("Sources: " + (selectedSources.size ? Array.from(selectedSources).join(", ") : "All"));
+        if (selectedImportance.size) details.push("Importance: " + Array.from(selectedImportance).join(", "));
+        if (selectedTags.size) details.push("Tags: " + Array.from(selectedTags).join(", "));
+        if (query) details.push('Search: "' + query + '"');
+        if (sortSelect.value !== "rank") details.push("Sort: " + sortSelect.options[sortSelect.selectedIndex].text);
+        activeFilters.textContent = "Active filters - " + details.join(" | ");
+      }
+
       function applyFilters() {
-        var query = (searchInput.value || "").trim().toLowerCase();
+        var rawQuery = (searchInput.value || "").trim();
+        var query = rawQuery.toLowerCase();
         var visible = 0;
+        sortCards();
 
         cards.forEach(function (card) {
           var text = (card.dataset.search || "").toLowerCase();
           var tags = (card.dataset.tags || "").split(",").map(function (t) { return t.trim(); }).filter(Boolean);
           var source = (card.dataset.source || "").trim();
+          var importance = (card.dataset.importance || "").trim();
 
           var matchesQuery = query === "" || text.indexOf(query) !== -1;
           var matchesSource = selectedSources.size === 0 || selectedSources.has(source);
           var matchesTags = selectedTags.size === 0 || Array.from(selectedTags).every(function (tag) { return tags.indexOf(tag) !== -1; });
-          var show = matchesQuery && matchesSource && matchesTags;
+          var matchesImportance = selectedImportance.size === 0 || selectedImportance.has(importance);
+          var show = matchesQuery && matchesSource && matchesTags && matchesImportance;
           card.style.display = show ? "" : "none";
           if (show) visible += 1;
         });
 
         resultLine.textContent = "Showing " + visible + " of " + cards.length + " stories";
+        updateActiveFilters(rawQuery);
+      }
+
+      function resetFilters() {
+        searchInput.value = "";
+        sortSelect.value = "rank";
+        selectedTags.clear();
+        selectedImportance.clear();
+        selectedSources.clear();
+        Array.prototype.forEach.call(sourceFilters.querySelectorAll(".chip"), function (button) {
+          setChipState(button, false);
+        });
+        Array.prototype.forEach.call(labelFilters.querySelectorAll(".chip"), function (button) {
+          setChipState(button, false);
+        });
+        Array.prototype.forEach.call(importanceFilters.querySelectorAll(".chip"), function (button) {
+          setChipState(button, false);
+        });
+        applyFilters();
       }
 
       themeSelect.addEventListener("change", function () {
@@ -426,9 +615,12 @@
       }
 
       searchInput.addEventListener("input", applyFilters);
+      sortSelect.addEventListener("change", applyFilters);
+      clearFilters.addEventListener("click", resetFilters);
 
       loadTheme();
       renderSourceFilters();
+      renderImportanceFilters();
       renderTagFilters();
       applyFilters();
     })();
