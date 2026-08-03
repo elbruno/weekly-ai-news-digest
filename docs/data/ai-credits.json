@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-02T17:41:15.066Z",
+  "updatedAt": "2026-08-03T13:02:57.118Z",
   "runs": [
     {
       "runId": 29093928571,
@@ -246,6 +246,13 @@
       "event": "workflow_dispatch",
       "aic": 124.58013000000001,
       "url": "https://github.com/elbruno/weekly-ai-news-digest/actions/runs/30757289029"
+    },
+    {
+      "runId": 30815190890,
+      "timestamp": "2026-08-03T13:01:34Z",
+      "event": "schedule",
+      "aic": 85.55983499999999,
+      "url": "https://github.com/elbruno/weekly-ai-news-digest/actions/runs/30815190890"
     }
   ]
 }
