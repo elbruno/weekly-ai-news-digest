@@ -508,7 +508,7 @@
           if (!date || !date.dataset.date) return;
           var parsed = new Date(date.dataset.date + "T00:00:00Z");
           if (Number.isNaN(parsed.getTime())) return;
-          date.textContent = parsed.toLocaleDateString(lang, { month: "short", day: "numeric", timeZone: "UTC" });
+          date.textContent = parsed.toLocaleDateString(lang === "es" ? "es-ES" : "en-US", { month: "short", day: "numeric", timeZone: "UTC" });
         });
       }
 
@@ -517,7 +517,8 @@
         document.documentElement.setAttribute("data-content-lang", lang);
         searchInput.placeholder = ui[lang].searchPlaceholder;
         Array.prototype.forEach.call(sortSelect.options, function (option) {
-          option.textContent = option.dataset["label" + (lang === "es" ? "Es" : "En")];
+          var label = option.dataset["label" + (lang === "es" ? "Es" : "En")];
+          if (label) option.textContent = label;
         });
         updateDateLabels(lang);
         applyFilters();
