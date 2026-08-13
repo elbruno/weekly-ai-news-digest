@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-content-lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -189,6 +189,11 @@
 
     .active-filters { color: var(--text-muted); font-size: 0.8rem; margin: 0.25rem 0; }
     .result-line { color: var(--text-muted); font-size: 0.85rem; margin: 0.3rem 0 0.9rem; }
+    .lang-text { display: none; }
+    html[data-content-lang="en"] .lang-text[data-lang="en"],
+    html[data-content-lang="es"] .lang-text[data-lang="es"] { display: inline; }
+    html[data-content-lang="en"] .lang-block[data-lang="en"],
+    html[data-content-lang="es"] .lang-block[data-lang="es"] { display: block; }
 
     .story-list { display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 2rem; }
 
@@ -311,61 +316,87 @@
   <header>
     <div class="container">
       <div class="badge">Weekly Digest</div>
-      <h1>{{ title }}</h1>
-      <p class="meta">{{ week_label }} - {{ story_count }} stories - last {{ days_back }} days</p>
+      <h1>
+        <span class="lang-text" data-lang="en">{{ title_en }}</span>
+        <span class="lang-text" data-lang="es">{{ title_es }}</span>
+      </h1>
+      <p class="meta">
+        <span class="lang-text" data-lang="en">{{ week_label }} - {{ story_count }} stories - last {{ days_back }} days</span>
+        <span class="lang-text" data-lang="es">{{ week_label }} - {{ story_count }} noticias - últimos {{ days_back }} días</span>
+      </p>
 
       <div class="top-bar">
-        <label class="control">Theme:
+        <label class="control"><span class="lang-text" data-lang="en">Language:</span><span class="lang-text" data-lang="es">Idioma:</span>
+          <select id="languageSelect" aria-label="Select language">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+          </select>
+        </label>
+        <label class="control"><span class="lang-text" data-lang="en">Theme:</span><span class="lang-text" data-lang="es">Tema:</span>
           <select id="themeSelect" aria-label="Select theme">
             <option value="system">System</option>
             <option value="light">Light</option>
             <option value="dark">Dark</option>
           </select>
         </label>
-        <label class="control">Search:
+        <label class="control"><span class="lang-text" data-lang="en">Search:</span><span class="lang-text" data-lang="es">Buscar:</span>
           <input id="searchInput" type="search" placeholder="keyword, source, tag..." aria-label="Search stories" />
         </label>
-        <label class="control">Sort:
+        <label class="control"><span class="lang-text" data-lang="en">Sort:</span><span class="lang-text" data-lang="es">Ordenar:</span>
           <select id="sortSelect" aria-label="Sort stories">
-            <option value="rank">Curated rank</option>
-            <option value="importance-desc">Importance: high to low</option>
-            <option value="importance-asc">Importance: low to high</option>
-            <option value="newest">Newest first</option>
-            <option value="oldest">Oldest first</option>
+            <option value="rank" data-label-en="Curated rank" data-label-es="Orden curado">Curated rank</option>
+            <option value="importance-desc" data-label-en="Importance: high to low" data-label-es="Importancia: alta a baja">Importance: high to low</option>
+            <option value="importance-asc" data-label-en="Importance: low to high" data-label-es="Importancia: baja a alta">Importance: low to high</option>
+            <option value="newest" data-label-en="Newest first" data-label-es="Más recientes primero">Newest first</option>
+            <option value="oldest" data-label-en="Oldest first" data-label-es="Más antiguas primero">Oldest first</option>
           </select>
         </label>
-        <button class="clear-button" id="clearFilters" type="button">Clear all</button>
+        <button class="clear-button" id="clearFilters" type="button"><span class="lang-text" data-lang="en">Clear all</span><span class="lang-text" data-lang="es">Limpiar todo</span></button>
       </div>
     </div>
   </header>
 
   <main class="container">
     <section class="stats">
-      <div class="stat">{{ story_count }} stories</div>
-      <!-- AI_CREDITS_START --><div class="stat" data-ai-credits-run-id="{{ workflow_run_id }}">AI Credits: <span data-ai-credits-value>Pending finalization</span> · <a href="./ai-credits.html">Usage history</a></div><!-- AI_CREDITS_END -->
+      <div class="stat"><span class="lang-text" data-lang="en">{{ story_count }} stories</span><span class="lang-text" data-lang="es">{{ story_count }} noticias</span></div>
+      <!-- AI_CREDITS_START --><div class="stat" data-ai-credits-run-id="{{ workflow_run_id }}">AI Credits: <span data-ai-credits-value>Pending finalization</span> · <a href="./ai-credits.html"><span class="lang-text" data-lang="en">Usage history</span><span class="lang-text" data-lang="es">Historial de uso</span></a></div><!-- AI_CREDITS_END -->
       {% for source, count in sources.items() %}
-      <div class="stat">{{ count }} from {{ source }}</div>
+      <div class="stat"><span class="lang-text" data-lang="en">{{ count }} from {{ source }}</span><span class="lang-text" data-lang="es">{{ count }} de {{ source }}</span></div>
       {% endfor %}
     </section>
-    <p class="credit-note">AI Credit usage is tracked for every successful scheduled and manual digest run. <a href="./ai-credits.html">View daily, weekly, and monthly usage →</a></p>
+    <p class="credit-note">
+      <span class="lang-text" data-lang="en">AI Credit usage is tracked for every successful scheduled and manual digest run. <a href="./ai-credits.html">View daily, weekly, and monthly usage →</a></span>
+      <span class="lang-text" data-lang="es">El uso de AI Credits se registra en cada ejecución programada y manual completada correctamente. <a href="./ai-credits.html">Ver uso diario, semanal y mensual →</a></span>
+    </p>
 
     <section class="tldr-summary">
-      <h2>TL;DR - GitHub highlights</h2>
+      <h2><span class="lang-text" data-lang="en">TL;DR - Top takeaways</span><span class="lang-text" data-lang="es">TL;DR - Resumen principal</span></h2>
       <ul>
-        <li>{{ top_tldr_1 }}</li>
-        <li>{{ top_tldr_2 }}</li>
-        <li>{{ top_tldr_3 }}</li>
-        <li>{{ top_tldr_4 }}</li>
-        <li>{{ top_tldr_5 }}</li>
+        <li><span class="lang-text" data-lang="en">{{ top_takeaway_1_en }}</span><span class="lang-text" data-lang="es">{{ top_takeaway_1_es }}</span></li>
+        <li><span class="lang-text" data-lang="en">{{ top_takeaway_2_en }}</span><span class="lang-text" data-lang="es">{{ top_takeaway_2_es }}</span></li>
+        <li><span class="lang-text" data-lang="en">{{ top_takeaway_3_en }}</span><span class="lang-text" data-lang="es">{{ top_takeaway_3_es }}</span></li>
+        <li><span class="lang-text" data-lang="en">{{ top_takeaway_4_en }}</span><span class="lang-text" data-lang="es">{{ top_takeaway_4_es }}</span></li>
+        <li><span class="lang-text" data-lang="en">{{ top_takeaway_5_en }}</span><span class="lang-text" data-lang="es">{{ top_takeaway_5_es }}</span></li>
+      </ul>
+    </section>
+
+    <section class="tldr-summary">
+      <h2><span class="lang-text" data-lang="en">TL;DR - GitHub highlights</span><span class="lang-text" data-lang="es">TL;DR - Destacados de GitHub</span></h2>
+      <ul>
+        <li><span class="lang-text" data-lang="en">{{ github_highlight_1_en }}</span><span class="lang-text" data-lang="es">{{ github_highlight_1_es }}</span></li>
+        <li><span class="lang-text" data-lang="en">{{ github_highlight_2_en }}</span><span class="lang-text" data-lang="es">{{ github_highlight_2_es }}</span></li>
+        <li><span class="lang-text" data-lang="en">{{ github_highlight_3_en }}</span><span class="lang-text" data-lang="es">{{ github_highlight_3_es }}</span></li>
+        <li><span class="lang-text" data-lang="en">{{ github_highlight_4_en }}</span><span class="lang-text" data-lang="es">{{ github_highlight_4_es }}</span></li>
+        <li><span class="lang-text" data-lang="en">{{ github_highlight_5_en }}</span><span class="lang-text" data-lang="es">{{ github_highlight_5_es }}</span></li>
       </ul>
     </section>
 
     <section class="filter-section" aria-label="Story filters">
-      <div class="filter-label">Filter by source</div>
+      <div class="filter-label"><span class="lang-text" data-lang="en">Filter by source</span><span class="lang-text" data-lang="es">Filtrar por fuente</span></div>
       <div class="filter-labels" id="sourceFilters"></div>
-      <div class="filter-label">Filter by importance</div>
+      <div class="filter-label"><span class="lang-text" data-lang="en">Filter by importance</span><span class="lang-text" data-lang="es">Filtrar por importancia</span></div>
       <div class="filter-labels" id="importanceFilters"></div>
-      <div class="filter-label">Filter by tag</div>
+      <div class="filter-label"><span class="lang-text" data-lang="en">Filter by tag</span><span class="lang-text" data-lang="es">Filtrar por etiqueta</span></div>
       <div class="filter-labels" id="labelFilters"></div>
     </section>
     <p class="active-filters" id="activeFilters" aria-live="polite"></p>
@@ -380,7 +411,7 @@
         data-tags="{{ story.tags | join(',') }}"
         data-source="{{ story.source }}"
         data-importance="{{ story.importance }}"
-        data-search="{{ story.title }} {{ story.source }} {{ story.importance }} {{ story.tldr }} {{ story.why_it_matters }} {{ story.tags | join(' ') }}"
+        data-search="{{ story.title_en }} {{ story.title_es }} {{ story.source }} {{ story.importance }} {{ story.tldr_en }} {{ story.tldr_es }} {{ story.why_it_matters_en }} {{ story.why_it_matters_es }} {{ story.tags | join(' ') }}"
       >
         <div class="story-head">
           <div class="rank">{{ loop.index }}</div>
@@ -392,17 +423,20 @@
                 <span>{{ story.importance }}</span>
               </div>
             </div>
-            <div class="title"><a href="{{ story.url }}" target="_blank" rel="noopener">{{ story.title }}</a></div>
+            <div class="title"><a href="{{ story.url }}" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">{{ story.title_en }}</span><span class="lang-text" data-lang="es">{{ story.title_es }}</span></a></div>
           </div>
         </div>
-        <p class="tldr">{{ story.tldr }}</p>
-        <p class="why">Why it matters: {{ story.why_it_matters }}</p>
+        <p class="tldr"><span class="lang-text" data-lang="en">{{ story.tldr_en }}</span><span class="lang-text" data-lang="es">{{ story.tldr_es }}</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: {{ story.why_it_matters_en }}</span>
+          <span class="lang-text" data-lang="es">Por qué importa: {{ story.why_it_matters_es }}</span>
+        </p>
         <div class="story-footer">
           {% for tag in story.tags %}
           <span class="tag">{{ tag }}</span>
           {% endfor %}
-          <a href="{{ story.url }}" target="_blank" rel="noopener">Read full story -></a>
-          <span class="date">{{ story.published.strftime('%b %d') }}</span>
+          <a href="{{ story.url }}" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="{{ story.published.strftime('%Y-%m-%d') }}">{{ story.published.strftime('%b %d') }}</span>
         </div>
       </article>
       {% endfor %}
@@ -410,13 +444,16 @@
   </main>
 
   <footer>
-    Generated by <a href="https://github.github.com/gh-aw/" target="_blank" rel="noopener">GitHub Agentic Workflows</a>
-    · Source: <a href="https://github.com/elbruno/weekly-ai-news-digest" target="_blank" rel="noopener">elbruno/weekly-ai-news-digest</a>
-    · Deployed via GitHub Pages
+    <span class="lang-text" data-lang="en">Generated by</span><span class="lang-text" data-lang="es">Generado por</span>
+    <a href="https://github.github.com/gh-aw/" target="_blank" rel="noopener">GitHub Agentic Workflows</a>
+    · <span class="lang-text" data-lang="en">Source:</span><span class="lang-text" data-lang="es">Código fuente:</span>
+    <a href="https://github.com/elbruno/weekly-ai-news-digest" target="_blank" rel="noopener">elbruno/weekly-ai-news-digest</a>
+    · <span class="lang-text" data-lang="en">Deployed via GitHub Pages</span><span class="lang-text" data-lang="es">Publicado con GitHub Pages</span>
   </footer>
 
   <script>
     (function () {
+      var languageSelect = document.getElementById("languageSelect");
       var themeSelect = document.getElementById("themeSelect");
       var searchInput = document.getElementById("searchInput");
       var sortSelect = document.getElementById("sortSelect");
@@ -432,6 +469,64 @@
       var selectedTags = new Set();
       var selectedImportance = new Set();
       var importanceOrder = { Low: 1, Medium: 2, High: 3 };
+      var ui = {
+        en: {
+          searchPlaceholder: "keyword, source, tag...",
+          sources: "Sources",
+          all: "All",
+          importance: "Importance",
+          tags: "Tags",
+          search: "Search",
+          sort: "Sort",
+          activeFilters: "Active filters - ",
+          showing: "Showing",
+          of: "of",
+          stories: "stories"
+        },
+        es: {
+          searchPlaceholder: "palabra clave, fuente, etiqueta...",
+          sources: "Fuentes",
+          all: "Todas",
+          importance: "Importancia",
+          tags: "Etiquetas",
+          search: "Búsqueda",
+          sort: "Orden",
+          activeFilters: "Filtros activos - ",
+          showing: "Mostrando",
+          of: "de",
+          stories: "noticias"
+        }
+      };
+
+      function currentLanguage() {
+        return languageSelect.value || "en";
+      }
+
+      function updateDateLabels(lang) {
+        cards.forEach(function (card) {
+          var date = card.querySelector(".date");
+          if (!date || !date.dataset.date) return;
+          var parsed = new Date(date.dataset.date + "T00:00:00Z");
+          date.textContent = parsed.toLocaleDateString(lang === "es" ? "es" : "en", { month: "short", day: "numeric", timeZone: "UTC" });
+        });
+      }
+
+      function applyLanguage(lang) {
+        document.documentElement.lang = lang;
+        document.documentElement.setAttribute("data-content-lang", lang);
+        searchInput.placeholder = ui[lang].searchPlaceholder;
+        Array.prototype.forEach.call(sortSelect.options, function (option) {
+          option.textContent = option.dataset["label" + (lang === "es" ? "Es" : "En")] || option.textContent;
+        });
+        updateDateLabels(lang);
+        applyFilters();
+      }
+
+      function loadLanguage() {
+        var saved = localStorage.getItem("digest-language") || "en";
+        languageSelect.value = saved === "es" ? "es" : "en";
+        applyLanguage(languageSelect.value);
+      }
 
       function systemTheme() {
         return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
@@ -557,13 +652,14 @@
       }
 
       function updateActiveFilters(query) {
+        var labels = ui[currentLanguage()];
         var details = [];
-        details.push("Sources: " + (selectedSources.size ? Array.from(selectedSources).join(", ") : "All"));
-        if (selectedImportance.size) details.push("Importance: " + Array.from(selectedImportance).join(", "));
-        if (selectedTags.size) details.push("Tags: " + Array.from(selectedTags).join(", "));
-        if (query) details.push('Search: "' + query + '"');
-        if (sortSelect.value !== "rank") details.push("Sort: " + sortSelect.options[sortSelect.selectedIndex].text);
-        activeFilters.textContent = "Active filters - " + details.join(" | ");
+        details.push(labels.sources + ": " + (selectedSources.size ? Array.from(selectedSources).join(", ") : labels.all));
+        if (selectedImportance.size) details.push(labels.importance + ": " + Array.from(selectedImportance).join(", "));
+        if (selectedTags.size) details.push(labels.tags + ": " + Array.from(selectedTags).join(", "));
+        if (query) details.push(labels.search + ': "' + query + '"');
+        if (sortSelect.value !== "rank") details.push(labels.sort + ": " + sortSelect.options[sortSelect.selectedIndex].text);
+        activeFilters.textContent = labels.activeFilters + details.join(" | ");
       }
 
       function applyFilters() {
@@ -587,7 +683,8 @@
           if (show) visible += 1;
         });
 
-        resultLine.textContent = "Showing " + visible + " of " + cards.length + " stories";
+        var labels = ui[currentLanguage()];
+        resultLine.textContent = labels.showing + " " + visible + " " + labels.of + " " + cards.length + " " + labels.stories;
         updateActiveFilters(rawQuery);
       }
 
@@ -614,6 +711,10 @@
         localStorage.setItem("digest-theme", value);
         applyTheme(value);
       });
+      languageSelect.addEventListener("change", function () {
+        localStorage.setItem("digest-language", languageSelect.value);
+        applyLanguage(languageSelect.value);
+      });
 
       var media = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
       if (media) {
@@ -630,6 +731,7 @@
       renderSourceFilters();
       renderImportanceFilters();
       renderTagFilters();
+      loadLanguage();
       applyFilters();
     })();
   </script>
