@@ -507,7 +507,7 @@
           var date = card.querySelector(".date");
           if (!date || !date.dataset.date) return;
           var parsed = new Date(date.dataset.date + "T00:00:00Z");
-          date.textContent = parsed.toLocaleDateString(lang === "es" ? "es" : "en", { month: "short", day: "numeric", timeZone: "UTC" });
+          date.textContent = parsed.toLocaleDateString(lang, { month: "short", day: "numeric", timeZone: "UTC" });
         });
       }
 
@@ -516,7 +516,7 @@
         document.documentElement.setAttribute("data-content-lang", lang);
         searchInput.placeholder = ui[lang].searchPlaceholder;
         Array.prototype.forEach.call(sortSelect.options, function (option) {
-          option.textContent = option.dataset["label" + (lang === "es" ? "Es" : "En")] || option.textContent;
+          option.textContent = option.dataset["label" + (lang === "es" ? "Es" : "En")];
         });
         updateDateLabels(lang);
         applyFilters();
@@ -732,7 +732,6 @@
       renderImportanceFilters();
       renderTagFilters();
       loadLanguage();
-      applyFilters();
     })();
   </script>
 </body>
