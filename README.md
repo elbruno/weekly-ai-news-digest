@@ -1,10 +1,10 @@
-[![Editorial illustration of a weekly AI news digest](docs/assets/weekly-ai-news-digest-header.png)](docs/assets/weekly-ai-news-digest-header.png)
+[![Editorial illustration of a daily AI news digest](docs/assets/weekly-ai-news-digest-header.png)](docs/assets/weekly-ai-news-digest-header.png)
 
-# Weekly AI News Digest
+# Daily AI News Digest
 
-> **Agentic digest of the best AI and technology news, generated daily with [GitHub Agentic Workflows](https://github.github.com/gh-aw/).**
+> **Daily agentic digest of the best AI and technology news, generated with [GitHub Agentic Workflows](https://github.github.com/gh-aw/).**
 
-[![Weekly Digest](https://github.com/elbruno/weekly-ai-news-digest/actions/workflows/weekly-news-digest.lock.yml/badge.svg)](https://github.com/elbruno/weekly-ai-news-digest/actions/workflows/weekly-news-digest.lock.yml)
+[![Daily Digest](https://github.com/elbruno/weekly-ai-news-digest/actions/workflows/weekly-news-digest.lock.yml/badge.svg)](https://github.com/elbruno/weekly-ai-news-digest/actions/workflows/weekly-news-digest.lock.yml)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-brightgreen)](https://elbruno.github.io/weekly-ai-news-digest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 

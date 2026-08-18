@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="{{ description }}" />
-  <meta property="og:title" content="{{ title }} - {{ week_label }}" />
+  <meta property="og:title" content="{{ title }} - {{ date_range }}" />
   <meta property="og:description" content="{{ description }}" />
   <meta property="og:url" content="{{ site_url }}" />
   <meta property="og:type" content="website" />
-  <title>{{ title }} - {{ week_label }}</title>
+  <title>{{ title }} - {{ date_range }}</title>
 
   <style>
     :root {
@@ -315,14 +315,14 @@
 <body>
   <header>
     <div class="container">
-      <div class="badge">Weekly Digest</div>
+      <div class="badge">Daily Digest</div>
       <h1>
         <span class="lang-text" data-lang="en">{{ title_en }}</span>
         <span class="lang-text" data-lang="es">{{ title_es }}</span>
       </h1>
       <p class="meta">
-        <span class="lang-text" data-lang="en">{{ week_label }} - {{ story_count }} stories - last {{ days_back }} days</span>
-        <span class="lang-text" data-lang="es">{{ week_label }} - {{ story_count }} noticias - últimos {{ days_back }} días</span>
+        <span class="lang-text" data-lang="en">{{ date_range }} - {{ story_count }} stories - last {{ days_back }} days</span>
+        <span class="lang-text" data-lang="es">{{ date_range }} - {{ story_count }} noticias - últimos {{ days_back }} días</span>
       </p>
 
       <div class="top-bar">

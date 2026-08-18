@@ -4,6 +4,10 @@ on:
     - cron: "0 10 * * *"       # 06:00 ET during daylight saving (UTC schedule)
   workflow_dispatch:            # Manual trigger from Actions tab
 
+engine:
+  id: copilot
+  model: gpt-5-mini
+
 permissions:
   contents: read
   pull-requests: read
@@ -25,7 +29,7 @@ network:
 
 safe-outputs:
   create-pull-request:
-    title-prefix: "📰 Weekly AI News Digest – "
+    title-prefix: "📰 Daily AI News Digest – "
     labels: [digest, automated]
     draft: false
     base-branch: main
@@ -36,7 +40,7 @@ safe-outputs:
 
 ---
 
-# Weekly AI & Tech News Digest
+# Daily AI & Tech News Digest
 
 You are an expert bilingual tech journalist. Your job is to research, curate, and summarize **up to 30 of the most important AI and technology stories from the last 14 days**, then write a polished static HTML page to `docs/index.html` with the final reader experience available in **English by default** and **Spanish**.
 
@@ -95,7 +99,7 @@ Also produce a separate **GitHub-only highlights set**:
 
 Also produce a separate **top takeaways set**:
 - Exactly 5 concise bullets in English and exactly 5 faithful Spanish versions for the top-page section named **"TL;DR — Top takeaways"**
-- These bullets must summarize the overall week across all selected sources.
+- These bullets must summarize the current digest across all selected sources.
 
 ## Step 3 — Generate Page
 
@@ -104,7 +108,7 @@ Read the reference design from `docs/template.html` to understand the visual sty
 Requirements:
 - Dark GitHub-themed design — background `#0d1117`, cards `#161b22`, accent `#58a6ff`
 - **No external dependencies** — all CSS inline in a `<style>` block; no CDN links
-- Header with "Weekly AI & Tech News" title, current week date range, and story count
+- Header with "Daily AI & Tech News" title, covered date range, and story count
 - Add a **language selector** with `English` and `Español`; English must be selected by default, and the selected language must persist in `localStorage`
 - All user-facing digest content must be available in both languages: title, metadata, controls, filter labels, active-filter/result messages, AI Credit note, summary headings and bullets, story titles, TL;DR text, "Why it matters" labels/text, dates, read-more links, footer, and empty/result states
 - Preserve source names, URLs, dates, tags, importance values, and machine-readable data attributes as language-neutral values; do not translate tags or importance values used in filtering/sorting
