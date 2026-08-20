@@ -52,24 +52,45 @@ jobs:
           fi
 
           invalid=0
+          declare -A control_prs=()
+          declare -A economy_prs=()
+          declare -A seen_snapshots=()
+          snapshots=()
+
           for pr in $prs; do
-            details="$(gh pr view "$pr" --repo "$REPO" --json author,files,labels)"
+            details="$(gh pr view "$pr" --repo "$REPO" --json author,files,isDraft,labels,title)"
             author="$(jq -r '.author.login' <<<"$details")"
             labels="$(jq -r '.labels[].name' <<<"$details")"
+            title="$(jq -r '.title' <<<"$details")"
+            is_draft="$(jq -r '.isDraft' <<<"$details")"
 
             expected_path=""
+            variant=""
+            variant_count=0
             if grep -qx "digest-control" <<<"$labels"; then
               expected_path="docs/index.html"
-            elif grep -qx "digest-economy" <<<"$labels"; then
+              variant="control"
+              variant_count=$((variant_count + 1))
+            fi
+            if grep -qx "digest-economy" <<<"$labels"; then
               expected_path="docs/economy/index.html"
-            else
+              variant="economy"
+              variant_count=$((variant_count + 1))
+            fi
+            if [[ "$variant_count" -ne 1 ]]; then
               echo "Skipping PR #$pr because it has no recognized variant label."
+              invalid=1
               continue
             fi
 
             mapfile -t files < <(jq -r '.files[].path' <<<"$details")
             if [[ "$author" != "app/github-actions" && "$author" != "github-actions" ]]; then
               echo "Refusing PR #$pr from unexpected author: $author" >&2
+              invalid=1
+              continue
+            fi
+            if [[ "$is_draft" == "true" ]]; then
+              echo "Refusing draft PR #$pr." >&2
               invalid=1
               continue
             fi
@@ -80,14 +101,60 @@ jobs:
               continue
             fi
 
-            echo "Merging validated PR #$pr for $expected_path"
-            gh pr merge "$pr" --repo "$REPO" --squash --delete-branch
+            if [[ "$variant" == "control" ]]; then
+              title_pattern='^\[digest-control\] Publish Control digest for ([0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9a-f]{12})$'
+            else
+              title_pattern='^\[digest-economy\] Publish Economy digest for ([0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9a-f]{12})$'
+            fi
+            if [[ ! "$title" =~ $title_pattern ]]; then
+              echo "Refusing PR #$pr with unexpected title: $title" >&2
+              invalid=1
+              continue
+            fi
+            snapshot_id="${BASH_REMATCH[1]}"
+
+            if [[ -z "${seen_snapshots[$snapshot_id]:-}" ]]; then
+              snapshots+=("$snapshot_id")
+              seen_snapshots[$snapshot_id]=1
+            fi
+            if [[ "$variant" == "control" ]]; then
+              if [[ -n "${control_prs[$snapshot_id]:-}" ]]; then
+                echo "Refusing duplicate control PRs for $snapshot_id." >&2
+                invalid=1
+                continue
+              fi
+              control_prs[$snapshot_id]="$pr"
+            else
+              if [[ -n "${economy_prs[$snapshot_id]:-}" ]]; then
+                echo "Refusing duplicate economy PRs for $snapshot_id." >&2
+                invalid=1
+                continue
+              fi
+              economy_prs[$snapshot_id]="$pr"
+            fi
           done
 
           if [[ "$invalid" -ne 0 ]]; then
             echo "One or more digest PRs failed validation." >&2
             exit 1
           fi
+
+          merged_pairs=0
+          for snapshot_id in "${snapshots[@]}"; do
+            control_pr="${control_prs[$snapshot_id]:-}"
+            economy_pr="${economy_prs[$snapshot_id]:-}"
+            if [[ -z "$control_pr" || -z "$economy_pr" ]]; then
+              echo "Waiting for the complete digest pair for $snapshot_id."
+              continue
+            fi
+
+            echo "Merging validated digest pair for $snapshot_id"
+            gh pr merge "$control_pr" --repo "$REPO" --squash --delete-branch
+            gh pr merge "$economy_pr" --repo "$REPO" --squash --delete-branch
+            merged_pairs=$((merged_pairs + 1))
+          done
+
+          echo "Merged $merged_pairs complete digest pair(s)."
 
   update-usage:
     name: Reconcile experiment ledger

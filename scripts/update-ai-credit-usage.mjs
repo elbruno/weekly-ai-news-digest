@@ -199,7 +199,7 @@ export async function updateFiles({
   const currentHistory = JSON.parse(historyText);
   const history = upsertHistory(currentHistory, record);
   const effectiveRecord = history.runs.find((item) => item.runId === record.runId);
-  if (effectiveRecord.published && effectiveRecord.aic !== null) {
+  if (record.published && effectiveRecord.aic !== null) {
     await writeFile(
       digestPath,
       updateDigestHtml(digestHtml, effectiveRecord),

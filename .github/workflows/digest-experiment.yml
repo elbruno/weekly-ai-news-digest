@@ -17,7 +17,7 @@ concurrency:
 jobs:
   collect-and-dispatch:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 75
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
@@ -57,13 +57,20 @@ jobs:
           echo "Snapshot artifact was not visible after 30 seconds" >&2
           exit 1
 
-      - name: Dispatch paired digest workers
+      - name: Dispatch and wait for paired digest workers
         env:
           GH_TOKEN: ${{ github.token }}
           SNAPSHOT_ID: ${{ steps.snapshot.outputs.snapshot_id }}
           PROMPT_VERSION: v1
         run: |
-          for workflow in daily-digest-control.lock.yml daily-digest-economy.lock.yml; do
+          set -euo pipefail
+
+          dispatched_at="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          workflows=(daily-digest-control.lock.yml daily-digest-economy.lock.yml)
+          variants=(control economy)
+          run_ids=()
+
+          for workflow in "${workflows[@]}"; do
             gh workflow run "$workflow" \
               --repo "$GITHUB_REPOSITORY" \
               --ref "$GITHUB_REF_NAME" \
@@ -73,17 +80,68 @@ jobs:
               -f "origin_event=$GITHUB_EVENT_NAME"
           done
 
+          for index in "${!workflows[@]}"; do
+            workflow="${workflows[$index]}"
+            variant="${variants[$index]}"
+            expected_title="$variant:$SNAPSHOT_ID:$PROMPT_VERSION:$GITHUB_EVENT_NAME"
+
+            for attempt in $(seq 1 60); do
+              run_json="$(
+                gh run list \
+                  --repo "$GITHUB_REPOSITORY" \
+                  --workflow "$workflow" \
+                  --event workflow_dispatch \
+                  --limit 20 \
+                  --json databaseId,displayTitle,status,conclusion,createdAt,url |
+                  jq -c \
+                    --arg title "$expected_title" \
+                    --arg since "$dispatched_at" \
+                    '[.[] | select(.displayTitle == $title and .createdAt >= $since)]
+                    | sort_by(.createdAt)
+                    | first // empty'
+              )"
+
+              if [[ -n "$run_json" ]]; then
+                run_ids[$index]="$(jq -r '.databaseId' <<<"$run_json")"
+                echo "Found $variant run ${run_ids[$index]}."
+                break
+              fi
+              echo "Waiting for $variant worker run to appear."
+              sleep 5
+            done
+
+            if [[ -z "${run_ids[$index]:-}" ]]; then
+              echo "Timed out waiting for the $variant worker run to appear." >&2
+              exit 1
+            fi
+          done
+
+          for index in "${!run_ids[@]}"; do
+            variant="${variants[$index]}"
+            run_id="${run_ids[$index]}"
+            echo "Waiting for $variant run $run_id."
+            gh run watch "$run_id" \
+              --repo "$GITHUB_REPOSITORY" \
+              --exit-status \
+              --interval 10
+          done
+
+          gh workflow run auto-merge-digest.yml \
+            --repo "$GITHUB_REPOSITORY" \
+            --ref "$GITHUB_REF_NAME"
+
       - name: Write experiment summary
         env:
           SNAPSHOT_ID: ${{ steps.snapshot.outputs.snapshot_id }}
           ARTICLE_COUNT: ${{ steps.snapshot.outputs.article_count }}
         run: |
           {
-            echo "## Paired digest dispatched"
+            echo "## Paired digest workers completed"
             echo
             echo "- Snapshot: \`$SNAPSHOT_ID\`"
             echo "- Articles: $ARTICLE_COUNT"
             echo "- Control model: \`claude-sonnet-4.6\`"
             echo "- Economy model: \`gpt-5-mini\`"
             echo "- Prompt: \`v1\`"
+            echo "- Publisher: dispatched"
           } >> "$GITHUB_STEP_SUMMARY"
