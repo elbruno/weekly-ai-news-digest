@@ -33,6 +33,7 @@ safe-outputs:
     labels: [digest, automated]
     draft: false
     base-branch: main
+    allowed-files: [docs/index.html]
     preserve-branch-name: true
     recreate-ref: true
     max-patch-files: 5
@@ -155,3 +156,9 @@ Before writing `docs/index.html`, validate the final data and client behavior. F
 - Sorting and filtering update the visible result count without changing the original curated rank badges.
 
 The output file `docs/index.html` must be a valid, complete HTML document that renders correctly in a browser with no external resources.
+
+## Step 5 — Publish
+
+- After `docs/index.html` passes every preflight check, call the `create_pull_request` safe-output tool exactly once so the generated page is committed and proposed for publication.
+- Use branch `digest/YYYY-MM-DD`, replacing the date with the current UTC date, and summarize the covered date range and story count in the pull request title and body.
+- Never call `noop` after creating or modifying `docs/index.html`. Call `noop` only when the generated page is byte-for-byte identical to the existing file and no publication is needed.
