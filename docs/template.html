@@ -359,14 +359,14 @@
   <main class="container">
     <section class="stats">
       <div class="stat"><span class="lang-text" data-lang="en">{{ story_count }} stories</span><span class="lang-text" data-lang="es">{{ story_count }} noticias</span></div>
-      <!-- AI_CREDITS_START --><div class="stat" data-ai-credits-run-id="{{ workflow_run_id }}">AI Credits: <span data-ai-credits-value>Pending finalization</span> · <a href="./ai-credits.html"><span class="lang-text" data-lang="en">Usage history</span><span class="lang-text" data-lang="es">Historial de uso</span></a></div><!-- AI_CREDITS_END -->
+      <!-- AI_CREDITS_START --><div class="stat" data-ai-credits-run-id="{{ workflow_run_id }}">AI Credits: <span data-ai-credits-value>Pending finalization</span> · <a href="./ai-credits.html"><span class="lang-text" data-lang="en">Usage history</span><span class="lang-text" data-lang="es">Historial de uso</span></a> · <a href="./model-comparison.html"><span class="lang-text" data-lang="en">Model comparison</span><span class="lang-text" data-lang="es">Comparación de modelos</span></a></div><!-- AI_CREDITS_END -->
       {% for source, count in sources.items() %}
       <div class="stat"><span class="lang-text" data-lang="en">{{ count }} from {{ source }}</span><span class="lang-text" data-lang="es">{{ count }} de {{ source }}</span></div>
       {% endfor %}
     </section>
     <p class="credit-note">
-      <span class="lang-text" data-lang="en">AI Credit usage is tracked for every successful scheduled and manual digest run. <a href="./ai-credits.html">View daily, weekly, and monthly usage →</a></span>
-      <span class="lang-text" data-lang="es">El uso de AI Credits se registra en cada ejecución programada y manual completada correctamente. <a href="./ai-credits.html">Ver uso diario, semanal y mensual →</a></span>
+      <span class="lang-text" data-lang="en">This digest is part of a paired model experiment. <a href="./model-comparison.html">Compare cost and publication results →</a></span>
+      <span class="lang-text" data-lang="es">Este resumen forma parte de un experimento comparativo de modelos. <a href="./model-comparison.html">Comparar costos y resultados de publicación →</a></span>
     </p>
 
     <section class="tldr-summary">
