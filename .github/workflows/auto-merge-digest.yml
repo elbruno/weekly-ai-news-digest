@@ -2,7 +2,7 @@ name: Auto-merge digest PRs
 
 on:
   workflow_run:
-    workflows: ["Weekly AI & Tech News Digest"]
+    workflows: ["Daily AI & Tech News Digest"]
     types: [completed]
   workflow_dispatch:
 
