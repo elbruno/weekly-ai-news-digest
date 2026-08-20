@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-18T10:37:09.442Z",
+  "updatedAt": "2026-08-20T16:32:16.859Z",
   "runs": [
     {
       "runId": 29093928571,
@@ -358,6 +358,34 @@
       "event": "schedule",
       "aic": 134.84351999999998,
       "url": "https://github.com/elbruno/weekly-ai-news-digest/actions/runs/32126083675"
+    },
+    {
+      "runId": 32196791729,
+      "timestamp": "2026-08-18T23:29:08Z",
+      "event": "workflow_dispatch",
+      "aic": 35.33736,
+      "url": "https://github.com/elbruno/weekly-ai-news-digest/actions/runs/32196791729"
+    },
+    {
+      "runId": 32242060748,
+      "timestamp": "2026-08-19T10:28:02Z",
+      "event": "schedule",
+      "aic": 36.43323,
+      "url": "https://github.com/elbruno/weekly-ai-news-digest/actions/runs/32242060748"
+    },
+    {
+      "runId": 32358396193,
+      "timestamp": "2026-08-20T10:31:27Z",
+      "event": "schedule",
+      "aic": 62.645595,
+      "url": "https://github.com/elbruno/weekly-ai-news-digest/actions/runs/32358396193"
+    },
+    {
+      "runId": 32391019585,
+      "timestamp": "2026-08-20T16:29:32Z",
+      "event": "workflow_dispatch",
+      "aic": 54.722475,
+      "url": "https://github.com/elbruno/weekly-ai-news-digest/actions/runs/32391019585"
     }
   ]
 }
