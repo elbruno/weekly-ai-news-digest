@@ -3,9 +3,11 @@ name: Publish paired digests
 on:
   workflow_run:
     workflows:
-      - Daily Digest - Control
-      - Daily Digest - Economy
+      - "Daily Digest - Control"
+      - "Daily Digest - Economy"
     types: [completed]
+  schedule:
+    - cron: "30 10 * * *"
   workflow_dispatch:
 
 concurrency:
@@ -15,7 +17,7 @@ concurrency:
 jobs:
   auto-merge:
     name: Merge validated digest PRs
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write

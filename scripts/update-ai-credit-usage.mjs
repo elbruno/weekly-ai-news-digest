@@ -13,7 +13,9 @@ function requireString(value, name) {
 
 function optionalAic(audit) {
   if (!audit) return null;
-  const aic = Number(audit?.metrics?.aic);
+  const rawAic = audit?.metrics?.aic;
+  if (rawAic === undefined || rawAic === null || rawAic === "") return null;
+  const aic = Number(rawAic);
   if (!Number.isFinite(aic) || aic < 0) {
     throw new Error("Missing or invalid metrics.aic");
   }
