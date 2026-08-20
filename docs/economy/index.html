@@ -1,30 +1,1755 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-content-lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Economy-model edition of the Daily AI News Digest." />
-  <title>Economy Digest - Initializing</title>
+  <meta name="description" content="Economy digest of developer-relevant AI, GitHub, Microsoft, security, and platform news." />
+  <meta property="og:title" content="Economy digest - Aug 11, 2026 – Aug 20, 2026" />
+  <meta property="og:description" content="Economy digest of developer-relevant AI, GitHub, Microsoft, security, and platform news." />
+  <meta property="og:url" content="https://elbruno.github.io/weekly-ai-news-digest/docs/economy/" />
+  <meta property="og:type" content="website" />
+  <title>Economy digest - Aug 11, 2026 – Aug 20, 2026</title>
+
   <style>
-    :root { color-scheme: dark; --bg: #0d1117; --card: #161b22; --border: #30363d; --text: #e6edf3; --muted: #8b949e; --accent: #58a6ff; }
-    * { box-sizing: border-box; }
-    body { min-height: 100vh; margin: 0; display: grid; place-items: center; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-    main { width: min(640px, calc(100% - 2rem)); padding: 2rem; border: 1px solid var(--border); border-radius: 14px; background: var(--card); }
-    h1 { margin-top: 0; }
-    p { color: var(--muted); }
-    nav { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
-    a { color: var(--accent); }
+    :root {
+      --bg: #0d1117;
+      --bg-card: #161b22;
+      --bg-elev: #1c2129;
+      --border: #30363d;
+      --accent: #58a6ff;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --tag-bg: #21262d;
+      --tag-active: #1f6feb;
+      --tag-active-text: #ffffff;
+      --importance-low: #3fb950;
+      --importance-medium: #d29922;
+      --importance-high: #f85149;
+      --max-w: 960px;
+      --radius: 12px;
+    }
+
+    [data-theme="light"] {
+      --bg: #f6f8fa;
+      --bg-card: #ffffff;
+      --bg-elev: #f0f3f6;
+      --border: #d0d7de;
+      --accent: #0969da;
+      --text: #1f2328;
+      --text-muted: #57606a;
+      --tag-bg: #f6f8fa;
+      --tag-active: #0969da;
+      --tag-active-text: #ffffff;
+      --importance-low: #1a7f37;
+      --importance-medium: #9a6700;
+      --importance-high: #cf222e;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 1rem; }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(135deg, var(--bg) 0%, var(--bg-card) 100%);
+      padding: 2rem 0 1.5rem;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+      background: color-mix(in srgb, var(--accent) 10%, transparent);
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      margin-bottom: 0.85rem;
+      font-weight: 600;
+    }
+
+    h1 { font-size: 2rem; line-height: 1.2; margin-bottom: 0.4rem; }
+    .meta { color: var(--text-muted); font-size: 0.9rem; }
+
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin: 1.25rem 0 0.5rem;
+    }
+
+    .control {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.55rem 0.7rem;
+      color: var(--text);
+    }
+
+    .control input, .control select {
+      background: transparent;
+      border: none;
+      color: inherit;
+      outline: none;
+      min-width: 180px;
+    }
+
+    .clear-button {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      cursor: pointer;
+      padding: 0.65rem 0.8rem;
+    }
+
+    .clear-button:hover { border-color: var(--accent); }
+
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin: 1rem 0 1.2rem;
+    }
+
+    .stat {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text-muted);
+      padding: 0.45rem 0.75rem;
+      font-size: 0.84rem;
+    }
+
+    .credit-note {
+      color: var(--text-muted);
+      font-size: 0.84rem;
+      margin: -0.55rem 0 1.2rem;
+    }
+
+    .tldr-summary {
+      margin: 1rem 0 1.4rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+    }
+
+    .tldr-summary h2 { font-size: 1.08rem; margin-bottom: 0.55rem; }
+    .tldr-summary ul { padding-left: 1rem; color: var(--text-muted); }
+    .tldr-summary li + li { margin-top: 0.28rem; }
+
+    .filter-section { margin: 0.8rem 0; }
+    .filter-label {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.35rem;
+      text-transform: uppercase;
+    }
+
+    .filter-labels {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .chip {
+      border: 1px solid var(--border);
+      background: var(--tag-bg);
+      color: var(--text-muted);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.2rem 0.58rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .chip.active {
+      background: var(--tag-active);
+      border-color: var(--tag-active);
+      color: var(--tag-active-text);
+    }
+
+    .active-filters { color: var(--text-muted); font-size: 0.8rem; margin: 0.25rem 0; }
+    .result-line { color: var(--text-muted); font-size: 0.85rem; margin: 0.3rem 0 0.9rem; }
+    .lang-text, .lang-block { display: none; }
+    html[data-content-lang="en"] .lang-text[data-lang="en"],
+    html[data-content-lang="es"] .lang-text[data-lang="es"] { display: inline; }
+    html[data-content-lang="en"] .lang-block[data-lang="en"],
+    html[data-content-lang="es"] .lang-block[data-lang="es"] { display: block; }
+
+    .story-list { display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 2rem; }
+
+    .story-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+    }
+
+    .story-head {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      margin-bottom: 0.5rem;
+    }
+
+    .rank {
+      width: 1.9rem;
+      height: 1.9rem;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--accent);
+      border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      flex-shrink: 0;
+    }
+
+    .story-meta-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      align-items: center;
+      margin-bottom: 0.12rem;
+    }
+
+    .source { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 600; }
+
+    .importance {
+      align-items: center;
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      display: inline-flex;
+      font-size: 0.68rem;
+      font-weight: 700;
+      gap: 0.3rem;
+      line-height: 1;
+      padding: 0.18rem 0.45rem;
+      text-transform: uppercase;
+    }
+
+    .importance-low { color: var(--importance-low); }
+    .importance-medium { color: var(--importance-medium); }
+    .importance-high { color: var(--importance-high); }
+
+    .importance-bars {
+      align-items: flex-end;
+      display: inline-flex;
+      gap: 2px;
+      height: 0.75rem;
+    }
+
+    .importance-bars span {
+      background: currentColor;
+      display: block;
+      opacity: 0.22;
+      width: 3px;
+    }
+
+    .importance-bars span:nth-child(1) { height: 35%; }
+    .importance-bars span:nth-child(2) { height: 65%; }
+    .importance-bars span:nth-child(3) { height: 100%; }
+    .importance-low .importance-bars span:nth-child(1),
+    .importance-medium .importance-bars span:nth-child(-n+2),
+    .importance-high .importance-bars span { opacity: 1; }
+
+    .title { color: var(--text); font-size: 1.02rem; font-weight: 600; line-height: 1.35; }
+    .tldr { color: var(--text-muted); margin: 0.55rem 0; }
+    .why { border-left: 3px solid var(--accent); padding-left: 0.6rem; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.65rem; }
+
+    .story-footer {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .tag {
+      border: 1px solid var(--border);
+      background: var(--tag-bg);
+      color: var(--text-muted);
+      border-radius: 999px;
+      padding: 0.16rem 0.5rem;
+      font-size: 0.72rem;
+    }
+
+    .date { margin-left: auto; color: var(--text-muted); font-size: 0.76rem; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      text-align: center;
+      padding: 1.6rem 1rem 2.2rem;
+      font-size: 0.84rem;
+    }
+
+    @media (max-width: 700px) {
+      h1 { font-size: 1.5rem; }
+      .control input, .control select { min-width: 130px; }
+      .clear-button { width: 100%; }
+      .date { margin-left: 0; }
+    }
   </style>
 </head>
-<body>
-  <main>
-    <h1>Economy digest is initializing</h1>
-    <p>The first <code>gpt-5-mini</code> digest will replace this page after a validated paired experiment run publishes successfully.</p>
-    <nav>
-      <a href="../index.html">Control digest</a>
-      <a href="../model-comparison.html">Model comparison</a>
-      <a href="../ai-credits.html">Control usage</a>
-    </nav>
+<body data-digest-variant="economy" data-digest-model="gpt-5-mini" data-snapshot-id="2026-08-20-e6a85400111e" data-prompt-version="v1">
+  <header>
+    <div class="container">
+      <div class="badge">Economy Variant</div>
+      <h1>
+        <span class="lang-text" data-lang="en">Economy digest</span>
+        <span class="lang-text" data-lang="es">Resumen Economy</span>
+      </h1>
+      <p class="meta">
+        <span class="lang-text" data-lang="en">Aug 11, 2026 – Aug 20, 2026 - 30 stories - last 7 days</span>
+        <span class="lang-text" data-lang="es">Aug 11, 2026 – Aug 20, 2026 - 30 noticias - últimos 7 días</span>
+      </p>
+
+      <div class="top-bar">
+        <label class="control"><span class="lang-text" data-lang="en">Language:</span><span class="lang-text" data-lang="es">Idioma:</span>
+          <select id="languageSelect" aria-label="Select language">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+          </select>
+        </label>
+        <label class="control"><span class="lang-text" data-lang="en">Theme:</span><span class="lang-text" data-lang="es">Tema:</span>
+          <select id="themeSelect" aria-label="Select theme">
+            <option value="system">System</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </label>
+        <label class="control"><span class="lang-text" data-lang="en">Search:</span><span class="lang-text" data-lang="es">Buscar:</span>
+          <input id="searchInput" type="search" placeholder="keyword, source, tag..." aria-label="Search stories" />
+        </label>
+        <label class="control"><span class="lang-text" data-lang="en">Sort:</span><span class="lang-text" data-lang="es">Ordenar:</span>
+          <select id="sortSelect" aria-label="Sort stories">
+            <option value="rank" data-label-en="Curated rank" data-label-es="Orden curado">Curated rank</option>
+            <option value="importance-desc" data-label-en="Importance: high to low" data-label-es="Importancia: alta a baja">Importance: high to low</option>
+            <option value="importance-asc" data-label-en="Importance: low to high" data-label-es="Importancia: baja a alta">Importance: low to high</option>
+            <option value="newest" data-label-en="Newest first" data-label-es="Más recientes primero">Newest first</option>
+            <option value="oldest" data-label-en="Oldest first" data-label-es="Más antiguas primero">Oldest first</option>
+          </select>
+        </label>
+        <button class="clear-button" id="clearFilters" type="button"><span class="lang-text" data-lang="en">Clear all</span><span class="lang-text" data-lang="es">Limpiar todo</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="stats">
+      <div class="stat"><span class="lang-text" data-lang="en">30 stories</span><span class="lang-text" data-lang="es">30 noticias</span></div>
+      <!-- AI_CREDITS_START --><div class="stat" data-ai-credits-run-id="32398285784">AI Credits: <span data-ai-credits-value>Pending finalization</span> · <a href="../ai-credits.html">Usage history</a> · <a href="../model-comparison.html">Model comparison</a></div><!-- AI_CREDITS_END -->
+      <div class="stat"><span class="lang-text" data-lang="en">8 from GitHub Changelog</span><span class="lang-text" data-lang="es">8 de GitHub Changelog</span></div>
+      <div class="stat"><span class="lang-text" data-lang="en">7 from Microsoft Developer</span><span class="lang-text" data-lang="es">7 de Microsoft Developer</span></div>
+      <div class="stat"><span class="lang-text" data-lang="en">4 from Ars Technica</span><span class="lang-text" data-lang="es">4 de Ars Technica</span></div>
+      <div class="stat"><span class="lang-text" data-lang="en">4 from TechCrunch AI</span><span class="lang-text" data-lang="es">4 de TechCrunch AI</span></div>
+      <div class="stat"><span class="lang-text" data-lang="en">4 from The Verge</span><span class="lang-text" data-lang="es">4 de The Verge</span></div>
+      <div class="stat"><span class="lang-text" data-lang="en">3 from Hacker News</span><span class="lang-text" data-lang="es">3 de Hacker News</span></div>
+    </section>
+    <p class="credit-note">
+      <span class="lang-text" data-lang="en">This digest is part of a paired model experiment. <a href="../model-comparison.html">Compare cost and publication results →</a></span>
+      <span class="lang-text" data-lang="es">Este resumen forma parte de un experimento comparativo de modelos. <a href="../model-comparison.html">Comparar costos y resultados de publicación →</a></span>
+    </p>
+
+    <section class="tldr-summary">
+      <h2><span class="lang-text" data-lang="en">TL;DR - Top takeaways</span><span class="lang-text" data-lang="es">TL;DR - Resumen principal</span></h2>
+      <ul>
+        <li><span class="lang-text" data-lang="en">GitHub and Microsoft dominate the priority set, with code scanning, CodeQL, audit logs, Azure SQL, and Site Recovery updates leading the way.</span><span class="lang-text" data-lang="es">GitHub y Microsoft dominan el bloque prioritario, con code scanning, CodeQL, registros de auditoría, Azure SQL y Site Recovery al frente.</span></li>
+        <li><span class="lang-text" data-lang="en">AI product launches keep shifting from demos to workflow infrastructure, especially model routing, privacy controls, and integrated copilots.</span><span class="lang-text" data-lang="es">Los lanzamientos de productos de IA siguen pasando de demos a infraestructura de trabajo, sobre todo en enrutamiento de modelos, controles de privacidad y copilots integrados.</span></li>
+        <li><span class="lang-text" data-lang="en">Security stories stay prominent: prompt injection, exploit reports, browser defenses, and active exploitation remain recurring themes.</span><span class="lang-text" data-lang="es">Las historias de seguridad siguen destacando: prompt injection, reportes de exploits, defensas del navegador y explotación activa se repiten como temas centrales.</span></li>
+        <li><span class="lang-text" data-lang="en">Platform teams still have plenty to watch, from firmware and router privacy to autonomous driving hardware and database tooling.</span><span class="lang-text" data-lang="es">Los equipos de plataforma aún tienen mucho que vigilar, desde firmware y privacidad de routers hasta hardware de conducción autónoma y herramientas de bases de datos.</span></li>
+        <li><span class="lang-text" data-lang="en">Open-source and runtime updates keep the ecosystem moving, with VS Code, Linux, Go, and launch-stage developer products all in the mix.</span><span class="lang-text" data-lang="es">Las actualizaciones de open source y runtimes siguen moviendo el ecosistema, con VS Code, Linux, Go y productos para desarrolladores en fase de lanzamiento en la mezcla.</span></li>
+      </ul>
+    </section>
+
+    <section class="tldr-summary">
+      <h2><span class="lang-text" data-lang="en">TL;DR - GitHub highlights</span><span class="lang-text" data-lang="es">TL;DR - Destacados de GitHub</span></h2>
+      <ul>
+        <li><span class="lang-text" data-lang="en">Code scanning now supports a Mitigated dismissal reason for alerts that are contained but not fixed.</span><span class="lang-text" data-lang="es">Code scanning ahora admite un motivo de descarte Mitigated para alertas contenidas pero no corregidas.</span></li>
+        <li><span class="lang-text" data-lang="en">GitHub Code Quality got a dedicated Actions path, plus audit-log coverage for enablement changes.</span><span class="lang-text" data-lang="es">GitHub Code Quality obtuvo una ruta dedicada en Actions, además de cobertura en el registro de auditoría para cambios de habilitación.</span></li>
+        <li><span class="lang-text" data-lang="en">CodeQL 2.26.3 improves JavaScript-family modeling and GitHub Actions query accuracy.</span><span class="lang-text" data-lang="es">CodeQL 2.26.3 mejora el modelado de la familia JavaScript y la precisión de las consultas de GitHub Actions.</span></li>
+        <li><span class="lang-text" data-lang="en">Enterprise managed settings in Copilot for JetBrains give admins more control over plugin governance and permissions.</span><span class="lang-text" data-lang="es">La configuración administrada por la empresa en Copilot para JetBrains da a los administradores más control sobre la gobernanza de plugins y los permisos.</span></li>
+        <li><span class="lang-text" data-lang="en">Credential revocation by token type should make incident response more targeted.</span><span class="lang-text" data-lang="es">La revocación de credenciales por tipo de token debería hacer más dirigida la respuesta a incidentes.</span></li>
+      </ul>
+    </section>
+
+    <section class="filter-section" aria-label="Story filters">
+      <div class="filter-label"><span class="lang-text" data-lang="en">Filter by source</span><span class="lang-text" data-lang="es">Filtrar por fuente</span></div>
+      <div class="filter-labels" id="sourceFilters"></div>
+      <div class="filter-label"><span class="lang-text" data-lang="en">Filter by importance</span><span class="lang-text" data-lang="es">Filtrar por importancia</span></div>
+      <div class="filter-labels" id="importanceFilters"></div>
+      <div class="filter-label"><span class="lang-text" data-lang="en">Filter by tag</span><span class="lang-text" data-lang="es">Filtrar por etiqueta</span></div>
+      <div class="filter-labels" id="labelFilters"></div>
+    </section>
+    <p class="active-filters" id="activeFilters" aria-live="polite"></p>
+    <p class="result-line" id="resultLine"></p>
+
+    <section class="story-list" id="storyList">
+      <article
+        class="story-card"
+        data-rank="1"
+        data-published="2026-08-20"
+        data-tags="GitHub,Security,Code scanning"
+        data-source="GitHub Changelog"
+        data-importance="High"
+        data-search="Code scanning adds a mitigated alert dismissal reason Code scanning añade un motivo de descarte Mitigated GitHub Changelog 10 Code scanning can now dismiss an alert as Mitigated when the code is still vulnerable but external controls lower the risk. Code scanning ahora puede descartar un alerta como Mitigated cuando el código sigue siendo vulnerable pero los controles externos reducen el riesgo. That makes triage more honest for known issues that are being contained elsewhere. Eso hace que la triage sea más precisa para problemas conocidos que ya están contenidos por otras capas. GitHub Security Code scanning"
+      >
+        <div class="story-head">
+          <div class="rank">1</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">GitHub Changelog</div>
+              <div class="importance importance-high" aria-label="High importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>High</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://github.blog/changelog/2026-08-20-code-scanning-adds-a-mitigated-alert-dismissal-reason" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Code scanning adds a mitigated alert dismissal reason</span><span class="lang-text" data-lang="es">Code scanning añade un motivo de descarte Mitigated</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">Code scanning can now dismiss an alert as Mitigated when the code is still vulnerable but external controls lower the risk.</span><span class="lang-text" data-lang="es">Code scanning ahora puede descartar un alerta como Mitigated cuando el código sigue siendo vulnerable pero los controles externos reducen el riesgo.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: That makes triage more honest for known issues that are being contained elsewhere.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Eso hace que la triage sea más precisa para problemas conocidos que ya están contenidos por otras capas.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">GitHub</span>
+          <span class="tag">Security</span>
+          <span class="tag">Code scanning</span>
+          <a href="https://github.blog/changelog/2026-08-20-code-scanning-adds-a-mitigated-alert-dismissal-reason" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-20">Aug 20</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="2"
+        data-published="2026-08-20"
+        data-tags="GitHub,Actions,Code Quality"
+        data-source="GitHub Changelog"
+        data-importance="High"
+        data-search="Separate GitHub Actions path for GitHub Code Quality Ruta separada de GitHub Actions para GitHub Code Quality GitHub Changelog 10 GitHub Code Quality now has a dedicated GitHub Actions workflow path, with run history and usage reports reflecting it. GitHub Code Quality ahora tiene una ruta de workflow dedicada en GitHub Actions, y el historial de ejecuciones y los reportes de uso la reflejan. Teams can track quality automation separately instead of inferring it from generic Action runs. Los equipos pueden seguir la automatización de calidad por separado en vez de inferirla desde ejecuciones genéricas. GitHub Actions Code Quality"
+      >
+        <div class="story-head">
+          <div class="rank">2</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">GitHub Changelog</div>
+              <div class="importance importance-high" aria-label="High importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>High</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://github.blog/changelog/2026-08-20-separate-github-actions-path-for-github-code-quality" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Separate GitHub Actions path for GitHub Code Quality</span><span class="lang-text" data-lang="es">Ruta separada de GitHub Actions para GitHub Code Quality</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">GitHub Code Quality now has a dedicated GitHub Actions workflow path, with run history and usage reports reflecting it.</span><span class="lang-text" data-lang="es">GitHub Code Quality ahora tiene una ruta de workflow dedicada en GitHub Actions, y el historial de ejecuciones y los reportes de uso la reflejan.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: Teams can track quality automation separately instead of inferring it from generic Action runs.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Los equipos pueden seguir la automatización de calidad por separado en vez de inferirla desde ejecuciones genéricas.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">GitHub</span>
+          <span class="tag">Actions</span>
+          <span class="tag">Code Quality</span>
+          <a href="https://github.blog/changelog/2026-08-20-separate-github-actions-path-for-github-code-quality" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-20">Aug 20</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="3"
+        data-published="2026-08-19"
+        data-tags="GitHub,CodeQL,JavaScript"
+        data-source="GitHub Changelog"
+        data-importance="High"
+        data-search="CodeQL 2.26.3 improves GitHub Actions queries and JavaScript modeling CodeQL 2.26.3 mejora las consultas de GitHub Actions y el modelado de JavaScript GitHub Changelog 9 CodeQL 2.26.3 adds JavaScript, TypeScript, and Vue source modeling and improves several GitHub Actions queries. CodeQL 2.26.3 añade modelado de origen para JavaScript, TypeScript y Vue, y mejora varias consultas de GitHub Actions. Security checks should get better signal on both app code and workflow logic. Las comprobaciones de seguridad deberían obtener mejor señal tanto en el código de la app como en la lógica de los workflows. GitHub CodeQL JavaScript"
+      >
+        <div class="story-head">
+          <div class="rank">3</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">GitHub Changelog</div>
+              <div class="importance importance-high" aria-label="High importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>High</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://github.blog/changelog/2026-08-19-codeql-2-26-3-improves-github-actions-queries-and-javascript-modeling" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">CodeQL 2.26.3 improves GitHub Actions queries and JavaScript modeling</span><span class="lang-text" data-lang="es">CodeQL 2.26.3 mejora las consultas de GitHub Actions y el modelado de JavaScript</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">CodeQL 2.26.3 adds JavaScript, TypeScript, and Vue source modeling and improves several GitHub Actions queries.</span><span class="lang-text" data-lang="es">CodeQL 2.26.3 añade modelado de origen para JavaScript, TypeScript y Vue, y mejora varias consultas de GitHub Actions.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: Security checks should get better signal on both app code and workflow logic.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Las comprobaciones de seguridad deberían obtener mejor señal tanto en el código de la app como en la lógica de los workflows.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">GitHub</span>
+          <span class="tag">CodeQL</span>
+          <span class="tag">JavaScript</span>
+          <a href="https://github.blog/changelog/2026-08-19-codeql-2-26-3-improves-github-actions-queries-and-javascript-modeling" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-19">Aug 19</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="4"
+        data-published="2026-08-18"
+        data-tags="Copilot,JetBrains,Enterprise"
+        data-source="GitHub Changelog"
+        data-importance="High"
+        data-search="Enterprise managed settings in GitHub Copilot for JetBrains Configuración administrada por la empresa en GitHub Copilot para JetBrains GitHub Changelog 9 Copilot for JetBrains now supports enterprise managed settings for plugin governance, MCP server access, OpenTelemetry, and permission modes. Copilot para JetBrains ahora admite configuración administrada por la empresa para gobernanza de plugins, acceso a servidores MCP, OpenTelemetry y modos de permisos. Admins get more control over how IDE copilots behave in managed environments. Los administradores obtienen más control sobre cómo se comportan los copilots del IDE en entornos gestionados. Copilot JetBrains Enterprise"
+      >
+        <div class="story-head">
+          <div class="rank">4</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">GitHub Changelog</div>
+              <div class="importance importance-high" aria-label="High importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>High</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://github.blog/changelog/2026-08-18-enterprise-managed-settings-in-github-copilot-for-jetbrains" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Enterprise managed settings in GitHub Copilot for JetBrains</span><span class="lang-text" data-lang="es">Configuración administrada por la empresa en GitHub Copilot para JetBrains</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">Copilot for JetBrains now supports enterprise managed settings for plugin governance, MCP server access, OpenTelemetry, and permission modes.</span><span class="lang-text" data-lang="es">Copilot para JetBrains ahora admite configuración administrada por la empresa para gobernanza de plugins, acceso a servidores MCP, OpenTelemetry y modos de permisos.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: Admins get more control over how IDE copilots behave in managed environments.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Los administradores obtienen más control sobre cómo se comportan los copilots del IDE en entornos gestionados.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">Copilot</span>
+          <span class="tag">JetBrains</span>
+          <span class="tag">Enterprise</span>
+          <a href="https://github.blog/changelog/2026-08-18-enterprise-managed-settings-in-github-copilot-for-jetbrains" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-18">Aug 18</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="5"
+        data-published="2026-08-18"
+        data-tags="Security,Tokens,Incident response"
+        data-source="GitHub Changelog"
+        data-importance="High"
+        data-search="Credential revocation and deauthorization by token type Revocación y desautorización de credenciales por tipo de token GitHub Changelog 9 GitHub now lets incident responders revoke or deauthorize credentials by token type and by user. GitHub ahora permite a los equipos de respuesta revocar o desautorizar credenciales por tipo de token y por usuario. That should speed up targeted response when a specific token class is implicated. Eso debería acelerar la respuesta dirigida cuando un tipo concreto de token está implicado. Security Tokens Incident response"
+      >
+        <div class="story-head">
+          <div class="rank">5</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">GitHub Changelog</div>
+              <div class="importance importance-high" aria-label="High importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>High</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://github.blog/changelog/2026-08-18-credential-revocation-and-deauthorization-by-token-type" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Credential revocation and deauthorization by token type</span><span class="lang-text" data-lang="es">Revocación y desautorización de credenciales por tipo de token</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">GitHub now lets incident responders revoke or deauthorize credentials by token type and by user.</span><span class="lang-text" data-lang="es">GitHub ahora permite a los equipos de respuesta revocar o desautorizar credenciales por tipo de token y por usuario.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: That should speed up targeted response when a specific token class is implicated.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Eso debería acelerar la respuesta dirigida cuando un tipo concreto de token está implicado.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">Security</span>
+          <span class="tag">Tokens</span>
+          <span class="tag">Incident response</span>
+          <a href="https://github.blog/changelog/2026-08-18-credential-revocation-and-deauthorization-by-token-type" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-18">Aug 18</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="6"
+        data-published="2026-08-20"
+        data-tags="GitHub,Audit log,Governance"
+        data-source="GitHub Changelog"
+        data-importance="High"
+        data-search="Track GitHub Code Quality enablement changes in the audit log Rastrea cambios de habilitación de GitHub Code Quality en el registro de auditoría GitHub Changelog 8 GitHub Code Quality now writes audit log events when repositories enable, disable, or change settings. GitHub Code Quality ahora registra eventos en el registro de auditoría cuando los repositorios se habilitan, se deshabilitan o cambian de configuración. Governance teams get a clearer change trail for quality policy rollouts. Los equipos de gobierno obtienen un rastro más claro de los cambios al desplegar políticas de calidad. GitHub Audit log Governance"
+      >
+        <div class="story-head">
+          <div class="rank">6</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">GitHub Changelog</div>
+              <div class="importance importance-high" aria-label="High importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>High</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://github.blog/changelog/2026-08-20-track-github-code-quality-enablement-changes-in-the-audit-log" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Track GitHub Code Quality enablement changes in the audit log</span><span class="lang-text" data-lang="es">Rastrea cambios de habilitación de GitHub Code Quality en el registro de auditoría</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">GitHub Code Quality now writes audit log events when repositories enable, disable, or change settings.</span><span class="lang-text" data-lang="es">GitHub Code Quality ahora registra eventos en el registro de auditoría cuando los repositorios se habilitan, se deshabilitan o cambian de configuración.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: Governance teams get a clearer change trail for quality policy rollouts.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Los equipos de gobierno obtienen un rastro más claro de los cambios al desplegar políticas de calidad.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">GitHub</span>
+          <span class="tag">Audit log</span>
+          <span class="tag">Governance</span>
+          <a href="https://github.blog/changelog/2026-08-20-track-github-code-quality-enablement-changes-in-the-audit-log" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-20">Aug 20</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="7"
+        data-published="2026-08-19"
+        data-tags="GitHub,Dashboards,Trends"
+        data-source="GitHub Changelog"
+        data-importance="High"
+        data-search="Track organization code quality trends Sigue las tendencias de calidad de código de la organización GitHub Changelog 8 The org-level Code Quality dashboard now includes a Trends tab that shows change over time. El panel de Code Quality a nivel de organización ahora incluye una pestaña Trends que muestra la evolución en el tiempo. This makes it easier to spot whether a repository fleet is getting healthier or drifting. Así es más fácil ver si una flota de repositorios mejora o se va desviando. GitHub Dashboards Trends"
+      >
+        <div class="story-head">
+          <div class="rank">7</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">GitHub Changelog</div>
+              <div class="importance importance-high" aria-label="High importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>High</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://github.blog/changelog/2026-08-19-track-organization-code-quality-trends" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Track organization code quality trends</span><span class="lang-text" data-lang="es">Sigue las tendencias de calidad de código de la organización</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">The org-level Code Quality dashboard now includes a Trends tab that shows change over time.</span><span class="lang-text" data-lang="es">El panel de Code Quality a nivel de organización ahora incluye una pestaña Trends que muestra la evolución en el tiempo.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: This makes it easier to spot whether a repository fleet is getting healthier or drifting.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Así es más fácil ver si una flota de repositorios mejora o se va desviando.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">GitHub</span>
+          <span class="tag">Dashboards</span>
+          <span class="tag">Trends</span>
+          <a href="https://github.blog/changelog/2026-08-19-track-organization-code-quality-trends" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-19">Aug 19</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="8"
+        data-published="2026-08-14"
+        data-tags="OAuth,GitHub Apps,Auth"
+        data-source="GitHub Changelog"
+        data-importance="Medium"
+        data-search="Multiple redirect URIs and token refresh for OAuth apps Múltiples redirect URIs y actualización de tokens para apps OAuth GitHub Changelog 7 OAuth apps and GitHub Apps get support for multiple redirect URIs plus expiring access tokens and refresh tokens. Las apps OAuth y las GitHub Apps reciben soporte para múltiples redirect URIs, además de access tokens con caducidad y refresh tokens. App developers gain more secure auth flows without rebuilding around a single callback URL. Los desarrolladores de apps ganan flujos de autenticación más seguros sin rehacer todo alrededor de una sola URL de callback. OAuth GitHub Apps Auth"
+      >
+        <div class="story-head">
+          <div class="rank">8</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">GitHub Changelog</div>
+              <div class="importance importance-medium" aria-label="Medium importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>Medium</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://github.blog/changelog/2026-08-14-multiple-redirect-uris-and-token-refresh-for-oauth-apps" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Multiple redirect URIs and token refresh for OAuth apps</span><span class="lang-text" data-lang="es">Múltiples redirect URIs y actualización de tokens para apps OAuth</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">OAuth apps and GitHub Apps get support for multiple redirect URIs plus expiring access tokens and refresh tokens.</span><span class="lang-text" data-lang="es">Las apps OAuth y las GitHub Apps reciben soporte para múltiples redirect URIs, además de access tokens con caducidad y refresh tokens.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: App developers gain more secure auth flows without rebuilding around a single callback URL.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Los desarrolladores de apps ganan flujos de autenticación más seguros sin rehacer todo alrededor de una sola URL de callback.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">OAuth</span>
+          <span class="tag">GitHub Apps</span>
+          <span class="tag">Auth</span>
+          <a href="https://github.blog/changelog/2026-08-14-multiple-redirect-uris-and-token-refresh-for-oauth-apps" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-14">Aug 14</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="9"
+        data-published="2026-08-19"
+        data-tags="Azure,Databricks,Regions"
+        data-source="Microsoft Developer"
+        data-importance="High"
+        data-search="Generally Available: Azure Databricks Lakebase in four additional regions General Availability: Azure Databricks Lakebase en cuatro regiones adicionales Microsoft Developer 8 Azure Databricks Lakebase is now generally available in four more Azure regions. Azure Databricks Lakebase ya está disponible de forma general en cuatro regiones más de Azure. That expands the set of places teams can deploy data platforms closer to users or workloads. Eso amplía los lugares donde los equipos pueden desplegar plataformas de datos más cerca de usuarios o cargas de trabajo. Azure Databricks Regions"
+      >
+        <div class="story-head">
+          <div class="rank">9</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">Microsoft Developer</div>
+              <div class="importance importance-high" aria-label="High importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>High</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://azure.microsoft.com/updates?id=569684" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Generally Available: Azure Databricks Lakebase in four additional regions</span><span class="lang-text" data-lang="es">General Availability: Azure Databricks Lakebase en cuatro regiones adicionales</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">Azure Databricks Lakebase is now generally available in four more Azure regions.</span><span class="lang-text" data-lang="es">Azure Databricks Lakebase ya está disponible de forma general en cuatro regiones más de Azure.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: That expands the set of places teams can deploy data platforms closer to users or workloads.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Eso amplía los lugares donde los equipos pueden desplegar plataformas de datos más cerca de usuarios o cargas de trabajo.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">Azure</span>
+          <span class="tag">Databricks</span>
+          <span class="tag">Regions</span>
+          <a href="https://azure.microsoft.com/updates?id=569684" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-19">Aug 19</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="10"
+        data-published="2026-08-19"
+        data-tags="Azure SQL,MSSQL,Provisioning"
+        data-source="Microsoft Developer"
+        data-importance="High"
+        data-search="Generally Available: Azure SQL Database provisioning in MSSQL extension General Availability: aprovisionamiento de Azure SQL Database en la extensión MSSQL Microsoft Developer 8 You can now provision and connect to a managed Azure SQL Database directly from the MSSQL extension. Ahora puedes aprovisionar y conectar una Azure SQL Database administrada directamente desde la extensión MSSQL. That shortens the path from editor to database for day-to-day development. Eso acorta el camino del editor a la base de datos para el desarrollo diario. Azure SQL MSSQL Provisioning"
+      >
+        <div class="story-head">
+          <div class="rank">10</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">Microsoft Developer</div>
+              <div class="importance importance-high" aria-label="High importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>High</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://azure.microsoft.com/updates?id=569160" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Generally Available: Azure SQL Database provisioning in MSSQL extension</span><span class="lang-text" data-lang="es">General Availability: aprovisionamiento de Azure SQL Database en la extensión MSSQL</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">You can now provision and connect to a managed Azure SQL Database directly from the MSSQL extension.</span><span class="lang-text" data-lang="es">Ahora puedes aprovisionar y conectar una Azure SQL Database administrada directamente desde la extensión MSSQL.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: That shortens the path from editor to database for day-to-day development.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Eso acorta el camino del editor a la base de datos para el desarrollo diario.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">Azure SQL</span>
+          <span class="tag">MSSQL</span>
+          <span class="tag">Provisioning</span>
+          <a href="https://azure.microsoft.com/updates?id=569160" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-19">Aug 19</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="11"
+        data-published="2026-08-19"
+        data-tags="Azure SQL,Databases,Editor"
+        data-source="Microsoft Developer"
+        data-importance="Medium"
+        data-search="Generally Available: Azure SQL updates for mid-August 2026 General Availability: actualizaciones de Azure SQL para mediados de agosto de 2026 Microsoft Developer 7 The mid-August Azure SQL update bundle adds editor and provisioning improvements, including customizable keyboard shortcuts and other enhancements. El paquete de actualizaciones de Azure SQL de mediados de agosto añade mejoras del editor y del aprovisionamiento, incluyendo atajos de teclado personalizables y otros ajustes. Database teams get a broader set of small quality-of-life upgrades in one release. Los equipos de bases de datos obtienen en una sola entrega un conjunto más amplio de mejoras de uso diario. Azure SQL Databases Editor"
+      >
+        <div class="story-head">
+          <div class="rank">11</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">Microsoft Developer</div>
+              <div class="importance importance-medium" aria-label="Medium importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>Medium</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://azure.microsoft.com/updates?id=569145" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Generally Available: Azure SQL updates for mid-August 2026</span><span class="lang-text" data-lang="es">General Availability: actualizaciones de Azure SQL para mediados de agosto de 2026</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">The mid-August Azure SQL update bundle adds editor and provisioning improvements, including customizable keyboard shortcuts and other enhancements.</span><span class="lang-text" data-lang="es">El paquete de actualizaciones de Azure SQL de mediados de agosto añade mejoras del editor y del aprovisionamiento, incluyendo atajos de teclado personalizables y otros ajustes.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: Database teams get a broader set of small quality-of-life upgrades in one release.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Los equipos de bases de datos obtienen en una sola entrega un conjunto más amplio de mejoras de uso diario.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">Azure SQL</span>
+          <span class="tag">Databases</span>
+          <span class="tag">Editor</span>
+          <a href="https://azure.microsoft.com/updates?id=569145" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-19">Aug 19</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="12"
+        data-published="2026-08-19"
+        data-tags="SQL,Formatter,Preview"
+        data-source="Microsoft Developer"
+        data-importance="Medium"
+        data-search="Public Preview: SQL Formatter in MSSQL extension Vista previa pública: SQL Formatter en la extensión MSSQL Microsoft Developer 7 The MSSQL extension adds a public preview SQL Formatter for cleaner, more readable scripts. La extensión MSSQL añade un SQL Formatter en vista previa pública para scripts más limpios y legibles. Formatter support should reduce friction when working directly in the editor. El soporte de formateo debería reducir fricción al trabajar directamente en el editor. SQL Formatter Preview"
+      >
+        <div class="story-head">
+          <div class="rank">12</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">Microsoft Developer</div>
+              <div class="importance importance-medium" aria-label="Medium importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>Medium</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://azure.microsoft.com/updates?id=569155" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Public Preview: SQL Formatter in MSSQL extension</span><span class="lang-text" data-lang="es">Vista previa pública: SQL Formatter en la extensión MSSQL</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">The MSSQL extension adds a public preview SQL Formatter for cleaner, more readable scripts.</span><span class="lang-text" data-lang="es">La extensión MSSQL añade un SQL Formatter en vista previa pública para scripts más limpios y legibles.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: Formatter support should reduce friction when working directly in the editor.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: El soporte de formateo debería reducir fricción al trabajar directamente en el editor.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">SQL</span>
+          <span class="tag">Formatter</span>
+          <span class="tag">Preview</span>
+          <a href="https://azure.microsoft.com/updates?id=569155" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-19">Aug 19</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="13"
+        data-published="2026-08-19"
+        data-tags="Azure,VMs,Performance"
+        data-source="Microsoft Developer"
+        data-importance="Medium"
+        data-search="Generally Available: vCore Customization: Disable Multithreading and Configurable Constrained Cores General Availability: personalización de vCore con desactivación de multithreading y núcleos restringidos configurables Microsoft Developer 7 Azure Virtual Machines gain vCore customization with options to disable SMT and configure constrained cores. Azure Virtual Machines gana personalización de vCore con opciones para desactivar SMT y configurar núcleos restringidos. This gives infrastructure teams more control over performance and resource shape. Esto da a los equipos de infraestructura más control sobre el rendimiento y la forma de los recursos. Azure VMs Performance"
+      >
+        <div class="story-head">
+          <div class="rank">13</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">Microsoft Developer</div>
+              <div class="importance importance-medium" aria-label="Medium importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>Medium</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://azure.microsoft.com/updates?id=569051" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Generally Available: vCore Customization: Disable Multithreading and Configurable Constrained Cores</span><span class="lang-text" data-lang="es">General Availability: personalización de vCore con desactivación de multithreading y núcleos restringidos configurables</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">Azure Virtual Machines gain vCore customization with options to disable SMT and configure constrained cores.</span><span class="lang-text" data-lang="es">Azure Virtual Machines gana personalización de vCore con opciones para desactivar SMT y configurar núcleos restringidos.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: This gives infrastructure teams more control over performance and resource shape.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Esto da a los equipos de infraestructura más control sobre el rendimiento y la forma de los recursos.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">Azure</span>
+          <span class="tag">VMs</span>
+          <span class="tag">Performance</span>
+          <a href="https://azure.microsoft.com/updates?id=569051" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-19">Aug 19</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="14"
+        data-published="2026-08-19"
+        data-tags="VS Code,Editor,Release"
+        data-source="Microsoft Developer"
+        data-importance="Medium"
+        data-search="Visual Studio Code 1.134 Visual Studio Code 1.134 Microsoft Developer 7 Visual Studio Code 1.134 is out with the latest editor release notes. Visual Studio Code 1.134 ya está disponible con las notas de la versión más recientes del editor. Even a routine editor refresh matters because teams standardize around the same tooling baseline. Incluso una actualización rutinaria del editor importa porque los equipos estandarizan la misma base de herramientas. VS Code Editor Release"
+      >
+        <div class="story-head">
+          <div class="rank">14</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">Microsoft Developer</div>
+              <div class="importance importance-medium" aria-label="Medium importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>Medium</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://code.visualstudio.com/updates/v1_134" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Visual Studio Code 1.134</span><span class="lang-text" data-lang="es">Visual Studio Code 1.134</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">Visual Studio Code 1.134 is out with the latest editor release notes.</span><span class="lang-text" data-lang="es">Visual Studio Code 1.134 ya está disponible con las notas de la versión más recientes del editor.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: Even a routine editor refresh matters because teams standardize around the same tooling baseline.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Incluso una actualización rutinaria del editor importa porque los equipos estandarizan la misma base de herramientas.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">VS Code</span>
+          <span class="tag">Editor</span>
+          <span class="tag">Release</span>
+          <a href="https://code.visualstudio.com/updates/v1_134" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-19">Aug 19</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="15"
+        data-published="2026-08-19"
+        data-tags="Azure,Site Recovery,Networking"
+        data-source="Microsoft Developer"
+        data-importance="Medium"
+        data-search="Generally Available: BYON (Bring Your Own NIC) in Azure Site Recovery General Availability: BYON (Bring Your Own NIC) en Azure Site Recovery Microsoft Developer 7 Azure Site Recovery now lets teams attach a pre-provisioned NIC in the target region during failover and test-failover. Azure Site Recovery ahora permite conectar una NIC ya aprovisionada en la región de destino durante failover y test-failover. That should simplify migration and recovery setups that need deterministic networking. Eso debería simplificar los montajes de migración y recuperación que necesitan redes deterministas. Azure Site Recovery Networking"
+      >
+        <div class="story-head">
+          <div class="rank">15</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">Microsoft Developer</div>
+              <div class="importance importance-medium" aria-label="Medium importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>Medium</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://azure.microsoft.com/updates?id=569515" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Generally Available: BYON (Bring Your Own NIC) in Azure Site Recovery</span><span class="lang-text" data-lang="es">General Availability: BYON (Bring Your Own NIC) en Azure Site Recovery</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">Azure Site Recovery now lets teams attach a pre-provisioned NIC in the target region during failover and test-failover.</span><span class="lang-text" data-lang="es">Azure Site Recovery ahora permite conectar una NIC ya aprovisionada en la región de destino durante failover y test-failover.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: That should simplify migration and recovery setups that need deterministic networking.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Eso debería simplificar los montajes de migración y recuperación que necesitan redes deterministas.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">Azure</span>
+          <span class="tag">Site Recovery</span>
+          <span class="tag">Networking</span>
+          <a href="https://azure.microsoft.com/updates?id=569515" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-19">Aug 19</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="16"
+        data-published="2026-08-20"
+        data-tags="AI,Grok,Reliability"
+        data-source="TechCrunch AI"
+        data-importance="High"
+        data-search="Grok keeps sending gibberish responses to users Grok sigue enviando respuestas ininteligibles a los usuarios TechCrunch AI 9 TechCrunch reports that some Grok Lite users started seeing gibberish responses. TechCrunch informa que algunos usuarios de Grok Lite empezaron a ver respuestas incoherentes. Model reliability problems become product incidents once they reach end users. Los problemas de fiabilidad del modelo se convierten en incidentes de producto en cuanto llegan a usuarios finales. AI Grok Reliability"
+      >
+        <div class="story-head">
+          <div class="rank">16</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">TechCrunch AI</div>
+              <div class="importance importance-high" aria-label="High importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>High</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://techcrunch.com/2026/08/20/grok-keeps-sending-gibberish-responses-to-users" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Grok keeps sending gibberish responses to users</span><span class="lang-text" data-lang="es">Grok sigue enviando respuestas ininteligibles a los usuarios</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">TechCrunch reports that some Grok Lite users started seeing gibberish responses.</span><span class="lang-text" data-lang="es">TechCrunch informa que algunos usuarios de Grok Lite empezaron a ver respuestas incoherentes.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: Model reliability problems become product incidents once they reach end users.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Los problemas de fiabilidad del modelo se convierten en incidentes de producto en cuanto llegan a usuarios finales.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">AI</span>
+          <span class="tag">Grok</span>
+          <span class="tag">Reliability</span>
+          <a href="https://techcrunch.com/2026/08/20/grok-keeps-sending-gibberish-responses-to-users" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-20">Aug 20</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="17"
+        data-published="2026-08-20"
+        data-tags="AI,Routing,API"
+        data-source="TechCrunch AI"
+        data-importance="High"
+        data-search="Ramp launches its own AI model router, called Router Ramp lanza su propio enrutador de modelos de IA, llamado Router TechCrunch AI 8 Ramp has launched Router, a model-routing service that lets users and companies switch between large language models via API. Ramp ha lanzado Router, un servicio de enrutamiento de modelos que permite cambiar entre grandes modelos de lenguaje vía API. Model routing is moving from niche tooling into mainstream developer infrastructure. El enrutamiento de modelos está pasando de herramienta de nicho a infraestructura principal para desarrolladores. AI Routing API"
+      >
+        <div class="story-head">
+          <div class="rank">17</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">TechCrunch AI</div>
+              <div class="importance importance-high" aria-label="High importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>High</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://techcrunch.com/2026/08/20/ramp-launches-its-own-ai-model-router-called-router" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Ramp launches its own AI model router, called Router</span><span class="lang-text" data-lang="es">Ramp lanza su propio enrutador de modelos de IA, llamado Router</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">Ramp has launched Router, a model-routing service that lets users and companies switch between large language models via API.</span><span class="lang-text" data-lang="es">Ramp ha lanzado Router, un servicio de enrutamiento de modelos que permite cambiar entre grandes modelos de lenguaje vía API.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: Model routing is moving from niche tooling into mainstream developer infrastructure.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: El enrutamiento de modelos está pasando de herramienta de nicho a infraestructura principal para desarrolladores.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">AI</span>
+          <span class="tag">Routing</span>
+          <span class="tag">API</span>
+          <a href="https://techcrunch.com/2026/08/20/ramp-launches-its-own-ai-model-router-called-router" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-20">Aug 20</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="18"
+        data-published="2026-08-20"
+        data-tags="AI,Games,Meta"
+        data-source="TechCrunch AI"
+        data-importance="High"
+        data-search="Meta brings Pocket, an app that lets you vibe-code and share games, to US users Meta lleva Pocket, una app para vibe-codear y compartir juegos, a usuarios de EE. UU. TechCrunch AI 8 Meta is bringing Pocket, its experimental AI app for creating and sharing interactive games, to US users. Meta lleva Pocket, su app experimental de IA para crear y compartir juegos interactivos, a usuarios de EE. UU. Consumer AI creation tools keep getting closer to lightweight game-building workflows. Las herramientas de creación con IA para consumidores se siguen acercando a flujos ligeros de creación de juegos. AI Games Meta"
+      >
+        <div class="story-head">
+          <div class="rank">18</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">TechCrunch AI</div>
+              <div class="importance importance-high" aria-label="High importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>High</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://techcrunch.com/2026/08/20/meta-brings-pocket-an-app-that-lets-you-vibe-code-and-share-games-to-us-users" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Meta brings Pocket, an app that lets you vibe-code and share games, to US users</span><span class="lang-text" data-lang="es">Meta lleva Pocket, una app para vibe-codear y compartir juegos, a usuarios de EE. UU.</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">Meta is bringing Pocket, its experimental AI app for creating and sharing interactive games, to US users.</span><span class="lang-text" data-lang="es">Meta lleva Pocket, su app experimental de IA para crear y compartir juegos interactivos, a usuarios de EE. UU.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: Consumer AI creation tools keep getting closer to lightweight game-building workflows.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Las herramientas de creación con IA para consumidores se siguen acercando a flujos ligeros de creación de juegos.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">AI</span>
+          <span class="tag">Games</span>
+          <span class="tag">Meta</span>
+          <a href="https://techcrunch.com/2026/08/20/meta-brings-pocket-an-app-that-lets-you-vibe-code-and-share-games-to-us-users" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-20">Aug 20</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="19"
+        data-published="2026-08-19"
+        data-tags="AI,Privacy,Enterprise"
+        data-source="TechCrunch AI"
+        data-importance="High"
+        data-search="OpenAI seeks to one-up Anthropic with new customer privacy protections OpenAI busca superar a Anthropic con nuevas protecciones de privacidad para clientes TechCrunch AI 9 OpenAI is introducing new privacy protections for enterprise customer data as it competes with Anthropic. OpenAI está introduciendo nuevas protecciones de privacidad para datos de clientes empresariales mientras compite con Anthropic. Enterprise buyers keep pressuring AI vendors to prove data handling is trustworthy. Los compradores empresariales siguen presionando a los proveedores de IA para demostrar que el manejo de datos es fiable. AI Privacy Enterprise"
+      >
+        <div class="story-head">
+          <div class="rank">19</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">TechCrunch AI</div>
+              <div class="importance importance-high" aria-label="High importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>High</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://techcrunch.com/2026/08/19/openai-seeks-to-one-up-anthropic-with-new-customer-privacy-protections" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">OpenAI seeks to one-up Anthropic with new customer privacy protections</span><span class="lang-text" data-lang="es">OpenAI busca superar a Anthropic con nuevas protecciones de privacidad para clientes</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">OpenAI is introducing new privacy protections for enterprise customer data as it competes with Anthropic.</span><span class="lang-text" data-lang="es">OpenAI está introduciendo nuevas protecciones de privacidad para datos de clientes empresariales mientras compite con Anthropic.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: Enterprise buyers keep pressuring AI vendors to prove data handling is trustworthy.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Los compradores empresariales siguen presionando a los proveedores de IA para demostrar que el manejo de datos es fiable.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">AI</span>
+          <span class="tag">Privacy</span>
+          <span class="tag">Enterprise</span>
+          <a href="https://techcrunch.com/2026/08/19/openai-seeks-to-one-up-anthropic-with-new-customer-privacy-protections" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-19">Aug 19</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="20"
+        data-published="2026-08-20"
+        data-tags="Firmware,Laptops,BIOS"
+        data-source="The Verge"
+        data-importance="High"
+        data-search="Framework says it’s addressing a BIOS update that bricked some of its older laptops Framework dice que está corrigiendo una actualización de BIOS que dejó inservibles algunos de sus portátiles antiguos The Verge 8 Framework says it is addressing a BIOS update that bricked some older Laptop 13 units with last-gen AMD chips. Framework dice que está corrigiendo una actualización de BIOS que dejó inservibles algunas unidades antiguas del Laptop 13 con chips AMD de la generación anterior. Firmware quality remains a real operational risk, especially when updates affect bootability. La calidad del firmware sigue siendo un riesgo operativo real, sobre todo cuando las actualizaciones afectan al arranque. Firmware Laptops BIOS"
+      >
+        <div class="story-head">
+          <div class="rank">20</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">The Verge</div>
+              <div class="importance importance-high" aria-label="High importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>High</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://www.theverge.com/gadgets/982800/framework-laptop-13-amd-7040-bios-320-bricking-warranty" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Framework says it’s addressing a BIOS update that bricked some of its older laptops</span><span class="lang-text" data-lang="es">Framework dice que está corrigiendo una actualización de BIOS que dejó inservibles algunos de sus portátiles antiguos</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">Framework says it is addressing a BIOS update that bricked some older Laptop 13 units with last-gen AMD chips.</span><span class="lang-text" data-lang="es">Framework dice que está corrigiendo una actualización de BIOS que dejó inservibles algunas unidades antiguas del Laptop 13 con chips AMD de la generación anterior.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: Firmware quality remains a real operational risk, especially when updates affect bootability.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: La calidad del firmware sigue siendo un riesgo operativo real, sobre todo cuando las actualizaciones afectan al arranque.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">Firmware</span>
+          <span class="tag">Laptops</span>
+          <span class="tag">BIOS</span>
+          <a href="https://www.theverge.com/gadgets/982800/framework-laptop-13-amd-7040-bios-320-bricking-warranty" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-20">Aug 20</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="21"
+        data-published="2026-08-20"
+        data-tags="Waymo,Hardware,Autonomous cars"
+        data-source="The Verge"
+        data-importance="Medium"
+        data-search="Waymo lifts the lid on the ‘brain’ powering its robotaxis Waymo revela el “cerebro” que impulsa sus robotaxis The Verge 7 Waymo is detailing the computing hardware that powers its robotaxis. Waymo está detallando el hardware de computación que impulsa sus robotaxis. The story matters for teams building autonomous systems and the silicon around them. La historia importa para los equipos que construyen sistemas autónomos y el silicio que los acompaña. Waymo Hardware Autonomous cars"
+      >
+        <div class="story-head">
+          <div class="rank">21</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">The Verge</div>
+              <div class="importance importance-medium" aria-label="Medium importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>Medium</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://www.theverge.com/transportation/982653/waymo-brain-computer-chip-robotaxi-hardware-suppliers" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Waymo lifts the lid on the ‘brain’ powering its robotaxis</span><span class="lang-text" data-lang="es">Waymo revela el “cerebro” que impulsa sus robotaxis</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">Waymo is detailing the computing hardware that powers its robotaxis.</span><span class="lang-text" data-lang="es">Waymo está detallando el hardware de computación que impulsa sus robotaxis.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: The story matters for teams building autonomous systems and the silicon around them.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: La historia importa para los equipos que construyen sistemas autónomos y el silicio que los acompaña.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">Waymo</span>
+          <span class="tag">Hardware</span>
+          <span class="tag">Autonomous cars</span>
+          <a href="https://www.theverge.com/transportation/982653/waymo-brain-computer-chip-robotaxi-hardware-suppliers" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-20">Aug 20</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="22"
+        data-published="2026-08-20"
+        data-tags="Meta,Wearables,Privacy"
+        data-source="The Verge"
+        data-importance="Medium"
+        data-search="Meta glasses are a workplace menace Las gafas de Meta son una amenaza en el trabajo The Verge 7 The Verge says Meta glasses are raising workplace surveillance and safety concerns. The Verge dice que las gafas de Meta están generando preocupaciones de vigilancia y seguridad en el trabajo. Wearables can introduce new policy and privacy questions in enterprise settings. Los wearables pueden introducir nuevas preguntas de política y privacidad en entornos empresariales. Meta Wearables Privacy"
+      >
+        <div class="story-head">
+          <div class="rank">22</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">The Verge</div>
+              <div class="importance importance-medium" aria-label="Medium importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>Medium</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://www.theverge.com/report/982414/meta-glasses-work-surveillance-labor-security" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Meta glasses are a workplace menace</span><span class="lang-text" data-lang="es">Las gafas de Meta son una amenaza en el trabajo</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">The Verge says Meta glasses are raising workplace surveillance and safety concerns.</span><span class="lang-text" data-lang="es">The Verge dice que las gafas de Meta están generando preocupaciones de vigilancia y seguridad en el trabajo.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: Wearables can introduce new policy and privacy questions in enterprise settings.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Los wearables pueden introducir nuevas preguntas de política y privacidad en entornos empresariales.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">Meta</span>
+          <span class="tag">Wearables</span>
+          <span class="tag">Privacy</span>
+          <a href="https://www.theverge.com/report/982414/meta-glasses-work-surveillance-labor-security" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-20">Aug 20</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="23"
+        data-published="2026-08-20"
+        data-tags="Comcast,Privacy,Smart home"
+        data-source="The Verge"
+        data-importance="Medium"
+        data-search="Here’s what data Comcast says its motion-detecting routers collect Esto es lo que Comcast dice que recogen sus routers con detección de movimiento The Verge 7 Comcast has explained what data its motion-detecting router platform collects. Comcast ha explicado qué datos recoge su plataforma de routers con detección de movimiento. Connected-home products need much clearer data transparency to win trust. Los productos de hogar conectado necesitan mucha más transparencia de datos para ganarse la confianza. Comcast Privacy Smart home"
+      >
+        <div class="story-head">
+          <div class="rank">23</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">The Verge</div>
+              <div class="importance importance-medium" aria-label="Medium importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>Medium</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://www.theverge.com/tech/982689/comcast-xfinity-wifi-motion-privacy-concerns-response" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Here’s what data Comcast says its motion-detecting routers collect</span><span class="lang-text" data-lang="es">Esto es lo que Comcast dice que recogen sus routers con detección de movimiento</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">Comcast has explained what data its motion-detecting router platform collects.</span><span class="lang-text" data-lang="es">Comcast ha explicado qué datos recoge su plataforma de routers con detección de movimiento.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: Connected-home products need much clearer data transparency to win trust.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Los productos de hogar conectado necesitan mucha más transparencia de datos para ganarse la confianza.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">Comcast</span>
+          <span class="tag">Privacy</span>
+          <span class="tag">Smart home</span>
+          <a href="https://www.theverge.com/tech/982689/comcast-xfinity-wifi-motion-privacy-concerns-response" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-20">Aug 20</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="24"
+        data-published="2026-08-20"
+        data-tags="AI security,Prompt injection,LLMs"
+        data-source="Ars Technica"
+        data-importance="High"
+        data-search="Grok exfiltrates user data when malicious instructions are encrypted Grok exfiltra datos de usuario cuando las instrucciones maliciosas están cifradas Ars Technica 9 Ars Technica reports a prompt-injection style flaw that can exfiltrate user data from Grok when malicious instructions are encrypted. Ars Technica informa de un fallo estilo prompt injection que puede exfiltrar datos de usuario de Grok cuando las instrucciones maliciosas están cifradas. LLM security still has sharp edges even when attacks are hidden inside encoded inputs. La seguridad de los LLM sigue teniendo aristas incluso cuando los ataques se ocultan dentro de entradas codificadas. AI security Prompt injection LLMs"
+      >
+        <div class="story-head">
+          <div class="rank">24</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">Ars Technica</div>
+              <div class="importance importance-high" aria-label="High importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>High</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://arstechnica.com/security/2026/08/grok-exfiltrates-user-data-when-malicious-instructions-are-encrypted" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Grok exfiltrates user data when malicious instructions are encrypted</span><span class="lang-text" data-lang="es">Grok exfiltra datos de usuario cuando las instrucciones maliciosas están cifradas</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">Ars Technica reports a prompt-injection style flaw that can exfiltrate user data from Grok when malicious instructions are encrypted.</span><span class="lang-text" data-lang="es">Ars Technica informa de un fallo estilo prompt injection que puede exfiltrar datos de usuario de Grok cuando las instrucciones maliciosas están cifradas.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: LLM security still has sharp edges even when attacks are hidden inside encoded inputs.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: La seguridad de los LLM sigue teniendo aristas incluso cuando los ataques se ocultan dentro de entradas codificadas.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">AI security</span>
+          <span class="tag">Prompt injection</span>
+          <span class="tag">LLMs</span>
+          <a href="https://arstechnica.com/security/2026/08/grok-exfiltrates-user-data-when-malicious-instructions-are-encrypted" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-20">Aug 20</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="25"
+        data-published="2026-08-18"
+        data-tags="Copilot,Security,Exploit"
+        data-source="Ars Technica"
+        data-importance="High"
+        data-search="Microsoft Copilot reveals secret input that allowed it to be hacked Microsoft Copilot revela la entrada secreta que permitió hackearlo Ars Technica 9 Ars Technica says a secret parameter helped attackers abuse Microsoft Copilot in a reported exploit. Ars Technica dice que un parámetro secreto ayudó a atacantes a abusar de Microsoft Copilot en un exploit reportado. That underscores how small implementation details can become security liabilities. Eso subraya cómo pequeños detalles de implementación pueden convertirse en responsabilidades de seguridad. Copilot Security Exploit"
+      >
+        <div class="story-head">
+          <div class="rank">25</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">Ars Technica</div>
+              <div class="importance importance-high" aria-label="High importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>High</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://arstechnica.com/security/2026/08/microsoft-copilot-reveals-secret-input-that-allowed-it-to-be-hacked" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Microsoft Copilot reveals secret input that allowed it to be hacked</span><span class="lang-text" data-lang="es">Microsoft Copilot revela la entrada secreta que permitió hackearlo</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">Ars Technica says a secret parameter helped attackers abuse Microsoft Copilot in a reported exploit.</span><span class="lang-text" data-lang="es">Ars Technica dice que un parámetro secreto ayudó a atacantes a abusar de Microsoft Copilot en un exploit reportado.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: That underscores how small implementation details can become security liabilities.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Eso subraya cómo pequeños detalles de implementación pueden convertirse en responsabilidades de seguridad.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">Copilot</span>
+          <span class="tag">Security</span>
+          <span class="tag">Exploit</span>
+          <a href="https://arstechnica.com/security/2026/08/microsoft-copilot-reveals-secret-input-that-allowed-it-to-be-hacked" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-18">Aug 18</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="26"
+        data-published="2026-08-14"
+        data-tags="macOS,Security,Exploitation"
+        data-source="Ars Technica"
+        data-importance="High"
+        data-search="Vulnerability giving attackers full control of Macs is under active exploitation Una vulnerabilidad que da a los atacantes control total de los Mac está siendo explotada activamente Ars Technica 9 A Mac vulnerability that can grant full control is reportedly being actively exploited. Según los informes, una vulnerabilidad de Mac que puede conceder control total se está explotando activamente. Patch urgency stays high when exploitation is already in the wild. La urgencia de parcheo sigue siendo alta cuando la explotación ya está ocurriendo en la práctica. macOS Security Exploitation"
+      >
+        <div class="story-head">
+          <div class="rank">26</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">Ars Technica</div>
+              <div class="importance importance-high" aria-label="High importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>High</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://arstechnica.com/security/2026/08/vulnerability-giving-attackers-full-control-of-macs-is-under-active-exploitation" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Vulnerability giving attackers full control of Macs is under active exploitation</span><span class="lang-text" data-lang="es">Una vulnerabilidad que da a los atacantes control total de los Mac está siendo explotada activamente</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">A Mac vulnerability that can grant full control is reportedly being actively exploited.</span><span class="lang-text" data-lang="es">Según los informes, una vulnerabilidad de Mac que puede conceder control total se está explotando activamente.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: Patch urgency stays high when exploitation is already in the wild.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: La urgencia de parcheo sigue siendo alta cuando la explotación ya está ocurriendo en la práctica.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">macOS</span>
+          <span class="tag">Security</span>
+          <span class="tag">Exploitation</span>
+          <a href="https://arstechnica.com/security/2026/08/vulnerability-giving-attackers-full-control-of-macs-is-under-active-exploitation" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-14">Aug 14</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="27"
+        data-published="2026-08-11"
+        data-tags="Chrome,Security,Sessions"
+        data-source="Ars Technica"
+        data-importance="High"
+        data-search="Chrome adopts what may be the best protection yet against account takeovers Chrome adopta lo que puede ser la mejor protección hasta ahora contra el secuestro de cuentas Ars Technica 8 Chrome is adding device-bound session credentials to strengthen protection against account takeovers. Chrome está añadiendo credenciales de sesión vinculadas al dispositivo para reforzar la protección contra el secuestro de cuentas. Browser-level defenses can reduce the blast radius of stolen session cookies. Las defensas a nivel de navegador pueden reducir el radio de impacto de las cookies de sesión robadas. Chrome Security Sessions"
+      >
+        <div class="story-head">
+          <div class="rank">27</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">Ars Technica</div>
+              <div class="importance importance-high" aria-label="High importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>High</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://arstechnica.com/security/2026/08/chrome-adopts-what-may-be-the-best-protection-yet-against-account-takeovers" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Chrome adopts what may be the best protection yet against account takeovers</span><span class="lang-text" data-lang="es">Chrome adopta lo que puede ser la mejor protección hasta ahora contra el secuestro de cuentas</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">Chrome is adding device-bound session credentials to strengthen protection against account takeovers.</span><span class="lang-text" data-lang="es">Chrome está añadiendo credenciales de sesión vinculadas al dispositivo para reforzar la protección contra el secuestro de cuentas.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: Browser-level defenses can reduce the blast radius of stolen session cookies.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Las defensas a nivel de navegador pueden reducir el radio de impacto de las cookies de sesión robadas.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">Chrome</span>
+          <span class="tag">Security</span>
+          <span class="tag">Sessions</span>
+          <a href="https://arstechnica.com/security/2026/08/chrome-adopts-what-may-be-the-best-protection-yet-against-account-takeovers" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-11">Aug 11</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="28"
+        data-published="2026-08-20"
+        data-tags="Linux,Kernel,Systems"
+        data-source="Hacker News"
+        data-importance="Medium"
+        data-search="Linux 7.2 Released Linux 7.2 publicado Hacker News 7 Linux 7.2 has been released. Linux 7.2 ha sido publicado. Kernel updates keep the platform moving for backend and systems teams. Las actualizaciones del kernel mantienen la plataforma en movimiento para equipos de backend y sistemas. Linux Kernel Systems"
+      >
+        <div class="story-head">
+          <div class="rank">28</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">Hacker News</div>
+              <div class="importance importance-medium" aria-label="Medium importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>Medium</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://www.igalia.com/2026/08/19/Linux-72-Released.html" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Linux 7.2 Released</span><span class="lang-text" data-lang="es">Linux 7.2 publicado</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">Linux 7.2 has been released.</span><span class="lang-text" data-lang="es">Linux 7.2 ha sido publicado.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: Kernel updates keep the platform moving for backend and systems teams.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Las actualizaciones del kernel mantienen la plataforma en movimiento para equipos de backend y sistemas.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">Linux</span>
+          <span class="tag">Kernel</span>
+          <span class="tag">Systems</span>
+          <a href="https://www.igalia.com/2026/08/19/Linux-72-Released.html" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-20">Aug 20</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="29"
+        data-published="2026-08-20"
+        data-tags="Go,Generics,Language"
+        data-source="Hacker News"
+        data-importance="Medium"
+        data-search="Generic Methods in Go 1.27 Métodos genéricos en Go 1.27 Hacker News 7 Go 1.27 adds generic methods. Go 1.27 añade métodos genéricos. That is a notable language evolution for developers pushing the type system harder. Es una evolución notable del lenguaje para desarrolladores que exigen más del sistema de tipos. Go Generics Language"
+      >
+        <div class="story-head">
+          <div class="rank">29</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">Hacker News</div>
+              <div class="importance importance-medium" aria-label="Medium importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>Medium</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://dominik.info/blog/go-generic-methods" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Generic Methods in Go 1.27</span><span class="lang-text" data-lang="es">Métodos genéricos en Go 1.27</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">Go 1.27 adds generic methods.</span><span class="lang-text" data-lang="es">Go 1.27 añade métodos genéricos.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: That is a notable language evolution for developers pushing the type system harder.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Es una evolución notable del lenguaje para desarrolladores que exigen más del sistema de tipos.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">Go</span>
+          <span class="tag">Generics</span>
+          <span class="tag">Language</span>
+          <a href="https://dominik.info/blog/go-generic-methods" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-20">Aug 20</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="30"
+        data-published="2026-08-20"
+        data-tags="Startup,Product,Developer tools"
+        data-source="Hacker News"
+        data-importance="Medium"
+        data-search="Launch HN: Vendo (YC S26) – Let users build features on top of your product Launch HN: Vendo (YC S26) – permite a los usuarios crear funciones sobre tu producto Hacker News 7 Vendo launches as a way for users to build features on top of an existing product. Vendo se lanza como una forma de que los usuarios creen funciones sobre un producto existente. It points to more product surfaces being extended by users instead of only internal teams. Apunta a que los usuarios amplíen más superficies de producto y no solo los equipos internos. Startup Product Developer tools"
+      >
+        <div class="story-head">
+          <div class="rank">30</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">Hacker News</div>
+              <div class="importance importance-medium" aria-label="Medium importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>Medium</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://github.com/runvendo/vendo" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Launch HN: Vendo (YC S26) – Let users build features on top of your product</span><span class="lang-text" data-lang="es">Launch HN: Vendo (YC S26) – permite a los usuarios crear funciones sobre tu producto</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">Vendo launches as a way for users to build features on top of an existing product.</span><span class="lang-text" data-lang="es">Vendo se lanza como una forma de que los usuarios creen funciones sobre un producto existente.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: It points to more product surfaces being extended by users instead of only internal teams.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Apunta a que los usuarios amplíen más superficies de producto y no solo los equipos internos.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">Startup</span>
+          <span class="tag">Product</span>
+          <span class="tag">Developer tools</span>
+          <a href="https://github.com/runvendo/vendo" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -></span><span class="lang-text" data-lang="es">Leer noticia completa -></span></a>
+          <span class="date" data-date="2026-08-20">Aug 20</span>
+        </div>
+      </article>
+    </section>
   </main>
+
+  <footer>
+    <span class="lang-text" data-lang="en">Generated by </span><span class="lang-text" data-lang="es">Generado por </span>
+    <a href="https://github.github.com/gh-aw/" target="_blank" rel="noopener">GitHub Agentic Workflows</a>
+    · <span class="lang-text" data-lang="en">Source:</span><span class="lang-text" data-lang="es">Código fuente:</span>
+    <a href="https://github.com/elbruno/weekly-ai-news-digest" target="_blank" rel="noopener">elbruno/weekly-ai-news-digest</a>
+    · <span class="lang-text" data-lang="en">Deployed via GitHub Pages</span><span class="lang-text" data-lang="es">Publicado con GitHub Pages</span>
+  </footer>
+
+  <script>
+    (function () {
+      var languageSelect = document.getElementById("languageSelect");
+      var themeSelect = document.getElementById("themeSelect");
+      var searchInput = document.getElementById("searchInput");
+      var sortSelect = document.getElementById("sortSelect");
+      var clearFilters = document.getElementById("clearFilters");
+      var sourceFilters = document.getElementById("sourceFilters");
+      var importanceFilters = document.getElementById("importanceFilters");
+      var labelFilters = document.getElementById("labelFilters");
+      var activeFilters = document.getElementById("activeFilters");
+      var resultLine = document.getElementById("resultLine");
+      var storyList = document.getElementById("storyList");
+      var cards = Array.prototype.slice.call(document.querySelectorAll(".story-card"));
+      var selectedSources = new Set();
+      var selectedTags = new Set();
+      var selectedImportance = new Set();
+      var importanceOrder = { Low: 1, Medium: 2, High: 3 };
+      var ui = {
+        en: {
+          searchPlaceholder: "keyword, source, tag...",
+          sources: "Sources",
+          all: "All",
+          importance: "Importance",
+          tags: "Tags",
+          search: "Search",
+          sort: "Sort",
+          activeFilters: "Active filters - ",
+          showing: "Showing",
+          of: "of",
+          stories: "stories"
+        },
+        es: {
+          searchPlaceholder: "palabra clave, fuente, etiqueta...",
+          sources: "Fuentes",
+          all: "Todas",
+          importance: "Importancia",
+          tags: "Etiquetas",
+          search: "Búsqueda",
+          sort: "Orden",
+          activeFilters: "Filtros activos - ",
+          showing: "Mostrando",
+          of: "de",
+          stories: "noticias"
+        }
+      };
+
+      function currentLanguage() {
+        return languageSelect.value || "en";
+      }
+
+      function updateDateLabels(lang) {
+        cards.forEach(function (card) {
+          var date = card.querySelector(".date");
+          if (!date || !date.dataset.date) return;
+          var parsed = new Date(date.dataset.date + "T00:00:00Z");
+          if (Number.isNaN(parsed.getTime())) return;
+          date.textContent = parsed.toLocaleDateString(lang === "es" ? "es-ES" : "en-US", { month: "short", day: "numeric", timeZone: "UTC" });
+        });
+      }
+
+      function applyLanguage(lang) {
+        document.documentElement.lang = lang;
+        document.documentElement.setAttribute("data-content-lang", lang);
+        searchInput.placeholder = ui[lang].searchPlaceholder;
+        Array.prototype.forEach.call(sortSelect.options, function (option) {
+          var label = option.dataset["label" + (lang === "es" ? "Es" : "En")];
+          if (label) option.textContent = label;
+        });
+        updateDateLabels(lang);
+        applyFilters();
+      }
+
+      function loadLanguage() {
+        var saved = localStorage.getItem("digest-language") || "en";
+        languageSelect.value = saved === "es" ? "es" : "en";
+        applyLanguage(languageSelect.value);
+      }
+
+      function systemTheme() {
+        return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+
+      function applyTheme(mode) {
+        var resolved = mode === "system" ? systemTheme() : mode;
+        document.documentElement.setAttribute("data-theme", resolved);
+      }
+
+      function loadTheme() {
+        var saved = localStorage.getItem("digest-theme") || "system";
+        themeSelect.value = saved;
+        applyTheme(saved);
+      }
+
+      function collectValues(attribute) {
+        var all = new Set();
+        cards.forEach(function (card) {
+          (card.dataset[attribute] || "").split(",").map(function (value) {
+            return value.trim();
+          }).filter(Boolean).forEach(function (value) {
+            all.add(value);
+          });
+        });
+        return Array.from(all).sort();
+      }
+
+      function isPrioritySource(source) {
+        var value = (source || "").toLowerCase();
+        return value.indexOf("github") !== -1 || value.indexOf("microsoft developer") !== -1;
+      }
+
+      function collectSources() {
+        return collectValues("source");
+      }
+
+      function setChipState(button, active) {
+        button.classList.toggle("active", active);
+        button.setAttribute("aria-pressed", active ? "true" : "false");
+      }
+
+      function resetSourceSelection() {
+        var sources = collectSources();
+        selectedSources.clear();
+        sources.forEach(function (source) {
+          selectedSources.add(source);
+        });
+      }
+
+      function renderSourceFilters() {
+        var sources = collectSources();
+        resetSourceSelection();
+
+        sources.forEach(function (source) {
+          var btn = document.createElement("button");
+          btn.className = "chip";
+          btn.type = "button";
+          btn.textContent = source;
+          btn.dataset.source = source;
+          setChipState(btn, selectedSources.has(source));
+          btn.addEventListener("click", function () {
+            if (selectedSources.has(source)) selectedSources.delete(source); else selectedSources.add(source);
+            setChipState(btn, selectedSources.has(source));
+            applyFilters();
+          });
+          sourceFilters.appendChild(btn);
+        });
+      }
+
+      function renderTagFilters() {
+        collectValues("tags").forEach(function (tag) {
+          var btn = document.createElement("button");
+          btn.className = "chip";
+          btn.type = "button";
+          btn.textContent = tag;
+          btn.dataset.tag = tag;
+          setChipState(btn, false);
+          btn.addEventListener("click", function () {
+            if (selectedTags.has(tag)) selectedTags.delete(tag); else selectedTags.add(tag);
+            setChipState(btn, selectedTags.has(tag));
+            applyFilters();
+          });
+          labelFilters.appendChild(btn);
+        });
+      }
+
+      function renderImportanceFilters() {
+        ["Low", "Medium", "High"].forEach(function (importance) {
+          var btn = document.createElement("button");
+          btn.className = "chip";
+          btn.type = "button";
+          btn.textContent = importance;
+          btn.dataset.importance = importance;
+          setChipState(btn, false);
+          btn.addEventListener("click", function () {
+            if (selectedImportance.has(importance)) selectedImportance.delete(importance); else selectedImportance.add(importance);
+            setChipState(btn, selectedImportance.has(importance));
+            applyFilters();
+          });
+          importanceFilters.appendChild(btn);
+        });
+      }
+
+      function sortCards() {
+        var mode = sortSelect.value;
+        cards.sort(function (a, b) {
+          var rankA = Number(a.dataset.rank || 0);
+          var rankB = Number(b.dataset.rank || 0);
+          var importanceA = importanceOrder[a.dataset.importance] || 0;
+          var importanceB = importanceOrder[b.dataset.importance] || 0;
+          var dateA = Date.parse(a.dataset.published || "") || 0;
+          var dateB = Date.parse(b.dataset.published || "") || 0;
+
+          if (mode === "importance-desc") return (importanceB - importanceA) || (rankA - rankB);
+          if (mode === "importance-asc") return (importanceA - importanceB) || (rankA - rankB);
+          if (mode === "newest") return (dateB - dateA) || (rankA - rankB);
+          if (mode === "oldest") return (dateA - dateB) || (rankA - rankB);
+          return rankA - rankB;
+        });
+        cards.forEach(function (card) { storyList.appendChild(card); });
+      }
+
+      function updateActiveFilters(query) {
+        var labels = ui[currentLanguage()];
+        var details = [];
+        details.push(labels.sources + ": " + (selectedSources.size ? Array.from(selectedSources).join(", ") : labels.all));
+        if (selectedImportance.size) details.push(labels.importance + ": " + Array.from(selectedImportance).join(", "));
+        if (selectedTags.size) details.push(labels.tags + ": " + Array.from(selectedTags).join(", "));
+        if (query) details.push(labels.search + ': "' + query + '"');
+        if (sortSelect.value !== "rank") details.push(labels.sort + ": " + sortSelect.options[sortSelect.selectedIndex].text);
+        activeFilters.textContent = labels.activeFilters + details.join(" | ");
+      }
+
+      function applyFilters() {
+        var rawQuery = (searchInput.value || "").trim();
+        var query = rawQuery.toLowerCase();
+        var visible = 0;
+        sortCards();
+
+        cards.forEach(function (card) {
+          var text = (card.dataset.search || "").toLowerCase();
+          var tags = (card.dataset.tags || "").split(",").map(function (t) { return t.trim(); }).filter(Boolean);
+          var source = (card.dataset.source || "").trim();
+          var importance = (card.dataset.importance || "").trim();
+
+          var matchesQuery = query === "" || text.indexOf(query) !== -1;
+          var matchesSource = selectedSources.size === 0 || selectedSources.has(source);
+          var matchesTags = selectedTags.size === 0 || Array.from(selectedTags).every(function (tag) { return tags.indexOf(tag) !== -1; });
+          var matchesImportance = selectedImportance.size === 0 || selectedImportance.has(importance);
+          var show = matchesQuery && matchesSource && matchesTags && matchesImportance;
+          card.style.display = show ? "" : "none";
+          if (show) visible += 1;
+        });
+
+        var labels = ui[currentLanguage()];
+        resultLine.textContent = labels.showing + " " + visible + " " + labels.of + " " + cards.length + " " + labels.stories;
+        updateActiveFilters(rawQuery);
+      }
+
+      function resetFilters() {
+        searchInput.value = "";
+        sortSelect.value = "rank";
+        selectedTags.clear();
+        selectedImportance.clear();
+        selectedSources.clear();
+        Array.prototype.forEach.call(sourceFilters.querySelectorAll(".chip"), function (button) {
+          setChipState(button, false);
+        });
+        Array.prototype.forEach.call(labelFilters.querySelectorAll(".chip"), function (button) {
+          setChipState(button, false);
+        });
+        Array.prototype.forEach.call(importanceFilters.querySelectorAll(".chip"), function (button) {
+          setChipState(button, false);
+        });
+        applyFilters();
+      }
+
+      themeSelect.addEventListener("change", function () {
+        var value = themeSelect.value;
+        localStorage.setItem("digest-theme", value);
+        applyTheme(value);
+      });
+      languageSelect.addEventListener("change", function () {
+        localStorage.setItem("digest-language", languageSelect.value);
+        applyLanguage(languageSelect.value);
+      });
+
+      var media = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+      if (media) {
+        media.addEventListener("change", function () {
+          if ((localStorage.getItem("digest-theme") || "system") === "system") applyTheme("system");
+        });
+      }
+
+      searchInput.addEventListener("input", applyFilters);
+      sortSelect.addEventListener("change", applyFilters);
+      clearFilters.addEventListener("click", resetFilters);
+
+      loadTheme();
+      renderSourceFilters();
+      renderImportanceFilters();
+      renderTagFilters();
+      loadLanguage();
+    })();
+  </script>
 </body>
 </html>
