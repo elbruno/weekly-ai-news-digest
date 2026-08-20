@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Paired AI Credit and publication comparison for two AI news digest models." />
+  <title>Model Comparison - Weekly AI News Digest</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card: #161b22;
+      --elev: #21262d;
+      --border: #30363d;
+      --control: #58a6ff;
+      --economy: #3fb950;
+      --danger: #f85149;
+      --text: #e6edf3;
+      --muted: #8b949e;
+    }
+    [data-theme="light"] {
+      --bg: #f6f8fa;
+      --card: #ffffff;
+      --elev: #f0f3f6;
+      --border: #d0d7de;
+      --control: #0969da;
+      --economy: #1a7f37;
+      --danger: #cf222e;
+      --text: #1f2328;
+      --muted: #57606a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+    }
+    a { color: var(--control); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code { background: var(--elev); border-radius: 5px; padding: 0.1rem 0.3rem; }
+    .container { width: min(1120px, calc(100% - 2rem)); margin: 0 auto; }
+    header {
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(135deg, var(--bg), var(--card));
+      padding: 2rem 0 1.4rem;
+    }
+    h1 { margin: 0 0 0.35rem; font-size: clamp(1.7rem, 5vw, 2.4rem); }
+    .subtitle, .note { color: var(--muted); }
+    .toolbar { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-top: 1.2rem; }
+    select {
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: var(--card);
+      color: var(--text);
+      padding: 0.45rem 0.7rem;
+      font: inherit;
+    }
+    main { padding: 1.2rem 0 2.5rem; }
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem;
+    }
+    .metric-label { color: var(--muted); font-size: 0.78rem; text-transform: uppercase; }
+    .metric-value { font-size: 1.55rem; font-weight: 700; margin-top: 0.2rem; }
+    .chart-card { overflow-x: auto; margin-bottom: 1rem; }
+    #chart { min-width: 700px; width: 100%; height: 380px; display: block; }
+    .axis { stroke: var(--border); }
+    .control-bar { fill: var(--control); }
+    .economy-bar { fill: var(--economy); }
+    .chart-text { fill: var(--muted); font-size: 11px; }
+    .legend { display: flex; gap: 1rem; color: var(--muted); }
+    .swatch { display: inline-block; width: 0.8rem; height: 0.8rem; border-radius: 3px; margin-right: 0.3rem; }
+    table { width: 100%; border-collapse: collapse; margin-top: 0.6rem; }
+    th, td { border-bottom: 1px solid var(--border); padding: 0.65rem; text-align: left; }
+    th { color: var(--muted); font-size: 0.76rem; text-transform: uppercase; }
+    .number { text-align: right; font-variant-numeric: tabular-nums; }
+    .ok { color: var(--economy); }
+    .missing, .failed { color: var(--danger); }
+    footer { border-top: 1px solid var(--border); color: var(--muted); padding: 1.5rem 0; text-align: center; }
+    @media (max-width: 760px) {
+      .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .table-card { overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Model comparison</h1>
+      <p class="subtitle">Paired runs use one immutable RSS snapshot and one prompt contract. Control: <code>claude-sonnet-4.6</code>. Economy: <code>gpt-5-mini</code>.</p>
+      <div class="toolbar">
+        <label>Theme:
+          <select id="theme">
+            <option value="system">System</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </label>
+        <a href="./index.html">Control digest</a>
+        <a href="./economy/index.html">Economy digest</a>
+        <a href="./ai-credits.html">Control usage history</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="summary" aria-label="Experiment summary">
+      <div class="card"><div class="metric-label">Complete pairs</div><div class="metric-value" id="pairs">-</div></div>
+      <div class="card"><div class="metric-label">Control average</div><div class="metric-value" id="controlAverage">-</div></div>
+      <div class="card"><div class="metric-label">Economy average</div><div class="metric-value" id="economyAverage">-</div></div>
+      <div class="card"><div class="metric-label">Paired savings</div><div class="metric-value" id="savings">-</div></div>
+    </section>
+
+    <section class="card chart-card" aria-labelledby="chartTitle">
+      <h2 id="chartTitle">AI Credits by snapshot</h2>
+      <div class="legend">
+        <span><span class="swatch" style="background: var(--control)"></span>Control</span>
+        <span><span class="swatch" style="background: var(--economy)"></span>Economy</span>
+      </div>
+      <svg id="chart" role="img" aria-labelledby="chartTitle chartDescription"></svg>
+      <p id="chartDescription" class="note">Loading paired usage history...</p>
+    </section>
+
+    <section class="card table-card">
+      <h2>Snapshot details</h2>
+      <table>
+        <thead>
+          <tr><th>Snapshot</th><th>Control</th><th>Economy</th><th>Savings</th><th>Publication</th></tr>
+        </thead>
+        <tbody id="pairRows"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer><div class="container">Costs are compared only when both variants published from the same snapshot. Failed and missing runs remain visible.</div></footer>
+
+  <script src="./assets/ai-credit-utils.js"></script>
+  <script>
+    (function () {
+      var formatter = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      var theme = document.getElementById("theme");
+      var chart = document.getElementById("chart");
+      var description = document.getElementById("chartDescription");
+
+      function applyTheme(value) {
+        var resolved = value === "system"
+          ? (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+          : value;
+        document.documentElement.setAttribute("data-theme", resolved);
+      }
+
+      function measured(run) {
+        return run && run.published && run.conclusion === "success" && run.aic !== null;
+      }
+
+      function status(run) {
+        if (!run) return "missing";
+        if (run.published) return "published";
+        return run.conclusion || "not published";
+      }
+
+      function renderChart(pairs) {
+        chart.innerHTML = "";
+        var visible = pairs.filter(function (pair) {
+          return measured(pair.control) || measured(pair.economy);
+        }).slice(-20);
+        if (!visible.length) {
+          description.textContent = "No measured paired runs have been recorded yet.";
+          return;
+        }
+        var width = 1040;
+        var height = 350;
+        var margin = { top: 20, right: 20, bottom: 80, left: 60 };
+        var innerWidth = width - margin.left - margin.right;
+        var innerHeight = height - margin.top - margin.bottom;
+        var values = [];
+        visible.forEach(function (pair) {
+          if (measured(pair.control)) values.push(Number(pair.control.aic));
+          if (measured(pair.economy)) values.push(Number(pair.economy.aic));
+        });
+        var max = Math.max.apply(null, values) || 1;
+        var slot = innerWidth / visible.length;
+        var barWidth = Math.max(5, slot * 0.32);
+        var namespace = "http://www.w3.org/2000/svg";
+        chart.setAttribute("viewBox", "0 0 " + width + " " + height);
+
+        var axis = document.createElementNS(namespace, "line");
+        axis.setAttribute("x1", margin.left);
+        axis.setAttribute("x2", width - margin.right);
+        axis.setAttribute("y1", height - margin.bottom);
+        axis.setAttribute("y2", height - margin.bottom);
+        axis.setAttribute("class", "axis");
+        chart.appendChild(axis);
+
+        visible.forEach(function (pair, index) {
+          [["control", -barWidth], ["economy", 0]].forEach(function (entry) {
+            var variant = entry[0];
+            var run = pair[variant];
+            if (!measured(run)) return;
+            var barHeight = (Number(run.aic) / max) * innerHeight;
+            var x = margin.left + index * slot + slot / 2 + entry[1];
+            var y = margin.top + innerHeight - barHeight;
+            var bar = document.createElementNS(namespace, "rect");
+            bar.setAttribute("x", x);
+            bar.setAttribute("y", y);
+            bar.setAttribute("width", barWidth);
+            bar.setAttribute("height", barHeight);
+            bar.setAttribute("rx", 3);
+            bar.setAttribute("class", variant + "-bar");
+            var title = document.createElementNS(namespace, "title");
+            title.textContent = variant + ": " + formatter.format(run.aic) + " AI Credits";
+            bar.appendChild(title);
+            chart.appendChild(bar);
+          });
+          var label = document.createElementNS(namespace, "text");
+          var labelX = margin.left + index * slot + slot / 2;
+          label.setAttribute("x", labelX);
+          label.setAttribute("y", height - margin.bottom + 18);
+          label.setAttribute("text-anchor", "end");
+          label.setAttribute("transform", "rotate(-45 " + labelX + " " + (height - margin.bottom + 18) + ")");
+          label.setAttribute("class", "chart-text");
+          label.textContent = pair.snapshotId.slice(0, 10);
+          chart.appendChild(label);
+        });
+        description.textContent = "Showing the latest " + visible.length + " snapshots with measured usage.";
+      }
+
+      function addCell(row, text, className) {
+        var cell = document.createElement("td");
+        cell.textContent = text;
+        if (className) cell.className = className;
+        row.appendChild(cell);
+      }
+
+      function render(history) {
+        var pairs = AiCreditUsage.pairBySnapshot(history.runs);
+        var summary = AiCreditUsage.summarizePairs(pairs);
+        document.getElementById("pairs").textContent = summary.complete + " / " + summary.total;
+        document.getElementById("controlAverage").textContent = formatter.format(
+          summary.complete ? summary.controlAic / summary.complete : 0
+        );
+        document.getElementById("economyAverage").textContent = formatter.format(
+          summary.complete ? summary.economyAic / summary.complete : 0
+        );
+        document.getElementById("savings").textContent = formatter.format(summary.savingsPercent) + "%";
+
+        var rows = document.getElementById("pairRows");
+        rows.innerHTML = "";
+        pairs.slice().reverse().forEach(function (pair) {
+          var row = document.createElement("tr");
+          addCell(row, pair.snapshotId);
+          addCell(row, measured(pair.control) ? formatter.format(pair.control.aic) : "-", "number");
+          addCell(row, measured(pair.economy) ? formatter.format(pair.economy.aic) : "-", "number");
+          var saved = measured(pair.control) && measured(pair.economy) && Number(pair.control.aic) !== 0
+            ? ((Number(pair.control.aic) - Number(pair.economy.aic)) / Number(pair.control.aic)) * 100
+            : null;
+          addCell(row, saved === null ? "-" : formatter.format(saved) + "%", "number");
+          var publication = "control: " + status(pair.control) + "; economy: " + status(pair.economy);
+          addCell(row, publication, measured(pair.control) && measured(pair.economy) ? "ok" : "missing");
+          rows.appendChild(row);
+        });
+        renderChart(pairs);
+      }
+
+      theme.value = localStorage.getItem("digest-theme") || "system";
+      applyTheme(theme.value);
+      theme.addEventListener("change", function () {
+        localStorage.setItem("digest-theme", theme.value);
+        applyTheme(theme.value);
+      });
+
+      fetch("./data/ai-credits.json", { cache: "no-store" })
+        .then(function (response) {
+          if (!response.ok) throw new Error("HTTP " + response.status);
+          return response.json();
+        })
+        .then(function (history) {
+          if (history.schemaVersion !== 2 || !Array.isArray(history.runs)) {
+            throw new Error("Unsupported history schema");
+          }
+          render(history);
+        })
+        .catch(function (error) {
+          description.textContent = "Unable to load comparison history: " + error.message;
+          ["pairs", "controlAverage", "economyAverage", "savings"].forEach(function (id) {
+            document.getElementById(id).textContent = "Unavailable";
+          });
+        });
+    })();
+  </script>
+</body>
+</html>

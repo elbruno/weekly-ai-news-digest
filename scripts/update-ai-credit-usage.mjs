@@ -11,42 +11,95 @@ function requireString(value, name) {
   return value;
 }
 
-export function recordFromAudit(audit) {
-  const runId = Number(audit?.overview?.run_id);
+function optionalAic(audit) {
+  if (!audit) return null;
   const aic = Number(audit?.metrics?.aic);
-
-  if (!Number.isSafeInteger(runId) || runId <= 0) {
-    throw new Error("Missing or invalid overview.run_id");
-  }
   if (!Number.isFinite(aic) || aic < 0) {
     throw new Error("Missing or invalid metrics.aic");
   }
+  return aic;
+}
+
+export function recordFromRun({
+  run,
+  audit = null,
+  variant,
+  model,
+  originEvent,
+  snapshotId,
+  promptVersion,
+  pagePath,
+  published = false,
+}) {
+  const runId = Number(run?.databaseId ?? audit?.overview?.run_id);
+  if (!Number.isSafeInteger(runId) || runId <= 0) {
+    throw new Error("Missing or invalid run ID");
+  }
+  if (!["control", "economy"].includes(variant)) {
+    throw new Error(`Unsupported variant: ${variant}`);
+  }
+
+  const startedAt = run?.startedAt || run?.createdAt;
+  const completedAt =
+    run?.updatedAt ||
+    audit?.overview?.updated_at ||
+    audit?.overview?.created_at;
+  const durationSeconds =
+    startedAt && completedAt
+      ? Math.max(0, Math.round((Date.parse(completedAt) - Date.parse(startedAt)) / 1000))
+      : null;
 
   return {
     runId,
-    timestamp: requireString(
-      audit?.overview?.updated_at || audit?.overview?.created_at,
-      "overview timestamp",
+    timestamp: requireString(completedAt, "run timestamp"),
+    event: requireString(
+      originEvent || run?.event || audit?.overview?.event,
+      "run event",
     ),
-    event: requireString(audit?.overview?.event, "overview.event"),
-    aic,
-    url: requireString(audit?.overview?.url, "overview.url"),
+    workflow: requireString(run?.workflowName, "workflow name"),
+    variant,
+    model: requireString(model, "model"),
+    snapshotId: requireString(snapshotId, "snapshot ID"),
+    promptVersion: requireString(promptVersion, "prompt version"),
+    aic: optionalAic(audit),
+    durationSeconds,
+    conclusion: requireString(run?.conclusion, "run conclusion"),
+    published: Boolean(published),
+    quality: published
+      ? "published"
+      : run?.conclusion === "success"
+        ? "not-published"
+        : "failed",
+    pagePath: requireString(pagePath, "page path"),
+    url: requireString(run?.url || audit?.overview?.url, "run URL"),
   };
 }
 
-export function upsertHistory(history, record) {
-  if (history?.schemaVersion !== 1 || !Array.isArray(history?.runs)) {
+export function upsertHistory(history, record, now = new Date()) {
+  if (history?.schemaVersion !== 2 || !Array.isArray(history?.runs)) {
     throw new Error("Unsupported AI Credit history schema");
   }
 
   const existing = history.runs.find((item) => item.runId === record.runId);
-  if (existing && JSON.stringify(existing) === JSON.stringify(record)) {
+  const merged = existing
+    ? {
+        ...existing,
+        ...record,
+        aic: record.aic ?? existing.aic,
+        published: existing.published || record.published,
+        quality:
+          existing.published || record.published
+            ? "published"
+            : record.quality,
+      }
+    : record;
+  if (existing && JSON.stringify(existing) === JSON.stringify(merged)) {
     return history;
   }
 
   const runs = history.runs
     .filter((item) => item.runId !== record.runId)
-    .concat(record)
+    .concat(merged)
     .sort((left, right) => {
       const timestampOrder =
         Date.parse(left.timestamp) - Date.parse(right.timestamp);
@@ -54,19 +107,14 @@ export function upsertHistory(history, record) {
     });
 
   return {
-    schemaVersion: 1,
-    updatedAt: new Date().toISOString(),
+    schemaVersion: 2,
+    updatedAt: now.toISOString(),
     runs,
   };
 }
 
-export function renderCreditBlock(record) {
-  const formattedAic = new Intl.NumberFormat("en-US", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  }).format(record.aic);
-
-  return `<!-- AI_CREDITS_START --><div class="stat" data-ai-credits-run-id="${record.runId}">AI Credits: <span data-ai-credits-value>${formattedAic}</span> · <a href="./ai-credits.html">Usage history</a></div><!-- AI_CREDITS_END -->`;
+export function digestContainsRun(html, runId) {
+  return html.includes(`data-ai-credits-run-id="${Number(runId)}"`);
 }
 
 export function updateDigestHtml(html, record) {
@@ -76,7 +124,27 @@ export function updateDigestHtml(html, record) {
       `Expected exactly one AI Credit marker block, found ${matches.length}`,
     );
   }
-  return html.replace(CREDIT_BLOCK_PATTERN, renderCreditBlock(record));
+  if (!digestContainsRun(html, record.runId)) {
+    throw new Error(`Digest marker does not belong to run ${record.runId}`);
+  }
+  if (!Number.isFinite(record.aic) || record.aic < 0) {
+    throw new Error(`Run ${record.runId} does not have AI Credit data`);
+  }
+
+  const formattedAic = new Intl.NumberFormat("en-US", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(record.aic);
+  const block = matches[0];
+  const valuePattern =
+    /(<span\s+data-ai-credits-value(?:="")?>)[\s\S]*?(<\/span>)/;
+  if (!valuePattern.test(block)) {
+    throw new Error("AI Credit marker is missing its value element");
+  }
+  return html.replace(
+    block,
+    block.replace(valuePattern, `$1${formattedAic}$2`),
+  );
 }
 
 function parseArgs(args) {
@@ -86,7 +154,7 @@ function parseArgs(args) {
     const value = args[index + 1];
     if (!key?.startsWith("--") || value === undefined) {
       throw new Error(
-        "Usage: node scripts/update-ai-credit-usage.mjs --history <path> [--audit <path>] [--run-id <id> --digest <path>]",
+        "Usage: node scripts/update-ai-credit-usage.mjs --history <path> --run <path> --variant <name> --model <id> --event <name> --snapshot-id <id> --prompt-version <id> --digest <path> [--audit <path>]",
       );
     }
     values[key.slice(2)] = value;
@@ -94,53 +162,65 @@ function parseArgs(args) {
   return values;
 }
 
-export async function updateFiles({ auditPath, historyPath, digestPath }) {
-  const [auditText, historyText] = await Promise.all([
-    readFile(auditPath, "utf8"),
-    readFile(historyPath, "utf8"),
-  ]);
-
-  const record = recordFromAudit(JSON.parse(auditText));
-  const history = upsertHistory(JSON.parse(historyText), record);
-  await writeFile(historyPath, `${JSON.stringify(history, null, 2)}\n`, "utf8");
-
-  if (digestPath) {
-    const digestHtml = await readFile(digestPath, "utf8");
-    await writeFile(digestPath, updateDigestHtml(digestHtml, record), "utf8");
-  }
-}
-
-export async function finalizeDigest({ historyPath, digestPath, runId }) {
-  const [historyText, digestHtml] = await Promise.all([
+export async function updateFiles({
+  runPath,
+  auditPath,
+  historyPath,
+  digestPath,
+  variant,
+  model,
+  originEvent,
+  snapshotId,
+  promptVersion,
+}) {
+  const [runText, historyText, digestHtml] = await Promise.all([
+    readFile(runPath, "utf8"),
     readFile(historyPath, "utf8"),
     readFile(digestPath, "utf8"),
   ]);
-  const history = JSON.parse(historyText);
-  const numericRunId = Number(runId);
-  const record = history.runs?.find((item) => item.runId === numericRunId);
-  if (!record) {
-    throw new Error(`AI Credit history does not contain run ${runId}`);
+  const audit = auditPath
+    ? JSON.parse(await readFile(auditPath, "utf8"))
+    : null;
+  const run = JSON.parse(runText);
+  const record = recordFromRun({
+    run,
+    audit,
+    variant,
+    model,
+    originEvent,
+    snapshotId,
+    promptVersion,
+    pagePath: digestPath.replaceAll("\\", "/"),
+    published: digestContainsRun(digestHtml, run.databaseId),
+  });
+
+  const currentHistory = JSON.parse(historyText);
+  const history = upsertHistory(currentHistory, record);
+  const effectiveRecord = history.runs.find((item) => item.runId === record.runId);
+  if (effectiveRecord.published && effectiveRecord.aic !== null) {
+    await writeFile(
+      digestPath,
+      updateDigestHtml(digestHtml, effectiveRecord),
+      "utf8",
+    );
   }
-  if (!digestHtml.includes(`data-ai-credits-run-id="${numericRunId}"`)) {
-    throw new Error(`Digest marker does not belong to run ${runId}`);
+  if (history !== currentHistory) {
+    await writeFile(historyPath, `${JSON.stringify(history, null, 2)}\n`, "utf8");
   }
-  await writeFile(digestPath, updateDigestHtml(digestHtml, record), "utf8");
+  return effectiveRecord;
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   const args = parseArgs(process.argv.slice(2));
-  const historyPath = requireString(args.history, "--history");
-  if (args.audit) {
-    await updateFiles({
-      auditPath: args.audit,
-      historyPath,
-      digestPath: args.digest,
-    });
-  } else {
-    await finalizeDigest({
-      historyPath,
-      digestPath: requireString(args.digest, "--digest"),
-      runId: requireString(args["run-id"], "--run-id"),
-    });
-  }
+  await updateFiles({
+    runPath: requireString(args.run, "--run"),
+    auditPath: args.audit,
+    historyPath: requireString(args.history, "--history"),
+    digestPath: requireString(args.digest, "--digest"),
+    variant: requireString(args.variant, "--variant"),
+    model: requireString(args.model, "--model"),
+    originEvent: requireString(args.event, "--event"),
+    snapshotId: requireString(args["snapshot-id"], "--snapshot-id"),
+    promptVersion: requireString(args["prompt-version"], "--prompt-version"),
+  });
 }

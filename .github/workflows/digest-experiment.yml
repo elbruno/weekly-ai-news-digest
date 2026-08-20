@@ -1,0 +1,89 @@
+name: Daily Digest Experiment
+run-name: "Collect and dispatch paired digest"
+
+on:
+  schedule:
+    - cron: "0 10 * * *"
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: daily-digest-experiment
+  cancel-in-progress: false
+
+jobs:
+  collect-and-dispatch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Collect deterministic news snapshot
+        id: snapshot
+        run: |
+          python scripts/collect-news-snapshot.py \
+            --output "$RUNNER_TEMP/news-snapshot.json" \
+            --github-output "$GITHUB_OUTPUT"
+
+      - name: Upload immutable snapshot
+        id: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: news-snapshot
+          path: ${{ runner.temp }}/news-snapshot.json
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Wait for snapshot artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ARTIFACT_ID: ${{ steps.upload.outputs.artifact-id }}
+        run: |
+          for attempt in 1 2 3 4 5 6; do
+            visible_id="$(
+              gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/artifacts" \
+                --jq '.artifacts[] | select(.name == "news-snapshot") | .id' |
+                head -n 1
+            )"
+            if [ "$visible_id" = "$ARTIFACT_ID" ]; then
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "Snapshot artifact was not visible after 30 seconds" >&2
+          exit 1
+
+      - name: Dispatch paired digest workers
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SNAPSHOT_ID: ${{ steps.snapshot.outputs.snapshot_id }}
+          PROMPT_VERSION: v1
+        run: |
+          for workflow in daily-digest-control.lock.yml daily-digest-economy.lock.yml; do
+            gh workflow run "$workflow" \
+              --repo "$GITHUB_REPOSITORY" \
+              --ref "$GITHUB_REF_NAME" \
+              -f "snapshot_run_id=$GITHUB_RUN_ID" \
+              -f "snapshot_id=$SNAPSHOT_ID" \
+              -f "prompt_version=$PROMPT_VERSION" \
+              -f "origin_event=$GITHUB_EVENT_NAME"
+          done
+
+      - name: Write experiment summary
+        env:
+          SNAPSHOT_ID: ${{ steps.snapshot.outputs.snapshot_id }}
+          ARTICLE_COUNT: ${{ steps.snapshot.outputs.article_count }}
+        run: |
+          {
+            echo "## Paired digest dispatched"
+            echo
+            echo "- Snapshot: \`$SNAPSHOT_ID\`"
+            echo "- Articles: $ARTICLE_COUNT"
+            echo "- Control model: \`claude-sonnet-4.6\`"
+            echo "- Economy model: \`gpt-5-mini\`"
+            echo "- Prompt: \`v1\`"
+          } >> "$GITHUB_STEP_SUMMARY"

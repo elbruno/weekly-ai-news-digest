@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Daily, weekly, and monthly AI Credit usage for the Weekly AI News Digest." />
-  <title>AI Credit Usage - Weekly AI News Digest</title>
+  <meta name="description" content="Daily, weekly, and monthly AI Credit usage for the control AI news digest." />
+  <title>Control AI Credit Usage - Weekly AI News Digest</title>
   <style>
     :root {
       --bg: #0d1117;
@@ -97,8 +97,8 @@
 <body>
   <header>
     <div class="container">
-      <h1>AI Credit Usage</h1>
-      <p class="subtitle">One representative run per UTC day: the scheduled run when available, otherwise the latest successful manual run. ISO weeks start on Monday.</p>
+      <h1>Control AI Credit Usage</h1>
+      <p class="subtitle">Usage for the pinned <code>claude-sonnet-4.6</code> control. One published run is selected per UTC day. ISO weeks start on Monday.</p>
       <div class="toolbar">
         <button type="button" data-period="daily" class="active">Daily</button>
         <button type="button" data-period="weekly">Weekly</button>
@@ -111,6 +111,7 @@
           </select>
         </label>
         <a href="./index.html">Back to latest digest</a>
+        <a href="./model-comparison.html">Compare models</a>
       </div>
     </div>
   </header>
@@ -137,7 +138,7 @@
     </section>
   </main>
 
-  <footer><div class="container">The raw history retains every successful run. Dashboard totals select one representative run per UTC day. No AI is used to build this page.</div></footer>
+  <footer><div class="container">This view filters the shared experiment ledger to published control runs. No AI is used to build this page.</div></footer>
 
   <script src="./assets/ai-credit-utils.js"></script>
   <script>
@@ -252,11 +253,11 @@
           return response.json();
         })
         .then(function (history) {
-          if (history.schemaVersion !== 1 || !Array.isArray(history.runs)) {
+          if (history.schemaVersion !== 2 || !Array.isArray(history.runs)) {
             throw new Error("Unsupported history schema");
           }
           state.rawRuns = history.runs;
-          state.runs = AiCreditUsage.selectDailyRuns(history.runs);
+          state.runs = AiCreditUsage.selectDailyRuns(history.runs, "control");
           render();
         })
         .catch(function (error) {

@@ -1,8 +1,10 @@
-name: Auto-merge digest PRs
+name: Publish paired digests
 
 on:
   workflow_run:
-    workflows: ["Daily AI & Tech News Digest"]
+    workflows:
+      - Daily Digest - Control
+      - Daily Digest - Economy
     types: [completed]
   workflow_dispatch:
 
@@ -12,7 +14,7 @@ concurrency:
 
 jobs:
   auto-merge:
-    name: Merge open digest PRs
+    name: Merge validated digest PRs
     if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     permissions:
@@ -20,11 +22,11 @@ jobs:
       contents: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
-      - name: Merge digest PRs (oldest first)
+      - name: Merge isolated digest PRs (oldest first)
         shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -32,43 +34,62 @@ jobs:
         run: |
           set -euo pipefail
 
-          prs="$(gh pr list \
-            --repo "$REPO" \
-            --state open \
-            --base main \
-            --label digest \
-            --json number \
-            --jq 'sort_by(.number) | .[].number')"
+          prs="$(
+            gh pr list \
+              --repo "$REPO" \
+              --state open \
+              --base main \
+              --label digest \
+              --json number \
+              --jq 'sort_by(.number) | .[].number'
+          )"
 
-          if [[ -z "${prs}" ]]; then
+          if [[ -z "$prs" ]]; then
             echo "No open digest PRs found."
             exit 0
           fi
 
-          for pr in ${prs}; do
-            echo "Processing PR #${pr}"
-            if gh pr merge "${pr}" --repo "$REPO" --squash --delete-branch; then
-              echo "Merged PR #${pr}"
+          invalid=0
+          for pr in $prs; do
+            details="$(gh pr view "$pr" --repo "$REPO" --json author,files,labels)"
+            author="$(jq -r '.author.login' <<<"$details")"
+            labels="$(jq -r '.labels[].name' <<<"$details")"
+
+            expected_path=""
+            if grep -qx "digest-control" <<<"$labels"; then
+              expected_path="docs/index.html"
+            elif grep -qx "digest-economy" <<<"$labels"; then
+              expected_path="docs/economy/index.html"
+            else
+              echo "Skipping PR #$pr because it has no recognized variant label."
               continue
             fi
 
-            echo "PR #${pr} did not merge cleanly. Rebasing its branch with main."
-            gh pr checkout "${pr}" --repo "$REPO"
-            git fetch origin main
-
-            if ! git merge origin/main --no-ff --no-edit; then
-              # Keep the newly generated digest when resolving concurrent digest PRs.
-              git checkout --ours docs/index.html
-              git add docs/index.html
-              git commit -m "Resolve digest merge conflict before auto-merge"
+            mapfile -t files < <(jq -r '.files[].path' <<<"$details")
+            if [[ "$author" != "app/github-actions" && "$author" != "github-actions" ]]; then
+              echo "Refusing PR #$pr from unexpected author: $author" >&2
+              invalid=1
+              continue
+            fi
+            if [[ "${#files[@]}" -ne 1 || "${files[0]}" != "$expected_path" ]]; then
+              echo "Refusing PR #$pr: expected only $expected_path." >&2
+              printf 'Changed file: %s\n' "${files[@]}" >&2
+              invalid=1
+              continue
             fi
 
-            git push
-            gh pr merge "${pr}" --repo "$REPO" --squash --delete-branch
+            echo "Merging validated PR #$pr for $expected_path"
+            gh pr merge "$pr" --repo "$REPO" --squash --delete-branch
           done
 
+          if [[ "$invalid" -ne 0 ]]; then
+            echo "One or more digest PRs failed validation." >&2
+            exit 1
+          fi
+
   update-usage:
-    name: Update AI Credit history and pages
+    name: Reconcile experiment ledger
+    if: always()
     needs: auto-merge
     runs-on: ubuntu-latest
     timeout-minutes: 60
@@ -79,7 +100,7 @@ jobs:
       commit_sha: ${{ steps.reconcile.outputs.commit_sha }}
     steps:
       - name: Checkout main
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: main
           fetch-depth: 0
@@ -87,7 +108,7 @@ jobs:
       - name: Set up gh-aw
         uses: github/gh-aw/actions/setup-cli@v0.81.6
 
-      - name: Reconcile AI Credit history and digest
+      - name: Reconcile runs, credits, and page markers
         id: reconcile
         shell: bash
         env:
@@ -97,78 +118,95 @@ jobs:
           set -euo pipefail
 
           audit_dir="${RUNNER_TEMP}/ai-credit-audits"
-          mkdir -p "$audit_dir"
-
-          mapfile -t run_ids < <(
-            gh run list \
-              --repo "$REPO" \
-              --workflow weekly-news-digest.lock.yml \
-              --status success \
-              --limit 1000 \
-              --json databaseId \
-              --jq 'reverse | .[].databaseId'
-          )
+          run_dir="${RUNNER_TEMP}/digest-runs"
+          mkdir -p "$audit_dir" "$run_dir"
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           for attempt in 1 2 3; do
-            echo "Reconciliation attempt ${attempt}"
+            echo "Reconciliation attempt $attempt"
             git fetch origin main
             git switch -C ai-credit-update origin/main
 
-            for run_id in "${run_ids[@]}"; do
-              if jq -e --argjson run_id "$run_id" \
-                '.runs[]? | select(.runId == $run_id)' \
-                docs/data/ai-credits.json >/dev/null; then
-                continue
-              fi
+            while IFS='|' read -r workflow variant model digest_path; do
+              mapfile -t runs < <(
+                gh run list \
+                  --repo "$REPO" \
+                  --workflow "$workflow" \
+                  --limit 1000 \
+                  --json databaseId,displayTitle,event,status,conclusion,createdAt,startedAt,updatedAt,url,workflowName \
+                  --jq '.[] | select(.status == "completed") | @base64'
+              )
 
-              audit_file="${audit_dir}/${run_id}.json"
-              if [[ ! -s "$audit_file" ]]; then
-                echo "Auditing digest run ${run_id}"
-                gh aw audit "$run_id" --json > "$audit_file"
-                rm -rf .github/aw/logs
-              fi
+              for encoded in "${runs[@]}"; do
+                run_json="$(base64 --decode <<<"$encoded")"
+                run_id="$(jq -r '.databaseId' <<<"$run_json")"
+                display_title="$(jq -r '.displayTitle' <<<"$run_json")"
+                IFS=':' read -r title_variant snapshot_id prompt_version origin_event <<<"$display_title"
 
-              node scripts/update-ai-credit-usage.mjs \
-                --audit "$audit_file" \
-                --history docs/data/ai-credits.json
-            done
+                if [[ "$title_variant" != "$variant" ||
+                      -z "$snapshot_id" ||
+                      -z "$prompt_version" ||
+                      ( "$origin_event" != "schedule" && "$origin_event" != "workflow_dispatch" ) ]]; then
+                  echo "Skipping run $run_id with unrecognized title: $display_title"
+                  continue
+                fi
 
-            digest_run_id="$(
-              grep -oE 'data-ai-credits-run-id="[0-9]+"' docs/index.html \
-                | head -1 \
-                | grep -oE '[0-9]+'
-            )"
+                run_file="$run_dir/$run_id.json"
+                printf '%s\n' "$run_json" > "$run_file"
 
-            if [[ -z "$digest_run_id" ]]; then
-              echo "The published digest does not contain a numeric AI Credit run ID." >&2
-              exit 1
-            fi
+                existing_aic="$(
+                  jq -r --argjson run_id "$run_id" \
+                    '.runs[]? | select(.runId == $run_id) | .aic // empty' \
+                    docs/data/ai-credits.json
+                )"
+                audit_file="$audit_dir/$run_id.json"
+                audit_args=()
+                if [[ -z "$existing_aic" ]]; then
+                  echo "Auditing $variant run $run_id"
+                  if gh aw audit "$run_id" --json > "$audit_file"; then
+                    audit_args=(--audit "$audit_file")
+                  else
+                    echo "Audit unavailable for run $run_id; retaining run status without cost."
+                    rm -f "$audit_file"
+                  fi
+                  rm -rf .github/aw/logs
+                fi
 
-            node scripts/update-ai-credit-usage.mjs \
-              --run-id "$digest_run_id" \
-              --history docs/data/ai-credits.json \
-              --digest docs/index.html
+                node scripts/update-ai-credit-usage.mjs \
+                  --run "$run_file" \
+                  "${audit_args[@]}" \
+                  --history docs/data/ai-credits.json \
+                  --variant "$variant" \
+                  --model "$model" \
+                  --event "$origin_event" \
+                  --snapshot-id "$snapshot_id" \
+                  --prompt-version "$prompt_version" \
+                  --digest "$digest_path"
+              done
+            done <<'VARIANTS'
+          daily-digest-control.lock.yml|control|claude-sonnet-4.6|docs/index.html
+          daily-digest-economy.lock.yml|economy|gpt-5-mini|docs/economy/index.html
+          VARIANTS
 
-            if git diff --quiet -- docs/index.html docs/data/ai-credits.json; then
-              echo "AI Credit history is already current."
+            if git diff --quiet -- docs/index.html docs/economy/index.html docs/data/ai-credits.json; then
+              echo "Experiment ledger is already current."
               echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
               exit 0
             fi
 
-            git add docs/index.html docs/data/ai-credits.json
-            git commit -m "chore: update AI Credit usage"
+            git add docs/index.html docs/economy/index.html docs/data/ai-credits.json
+            git commit -m "chore: update digest experiment usage"
             if git push origin HEAD:main; then
               echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
               exit 0
             fi
 
-            echo "Main changed during reconciliation; retrying from the latest commit."
+            echo "Main changed during reconciliation; retrying from latest."
           done
 
-          echo "Unable to update AI Credit usage after 3 attempts." >&2
+          echo "Unable to reconcile experiment usage after 3 attempts." >&2
           exit 1
 
   deploy:
@@ -184,7 +222,7 @@ jobs:
       id-token: write
     steps:
       - name: Checkout finalized pages
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           ref: ${{ needs.update-usage.outputs.commit_sha }}
 
