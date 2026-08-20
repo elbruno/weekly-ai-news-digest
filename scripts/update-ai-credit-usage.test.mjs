@@ -80,6 +80,16 @@ test("keeps failed runs when audit data is unavailable", () => {
   assert.equal(record.quality, "failed");
 });
 
+test("keeps failed runs when an audit omits AI Credit metrics", () => {
+  const record = makeRecord({
+    audit: { ...audit, metrics: {} },
+    run: { ...run, conclusion: "failure" },
+    published: false,
+  });
+  assert.equal(record.aic, null);
+  assert.equal(record.quality, "failed");
+});
+
 test("upserts by run ID and preserves a prior publication", () => {
   const published = makeRecord();
   const retried = { ...published, aic: null, published: false, quality: "not-published" };

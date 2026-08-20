@@ -59,6 +59,7 @@ steps:
 safe-outputs:
   create-pull-request:
     title-prefix: "[digest-economy] "
+    draft: false
     labels:
       - digest
       - digest-economy

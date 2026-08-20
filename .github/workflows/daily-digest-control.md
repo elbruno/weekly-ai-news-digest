@@ -59,6 +59,7 @@ steps:
 safe-outputs:
   create-pull-request:
     title-prefix: "[digest-control] "
+    draft: false
     labels:
       - digest
       - digest-control
