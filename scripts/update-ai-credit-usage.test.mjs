@@ -182,3 +182,44 @@ test("finalizes a newly published page from previously recorded credits", async 
     await rm(directory, { recursive: true });
   }
 });
+
+test("does not rewrite a newer digest from a historical published record", async () => {
+  const directory = await mkdtemp(join(tmpdir(), "digest-credit-history-test-"));
+  const runPath = join(directory, "run.json");
+  const historyPath = join(directory, "history.json");
+  const digestPath = join(directory, "index.html");
+  const newerDigest =
+    '<!-- AI_CREDITS_START --><div data-ai-credits-run-id="999"><span data-ai-credits-value>Pending finalization</span></div><!-- AI_CREDITS_END -->';
+
+  try {
+    await Promise.all([
+      writeFile(runPath, JSON.stringify(run), "utf8"),
+      writeFile(
+        historyPath,
+        JSON.stringify({
+          schemaVersion: 2,
+          updatedAt: null,
+          runs: [makeRecord()],
+        }),
+        "utf8",
+      ),
+      writeFile(digestPath, newerDigest, "utf8"),
+    ]);
+
+    const updated = await updateFiles({
+      runPath,
+      historyPath,
+      digestPath,
+      variant: "control",
+      model: "claude-sonnet-4.6",
+      originEvent: "schedule",
+      snapshotId: "2026-08-02-abcdef123456",
+      promptVersion: "v1",
+    });
+
+    assert.equal(updated.published, true);
+    assert.equal(await readFile(digestPath, "utf8"), newerDigest);
+  } finally {
+    await rm(directory, { recursive: true });
+  }
+});

@@ -23,6 +23,7 @@ Traditional GitHub Actions (daily)
   -> Download, normalize, deduplicate, and checksum eight RSS feeds
   -> Upload one immutable news snapshot
   -> Dispatch both pinned agentic workflows with the snapshot ID
+  -> Wait for both workers to succeed, then dispatch the publisher
 
 Paired GitHub Agentic Workflows
   -> Control: claude-sonnet-4.6 -> docs/index.html
@@ -31,7 +32,7 @@ Paired GitHub Agentic Workflows
   -> Create isolated safe-output pull requests
 
 Deterministic publisher
-  -> Validate and merge each variant independently
+  -> Validate and merge only complete control/economy snapshot pairs
   -> Audit both successful and failed workflow runs
   -> Finalize page credit markers and the shared experiment ledger
   -> Deploy the exact reconciled commit to GitHub Pages
