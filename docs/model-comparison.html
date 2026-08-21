@@ -96,7 +96,7 @@
   <header>
     <div class="container">
       <h1>Model comparison</h1>
-      <p class="subtitle">Paired runs use one immutable RSS snapshot and one prompt contract. Control: <code>claude-sonnet-4.6</code>. Economy: <code>gpt-5-mini</code>.</p>
+      <p class="subtitle">Paired runs use one immutable RSS snapshot and one prompt contract. The digests are generated with <code>claude-sonnet-4.6</code> and <code>gpt-5-mini</code>.</p>
       <div class="toolbar">
         <label>Theme:
           <select id="theme">
@@ -105,9 +105,9 @@
             <option value="dark">Dark</option>
           </select>
         </label>
-        <a href="./index.html">Control digest</a>
-        <a href="./economy/index.html">Economy digest</a>
-        <a href="./ai-credits.html">Control usage history</a>
+        <a href="./index.html">Claude Sonnet 4.6 digest</a>
+        <a href="./economy/index.html">GPT-5 Mini digest</a>
+        <a href="./ai-credits.html">Claude Sonnet 4.6 usage history</a>
       </div>
     </div>
   </header>
@@ -115,16 +115,16 @@
   <main class="container">
     <section class="summary" aria-label="Experiment summary">
       <div class="card"><div class="metric-label">Complete pairs</div><div class="metric-value" id="pairs">-</div></div>
-      <div class="card"><div class="metric-label">Control average</div><div class="metric-value" id="controlAverage">-</div></div>
-      <div class="card"><div class="metric-label">Economy average</div><div class="metric-value" id="economyAverage">-</div></div>
+      <div class="card"><div class="metric-label">Claude Sonnet 4.6 average</div><div class="metric-value" id="controlAverage">-</div></div>
+      <div class="card"><div class="metric-label">GPT-5 Mini average</div><div class="metric-value" id="economyAverage">-</div></div>
       <div class="card"><div class="metric-label">Paired savings</div><div class="metric-value" id="savings">-</div></div>
     </section>
 
     <section class="card chart-card" aria-labelledby="chartTitle">
       <h2 id="chartTitle">AI Credits by snapshot</h2>
       <div class="legend">
-        <span><span class="swatch" style="background: var(--control)"></span>Control</span>
-        <span><span class="swatch" style="background: var(--economy)"></span>Economy</span>
+        <span><span class="swatch" style="background: var(--control)"></span>Claude Sonnet 4.6</span>
+        <span><span class="swatch" style="background: var(--economy)"></span>GPT-5 Mini</span>
       </div>
       <svg id="chart" role="img" aria-labelledby="chartTitle chartDescription"></svg>
       <p id="chartDescription" class="note">Loading paired usage history...</p>
@@ -134,7 +134,7 @@
       <h2>Snapshot details</h2>
       <table>
         <thead>
-          <tr><th>Snapshot</th><th>Control</th><th>Economy</th><th>Savings</th><th>Publication</th></tr>
+          <tr><th>Snapshot</th><th>Claude Sonnet 4.6</th><th>GPT-5 Mini</th><th>Savings</th><th>Publication</th></tr>
         </thead>
         <tbody id="pairRows"></tbody>
       </table>
@@ -217,7 +217,8 @@
             bar.setAttribute("rx", 3);
             bar.setAttribute("class", variant + "-bar");
             var title = document.createElementNS(namespace, "title");
-            title.textContent = variant + ": " + formatter.format(run.aic) + " AI Credits";
+            var modelName = variant === "control" ? "Claude Sonnet 4.6" : "GPT-5 Mini";
+            title.textContent = modelName + ": " + formatter.format(run.aic) + " AI Credits";
             bar.appendChild(title);
             chart.appendChild(bar);
           });
@@ -264,7 +265,7 @@
             ? ((Number(pair.control.aic) - Number(pair.economy.aic)) / Number(pair.control.aic)) * 100
             : null;
           addCell(row, saved === null ? "-" : formatter.format(saved) + "%", "number");
-          var publication = "control: " + status(pair.control) + "; economy: " + status(pair.economy);
+          var publication = "Claude Sonnet 4.6: " + status(pair.control) + "; GPT-5 Mini: " + status(pair.economy);
           addCell(row, publication, measured(pair.control) && measured(pair.economy) ? "ok" : "missing");
           rows.appendChild(row);
         });

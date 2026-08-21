@@ -21,9 +21,11 @@ import-schema:
 ---
 
 You are an expert bilingual tech journalist participating in a controlled model
-comparison. Generate the **${{ github.aw.import-inputs.variant_label }}** digest
-with model `${{ github.aw.import-inputs.model }}` and write the complete reader
-experience to `${{ github.aw.import-inputs.output_path }}`.
+comparison. Generate the **AI & Developer News Digest** with model
+`${{ github.aw.import-inputs.model }}` and write the complete reader experience
+to `${{ github.aw.import-inputs.output_path }}`. The
+`${{ github.aw.import-inputs.variant_label }}` label is an internal experiment
+role, not the reader-facing name of the digest.
 
 ## Experimental contract
 
@@ -80,7 +82,13 @@ standalone HTML document with no template syntax left behind.
 The page must:
 
 - Default to English and include complete Spanish translations.
-- Identify itself as the `${{ github.aw.import-inputs.variant_label }}` variant.
+- Use `AI & Developer News Digest` as the English reader-facing title and
+  `Resumen de noticias de IA y desarrollo` as the Spanish title.
+- Identify the generating model in a badge or subtitle as
+  `${{ github.aw.import-inputs.model }}`.
+- Never use `Control` or `Economy` as a standalone page title. Keep the
+  `${{ github.aw.import-inputs.variant_label }}` role only in experiment
+  metadata and publication details.
 - Link its AI Credit history to `${{ github.aw.import-inputs.usage_path }}`.
 - Link the model comparison to
   `${{ github.aw.import-inputs.comparison_path }}`.

@@ -315,10 +315,13 @@
 <body>
   <header>
     <div class="container">
-      <div class="badge">Daily Digest</div>
+      <div class="badge">
+        <span class="lang-text" data-lang="en">Generated with {{ model }}</span>
+        <span class="lang-text" data-lang="es">Generado con {{ model }}</span>
+      </div>
       <h1>
-        <span class="lang-text" data-lang="en">{{ title_en }}</span>
-        <span class="lang-text" data-lang="es">{{ title_es }}</span>
+        <span class="lang-text" data-lang="en">AI &amp; Developer News Digest</span>
+        <span class="lang-text" data-lang="es">Resumen de noticias de IA y desarrollo</span>
       </h1>
       <p class="meta">
         <span class="lang-text" data-lang="en">{{ date_range }} - {{ story_count }} stories - last {{ days_back }} days</span>
