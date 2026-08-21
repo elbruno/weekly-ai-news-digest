@@ -259,23 +259,23 @@ jobs:
         run: |
           bash "${RUNNER_TEMP}/gh-aw/actions/create_prompt_first.sh"
           {
-          cat << 'GH_AW_PROMPT_c881a0933b4fe00b_EOF'
+          cat << 'GH_AW_PROMPT_cd717f96ec6be5a3_EOF'
           <system>
-          GH_AW_PROMPT_c881a0933b4fe00b_EOF
+          GH_AW_PROMPT_cd717f96ec6be5a3_EOF
           cat "${RUNNER_TEMP}/gh-aw/prompts/xpia.md"
           cat "${RUNNER_TEMP}/gh-aw/prompts/temp_folder_prompt.md"
           cat "${RUNNER_TEMP}/gh-aw/prompts/markdown.md"
           cat "${RUNNER_TEMP}/gh-aw/prompts/safe_outputs_prompt.md"
-          cat << 'GH_AW_PROMPT_c881a0933b4fe00b_EOF'
+          cat << 'GH_AW_PROMPT_cd717f96ec6be5a3_EOF'
           <safe-output-tools>
           Tools: create_pull_request, missing_tool, missing_data, noop
-          GH_AW_PROMPT_c881a0933b4fe00b_EOF
+          GH_AW_PROMPT_cd717f96ec6be5a3_EOF
           cat "${RUNNER_TEMP}/gh-aw/prompts/safe_outputs_create_pull_request.md"
-          cat << 'GH_AW_PROMPT_c881a0933b4fe00b_EOF'
+          cat << 'GH_AW_PROMPT_cd717f96ec6be5a3_EOF'
           </safe-output-tools>
-          GH_AW_PROMPT_c881a0933b4fe00b_EOF
+          GH_AW_PROMPT_cd717f96ec6be5a3_EOF
           cat "${RUNNER_TEMP}/gh-aw/prompts/mcp_cli_tools_prompt.md"
-          cat << 'GH_AW_PROMPT_c881a0933b4fe00b_EOF'
+          cat << 'GH_AW_PROMPT_cd717f96ec6be5a3_EOF'
           <github-context>
           The following GitHub context information is available for this workflow:
           {{#if github.actor}}
@@ -304,14 +304,16 @@ jobs:
           {{/if}}
           </github-context>
           
-          GH_AW_PROMPT_c881a0933b4fe00b_EOF
+          GH_AW_PROMPT_cd717f96ec6be5a3_EOF
           cat "${RUNNER_TEMP}/gh-aw/prompts/github_mcp_tools_with_safeoutputs_prompt.md"
-          cat << 'GH_AW_PROMPT_c881a0933b4fe00b_EOF'
+          cat << 'GH_AW_PROMPT_cd717f96ec6be5a3_EOF'
           </system>
           You are an expert bilingual tech journalist participating in a controlled model
-          comparison. Generate the **Economy** digest
-          with model `gpt-5-mini` and write the complete reader
-          experience to `docs/economy/index.html`.
+          comparison. Generate the **AI & Developer News Digest** with model
+          `gpt-5-mini` and write the complete reader experience
+          to `docs/economy/index.html`. The
+          `Economy` label is an internal experiment
+          role, not the reader-facing name of the digest.
           
           ## Experimental contract
           
@@ -368,7 +370,13 @@ jobs:
           The page must:
           
           - Default to English and include complete Spanish translations.
-          - Identify itself as the `Economy` variant.
+          - Use `AI & Developer News Digest` as the English reader-facing title and
+            `Resumen de noticias de IA y desarrollo` as the Spanish title.
+          - Identify the generating model in a badge or subtitle as
+            `gpt-5-mini`.
+          - Never use `Control` or `Economy` as a standalone page title. Keep the
+            `Economy` role only in experiment
+            metadata and publication details.
           - Link its AI Credit history to `../ai-credits.html`.
           - Link the model comparison to
             `../model-comparison.html`.
@@ -412,7 +420,7 @@ jobs:
           `noop` after modifying the output file. If validation fails, do not publish
           invalid output; explain the specific failure in the workflow summary.
           {{#runtime-import .github/workflows/daily-digest-economy.md}}
-          GH_AW_PROMPT_c881a0933b4fe00b_EOF
+          GH_AW_PROMPT_cd717f96ec6be5a3_EOF
           } > "$GH_AW_PROMPT"
       - name: Interpolate variables and render templates
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0

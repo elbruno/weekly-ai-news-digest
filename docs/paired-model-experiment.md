@@ -4,10 +4,10 @@ This project publishes two versions of the same daily AI news digest:
 
 | Variant | Model | Published page |
 | --- | --- | --- |
-| Control | `claude-sonnet-4.6` | [Control digest](https://elbruno.github.io/weekly-ai-news-digest/) |
-| Economy | `gpt-5-mini` | [Economy digest](https://elbruno.github.io/weekly-ai-news-digest/economy/) |
+| Control | `claude-sonnet-4.6` | [Claude Sonnet 4.6 AI & Developer News Digest](https://elbruno.github.io/weekly-ai-news-digest/) |
+| Economy | `gpt-5-mini` | [GPT-5 Mini AI & Developer News Digest](https://elbruno.github.io/weekly-ai-news-digest/economy/) |
 
-The [control usage dashboard](https://elbruno.github.io/weekly-ai-news-digest/ai-credits.html) preserves the original control-model reporting. The [model comparison dashboard](https://elbruno.github.io/weekly-ai-news-digest/model-comparison.html) pairs both variants by snapshot and reports cost, savings, completion, and publication status.
+The [Claude Sonnet 4.6 usage dashboard](https://elbruno.github.io/weekly-ai-news-digest/ai-credits.html) preserves the original baseline-model reporting. The [model comparison dashboard](https://elbruno.github.io/weekly-ai-news-digest/model-comparison.html) pairs both variants by snapshot and reports cost, savings, completion, and publication status. `control` and `economy` remain internal experiment identifiers; the published pages use descriptive digest titles and model attribution.
 
 ## Why run two models?
 
@@ -29,10 +29,10 @@ flowchart TD
     A[Daily or manual coordinator] --> B[Fetch eight approved RSS feeds]
     B --> C[Normalize, sanitize, deduplicate, and checksum]
     C --> D[Upload immutable snapshot artifact]
-    D --> E[Control worker<br/>claude-sonnet-4.6]
-    D --> F[Economy worker<br/>gpt-5-mini]
-    E --> G[Control-only pull request]
-    F --> H[Economy-only pull request]
+    D --> E[Claude Sonnet 4.6 worker]
+    D --> F[GPT-5 Mini worker]
+    E --> G[Claude Sonnet digest pull request]
+    F --> H[GPT-5 Mini digest pull request]
     G --> I[Validate complete snapshot pair]
     H --> I
     I --> J[Merge both digest pull requests]
