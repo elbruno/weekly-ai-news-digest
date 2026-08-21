@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" data-content-lang="en">
+<html lang="en" data-content-lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="AI &amp; Developer News Digest generated with GPT-5 Mini. Top developer stories from Aug 6–20, 2026." />
-  <meta property="og:title" content="AI &amp; Developer News Digest — GPT-5 Mini — Aug 6–20, 2026" />
-  <meta property="og:description" content="30 curated developer stories from the curated snapshot." />
-  <meta property="og:url" content="https://elbruno.github.io/weekly-ai-news-digest/economy/" />
+  <meta name="description" content="AI & Developer News Digest curated from approved RSS snapshot 2026-08-21-484089f9143e for the last 14 days." />
+  <meta property="og:title" content="AI & Developer News Digest - Aug 7–21, 2026" />
+  <meta property="og:description" content="AI & Developer News Digest curated from approved RSS snapshot 2026-08-21-484089f9143e for the last 14 days." />
   <meta property="og:type" content="website" />
-  <title>AI &amp; Developer News Digest — GPT-5 Mini — Aug 6–20, 2026</title>
-
+  <title>AI &amp; Developer News Digest - Aug 7–21, 2026</title>
   <style>
     :root {
       --bg: #0d1117;
@@ -28,7 +26,6 @@
       --max-w: 960px;
       --radius: 12px;
     }
-
     [data-theme="light"] {
       --bg: #f6f8fa;
       --bg-card: #ffffff;
@@ -44,291 +41,92 @@
       --importance-medium: #9a6700;
       --importance-high: #cf222e;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-      font-size: 15px;
-      line-height: 1.6;
-    }
-
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.6; }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
-
     .container { max-width: var(--max-w); margin: 0 auto; padding: 0 1rem; }
-
-    header {
-      border-bottom: 1px solid var(--border);
-      background: linear-gradient(135deg, var(--bg) 0%, var(--bg-card) 100%);
-      padding: 2rem 0 1.5rem;
-    }
-
-    .badge {
-      display: inline-block;
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--accent);
-      border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
-      background: color-mix(in srgb, var(--accent) 10%, transparent);
-      padding: 0.2rem 0.7rem;
-      border-radius: 999px;
-      margin-bottom: 0.85rem;
-      font-weight: 600;
-    }
-
+    header { border-bottom: 1px solid var(--border); background: linear-gradient(135deg, var(--bg) 0%, var(--bg-card) 100%); padding: 2rem 0 1.5rem; }
+    .badge { display: inline-block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); background: color-mix(in srgb, var(--accent) 10%, transparent); padding: 0.2rem 0.7rem; border-radius: 999px; margin-bottom: 0.85rem; font-weight: 600; }
     h1 { font-size: 2rem; line-height: 1.2; margin-bottom: 0.4rem; }
     .meta { color: var(--text-muted); font-size: 0.9rem; }
-
-    .top-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      align-items: center;
-      margin: 1.25rem 0 0.5rem;
-    }
-
-    .control {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 0.55rem 0.7rem;
-      color: var(--text);
-    }
-
-    .control input, .control select {
-      background: transparent;
-      border: none;
-      color: inherit;
-      outline: none;
-      min-width: 180px;
-    }
-
-    .clear-button {
-      background: transparent;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      color: var(--text);
-      cursor: pointer;
-      padding: 0.65rem 0.8rem;
-    }
-
+    .top-bar { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin: 1.25rem 0 0.5rem; }
+    .control { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 0.55rem 0.7rem; color: var(--text); }
+    .control input, .control select { background: transparent; border: none; color: inherit; outline: none; min-width: 180px; }
+    .clear-button { background: transparent; border: 1px solid var(--border); border-radius: 10px; color: var(--text); cursor: pointer; padding: 0.65rem 0.8rem; }
     .clear-button:hover { border-color: var(--accent); }
-
-    .stats {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.65rem;
-      margin: 1rem 0 1.2rem;
-    }
-
-    .stat {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      color: var(--text-muted);
-      padding: 0.45rem 0.75rem;
-      font-size: 0.84rem;
-    }
-
-    .credit-note {
-      color: var(--text-muted);
-      font-size: 0.84rem;
-      margin: -0.55rem 0 1.2rem;
-    }
-
-    .tldr-summary {
-      margin: 1rem 0 1.4rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1rem 1.1rem;
-    }
-
+    .stats { display: flex; flex-wrap: wrap; gap: 0.65rem; margin: 1rem 0 1.2rem; }
+    .stat { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; color: var(--text-muted); padding: 0.45rem 0.75rem; font-size: 0.84rem; }
+    .credit-note { color: var(--text-muted); font-size: 0.84rem; margin: -0.55rem 0 1.2rem; }
+    .tldr-summary { margin: 1rem 0 1.4rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.1rem; }
     .tldr-summary h2 { font-size: 1.08rem; margin-bottom: 0.55rem; }
     .tldr-summary ul { padding-left: 1rem; color: var(--text-muted); }
     .tldr-summary li + li { margin-top: 0.28rem; }
-
     .filter-section { margin: 0.8rem 0; }
-    .filter-label {
-      color: var(--text-muted);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      margin-bottom: 0.35rem;
-      text-transform: uppercase;
-    }
-
-    .filter-labels {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      margin-bottom: 0.8rem;
-    }
-
-    .chip {
-      border: 1px solid var(--border);
-      background: var(--tag-bg);
-      color: var(--text-muted);
-      border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 0.2rem 0.58rem;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .chip.active {
-      background: var(--tag-active);
-      border-color: var(--tag-active);
-      color: var(--tag-active-text);
-    }
-
+    .filter-label { color: var(--text-muted); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em; margin-bottom: 0.35rem; text-transform: uppercase; }
+    .filter-labels { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 0.8rem; }
+    .chip { border: 1px solid var(--border); background: var(--tag-bg); color: var(--text-muted); border-radius: 999px; font-size: 0.75rem; font-weight: 600; padding: 0.2rem 0.58rem; cursor: pointer; user-select: none; }
+    .chip.active { background: var(--tag-active); border-color: var(--tag-active); color: var(--tag-active-text); }
     .active-filters { color: var(--text-muted); font-size: 0.8rem; margin: 0.25rem 0; }
     .result-line { color: var(--text-muted); font-size: 0.85rem; margin: 0.3rem 0 0.9rem; }
     .lang-text, .lang-block { display: none; }
-    html[data-content-lang="en"] .lang-text[data-lang="en"],
-    html[data-content-lang="es"] .lang-text[data-lang="es"] { display: inline; }
-    html[data-content-lang="en"] .lang-block[data-lang="en"],
-    html[data-content-lang="es"] .lang-block[data-lang="es"] { display: block; }
-
+    html[data-content-lang="en"] .lang-text[data-lang="en"], html[data-content-lang="es"] .lang-text[data-lang="es"] { display: inline; }
+    html[data-content-lang="en"] .lang-block[data-lang="en"], html[data-content-lang="es"] .lang-block[data-lang="es"] { display: block; }
     .story-list { display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 2rem; }
-
-    .story-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1rem 1.1rem;
-    }
-
-    .story-head {
-      display: flex;
-      gap: 0.75rem;
-      align-items: flex-start;
-      margin-bottom: 0.5rem;
-    }
-
-    .rank {
-      width: 1.9rem;
-      height: 1.9rem;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.74rem;
-      font-weight: 700;
-      color: var(--accent);
-      border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
-      background: color-mix(in srgb, var(--accent) 12%, transparent);
-      flex-shrink: 0;
-    }
-
-    .story-meta-line {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.55rem;
-      align-items: center;
-      margin-bottom: 0.12rem;
-    }
-
+    .story-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.1rem; }
+    .story-head { display: flex; gap: 0.75rem; align-items: flex-start; margin-bottom: 0.5rem; }
+    .rank { width: 1.9rem; height: 1.9rem; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.74rem; font-weight: 700; color: var(--accent); border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); background: color-mix(in srgb, var(--accent) 12%, transparent); flex-shrink: 0; }
+    .story-meta-line { display: flex; flex-wrap: wrap; gap: 0.55rem; align-items: center; margin-bottom: 0.12rem; }
     .source { color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 600; }
-
-    .importance {
-      align-items: center;
-      border: 1px solid currentColor;
-      border-radius: 999px;
-      display: inline-flex;
-      font-size: 0.68rem;
-      font-weight: 700;
-      gap: 0.3rem;
-      line-height: 1;
-      padding: 0.18rem 0.45rem;
-      text-transform: uppercase;
-    }
-
+    .importance { align-items: center; border: 1px solid currentColor; border-radius: 999px; display: inline-flex; font-size: 0.68rem; font-weight: 700; gap: 0.3rem; line-height: 1; padding: 0.18rem 0.45rem; text-transform: uppercase; }
     .importance-low { color: var(--importance-low); }
     .importance-medium { color: var(--importance-medium); }
     .importance-high { color: var(--importance-high); }
-
-    .importance-bars {
-      align-items: flex-end;
-      display: inline-flex;
-      gap: 2px;
-      height: 0.75rem;
-    }
-
-    .importance-bars span {
-      background: currentColor;
-      display: block;
-      opacity: 0.22;
-      width: 3px;
-    }
-
+    .importance-bars { align-items: flex-end; display: inline-flex; gap: 2px; height: 0.75rem; }
+    .importance-bars span { background: currentColor; display: block; opacity: 0.22; width: 3px; }
     .importance-bars span:nth-child(1) { height: 35%; }
     .importance-bars span:nth-child(2) { height: 65%; }
     .importance-bars span:nth-child(3) { height: 100%; }
-    .importance-low .importance-bars span:nth-child(1),
-    .importance-medium .importance-bars span:nth-child(-n+2),
-    .importance-high .importance-bars span { opacity: 1; }
-
+    .importance-low .importance-bars span:nth-child(1), .importance-medium .importance-bars span:nth-child(-n+2), .importance-high .importance-bars span { opacity: 1; }
+    .score { border: 1px solid var(--border); border-radius: 999px; background: var(--tag-bg); color: var(--text-muted); font-size: 0.68rem; font-weight: 700; padding: 0.16rem 0.45rem; text-transform: uppercase; }
     .title { color: var(--text); font-size: 1.02rem; font-weight: 600; line-height: 1.35; }
     .tldr { color: var(--text-muted); margin: 0.55rem 0; }
     .why { border-left: 3px solid var(--accent); padding-left: 0.6rem; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.65rem; }
-
-    .story-footer {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-    }
-
-    .tag {
-      border: 1px solid var(--border);
-      background: var(--tag-bg);
-      color: var(--text-muted);
-      border-radius: 999px;
-      padding: 0.16rem 0.5rem;
-      font-size: 0.72rem;
-    }
-
+    .story-footer { display: flex; align-items: center; flex-wrap: wrap; gap: 0.45rem; }
+    .tag { border: 1px solid var(--border); background: var(--tag-bg); color: var(--text-muted); border-radius: 999px; padding: 0.16rem 0.5rem; font-size: 0.72rem; }
     .date { margin-left: auto; color: var(--text-muted); font-size: 0.76rem; }
-
-    footer {
-      border-top: 1px solid var(--border);
-      color: var(--text-muted);
-      text-align: center;
-      padding: 1.6rem 1rem 2.2rem;
-      font-size: 0.84rem;
-    }
-
-    @media (max-width: 700px) {
-      h1 { font-size: 1.5rem; }
-      .control input, .control select { min-width: 130px; }
-      .clear-button { width: 100%; }
-      .date { margin-left: 0; }
-    }
+    footer { border-top: 1px solid var(--border); color: var(--text-muted); text-align: center; padding: 1.6rem 1rem 2.2rem; font-size: 0.84rem; }
+    @media (max-width: 700px) { h1 { font-size: 1.5rem; } .control input, .control select { min-width: 130px; } .clear-button { width: 100%; } .date { margin-left: 0; } }
   </style>
 </head>
-<body data-digest-variant="economy" data-digest-model="gpt-5-mini" data-snapshot-id="2026-08-20-56b9a811f08e" data-prompt-version="v1">
-  
-    <header>
+<body data-digest-variant="economy" data-digest-model="gpt-5-mini" data-snapshot-id="2026-08-21-484089f9143e" data-prompt-version="v1">
+  <header>
     <div class="container">
-      <div class="badge"><span class="lang-text" data-lang="en">Generated with GPT-5 Mini</span><span class="lang-text" data-lang="es">Generado con GPT-5 Mini</span></div>
+      <div class="badge">
+        <span class="lang-text" data-lang="en">Generated with gpt-5-mini</span>
+        <span class="lang-text" data-lang="es">Generado con gpt-5-mini</span>
+      </div>
       <h1>
-        <span class="lang-text" data-lang="en">AI &amp; Developer News Digest</span><span class="lang-text" data-lang="es">Resumen de noticias de IA y desarrollo</span>
+        <span class="lang-text" data-lang="en">AI &amp; Developer News Digest</span>
+        <span class="lang-text" data-lang="es">Resumen de noticias de IA y desarrollo</span>
       </h1>
       <p class="meta">
-        <span class="lang-text" data-lang="en">Aug 6–20, 2026 - 30 stories - last 14 days - Model: gpt-5-mini</span><span class="lang-text" data-lang="es">6–20 ago 2026 - 30 noticias - últimos 14 días - Modelo: gpt-5-mini</span>
+        <span class="lang-text" data-lang="en">Aug 7–21, 2026 - 28 stories - last 14 days</span>
+        <span class="lang-text" data-lang="es">Aug 7–21, 2026 - 28 noticias - últimos 14 días</span>
       </p>
       <div class="top-bar">
         <label class="control"><span class="lang-text" data-lang="en">Language:</span><span class="lang-text" data-lang="es">Idioma:</span>
-          <select id="languageSelect" aria-label="Select language"><option value="en">English</option><option value="es">Español</option></select>
+          <select id="languageSelect" aria-label="Select language">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+          </select>
         </label>
         <label class="control"><span class="lang-text" data-lang="en">Theme:</span><span class="lang-text" data-lang="es">Tema:</span>
-          <select id="themeSelect" aria-label="Select theme"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select>
+          <select id="themeSelect" aria-label="Select theme">
+            <option value="system">System</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
         </label>
         <label class="control"><span class="lang-text" data-lang="en">Search:</span><span class="lang-text" data-lang="es">Buscar:</span>
           <input id="searchInput" type="search" placeholder="keyword, source, tag..." aria-label="Search stories" />
@@ -347,30 +145,29 @@
     </div>
   </header>
 
-  
-    <main class="container">
+  <main class="container">
     <section class="stats">
-      <div class="stat"><span class="lang-text" data-lang="en">30 stories</span><span class="lang-text" data-lang="es">30 noticias</span></div>
-      <!-- AI_CREDITS_START --><div class="stat" data-ai-credits-run-id="32406450815">AI Credits: <span data-ai-credits-value>49.60</span> · <a href="../ai-credits.html">Usage history</a> · <a href="../model-comparison.html">Model comparison</a></div><!-- AI_CREDITS_END -->
-      <div class="stat"><span class="lang-text" data-lang="en">14 from GitHub Changelog</span><span class="lang-text" data-lang="es">14 de GitHub Changelog</span></div>
-      <div class="stat"><span class="lang-text" data-lang="en">6 from Microsoft Developer</span><span class="lang-text" data-lang="es">6 de Microsoft Developer</span></div>
-      <div class="stat"><span class="lang-text" data-lang="en">4 from TechCrunch AI</span><span class="lang-text" data-lang="es">4 de TechCrunch AI</span></div>
-      <div class="stat"><span class="lang-text" data-lang="en">3 from Ars Technica</span><span class="lang-text" data-lang="es">3 de Ars Technica</span></div>
-      <div class="stat"><span class="lang-text" data-lang="en">2 from Hacker News</span><span class="lang-text" data-lang="es">2 de Hacker News</span></div>
-      <div class="stat"><span class="lang-text" data-lang="en">1 from The Verge</span><span class="lang-text" data-lang="es">1 de The Verge</span></div>
+      <div class="stat"><span class="lang-text" data-lang="en">28 stories</span><span class="lang-text" data-lang="es">28 noticias</span></div><!-- AI_CREDITS_START --><div class="stat" data-ai-credits-run-id="32472406570">AI Credits: <span data-ai-credits-value>Pending finalization</span> · <a href="../ai-credits.html">Usage history</a> · <a href="../model-comparison.html">Model comparison</a></div><!-- AI_CREDITS_END --><div class="stat"><span class="lang-text" data-lang="en">8 from GitHub Changelog</span><span class="lang-text" data-lang="es">8 de GitHub Changelog</span></div><div class="stat"><span class="lang-text" data-lang="en">8 from Microsoft Developer</span><span class="lang-text" data-lang="es">8 de Microsoft Developer</span></div><div class="stat"><span class="lang-text" data-lang="en">4 from TechCrunch AI</span><span class="lang-text" data-lang="es">4 de TechCrunch AI</span></div><div class="stat"><span class="lang-text" data-lang="en">4 from Ars Technica</span><span class="lang-text" data-lang="es">4 de Ars Technica</span></div><div class="stat"><span class="lang-text" data-lang="en">2 from The Verge</span><span class="lang-text" data-lang="es">2 de The Verge</span></div><div class="stat"><span class="lang-text" data-lang="en">2 from MIT Technology Review</span><span class="lang-text" data-lang="es">2 de MIT Technology Review</span></div>
     </section>
     <p class="credit-note">
       <span class="lang-text" data-lang="en">This digest is part of a paired model experiment. <a href="../model-comparison.html">Compare cost and publication results →</a></span>
       <span class="lang-text" data-lang="es">Este resumen forma parte de un experimento comparativo de modelos. <a href="../model-comparison.html">Comparar costos y resultados de publicación →</a></span>
     </p>
+
     <section class="tldr-summary">
       <h2><span class="lang-text" data-lang="en">TL;DR - Top takeaways</span><span class="lang-text" data-lang="es">TL;DR - Resumen principal</span></h2>
-      <ul><li><span class="lang-text" data-lang="en">GitHub and Microsoft anchor the issue with CI images, Code Quality, Copilot, SQL, WSL, and AKS updates.</span><span class="lang-text" data-lang="es">GitHub y Microsoft lideran el número con imágenes de CI, Code Quality, Copilot, SQL, WSL y actualizaciones de AKS.</span></li><li><span class="lang-text" data-lang="en">Security and governance dominate the priority feeds, from code scanning and secret scanning to token handling and allowlists.</span><span class="lang-text" data-lang="es">La seguridad y la gobernanza dominan las fuentes prioritarias, desde code scanning y secret scanning hasta gestión de tokens y listas permitidas.</span></li><li><span class="lang-text" data-lang="en">Copilot and agent tooling keep expanding across clients, models, review depth, and reusable plugins.</span><span class="lang-text" data-lang="es">Copilot y las herramientas de agentes siguen expandiéndose entre clientes, modelos, profundidad de revisión y plugins reutilizables.</span></li><li><span class="lang-text" data-lang="en">The broader AI market story leans toward routers, privacy controls, reliability, and security hardening.</span><span class="lang-text" data-lang="es">La historia más amplia del mercado de IA se inclina hacia routers, controles de privacidad, fiabilidad y refuerzo de seguridad.</span></li><li><span class="lang-text" data-lang="en">Outside the priority feeds, supply-chain risk, language changes, and research security round out the picture.</span><span class="lang-text" data-lang="es">Fuera de las fuentes prioritarias, el riesgo de cadena de suministro, los cambios de lenguaje y la seguridad de investigación completan el panorama.</span></li></ul>
+      <ul>
+        <li><span class="lang-text" data-lang="en">GitHub and Microsoft dominated the week with Copilot, Code Quality, Azure SQL, and VS Code updates.</span><span class="lang-text" data-lang="es">GitHub y Microsoft dominaron la semana con cambios en Copilot, Code Quality, Azure SQL y VS Code.</span></li><li><span class="lang-text" data-lang="en">Consumer and enterprise AI kept moving into messaging, model routing, and agent workflows.</span><span class="lang-text" data-lang="es">La IA de consumo y la IA empresarial siguieron integrándose en mensajes, enrutamiento de modelos y flujos de agentes.</span></li><li><span class="lang-text" data-lang="en">Security and governance stayed front and center with audit logs, token revocation, mitigated alerts, and supply-chain attacks.</span><span class="lang-text" data-lang="es">La seguridad y la gobernanza siguieron al frente con registros de auditoría, revocación de tokens, alertas mitigadas y ataques de cadena de suministro.</span></li><li><span class="lang-text" data-lang="en">The model market remains highly competitive, with news around OpenAI, Anthropic, Grok, and new model routers.</span><span class="lang-text" data-lang="es">El mercado de modelos sigue siendo muy competitivo, con noticias sobre OpenAI, Anthropic, Grok y nuevos routers de modelos.</span></li><li><span class="lang-text" data-lang="en">Developer interfaces keep evolving across the editor, the CLI, the cloud, and automation surfaces.</span><span class="lang-text" data-lang="es">Las interfaces para desarrolladores continúan evolucionando en el editor, la CLI, la nube y los entornos de automatización.</span></li>
+      </ul>
     </section>
+
     <section class="tldr-summary">
       <h2><span class="lang-text" data-lang="en">TL;DR - GitHub highlights</span><span class="lang-text" data-lang="es">TL;DR - Destacados de GitHub</span></h2>
-      <ul><li><span class="lang-text" data-lang="en">GitHub tightened security and governance with code scanning, CodeQL, audit logging, OAuth controls, secret scanning, and pull-request limits.</span><span class="lang-text" data-lang="es">GitHub reforzó la seguridad y la gobernanza con code scanning, CodeQL, registros de auditoría, controles OAuth, secret scanning y límites de pull requests.</span></li><li><span class="lang-text" data-lang="en">Copilot gained another wave of model, memory, review, and enterprise-management updates.</span><span class="lang-text" data-lang="es">Copilot recibió otra oleada de actualizaciones de modelo, memoria, revisión y administración empresarial.</span></li><li><span class="lang-text" data-lang="en">Agent Plugins 1.0 makes reusable agent tooling easier to ship across VS Code, Copilot CLI, and the app.</span><span class="lang-text" data-lang="es">Agent Plugins 1.0 facilita desplegar herramientas de agentes reutilizables en VS Code, Copilot CLI y la app.</span></li><li><span class="lang-text" data-lang="en">The runner image and related platform changes keep everyday CI and repository administration moving.</span><span class="lang-text" data-lang="es">La imagen del runner y los cambios de plataforma relacionados mantienen en marcha la CI diaria y la administración de repositorios.</span></li><li><span class="lang-text" data-lang="en">Overall, the GitHub stories are about operating Copilot and repository policy at scale rather than one-off features.</span><span class="lang-text" data-lang="es">En conjunto, las noticias de GitHub tratan de operar Copilot y la política de repositorios a escala, no solo de funciones puntuales.</span></li></ul>
+      <ul>
+        <li><span class="lang-text" data-lang="en">CodeQL, Code Quality, and audit-log changes strengthen GitHub’s analysis and governance layer.</span><span class="lang-text" data-lang="es">CodeQL, Code Quality y los cambios de auditoría refuerzan la capa de análisis y gobernanza en GitHub.</span></li><li><span class="lang-text" data-lang="en">Agent Plugins, MAI-Code-1.1-Flash, and Copilot effort levels broaden assisted-work options.</span><span class="lang-text" data-lang="es">Agent Plugins, MAI-Code-1.1-Flash y los niveles de esfuerzo de Copilot amplían las opciones de trabajo asistido.</span></li><li><span class="lang-text" data-lang="en">Code review and credential management gain more control for teams and admins.</span><span class="lang-text" data-lang="es">La revisión de código y la gestión de credenciales ganan más control para equipos y administradores.</span></li><li><span class="lang-text" data-lang="en">Integration across IDE, CLI, and app is becoming more consistent for agent-based workflows.</span><span class="lang-text" data-lang="es">La integración entre IDE, CLI y app se vuelve más consistente para los flujos con agentes.</span></li><li><span class="lang-text" data-lang="en">GitHub keeps moving security and automation features into more visible and configurable experiences.</span><span class="lang-text" data-lang="es">GitHub sigue moviendo funciones de seguridad y automatización hacia experiencias más visibles y configurables.</span></li>
+      </ul>
     </section>
+
     <section class="filter-section" aria-label="Story filters">
       <div class="filter-label"><span class="lang-text" data-lang="en">Filter by source</span><span class="lang-text" data-lang="es">Filtrar por fuente</span></div>
       <div class="filter-labels" id="sourceFilters"></div>
@@ -381,148 +178,118 @@
     </section>
     <p class="active-filters" id="activeFilters" aria-live="polite"></p>
     <p class="result-line" id="resultLine"></p>
+
     <section class="story-list" id="storyList">
-      <article
-        class="story-card"
-        data-rank="1"
-        data-published="2026-08-20"
-        data-tags="Windows,Actions,CI"
-        data-source="GitHub Changelog"
-        data-importance="High"
-        data-search="Windows 11 arm64 VS2026 image generally available Imagen arm64 de Windows 11 con VS2026 ya disponible GitHub Changelog High GitHub now ships the Windows 11 arm64 runner image with Visual Studio 2026. GitHub ahora publica la imagen de runner arm64 de Windows 11 con Visual Studio 2026. Useful for teams standardizing Windows CI on the latest GitHub-hosted image. Útil para equipos que estandarizan la CI de Windows en la imagen más reciente de GitHub. Windows Actions CI"
-      >
+
+      <article class="story-card" data-rank="1" data-published="2026-08-20" data-tags="Ars Technica,Grok,Security,Prompt injection" data-source="Ars Technica" data-importance="High" data-score="9" data-search="Grok exfiltrates user data when malicious instructions are encrypted Grok filtra datos de usuarios cuando las instrucciones maliciosas están cifradas Ars Technica High 9 Encrypted malicious instructions can still steer Grok into leaking user data, showing a new prompt-injection path. Las instrucciones maliciosas cifradas aún pueden dirigir a Grok para filtrar datos de usuarios, mostrando una nueva vía de prompt injection. It shows that hidden payloads can still defeat guardrails even when the attack text is not visible in plain form. Muestra que las cargas ocultas todavía pueden vencer las barreras de seguridad aunque el texto del ataque no sea visible en claro. Ars Technica Grok Security Prompt injection">
         <div class="story-head">
           <div class="rank">1</div>
           <div>
             <div class="story-meta-line">
-              <div class="source">🐙 GitHub Changelog</div>
+              <div class="source">🛡️ Ars Technica</div>
               <div class="importance importance-high" aria-label="High importance">
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
                 <span>High</span>
               </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 9/10</span><span class="lang-text" data-lang="es">Puntuación 9/10</span></div>
             </div>
-            <div class="title"><a href="https://github.blog/changelog/2026-08-20-windows-11-arm64-vs2026-image-generally-available" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Windows 11 arm64 VS2026 image generally available</span><span class="lang-text" data-lang="es">Imagen arm64 de Windows 11 con VS2026 ya disponible</span></a></div>
+            <div class="title"><a href="https://arstechnica.com/security/2026/08/grok-exfiltrates-user-data-when-malicious-instructions-are-encrypted" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Grok exfiltrates user data when malicious instructions are encrypted</span><span class="lang-text" data-lang="es">Grok filtra datos de usuarios cuando las instrucciones maliciosas están cifradas</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">GitHub now ships the Windows 11 arm64 runner image with Visual Studio 2026.</span><span class="lang-text" data-lang="es">GitHub ahora publica la imagen de runner arm64 de Windows 11 con Visual Studio 2026.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Encrypted malicious instructions can still steer Grok into leaking user data, showing a new prompt-injection path.</span><span class="lang-text" data-lang="es">Las instrucciones maliciosas cifradas aún pueden dirigir a Grok para filtrar datos de usuarios, mostrando una nueva vía de prompt injection.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Useful for teams standardizing Windows CI on the latest GitHub-hosted image.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Útil para equipos que estandarizan la CI de Windows en la imagen más reciente de GitHub.</span>
+          <span class="lang-text" data-lang="en">Why it matters: It shows that hidden payloads can still defeat guardrails even when the attack text is not visible in plain form.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Muestra que las cargas ocultas todavía pueden vencer las barreras de seguridad aunque el texto del ataque no sea visible en claro.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">Windows</span><span class="tag">Actions</span><span class="tag">CI</span>
-          <a href="https://github.blog/changelog/2026-08-20-windows-11-arm64-vs2026-image-generally-available" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-20">Aug 20</span>
+          <span class="tag">Ars Technica</span><span class="tag">Grok</span><span class="tag">Security</span><span class="tag">Prompt injection</span>
+          <a href="https://arstechnica.com/security/2026/08/grok-exfiltrates-user-data-when-malicious-instructions-are-encrypted" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-20"></span>
         </div>
       </article>
-      <article
-        class="story-card"
-        data-rank="2"
-        data-published="2026-08-20"
-        data-tags="Security,Code scanning,Governance"
-        data-source="GitHub Changelog"
-        data-importance="High"
-        data-search="Code scanning adds a mitigated alert dismissal reason Code scanning añade un motivo de cierre mitigado GitHub Changelog High Code scanning alerts can now be dismissed with a mitigated reason. Las alertas de code scanning ahora pueden descartarse con un motivo de mitigación. Helps security teams document why a finding is being closed. Ayuda a los equipos de seguridad a documentar por qué se cierra un hallazgo. Security Code scanning Governance"
-      >
+
+      <article class="story-card" data-rank="2" data-published="2026-08-18" data-tags="Ars Technica,Copilot,Security,Exploits" data-source="Ars Technica" data-importance="High" data-score="9" data-search="Microsoft Copilot reveals secret input that allowed it to be hacked Microsoft Copilot revela la entrada secreta que permitió hackearlo Ars Technica High 9 Ars reports that a secret parameter let attackers steal passwords when a target clicked a link. Ars informa que un parámetro secreto permitió a atacantes robar contraseñas cuando la víctima hizo clic en un enlace. It is a reminder that copilots and chat assistants need the same exploit discipline as any other internet-facing product. Recuerda que los copilotos y asistentes de chat necesitan la misma disciplina frente a exploits que cualquier producto expuesto en internet. Ars Technica Copilot Security Exploits">
         <div class="story-head">
           <div class="rank">2</div>
           <div>
             <div class="story-meta-line">
-              <div class="source">🐙 GitHub Changelog</div>
+              <div class="source">🛡️ Ars Technica</div>
               <div class="importance importance-high" aria-label="High importance">
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
                 <span>High</span>
               </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 9/10</span><span class="lang-text" data-lang="es">Puntuación 9/10</span></div>
             </div>
-            <div class="title"><a href="https://github.blog/changelog/2026-08-20-code-scanning-adds-a-mitigated-alert-dismissal-reason" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Code scanning adds a mitigated alert dismissal reason</span><span class="lang-text" data-lang="es">Code scanning añade un motivo de cierre mitigado</span></a></div>
+            <div class="title"><a href="https://arstechnica.com/security/2026/08/microsoft-copilot-reveals-secret-input-that-allowed-it-to-be-hacked" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Microsoft Copilot reveals secret input that allowed it to be hacked</span><span class="lang-text" data-lang="es">Microsoft Copilot revela la entrada secreta que permitió hackearlo</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Code scanning alerts can now be dismissed with a mitigated reason.</span><span class="lang-text" data-lang="es">Las alertas de code scanning ahora pueden descartarse con un motivo de mitigación.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Ars reports that a secret parameter let attackers steal passwords when a target clicked a link.</span><span class="lang-text" data-lang="es">Ars informa que un parámetro secreto permitió a atacantes robar contraseñas cuando la víctima hizo clic en un enlace.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Helps security teams document why a finding is being closed.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Ayuda a los equipos de seguridad a documentar por qué se cierra un hallazgo.</span>
+          <span class="lang-text" data-lang="en">Why it matters: It is a reminder that copilots and chat assistants need the same exploit discipline as any other internet-facing product.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Recuerda que los copilotos y asistentes de chat necesitan la misma disciplina frente a exploits que cualquier producto expuesto en internet.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">Security</span><span class="tag">Code scanning</span><span class="tag">Governance</span>
-          <a href="https://github.blog/changelog/2026-08-20-code-scanning-adds-a-mitigated-alert-dismissal-reason" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-20">Aug 20</span>
+          <span class="tag">Ars Technica</span><span class="tag">Copilot</span><span class="tag">Security</span><span class="tag">Exploits</span>
+          <a href="https://arstechnica.com/security/2026/08/microsoft-copilot-reveals-secret-input-that-allowed-it-to-be-hacked" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-18"></span>
         </div>
       </article>
-      <article
-        class="story-card"
-        data-rank="3"
-        data-published="2026-08-20"
-        data-tags="Actions,Code Quality,GitHub"
-        data-source="GitHub Changelog"
-        data-importance="High"
-        data-search="Separate GitHub Actions path for GitHub Code Quality Ruta separada de GitHub Actions para GitHub Code Quality GitHub Changelog High Code Quality workflows now use a dedicated Actions path and reporting. Los flujos de trabajo de Code Quality ahora usan una ruta y un reporte de Actions dedicados. Makes code-quality automation easier to track in Actions history. Hace más fácil seguir la automatización de calidad de código en el historial de Actions. Actions Code Quality GitHub"
-      >
+
+      <article class="story-card" data-rank="3" data-published="2026-08-12" data-tags="Ars Technica,Security,Supply chain,AI packages" data-source="Ars Technica" data-importance="High" data-score="9" data-search="Terabytes of credentials leaked in massive supply-chain attack Se filtraron terabytes de credenciales en un enorme ataque a la cadena de suministro Ars Technica High 9 A compromised AI package appears to have scraped and exfiltrated credentials from thousands of users. Un paquete de IA comprometido parece haber extraído credenciales de miles de usuarios y haberlas filtrado. Supply-chain risk remains one of the biggest threats for teams that depend on AI packages and transitive dependencies. El riesgo de la cadena de suministro sigue siendo una de las mayores amenazas para los equipos que dependen de paquetes de IA y dependencias transitivas. Ars Technica Security Supply chain AI packages">
         <div class="story-head">
           <div class="rank">3</div>
           <div>
             <div class="story-meta-line">
-              <div class="source">🐙 GitHub Changelog</div>
+              <div class="source">🛡️ Ars Technica</div>
               <div class="importance importance-high" aria-label="High importance">
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
                 <span>High</span>
               </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 9/10</span><span class="lang-text" data-lang="es">Puntuación 9/10</span></div>
             </div>
-            <div class="title"><a href="https://github.blog/changelog/2026-08-20-separate-github-actions-path-for-github-code-quality" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Separate GitHub Actions path for GitHub Code Quality</span><span class="lang-text" data-lang="es">Ruta separada de GitHub Actions para GitHub Code Quality</span></a></div>
+            <div class="title"><a href="https://arstechnica.com/security/2026/08/terabytes-of-credentials-leaked-in-massive-supply-chain-attack" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Terabytes of credentials leaked in massive supply-chain attack</span><span class="lang-text" data-lang="es">Se filtraron terabytes de credenciales en un enorme ataque a la cadena de suministro</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Code Quality workflows now use a dedicated Actions path and reporting.</span><span class="lang-text" data-lang="es">Los flujos de trabajo de Code Quality ahora usan una ruta y un reporte de Actions dedicados.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">A compromised AI package appears to have scraped and exfiltrated credentials from thousands of users.</span><span class="lang-text" data-lang="es">Un paquete de IA comprometido parece haber extraído credenciales de miles de usuarios y haberlas filtrado.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Makes code-quality automation easier to track in Actions history.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Hace más fácil seguir la automatización de calidad de código en el historial de Actions.</span>
+          <span class="lang-text" data-lang="en">Why it matters: Supply-chain risk remains one of the biggest threats for teams that depend on AI packages and transitive dependencies.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: El riesgo de la cadena de suministro sigue siendo una de las mayores amenazas para los equipos que dependen de paquetes de IA y dependencias transitivas.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">Actions</span><span class="tag">Code Quality</span><span class="tag">GitHub</span>
-          <a href="https://github.blog/changelog/2026-08-20-separate-github-actions-path-for-github-code-quality" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-20">Aug 20</span>
+          <span class="tag">Ars Technica</span><span class="tag">Security</span><span class="tag">Supply chain</span><span class="tag">AI packages</span>
+          <a href="https://arstechnica.com/security/2026/08/terabytes-of-credentials-leaked-in-massive-supply-chain-attack" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-12"></span>
         </div>
       </article>
-      <article
-        class="story-card"
-        data-rank="4"
-        data-published="2026-08-20"
-        data-tags="Governance,Audit log,Code Quality"
-        data-source="GitHub Changelog"
-        data-importance="Medium"
-        data-search="Track GitHub Code Quality enablement changes in the audit log Seguimiento de activaciones de GitHub Code Quality en el registro de auditoría GitHub Changelog Medium Enablement changes for Code Quality now appear in the audit log. Los cambios de activación de Code Quality ahora aparecen en el registro de auditoría. Gives admins a clear trail for governance reviews. Ofrece a los administradores un rastro claro para revisiones de gobernanza. Governance Audit log Code Quality"
-      >
+
+      <article class="story-card" data-rank="4" data-published="2026-08-12" data-tags="GitHub Changelog,Copilot,Agents,VS Code" data-source="GitHub Changelog" data-importance="High" data-score="9" data-search="Agent Plugins 1.0 in VS Code, Copilot CLI, and the Copilot app Agent Plugins 1.0 en VS Code, Copilot CLI y la app de Copilot GitHub Changelog High 9 GitHub says plugins can now be built once and reused across compatible agent clients. GitHub dice que los plugins ahora pueden construirse una vez y reutilizarse en clientes de agentes compatibles. That lowers fragmentation for teams building agent workflows across the editor, CLI, and app surface. Eso reduce la fragmentación para los equipos que crean flujos de trabajo con agentes entre el editor, la CLI y la app. GitHub Changelog Copilot Agents VS Code">
         <div class="story-head">
           <div class="rank">4</div>
           <div>
             <div class="story-meta-line">
               <div class="source">🐙 GitHub Changelog</div>
-              <div class="importance importance-medium" aria-label="Medium importance">
+              <div class="importance importance-high" aria-label="High importance">
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span>Medium</span>
+                <span>High</span>
               </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 9/10</span><span class="lang-text" data-lang="es">Puntuación 9/10</span></div>
             </div>
-            <div class="title"><a href="https://github.blog/changelog/2026-08-20-track-github-code-quality-enablement-changes-in-the-audit-log" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Track GitHub Code Quality enablement changes in the audit log</span><span class="lang-text" data-lang="es">Seguimiento de activaciones de GitHub Code Quality en el registro de auditoría</span></a></div>
+            <div class="title"><a href="https://github.blog/changelog/2026-08-12-agent-plugins-1-0-in-vs-code-copilot-cli-and-the-copilot-app" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Agent Plugins 1.0 in VS Code, Copilot CLI, and the Copilot app</span><span class="lang-text" data-lang="es">Agent Plugins 1.0 en VS Code, Copilot CLI y la app de Copilot</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Enablement changes for Code Quality now appear in the audit log.</span><span class="lang-text" data-lang="es">Los cambios de activación de Code Quality ahora aparecen en el registro de auditoría.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">GitHub says plugins can now be built once and reused across compatible agent clients.</span><span class="lang-text" data-lang="es">GitHub dice que los plugins ahora pueden construirse una vez y reutilizarse en clientes de agentes compatibles.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Gives admins a clear trail for governance reviews.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Ofrece a los administradores un rastro claro para revisiones de gobernanza.</span>
+          <span class="lang-text" data-lang="en">Why it matters: That lowers fragmentation for teams building agent workflows across the editor, CLI, and app surface.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Eso reduce la fragmentación para los equipos que crean flujos de trabajo con agentes entre el editor, la CLI y la app.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">Governance</span><span class="tag">Audit log</span><span class="tag">Code Quality</span>
-          <a href="https://github.blog/changelog/2026-08-20-track-github-code-quality-enablement-changes-in-the-audit-log" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-20">Aug 20</span>
+          <span class="tag">GitHub Changelog</span><span class="tag">Copilot</span><span class="tag">Agents</span><span class="tag">VS Code</span>
+          <a href="https://github.blog/changelog/2026-08-12-agent-plugins-1-0-in-vs-code-copilot-cli-and-the-copilot-app" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-12"></span>
         </div>
       </article>
-      <article
-        class="story-card"
-        data-rank="5"
-        data-published="2026-08-19"
-        data-tags="CodeQL,Security,JavaScript"
-        data-source="GitHub Changelog"
-        data-importance="High"
-        data-search="CodeQL 2.26.3 improves GitHub Actions queries and JavaScript modeling CodeQL 2.26.3 mejora las consultas de GitHub Actions y el modelado de JavaScript GitHub Changelog High CodeQL 2.26.3 improves query coverage for Actions and JavaScript. CodeQL 2.26.3 mejora la cobertura de consultas para Actions y JavaScript. Improves static-analysis signal for repositories using those stacks. Mejora la señal de análisis estático en repositorios que usan esas tecnologías. CodeQL Security JavaScript"
-      >
+
+      <article class="story-card" data-rank="5" data-published="2026-08-11" data-tags="GitHub Changelog,Copilot,Models,AI" data-source="GitHub Changelog" data-importance="High" data-score="9" data-search="MAI-Code-1.1-Flash available in GitHub Copilot MAI-Code-1.1-Flash ya está disponible en GitHub Copilot GitHub Changelog High 9 GitHub is rolling out MAI-Code-1.1-Flash, a small coding model with native image input and other upgrades. GitHub está incorporando MAI-Code-1.1-Flash, un modelo pequeño de programación con entrada nativa de imágenes y otras mejoras. It expands the model options available inside Copilot for teams that care about speed and lightweight workflows. Amplía las opciones de modelo dentro de Copilot para los equipos que priorizan velocidad y flujos de trabajo ligeros. GitHub Changelog Copilot Models AI">
         <div class="story-head">
           <div class="rank">5</div>
           <div>
@@ -532,63 +299,51 @@
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
                 <span>High</span>
               </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 9/10</span><span class="lang-text" data-lang="es">Puntuación 9/10</span></div>
             </div>
-            <div class="title"><a href="https://github.blog/changelog/2026-08-19-codeql-2-26-3-improves-github-actions-queries-and-javascript-modeling" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">CodeQL 2.26.3 improves GitHub Actions queries and JavaScript modeling</span><span class="lang-text" data-lang="es">CodeQL 2.26.3 mejora las consultas de GitHub Actions y el modelado de JavaScript</span></a></div>
+            <div class="title"><a href="https://github.blog/changelog/2026-08-11-mai-code-1-1-flash-available-in-github-copilot" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">MAI-Code-1.1-Flash available in GitHub Copilot</span><span class="lang-text" data-lang="es">MAI-Code-1.1-Flash ya está disponible en GitHub Copilot</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">CodeQL 2.26.3 improves query coverage for Actions and JavaScript.</span><span class="lang-text" data-lang="es">CodeQL 2.26.3 mejora la cobertura de consultas para Actions y JavaScript.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">GitHub is rolling out MAI-Code-1.1-Flash, a small coding model with native image input and other upgrades.</span><span class="lang-text" data-lang="es">GitHub está incorporando MAI-Code-1.1-Flash, un modelo pequeño de programación con entrada nativa de imágenes y otras mejoras.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Improves static-analysis signal for repositories using those stacks.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Mejora la señal de análisis estático en repositorios que usan esas tecnologías.</span>
+          <span class="lang-text" data-lang="en">Why it matters: It expands the model options available inside Copilot for teams that care about speed and lightweight workflows.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Amplía las opciones de modelo dentro de Copilot para los equipos que priorizan velocidad y flujos de trabajo ligeros.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">CodeQL</span><span class="tag">Security</span><span class="tag">JavaScript</span>
-          <a href="https://github.blog/changelog/2026-08-19-codeql-2-26-3-improves-github-actions-queries-and-javascript-modeling" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-19">Aug 19</span>
+          <span class="tag">GitHub Changelog</span><span class="tag">Copilot</span><span class="tag">Models</span><span class="tag">AI</span>
+          <a href="https://github.blog/changelog/2026-08-11-mai-code-1-1-flash-available-in-github-copilot" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-11"></span>
         </div>
       </article>
-      <article
-        class="story-card"
-        data-rank="6"
-        data-published="2026-08-18"
-        data-tags="Copilot,Enterprise,JetBrains"
-        data-source="GitHub Changelog"
-        data-importance="High"
-        data-search="Enterprise managed settings in GitHub Copilot for JetBrains Configuración administrada para empresas en GitHub Copilot para JetBrains GitHub Changelog High Enterprise-managed settings now reach Copilot in JetBrains IDEs. La configuración administrada para empresas ahora llega a Copilot en los IDE de JetBrains. Helps larger teams manage Copilot consistently across editors. Ayuda a los equipos grandes a administrar Copilot de forma consistente entre editores. Copilot Enterprise JetBrains"
-      >
+
+      <article class="story-card" data-rank="6" data-published="2026-08-20" data-tags="Microsoft Developer,Azure Copilot,Agents,AI" data-source="Microsoft Developer" data-importance="High" data-score="8" data-search="Announcing: Azure Copilot introduces direct access to agents Azure Copilot introduce acceso directo a agentes Microsoft Developer High 8 Azure Copilot now lets customers work directly with agents to move from questions to action more quickly. Azure Copilot ahora permite a los clientes trabajar directamente con agentes para pasar más rápido de las preguntas a la acción. It shortens the path from cloud troubleshooting to execution inside Azure. Acorta el recorrido desde la resolución de problemas en la nube hasta la ejecución dentro de Azure. Microsoft Developer Azure Copilot Agents AI">
         <div class="story-head">
           <div class="rank">6</div>
           <div>
             <div class="story-meta-line">
-              <div class="source">🐙 GitHub Changelog</div>
+              <div class="source">🪟 Microsoft Developer</div>
               <div class="importance importance-high" aria-label="High importance">
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
                 <span>High</span>
               </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></div>
             </div>
-            <div class="title"><a href="https://github.blog/changelog/2026-08-18-enterprise-managed-settings-in-github-copilot-for-jetbrains" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Enterprise managed settings in GitHub Copilot for JetBrains</span><span class="lang-text" data-lang="es">Configuración administrada para empresas en GitHub Copilot para JetBrains</span></a></div>
+            <div class="title"><a href="https://azure.microsoft.com/updates?id=569685" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Announcing: Azure Copilot introduces direct access to agents</span><span class="lang-text" data-lang="es">Azure Copilot introduce acceso directo a agentes</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Enterprise-managed settings now reach Copilot in JetBrains IDEs.</span><span class="lang-text" data-lang="es">La configuración administrada para empresas ahora llega a Copilot en los IDE de JetBrains.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Azure Copilot now lets customers work directly with agents to move from questions to action more quickly.</span><span class="lang-text" data-lang="es">Azure Copilot ahora permite a los clientes trabajar directamente con agentes para pasar más rápido de las preguntas a la acción.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Helps larger teams manage Copilot consistently across editors.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Ayuda a los equipos grandes a administrar Copilot de forma consistente entre editores.</span>
+          <span class="lang-text" data-lang="en">Why it matters: It shortens the path from cloud troubleshooting to execution inside Azure.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Acorta el recorrido desde la resolución de problemas en la nube hasta la ejecución dentro de Azure.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">Copilot</span><span class="tag">Enterprise</span><span class="tag">JetBrains</span>
-          <a href="https://github.blog/changelog/2026-08-18-enterprise-managed-settings-in-github-copilot-for-jetbrains" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-18">Aug 18</span>
+          <span class="tag">Microsoft Developer</span><span class="tag">Azure Copilot</span><span class="tag">Agents</span><span class="tag">AI</span>
+          <a href="https://azure.microsoft.com/updates?id=569685" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-20"></span>
         </div>
       </article>
-      <article
-        class="story-card"
-        data-rank="7"
-        data-published="2026-08-18"
-        data-tags="Security,Credentials,Enterprise"
-        data-source="GitHub Changelog"
-        data-importance="High"
-        data-search="Credential revocation and deauthorization by token type Revocación y desautorización de credenciales por tipo de token GitHub Changelog High Teams can now revoke and deauthorize credentials by token type. Los equipos ahora pueden revocar y desautorizar credenciales por tipo de token. Adds finer control during incident response workflows. Añade un control más fino durante los flujos de respuesta a incidentes. Security Credentials Enterprise"
-      >
+
+      <article class="story-card" data-rank="7" data-published="2026-08-19" data-tags="GitHub Changelog,CodeQL,Security,JavaScript" data-source="GitHub Changelog" data-importance="High" data-score="9" data-search="CodeQL 2.26.3 improves GitHub Actions queries and JavaScript modeling CodeQL 2.26.3 mejora las consultas de GitHub Actions y el modelado de JavaScript GitHub Changelog High 9 CodeQL 2.26.3 adds JavaScript, TypeScript, and Vue source modeling and improves several GitHub Actions queries. CodeQL 2.26.3 añade modelado de código fuente para JavaScript, TypeScript y Vue, y mejora varias consultas de GitHub Actions. Better modeling can improve the quality of security findings in GitHub code analysis. Un mejor modelado puede mejorar la calidad de los hallazgos de seguridad en el análisis de código de GitHub. GitHub Changelog CodeQL Security JavaScript">
         <div class="story-head">
           <div class="rank">7</div>
           <div>
@@ -598,63 +353,51 @@
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
                 <span>High</span>
               </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 9/10</span><span class="lang-text" data-lang="es">Puntuación 9/10</span></div>
             </div>
-            <div class="title"><a href="https://github.blog/changelog/2026-08-18-credential-revocation-and-deauthorization-by-token-type" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Credential revocation and deauthorization by token type</span><span class="lang-text" data-lang="es">Revocación y desautorización de credenciales por tipo de token</span></a></div>
+            <div class="title"><a href="https://github.blog/changelog/2026-08-19-codeql-2-26-3-improves-github-actions-queries-and-javascript-modeling" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">CodeQL 2.26.3 improves GitHub Actions queries and JavaScript modeling</span><span class="lang-text" data-lang="es">CodeQL 2.26.3 mejora las consultas de GitHub Actions y el modelado de JavaScript</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Teams can now revoke and deauthorize credentials by token type.</span><span class="lang-text" data-lang="es">Los equipos ahora pueden revocar y desautorizar credenciales por tipo de token.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">CodeQL 2.26.3 adds JavaScript, TypeScript, and Vue source modeling and improves several GitHub Actions queries.</span><span class="lang-text" data-lang="es">CodeQL 2.26.3 añade modelado de código fuente para JavaScript, TypeScript y Vue, y mejora varias consultas de GitHub Actions.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Adds finer control during incident response workflows.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Añade un control más fino durante los flujos de respuesta a incidentes.</span>
+          <span class="lang-text" data-lang="en">Why it matters: Better modeling can improve the quality of security findings in GitHub code analysis.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Un mejor modelado puede mejorar la calidad de los hallazgos de seguridad en el análisis de código de GitHub.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">Security</span><span class="tag">Credentials</span><span class="tag">Enterprise</span>
-          <a href="https://github.blog/changelog/2026-08-18-credential-revocation-and-deauthorization-by-token-type" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-18">Aug 18</span>
+          <span class="tag">GitHub Changelog</span><span class="tag">CodeQL</span><span class="tag">Security</span><span class="tag">JavaScript</span>
+          <a href="https://github.blog/changelog/2026-08-19-codeql-2-26-3-improves-github-actions-queries-and-javascript-modeling" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-19"></span>
         </div>
       </article>
-      <article
-        class="story-card"
-        data-rank="8"
-        data-published="2026-08-14"
-        data-tags="OAuth,Apps,Authentication"
-        data-source="GitHub Changelog"
-        data-importance="Medium"
-        data-search="Multiple redirect URIs and token refresh for OAuth apps Múltiples URI de redirección y renovación de tokens para apps OAuth GitHub Changelog Medium OAuth apps gain multiple redirect URIs and token refresh support. Las apps OAuth ganan compatibilidad con múltiples URI de redirección y renovación de tokens. Makes auth flows easier to maintain across environments. Hace más fáciles de mantener los flujos de autenticación entre entornos. OAuth Apps Authentication"
-      >
+
+      <article class="story-card" data-rank="8" data-published="2026-08-20" data-tags="GitHub Changelog,Code Quality,Actions,Security" data-source="GitHub Changelog" data-importance="High" data-score="8" data-search="Separate GitHub Actions path for GitHub Code Quality Ruta separada de GitHub Actions para GitHub Code Quality GitHub Changelog High 8 GitHub Code Quality now has its own Actions path and usage history, making the workflow easier to track. GitHub Code Quality ahora tiene su propia ruta en Actions y su historial de uso, lo que facilita seguir el flujo de trabajo. It gives teams a cleaner way to separate quality runs from unrelated automation. Da a los equipos una forma más clara de separar las ejecuciones de calidad de la automatización no relacionada. GitHub Changelog Code Quality Actions Security">
         <div class="story-head">
           <div class="rank">8</div>
           <div>
             <div class="story-meta-line">
               <div class="source">🐙 GitHub Changelog</div>
-              <div class="importance importance-medium" aria-label="Medium importance">
+              <div class="importance importance-high" aria-label="High importance">
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span>Medium</span>
+                <span>High</span>
               </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></div>
             </div>
-            <div class="title"><a href="https://github.blog/changelog/2026-08-14-multiple-redirect-uris-and-token-refresh-for-oauth-apps" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Multiple redirect URIs and token refresh for OAuth apps</span><span class="lang-text" data-lang="es">Múltiples URI de redirección y renovación de tokens para apps OAuth</span></a></div>
+            <div class="title"><a href="https://github.blog/changelog/2026-08-20-separate-github-actions-path-for-github-code-quality" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Separate GitHub Actions path for GitHub Code Quality</span><span class="lang-text" data-lang="es">Ruta separada de GitHub Actions para GitHub Code Quality</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">OAuth apps gain multiple redirect URIs and token refresh support.</span><span class="lang-text" data-lang="es">Las apps OAuth ganan compatibilidad con múltiples URI de redirección y renovación de tokens.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">GitHub Code Quality now has its own Actions path and usage history, making the workflow easier to track.</span><span class="lang-text" data-lang="es">GitHub Code Quality ahora tiene su propia ruta en Actions y su historial de uso, lo que facilita seguir el flujo de trabajo.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Makes auth flows easier to maintain across environments.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Hace más fáciles de mantener los flujos de autenticación entre entornos.</span>
+          <span class="lang-text" data-lang="en">Why it matters: It gives teams a cleaner way to separate quality runs from unrelated automation.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Da a los equipos una forma más clara de separar las ejecuciones de calidad de la automatización no relacionada.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">OAuth</span><span class="tag">Apps</span><span class="tag">Authentication</span>
-          <a href="https://github.blog/changelog/2026-08-14-multiple-redirect-uris-and-token-refresh-for-oauth-apps" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-14">Aug 14</span>
+          <span class="tag">GitHub Changelog</span><span class="tag">Code Quality</span><span class="tag">Actions</span><span class="tag">Security</span>
+          <a href="https://github.blog/changelog/2026-08-20-separate-github-actions-path-for-github-code-quality" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-20"></span>
         </div>
       </article>
-      <article
-        class="story-card"
-        data-rank="9"
-        data-published="2026-08-14"
-        data-tags="Copilot,Models,AI"
-        data-source="GitHub Changelog"
-        data-importance="High"
-        data-search="Grok 4.6 is now available in GitHub Copilot Grok 4.6 ya está disponible en GitHub Copilot GitHub Changelog High Grok 4.6 is rolling out in GitHub Copilot for agentic coding and complex workflows. Grok 4.6 se está desplegando en GitHub Copilot para programación agente y flujos complejos. Adds another model choice for teams tuning Copilot performance. Añade otra opción de modelo para los equipos que ajustan el rendimiento de Copilot. Copilot Models AI"
-      >
+
+      <article class="story-card" data-rank="9" data-published="2026-08-18" data-tags="GitHub Changelog,Copilot,JetBrains,Governance" data-source="GitHub Changelog" data-importance="High" data-score="8" data-search="Enterprise managed settings in GitHub Copilot for JetBrains Configuración administrada para empresas en GitHub Copilot para JetBrains GitHub Changelog High 8 Copilot for JetBrains now supports enterprise-managed settings for plugin governance, MCP access, telemetry, and permissions. Copilot para JetBrains ahora admite configuración administrada para empresas sobre gobernanza de plugins, acceso MCP, telemetría y permisos. Admins get tighter control over how Copilot behaves in managed IDE environments. Los administradores obtienen un control más estricto sobre el comportamiento de Copilot en entornos IDE administrados. GitHub Changelog Copilot JetBrains Governance">
         <div class="story-head">
           <div class="rank">9</div>
           <div>
@@ -664,129 +407,105 @@
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
                 <span>High</span>
               </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></div>
             </div>
-            <div class="title"><a href="https://github.blog/changelog/2026-08-14-grok-4-6-is-now-available-in-github-copilot" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Grok 4.6 is now available in GitHub Copilot</span><span class="lang-text" data-lang="es">Grok 4.6 ya está disponible en GitHub Copilot</span></a></div>
+            <div class="title"><a href="https://github.blog/changelog/2026-08-18-enterprise-managed-settings-in-github-copilot-for-jetbrains" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Enterprise managed settings in GitHub Copilot for JetBrains</span><span class="lang-text" data-lang="es">Configuración administrada para empresas en GitHub Copilot para JetBrains</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Grok 4.6 is rolling out in GitHub Copilot for agentic coding and complex workflows.</span><span class="lang-text" data-lang="es">Grok 4.6 se está desplegando en GitHub Copilot para programación agente y flujos complejos.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Copilot for JetBrains now supports enterprise-managed settings for plugin governance, MCP access, telemetry, and permissions.</span><span class="lang-text" data-lang="es">Copilot para JetBrains ahora admite configuración administrada para empresas sobre gobernanza de plugins, acceso MCP, telemetría y permisos.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Adds another model choice for teams tuning Copilot performance.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Añade otra opción de modelo para los equipos que ajustan el rendimiento de Copilot.</span>
+          <span class="lang-text" data-lang="en">Why it matters: Admins get tighter control over how Copilot behaves in managed IDE environments.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Los administradores obtienen un control más estricto sobre el comportamiento de Copilot en entornos IDE administrados.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">Copilot</span><span class="tag">Models</span><span class="tag">AI</span>
-          <a href="https://github.blog/changelog/2026-08-14-grok-4-6-is-now-available-in-github-copilot" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-14">Aug 14</span>
+          <span class="tag">GitHub Changelog</span><span class="tag">Copilot</span><span class="tag">JetBrains</span><span class="tag">Governance</span>
+          <a href="https://github.blog/changelog/2026-08-18-enterprise-managed-settings-in-github-copilot-for-jetbrains" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-18"></span>
         </div>
       </article>
-      <article
-        class="story-card"
-        data-rank="10"
-        data-published="2026-08-12"
-        data-tags="Agents,VS Code,Copilot CLI"
-        data-source="GitHub Changelog"
-        data-importance="High"
-        data-search="Agent Plugins 1.0 in VS Code, Copilot CLI, and the Copilot app Agent Plugins 1.0 en VS Code, Copilot CLI y la app de Copilot GitHub Changelog High Agent Plugins 1.0 can now be reused across VS Code, Copilot CLI, and the app. Agent Plugins 1.0 ahora puede reutilizarse en VS Code, Copilot CLI y la app. Reduces duplication for teams building reusable agent tooling. Reduce la duplicación para equipos que crean herramientas de agentes reutilizables. Agents VS Code Copilot CLI"
-      >
+
+      <article class="story-card" data-rank="10" data-published="2026-08-20" data-tags="TechCrunch AI,ChatGPT,Apple,Messaging" data-source="TechCrunch AI" data-importance="High" data-score="8" data-search="ChatGPT can now send texts for you with new Apple Messages plug-in ChatGPT ahora puede enviar mensajes de texto por ti con un nuevo plugin para Apple Messages TechCrunch AI High 8 TechCrunch says ChatGPT is being offered as an automated text scribe through an Apple Messages integration. TechCrunch dice que ChatGPT se ofrece como un escriba automático de mensajes mediante una integración con Apple Messages. It pushes consumer assistants deeper into everyday messaging workflows. Empuja a los asistentes de consumo más adentro de los flujos de mensajería cotidianos. TechCrunch AI ChatGPT Apple Messaging">
         <div class="story-head">
           <div class="rank">10</div>
           <div>
             <div class="story-meta-line">
-              <div class="source">🐙 GitHub Changelog</div>
+              <div class="source">📰 TechCrunch AI</div>
               <div class="importance importance-high" aria-label="High importance">
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
                 <span>High</span>
               </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></div>
             </div>
-            <div class="title"><a href="https://github.blog/changelog/2026-08-12-agent-plugins-1-0-in-vs-code-copilot-cli-and-the-copilot-app" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Agent Plugins 1.0 in VS Code, Copilot CLI, and the Copilot app</span><span class="lang-text" data-lang="es">Agent Plugins 1.0 en VS Code, Copilot CLI y la app de Copilot</span></a></div>
+            <div class="title"><a href="https://techcrunch.com/2026/08/20/chatgpt-can-now-send-texts-for-you-with-new-apple-messages-plugin" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">ChatGPT can now send texts for you with new Apple Messages plug-in</span><span class="lang-text" data-lang="es">ChatGPT ahora puede enviar mensajes de texto por ti con un nuevo plugin para Apple Messages</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Agent Plugins 1.0 can now be reused across VS Code, Copilot CLI, and the app.</span><span class="lang-text" data-lang="es">Agent Plugins 1.0 ahora puede reutilizarse en VS Code, Copilot CLI y la app.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">TechCrunch says ChatGPT is being offered as an automated text scribe through an Apple Messages integration.</span><span class="lang-text" data-lang="es">TechCrunch dice que ChatGPT se ofrece como un escriba automático de mensajes mediante una integración con Apple Messages.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Reduces duplication for teams building reusable agent tooling.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Reduce la duplicación para equipos que crean herramientas de agentes reutilizables.</span>
+          <span class="lang-text" data-lang="en">Why it matters: It pushes consumer assistants deeper into everyday messaging workflows.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Empuja a los asistentes de consumo más adentro de los flujos de mensajería cotidianos.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">Agents</span><span class="tag">VS Code</span><span class="tag">Copilot CLI</span>
-          <a href="https://github.blog/changelog/2026-08-12-agent-plugins-1-0-in-vs-code-copilot-cli-and-the-copilot-app" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-12">Aug 12</span>
+          <span class="tag">TechCrunch AI</span><span class="tag">ChatGPT</span><span class="tag">Apple</span><span class="tag">Messaging</span>
+          <a href="https://techcrunch.com/2026/08/20/chatgpt-can-now-send-texts-for-you-with-new-apple-messages-plugin" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-20"></span>
         </div>
       </article>
-      <article
-        class="story-card"
-        data-rank="11"
-        data-published="2026-08-11"
-        data-tags="Copilot,JetBrains,Models"
-        data-source="GitHub Changelog"
-        data-importance="High"
-        data-search="Copilot memory and Ollama in GitHub Copilot for JetBrains Memoria de Copilot y Ollama en GitHub Copilot para JetBrains GitHub Changelog High This JetBrains update adds persistent memory and local model access. Esta actualización de JetBrains añade memoria persistente y acceso a modelos locales. Improves editor workflows for teams that want more control over chat context. Mejora los flujos de trabajo del editor para equipos que quieren más control sobre el contexto del chat. Copilot JetBrains Models"
-      >
+
+      <article class="story-card" data-rank="11" data-published="2026-08-20" data-tags="TechCrunch AI,Ramp,Model routing,AI" data-source="TechCrunch AI" data-importance="High" data-score="8" data-search="Ramp launches its own AI model router, called Router Ramp lanza su propio enrutador de modelos de IA, llamado Router TechCrunch AI High 8 Ramp has launched Router, a model-routing service that lets users and companies switch between large language models. Ramp ha lanzado Router, un servicio de enrutamiento de modelos que permite a usuarios y empresas alternar entre grandes modelos de lenguaje. Model routing is becoming a product feature, not just a backend optimization. El enrutamiento de modelos se está convirtiendo en una función de producto, no solo en una optimización de backend. TechCrunch AI Ramp Model routing AI">
         <div class="story-head">
           <div class="rank">11</div>
           <div>
             <div class="story-meta-line">
-              <div class="source">🐙 GitHub Changelog</div>
+              <div class="source">📰 TechCrunch AI</div>
               <div class="importance importance-high" aria-label="High importance">
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
                 <span>High</span>
               </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></div>
             </div>
-            <div class="title"><a href="https://github.blog/changelog/2026-08-11-copilot-memory-and-ollama-in-github-copilot-for-jetbrains" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Copilot memory and Ollama in GitHub Copilot for JetBrains</span><span class="lang-text" data-lang="es">Memoria de Copilot y Ollama en GitHub Copilot para JetBrains</span></a></div>
+            <div class="title"><a href="https://techcrunch.com/2026/08/20/ramp-launches-its-own-ai-model-router-called-router" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Ramp launches its own AI model router, called Router</span><span class="lang-text" data-lang="es">Ramp lanza su propio enrutador de modelos de IA, llamado Router</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">This JetBrains update adds persistent memory and local model access.</span><span class="lang-text" data-lang="es">Esta actualización de JetBrains añade memoria persistente y acceso a modelos locales.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Ramp has launched Router, a model-routing service that lets users and companies switch between large language models.</span><span class="lang-text" data-lang="es">Ramp ha lanzado Router, un servicio de enrutamiento de modelos que permite a usuarios y empresas alternar entre grandes modelos de lenguaje.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Improves editor workflows for teams that want more control over chat context.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Mejora los flujos de trabajo del editor para equipos que quieren más control sobre el contexto del chat.</span>
+          <span class="lang-text" data-lang="en">Why it matters: Model routing is becoming a product feature, not just a backend optimization.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: El enrutamiento de modelos se está convirtiendo en una función de producto, no solo en una optimización de backend.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">Copilot</span><span class="tag">JetBrains</span><span class="tag">Models</span>
-          <a href="https://github.blog/changelog/2026-08-11-copilot-memory-and-ollama-in-github-copilot-for-jetbrains" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-11">Aug 11</span>
+          <span class="tag">TechCrunch AI</span><span class="tag">Ramp</span><span class="tag">Model routing</span><span class="tag">AI</span>
+          <a href="https://techcrunch.com/2026/08/20/ramp-launches-its-own-ai-model-router-called-router" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-20"></span>
         </div>
       </article>
-      <article
-        class="story-card"
-        data-rank="12"
-        data-published="2026-08-07"
-        data-tags="Copilot,Code review,Review"
-        data-source="GitHub Changelog"
-        data-importance="Medium"
-        data-search="Copilot code review effort levels are generally available Los niveles de esfuerzo de Copilot code review ya están disponibles de forma general GitHub Changelog Medium Copilot code review effort levels are now generally available. Los niveles de esfuerzo de Copilot code review ya están disponibles de forma general. Lets teams tune review depth to match risk and complexity. Permite ajustar la profundidad de la revisión según el riesgo y la complejidad. Copilot Code review Review"
-      >
+
+      <article class="story-card" data-rank="12" data-published="2026-08-14" data-tags="Ars Technica,OpenAI,Anthropic,Market" data-source="Ars Technica" data-importance="High" data-score="8" data-search="OpenAI and Anthropic in price war as Chinese AI rivals gain ground OpenAI y Anthropic libran una guerra de precios mientras sus rivales chinos ganan terreno Ars Technica High 8 Ars frames cheaper model releases as part of a price war while Chinese rivals pressure both labs. Ars presenta los lanzamientos de modelos más baratos como parte de una guerra de precios mientras rivales chinos presionan a ambos laboratorios. Pricing and access are becoming strategic levers in the enterprise AI market. El precio y el acceso se están convirtiendo en palancas estratégicas en el mercado de IA empresarial. Ars Technica OpenAI Anthropic Market">
         <div class="story-head">
           <div class="rank">12</div>
           <div>
             <div class="story-meta-line">
-              <div class="source">🐙 GitHub Changelog</div>
-              <div class="importance importance-medium" aria-label="Medium importance">
+              <div class="source">🛡️ Ars Technica</div>
+              <div class="importance importance-high" aria-label="High importance">
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span>Medium</span>
+                <span>High</span>
               </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></div>
             </div>
-            <div class="title"><a href="https://github.blog/changelog/2026-08-07-copilot-code-review-effort-levels-are-generally-available" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Copilot code review effort levels are generally available</span><span class="lang-text" data-lang="es">Los niveles de esfuerzo de Copilot code review ya están disponibles de forma general</span></a></div>
+            <div class="title"><a href="https://arstechnica.com/ai/2026/08/openai-and-anthropic-in-price-war-as-chinese-ai-rivals-gain-ground" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">OpenAI and Anthropic in price war as Chinese AI rivals gain ground</span><span class="lang-text" data-lang="es">OpenAI y Anthropic libran una guerra de precios mientras sus rivales chinos ganan terreno</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Copilot code review effort levels are now generally available.</span><span class="lang-text" data-lang="es">Los niveles de esfuerzo de Copilot code review ya están disponibles de forma general.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Ars frames cheaper model releases as part of a price war while Chinese rivals pressure both labs.</span><span class="lang-text" data-lang="es">Ars presenta los lanzamientos de modelos más baratos como parte de una guerra de precios mientras rivales chinos presionan a ambos laboratorios.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Lets teams tune review depth to match risk and complexity.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Permite ajustar la profundidad de la revisión según el riesgo y la complejidad.</span>
+          <span class="lang-text" data-lang="en">Why it matters: Pricing and access are becoming strategic levers in the enterprise AI market.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: El precio y el acceso se están convirtiendo en palancas estratégicas en el mercado de IA empresarial.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">Copilot</span><span class="tag">Code review</span><span class="tag">Review</span>
-          <a href="https://github.blog/changelog/2026-08-07-copilot-code-review-effort-levels-are-generally-available" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-07">Aug 07</span>
+          <span class="tag">Ars Technica</span><span class="tag">OpenAI</span><span class="tag">Anthropic</span><span class="tag">Market</span>
+          <a href="https://arstechnica.com/ai/2026/08/openai-and-anthropic-in-price-war-as-chinese-ai-rivals-gain-ground" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-14"></span>
         </div>
       </article>
-      <article
-        class="story-card"
-        data-rank="13"
-        data-published="2026-08-07"
-        data-tags="Security,Secret scanning,Push protection"
-        data-source="GitHub Changelog"
-        data-importance="High"
-        data-search="Secret scanning coverage updates Actualizaciones de cobertura de secret scanning GitHub Changelog High Secret scanning expands push protection, partners, and alert metadata. Secret scanning amplía la protección de push, los partners y los metadatos de alertas. Broadens the guardrails that catch exposed secrets earlier. Amplía las barreras que detectan secretos expuestos antes. Security Secret scanning Push protection"
-      >
+
+      <article class="story-card" data-rank="13" data-published="2026-08-20" data-tags="GitHub Changelog,Code scanning,Security,Application security" data-source="GitHub Changelog" data-importance="High" data-score="8" data-search="Code scanning adds a mitigated alert dismissal reason Code scanning añade un motivo de desestimación para alertas mitigadas GitHub Changelog High 8 GitHub code scanning can now mark alerts as mitigated when external controls reduce the risk. Code scanning de GitHub ahora puede marcar alertas como mitigadas cuando controles externos reducen el riesgo. Security teams get a more precise way to document residual risk instead of just closing alerts. Los equipos de seguridad obtienen una forma más precisa de documentar el riesgo residual en lugar de simplemente cerrar alertas. GitHub Changelog Code scanning Security Application security">
         <div class="story-head">
           <div class="rank">13</div>
           <div>
@@ -796,30 +515,24 @@
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
                 <span>High</span>
               </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></div>
             </div>
-            <div class="title"><a href="https://github.blog/changelog/2026-08-07-secret-scanning-coverage-updates" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Secret scanning coverage updates</span><span class="lang-text" data-lang="es">Actualizaciones de cobertura de secret scanning</span></a></div>
+            <div class="title"><a href="https://github.blog/changelog/2026-08-20-code-scanning-adds-a-mitigated-alert-dismissal-reason" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Code scanning adds a mitigated alert dismissal reason</span><span class="lang-text" data-lang="es">Code scanning añade un motivo de desestimación para alertas mitigadas</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Secret scanning expands push protection, partners, and alert metadata.</span><span class="lang-text" data-lang="es">Secret scanning amplía la protección de push, los partners y los metadatos de alertas.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">GitHub code scanning can now mark alerts as mitigated when external controls reduce the risk.</span><span class="lang-text" data-lang="es">Code scanning de GitHub ahora puede marcar alertas como mitigadas cuando controles externos reducen el riesgo.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Broadens the guardrails that catch exposed secrets earlier.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Amplía las barreras que detectan secretos expuestos antes.</span>
+          <span class="lang-text" data-lang="en">Why it matters: Security teams get a more precise way to document residual risk instead of just closing alerts.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Los equipos de seguridad obtienen una forma más precisa de documentar el riesgo residual en lugar de simplemente cerrar alertas.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">Security</span><span class="tag">Secret scanning</span><span class="tag">Push protection</span>
-          <a href="https://github.blog/changelog/2026-08-07-secret-scanning-coverage-updates" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-07">Aug 07</span>
+          <span class="tag">GitHub Changelog</span><span class="tag">Code scanning</span><span class="tag">Security</span><span class="tag">Application security</span>
+          <a href="https://github.blog/changelog/2026-08-20-code-scanning-adds-a-mitigated-alert-dismissal-reason" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-20"></span>
         </div>
       </article>
-      <article
-        class="story-card"
-        data-rank="14"
-        data-published="2026-08-07"
-        data-tags="MCP,Enterprise,Governance"
-        data-source="GitHub Changelog"
-        data-importance="High"
-        data-search="MCP allowlists in enterprise managed settings Listas permitidas de MCP en la configuración administrada empresarial GitHub Changelog High Enterprise settings can now allow or deny specific MCP servers. La configuración empresarial ahora puede permitir o denegar servidores MCP concretos. Gives admins direct control over which MCP servers Copilot clients may run. Da a los administradores control directo sobre qué servidores MCP pueden ejecutar los clientes de Copilot. MCP Enterprise Governance"
-      >
+
+      <article class="story-card" data-rank="14" data-published="2026-08-18" data-tags="GitHub Changelog,Security,Tokens,Governance" data-source="GitHub Changelog" data-importance="High" data-score="8" data-search="Credential revocation and deauthorization by token type Revocación y desautorización de credenciales por tipo de token GitHub Changelog High 8 GitHub now lets admins revoke credentials and deauthorize access by token type or by specific users. GitHub ahora permite a los administradores revocar credenciales y desautorizar acceso por tipo de token o por usuarios concretos. It should make incident response faster when a token class needs to be cut off. Debería acelerar la respuesta a incidentes cuando haya que cortar una clase de token. GitHub Changelog Security Tokens Governance">
         <div class="story-head">
           <div class="rank">14</div>
           <div>
@@ -829,30 +542,24 @@
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
                 <span>High</span>
               </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></div>
             </div>
-            <div class="title"><a href="https://github.blog/changelog/2026-08-06-mcp-allowlists-in-enterprise-managed-settings" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">MCP allowlists in enterprise managed settings</span><span class="lang-text" data-lang="es">Listas permitidas de MCP en la configuración administrada empresarial</span></a></div>
+            <div class="title"><a href="https://github.blog/changelog/2026-08-18-credential-revocation-and-deauthorization-by-token-type" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Credential revocation and deauthorization by token type</span><span class="lang-text" data-lang="es">Revocación y desautorización de credenciales por tipo de token</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Enterprise settings can now allow or deny specific MCP servers.</span><span class="lang-text" data-lang="es">La configuración empresarial ahora puede permitir o denegar servidores MCP concretos.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">GitHub now lets admins revoke credentials and deauthorize access by token type or by specific users.</span><span class="lang-text" data-lang="es">GitHub ahora permite a los administradores revocar credenciales y desautorizar acceso por tipo de token o por usuarios concretos.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Gives admins direct control over which MCP servers Copilot clients may run.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Da a los administradores control directo sobre qué servidores MCP pueden ejecutar los clientes de Copilot.</span>
+          <span class="lang-text" data-lang="en">Why it matters: It should make incident response faster when a token class needs to be cut off.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Debería acelerar la respuesta a incidentes cuando haya que cortar una clase de token.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">MCP</span><span class="tag">Enterprise</span><span class="tag">Governance</span>
-          <a href="https://github.blog/changelog/2026-08-06-mcp-allowlists-in-enterprise-managed-settings" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-07">Aug 07</span>
+          <span class="tag">GitHub Changelog</span><span class="tag">Security</span><span class="tag">Tokens</span><span class="tag">Governance</span>
+          <a href="https://github.blog/changelog/2026-08-18-credential-revocation-and-deauthorization-by-token-type" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-18"></span>
         </div>
       </article>
-      <article
-        class="story-card"
-        data-rank="15"
-        data-published="2026-08-19"
-        data-tags="SQL,VS Code,Developer Tools"
-        data-source="Microsoft Developer"
-        data-importance="Medium"
-        data-search="[In preview] Public Preview: SQL Formatter in MSSQL extension Formateador de SQL en la extensión MSSQL Microsoft Developer Medium The MSSQL extension now includes a SQL Formatter in public preview. La extensión MSSQL ahora incluye un formateador de SQL en vista previa pública. Adds a built-in way to keep SQL scripts cleaner in the editor. Añade una forma integrada de mantener los scripts SQL más limpios en el editor. SQL VS Code Developer Tools"
-      >
+
+      <article class="story-card" data-rank="15" data-published="2026-08-19" data-tags="Microsoft Developer,Azure Databricks,Regions,Data" data-source="Microsoft Developer" data-importance="Medium" data-score="7" data-search="[Launched] Generally Available: Azure Databricks Lakebase in four additional regions Azure Databricks Lakebase ya está disponible en cuatro regiones adicionales Microsoft Developer Medium 7 Lakebase is now generally available in four more Azure regions. Lakebase ya está disponible de forma general en cuatro regiones más de Azure. Broader regional availability helps teams place data workloads closer to users and data. Una disponibilidad regional más amplia ayuda a situar las cargas de datos más cerca de los usuarios y de los datos. Microsoft Developer Azure Databricks Regions Data">
         <div class="story-head">
           <div class="rank">15</div>
           <div>
@@ -862,520 +569,378 @@
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
                 <span>Medium</span>
               </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></div>
             </div>
-            <div class="title"><a href="https://azure.microsoft.com/updates?id=569155" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">[In preview] Public Preview: SQL Formatter in MSSQL extension</span><span class="lang-text" data-lang="es">Formateador de SQL en la extensión MSSQL</span></a></div>
+            <div class="title"><a href="https://azure.microsoft.com/updates?id=569684" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">[Launched] Generally Available: Azure Databricks Lakebase in four additional regions</span><span class="lang-text" data-lang="es">Azure Databricks Lakebase ya está disponible en cuatro regiones adicionales</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">The MSSQL extension now includes a SQL Formatter in public preview.</span><span class="lang-text" data-lang="es">La extensión MSSQL ahora incluye un formateador de SQL en vista previa pública.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Lakebase is now generally available in four more Azure regions.</span><span class="lang-text" data-lang="es">Lakebase ya está disponible de forma general en cuatro regiones más de Azure.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Adds a built-in way to keep SQL scripts cleaner in the editor.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Añade una forma integrada de mantener los scripts SQL más limpios en el editor.</span>
+          <span class="lang-text" data-lang="en">Why it matters: Broader regional availability helps teams place data workloads closer to users and data.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Una disponibilidad regional más amplia ayuda a situar las cargas de datos más cerca de los usuarios y de los datos.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">SQL</span><span class="tag">VS Code</span><span class="tag">Developer Tools</span>
-          <a href="https://azure.microsoft.com/updates?id=569155" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-19">Aug 19</span>
+          <span class="tag">Microsoft Developer</span><span class="tag">Azure Databricks</span><span class="tag">Regions</span><span class="tag">Data</span>
+          <a href="https://azure.microsoft.com/updates?id=569684" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-19"></span>
         </div>
       </article>
-      <article
-        class="story-card"
-        data-rank="16"
-        data-published="2026-08-19"
-        data-tags="Azure SQL,VS Code,Databases"
-        data-source="Microsoft Developer"
-        data-importance="High"
-        data-search="[Launched] Generally Available: Azure SQL Database provisioning in MSSQL extension Aprovisionamiento de Azure SQL Database en la extensión MSSQL Microsoft Developer High You can now create and connect to Azure SQL Database directly from the editor. Ahora puedes crear y conectar Azure SQL Database directamente desde el editor. Cuts setup steps for developers who work with managed SQL databases. Reduce pasos de configuración para desarrolladores que trabajan con bases de datos SQL administradas. Azure SQL VS Code Databases"
-      >
+
+      <article class="story-card" data-rank="16" data-published="2026-08-19" data-tags="Microsoft Developer,Visual Studio Code,Developer tools" data-source="Microsoft Developer" data-importance="Medium" data-score="7" data-search="Visual Studio Code 1.134 Visual Studio Code 1.134 Microsoft Developer Medium 7 Microsoft points to the Visual Studio Code 1.134 release notes as the latest editor milestone. Microsoft señala las notas de la versión 1.134 de Visual Studio Code como el último hito del editor. It keeps the digest anchored to an official editor release that many developer workflows depend on. Mantiene el resumen anclado a una versión oficial del editor de la que dependen muchos flujos de trabajo de desarrollo. Microsoft Developer Visual Studio Code Developer tools">
         <div class="story-head">
           <div class="rank">16</div>
           <div>
             <div class="story-meta-line">
               <div class="source">🪟 Microsoft Developer</div>
-              <div class="importance importance-high" aria-label="High importance">
+              <div class="importance importance-medium" aria-label="Medium importance">
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span>High</span>
+                <span>Medium</span>
               </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></div>
             </div>
-            <div class="title"><a href="https://azure.microsoft.com/updates?id=569160" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">[Launched] Generally Available: Azure SQL Database provisioning in MSSQL extension</span><span class="lang-text" data-lang="es">Aprovisionamiento de Azure SQL Database en la extensión MSSQL</span></a></div>
+            <div class="title"><a href="https://code.visualstudio.com/updates/v1_134" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Visual Studio Code 1.134</span><span class="lang-text" data-lang="es">Visual Studio Code 1.134</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">You can now create and connect to Azure SQL Database directly from the editor.</span><span class="lang-text" data-lang="es">Ahora puedes crear y conectar Azure SQL Database directamente desde el editor.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Microsoft points to the Visual Studio Code 1.134 release notes as the latest editor milestone.</span><span class="lang-text" data-lang="es">Microsoft señala las notas de la versión 1.134 de Visual Studio Code como el último hito del editor.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Cuts setup steps for developers who work with managed SQL databases.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Reduce pasos de configuración para desarrolladores que trabajan con bases de datos SQL administradas.</span>
+          <span class="lang-text" data-lang="en">Why it matters: It keeps the digest anchored to an official editor release that many developer workflows depend on.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Mantiene el resumen anclado a una versión oficial del editor de la que dependen muchos flujos de trabajo de desarrollo.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">Azure SQL</span><span class="tag">VS Code</span><span class="tag">Databases</span>
-          <a href="https://azure.microsoft.com/updates?id=569160" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-19">Aug 19</span>
+          <span class="tag">Microsoft Developer</span><span class="tag">Visual Studio Code</span><span class="tag">Developer tools</span>
+          <a href="https://code.visualstudio.com/updates/v1_134" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-19"></span>
         </div>
       </article>
-      <article
-        class="story-card"
-        data-rank="17"
-        data-published="2026-08-13"
-        data-tags="AKS,Observability,Prometheus"
-        data-source="Microsoft Developer"
-        data-importance="High"
-        data-search="[Launched] Generally Available: Control plane metrics collection for AKS with Managed Prometheus Recopilación de métricas del plano de control para AKS con Managed Prometheus Microsoft Developer High AKS now gets native control-plane metrics via Managed Prometheus. AKS ahora obtiene métricas nativas del plano de control mediante Managed Prometheus. Improves visibility into the managed control plane for operators. Mejora la visibilidad del plano de control administrado para los operadores. AKS Observability Prometheus"
-      >
+
+      <article class="story-card" data-rank="17" data-published="2026-08-19" data-tags="Microsoft Developer,SQL,VS Code,Databases" data-source="Microsoft Developer" data-importance="Medium" data-score="7" data-search="[In preview] Public Preview: SQL Formatter in MSSQL extension SQL Formatter en la extensión MSSQL Microsoft Developer Medium 7 The MSSQL extension now offers SQL Formatter in public preview for cleaner, more readable scripts. La extensión MSSQL ahora ofrece SQL Formatter en vista previa pública para crear scripts más limpios y legibles. Inline formatting can save time inside the editor and improve consistency across teams. El formateo en el editor puede ahorrar tiempo y mejorar la consistencia entre equipos. Microsoft Developer SQL VS Code Databases">
         <div class="story-head">
           <div class="rank">17</div>
           <div>
             <div class="story-meta-line">
               <div class="source">🪟 Microsoft Developer</div>
-              <div class="importance importance-high" aria-label="High importance">
+              <div class="importance importance-medium" aria-label="Medium importance">
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span>High</span>
+                <span>Medium</span>
               </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></div>
             </div>
-            <div class="title"><a href="https://azure.microsoft.com/updates?id=568830" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">[Launched] Generally Available: Control plane metrics collection for AKS with Managed Prometheus</span><span class="lang-text" data-lang="es">Recopilación de métricas del plano de control para AKS con Managed Prometheus</span></a></div>
+            <div class="title"><a href="https://azure.microsoft.com/updates?id=569155" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">[In preview] Public Preview: SQL Formatter in MSSQL extension</span><span class="lang-text" data-lang="es">SQL Formatter en la extensión MSSQL</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">AKS now gets native control-plane metrics via Managed Prometheus.</span><span class="lang-text" data-lang="es">AKS ahora obtiene métricas nativas del plano de control mediante Managed Prometheus.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">The MSSQL extension now offers SQL Formatter in public preview for cleaner, more readable scripts.</span><span class="lang-text" data-lang="es">La extensión MSSQL ahora ofrece SQL Formatter en vista previa pública para crear scripts más limpios y legibles.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Improves visibility into the managed control plane for operators.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Mejora la visibilidad del plano de control administrado para los operadores.</span>
+          <span class="lang-text" data-lang="en">Why it matters: Inline formatting can save time inside the editor and improve consistency across teams.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: El formateo en el editor puede ahorrar tiempo y mejorar la consistencia entre equipos.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">AKS</span><span class="tag">Observability</span><span class="tag">Prometheus</span>
-          <a href="https://azure.microsoft.com/updates?id=568830" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-13">Aug 13</span>
+          <span class="tag">Microsoft Developer</span><span class="tag">SQL</span><span class="tag">VS Code</span><span class="tag">Databases</span>
+          <a href="https://azure.microsoft.com/updates?id=569155" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-19"></span>
         </div>
       </article>
-      <article
-        class="story-card"
-        data-rank="18"
-        data-published="2026-08-18"
-        data-tags="App Service,Migration,Databases"
-        data-source="Microsoft Developer"
-        data-importance="High"
-        data-search="[Launched] Generally Available: Managed Instance on Azure App Service Managed Instance en Azure App Service Microsoft Developer High Managed Instance on Azure App Service is now generally available. Managed Instance en Azure App Service ya está disponible de forma general. Supports web-app migrations with minimal configuration and no code changes. Facilita migraciones de aplicaciones web con configuración mínima y sin cambios de código. App Service Migration Databases"
-      >
+
+      <article class="story-card" data-rank="18" data-published="2026-08-19" data-tags="Microsoft Developer,Azure SQL,VS Code,Databases" data-source="Microsoft Developer" data-importance="Medium" data-score="7" data-search="[Launched] Generally Available: Azure SQL Database provisioning in MSSQL extension Aprovisionamiento de Azure SQL Database en la extensión MSSQL Microsoft Developer Medium 7 The extension can now create and connect to Azure SQL Database directly from the editor at no cost. La extensión ahora puede crear y conectar Azure SQL Database directamente desde el editor sin coste. That lowers friction for developers who want to spin up a database without leaving VS Code. Eso reduce la fricción para los desarrolladores que quieren crear una base de datos sin salir de VS Code. Microsoft Developer Azure SQL VS Code Databases">
         <div class="story-head">
           <div class="rank">18</div>
           <div>
             <div class="story-meta-line">
               <div class="source">🪟 Microsoft Developer</div>
-              <div class="importance importance-high" aria-label="High importance">
+              <div class="importance importance-medium" aria-label="Medium importance">
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span>High</span>
+                <span>Medium</span>
               </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></div>
             </div>
-            <div class="title"><a href="https://azure.microsoft.com/updates?id=568952" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">[Launched] Generally Available: Managed Instance on Azure App Service</span><span class="lang-text" data-lang="es">Managed Instance en Azure App Service</span></a></div>
+            <div class="title"><a href="https://azure.microsoft.com/updates?id=569160" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">[Launched] Generally Available: Azure SQL Database provisioning in MSSQL extension</span><span class="lang-text" data-lang="es">Aprovisionamiento de Azure SQL Database en la extensión MSSQL</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Managed Instance on Azure App Service is now generally available.</span><span class="lang-text" data-lang="es">Managed Instance en Azure App Service ya está disponible de forma general.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">The extension can now create and connect to Azure SQL Database directly from the editor at no cost.</span><span class="lang-text" data-lang="es">La extensión ahora puede crear y conectar Azure SQL Database directamente desde el editor sin coste.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Supports web-app migrations with minimal configuration and no code changes.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Facilita migraciones de aplicaciones web con configuración mínima y sin cambios de código.</span>
+          <span class="lang-text" data-lang="en">Why it matters: That lowers friction for developers who want to spin up a database without leaving VS Code.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Eso reduce la fricción para los desarrolladores que quieren crear una base de datos sin salir de VS Code.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">App Service</span><span class="tag">Migration</span><span class="tag">Databases</span>
-          <a href="https://azure.microsoft.com/updates?id=568952" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-18">Aug 18</span>
+          <span class="tag">Microsoft Developer</span><span class="tag">Azure SQL</span><span class="tag">VS Code</span><span class="tag">Databases</span>
+          <a href="https://azure.microsoft.com/updates?id=569160" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-19"></span>
         </div>
       </article>
-      <article
-        class="story-card"
-        data-rank="19"
-        data-published="2026-08-17"
-        data-tags="WSL,Linux,Developer Workstation"
-        data-source="Microsoft Developer"
-        data-importance="Medium"
-        data-search="[In preview] Public Preview: Azure Linux on WSL Azure Linux en WSL Microsoft Developer Medium Azure Linux is now in public preview for the Windows Subsystem for Linux. Azure Linux ahora está en vista previa pública para el Subsistema de Windows para Linux. Brings production-aligned Linux behavior closer to the developer workstation. Acerca el comportamiento Linux alineado con producción al entorno de trabajo del desarrollador. WSL Linux Developer Workstation"
-      >
+
+      <article class="story-card" data-rank="19" data-published="2026-08-20" data-tags="TechCrunch AI,OpenAI,Anthropic,Enterprise" data-source="TechCrunch AI" data-importance="Medium" data-score="7" data-search="OpenAI is gaining on Anthropic with business users, new data indicates OpenAI le está ganando terreno a Anthropic entre usuarios empresariales, según nuevos datos TechCrunch AI Medium 7 TechCrunch says business users are switching back and forth as each lab ships new models. TechCrunch dice que los usuarios empresariales van y vienen entre ambos laboratorios a medida que cada uno lanza nuevos modelos. Enterprise model adoption is still fluid, which keeps competition intense. La adopción de modelos empresariales sigue siendo fluida, lo que mantiene la competencia intensa. TechCrunch AI OpenAI Anthropic Enterprise">
         <div class="story-head">
           <div class="rank">19</div>
           <div>
             <div class="story-meta-line">
-              <div class="source">🪟 Microsoft Developer</div>
+              <div class="source">📰 TechCrunch AI</div>
               <div class="importance importance-medium" aria-label="Medium importance">
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
                 <span>Medium</span>
               </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></div>
             </div>
-            <div class="title"><a href="https://azure.microsoft.com/updates?id=569376" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">[In preview] Public Preview: Azure Linux on WSL</span><span class="lang-text" data-lang="es">Azure Linux en WSL</span></a></div>
+            <div class="title"><a href="https://techcrunch.com/2026/08/20/openai-is-gaining-on-anthropic-with-business-users-new-data-indicates" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">OpenAI is gaining on Anthropic with business users, new data indicates</span><span class="lang-text" data-lang="es">OpenAI le está ganando terreno a Anthropic entre usuarios empresariales, según nuevos datos</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Azure Linux is now in public preview for the Windows Subsystem for Linux.</span><span class="lang-text" data-lang="es">Azure Linux ahora está en vista previa pública para el Subsistema de Windows para Linux.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">TechCrunch says business users are switching back and forth as each lab ships new models.</span><span class="lang-text" data-lang="es">TechCrunch dice que los usuarios empresariales van y vienen entre ambos laboratorios a medida que cada uno lanza nuevos modelos.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Brings production-aligned Linux behavior closer to the developer workstation.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Acerca el comportamiento Linux alineado con producción al entorno de trabajo del desarrollador.</span>
+          <span class="lang-text" data-lang="en">Why it matters: Enterprise model adoption is still fluid, which keeps competition intense.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: La adopción de modelos empresariales sigue siendo fluida, lo que mantiene la competencia intensa.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">WSL</span><span class="tag">Linux</span><span class="tag">Developer Workstation</span>
-          <a href="https://azure.microsoft.com/updates?id=569376" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-17">Aug 17</span>
+          <span class="tag">TechCrunch AI</span><span class="tag">OpenAI</span><span class="tag">Anthropic</span><span class="tag">Enterprise</span>
+          <a href="https://techcrunch.com/2026/08/20/openai-is-gaining-on-anthropic-with-business-users-new-data-indicates" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-20"></span>
         </div>
       </article>
-      <article
-        class="story-card"
-        data-rank="20"
-        data-published="2026-08-19"
-        data-tags="Azure,VMs,Performance"
-        data-source="Microsoft Developer"
-        data-importance="Medium"
-        data-search="[Launched] Generally Available: vCore Customization: Disable Multithreading and Configurable Constrained Cores Personalización de vCore: desactivar multihilo y núcleos restringidos configurables Microsoft Developer Medium Azure Virtual Machines get two new vCore customization capabilities. Las máquinas virtuales de Azure obtienen dos nuevas capacidades de personalización de vCore. Gives operators more knobs for performance and core-layout tuning. Da a los operadores más controles para ajustar el rendimiento y la distribución de núcleos. Azure VMs Performance"
-      >
+
+      <article class="story-card" data-rank="20" data-published="2026-08-20" data-tags="The Verge,Google,Discover,AI" data-source="The Verge" data-importance="Medium" data-score="7" data-search="Google Discover is getting an AI chatbot-tuned feed Google Discover suma un feed afinado por chatbot de IA The Verge Medium 7 Google Discover will let users shape their feed by describing what they want to see. Google Discover permitirá a los usuarios moldear su feed describiendo lo que quieren ver. It is another sign that AI is moving from chat into everyday content curation. Es otra señal de que la IA está pasando del chat a la curación cotidiana de contenidos. The Verge Google Discover AI">
         <div class="story-head">
           <div class="rank">20</div>
           <div>
             <div class="story-meta-line">
+              <div class="source">🔺 The Verge</div>
+              <div class="importance importance-medium" aria-label="Medium importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>Medium</span>
+              </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></div>
+            </div>
+            <div class="title"><a href="https://www.theverge.com/tech/983088/google-discover-ai-chatbot-feed" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Google Discover is getting an AI chatbot-tuned feed</span><span class="lang-text" data-lang="es">Google Discover suma un feed afinado por chatbot de IA</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">Google Discover will let users shape their feed by describing what they want to see.</span><span class="lang-text" data-lang="es">Google Discover permitirá a los usuarios moldear su feed describiendo lo que quieren ver.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: It is another sign that AI is moving from chat into everyday content curation.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Es otra señal de que la IA está pasando del chat a la curación cotidiana de contenidos.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">The Verge</span><span class="tag">Google</span><span class="tag">Discover</span><span class="tag">AI</span>
+          <a href="https://www.theverge.com/tech/983088/google-discover-ai-chatbot-feed" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-20"></span>
+        </div>
+      </article>
+
+      <article class="story-card" data-rank="21" data-published="2026-08-20" data-tags="The Verge,Waymo,Autonomous cars,Hardware" data-source="The Verge" data-importance="Medium" data-score="7" data-search="Waymo lifts the lid on the ‘brain’ powering its robotaxis Waymo revela el “cerebro” que impulsa sus robotaxis The Verge Medium 7 The Verge details the high-powered computer stack inside Waymo’s robotaxis. The Verge detalla la pila informática de alto rendimiento dentro de los robotaxis de Waymo. It shows how much specialized infrastructure sits behind autonomous driving products. Muestra cuánta infraestructura especializada hay detrás de los productos de conducción autónoma. The Verge Waymo Autonomous cars Hardware">
+        <div class="story-head">
+          <div class="rank">21</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">🔺 The Verge</div>
+              <div class="importance importance-medium" aria-label="Medium importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>Medium</span>
+              </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></div>
+            </div>
+            <div class="title"><a href="https://www.theverge.com/transportation/982653/waymo-brain-computer-chip-robotaxi-hardware-suppliers" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Waymo lifts the lid on the ‘brain’ powering its robotaxis</span><span class="lang-text" data-lang="es">Waymo revela el “cerebro” que impulsa sus robotaxis</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">The Verge details the high-powered computer stack inside Waymo’s robotaxis.</span><span class="lang-text" data-lang="es">The Verge detalla la pila informática de alto rendimiento dentro de los robotaxis de Waymo.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: It shows how much specialized infrastructure sits behind autonomous driving products.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Muestra cuánta infraestructura especializada hay detrás de los productos de conducción autónoma.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">The Verge</span><span class="tag">Waymo</span><span class="tag">Autonomous cars</span><span class="tag">Hardware</span>
+          <a href="https://www.theverge.com/transportation/982653/waymo-brain-computer-chip-robotaxi-hardware-suppliers" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-20"></span>
+        </div>
+      </article>
+
+      <article class="story-card" data-rank="22" data-published="2026-08-21" data-tags="MIT Technology Review,AI,Biotech,Research" data-source="MIT Technology Review" data-importance="Medium" data-score="7" data-search="When AI designs a drug, who gets the credit? Cuando la IA diseña un fármaco, ¿quién recibe el crédito? MIT Technology Review Medium 7 MIT asks who deserves credit when an AI system helps propose a promising drug candidate. MIT pregunta quién merece el crédito cuando un sistema de IA ayuda a proponer un candidato a fármaco prometedor. Credit, authorship, and accountability are becoming core questions in AI-assisted science. El crédito, la autoría y la responsabilidad se están convirtiendo en preguntas centrales de la ciencia asistida por IA. MIT Technology Review AI Biotech Research">
+        <div class="story-head">
+          <div class="rank">22</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">🧪 MIT Technology Review</div>
+              <div class="importance importance-medium" aria-label="Medium importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>Medium</span>
+              </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></div>
+            </div>
+            <div class="title"><a href="https://www.technologyreview.com/2026/08/21/1142627/when-ai-designs-a-drug-who-gets-the-credit" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">When AI designs a drug, who gets the credit?</span><span class="lang-text" data-lang="es">Cuando la IA diseña un fármaco, ¿quién recibe el crédito?</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">MIT asks who deserves credit when an AI system helps propose a promising drug candidate.</span><span class="lang-text" data-lang="es">MIT pregunta quién merece el crédito cuando un sistema de IA ayuda a proponer un candidato a fármaco prometedor.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: Credit, authorship, and accountability are becoming core questions in AI-assisted science.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: El crédito, la autoría y la responsabilidad se están convirtiendo en preguntas centrales de la ciencia asistida por IA.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">MIT Technology Review</span><span class="tag">AI</span><span class="tag">Biotech</span><span class="tag">Research</span>
+          <a href="https://www.technologyreview.com/2026/08/21/1142627/when-ai-designs-a-drug-who-gets-the-credit" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-21"></span>
+        </div>
+      </article>
+
+      <article class="story-card" data-rank="23" data-published="2026-08-20" data-tags="MIT Technology Review,AI,Opinion,Research" data-source="MIT Technology Review" data-importance="Medium" data-score="6" data-search="Debates over AI consciousness are a trap Los debates sobre la conciencia de la IA son una trampa MIT Technology Review Medium 6 MIT argues that talk of AI consciousness can distract from the real risks and capabilities of current systems. MIT sostiene que hablar de conciencia de la IA puede distraer de los riesgos y capacidades reales de los sistemas actuales. It pushes the conversation back toward what today’s models actually do. Devuelve la conversación a lo que realmente hacen los modelos actuales. MIT Technology Review AI Opinion Research">
+        <div class="story-head">
+          <div class="rank">23</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">🧪 MIT Technology Review</div>
+              <div class="importance importance-medium" aria-label="Medium importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>Medium</span>
+              </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 6/10</span><span class="lang-text" data-lang="es">Puntuación 6/10</span></div>
+            </div>
+            <div class="title"><a href="https://www.technologyreview.com/2026/08/20/1142571/ai-consciousness-debate-trap" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Debates over AI consciousness are a trap</span><span class="lang-text" data-lang="es">Los debates sobre la conciencia de la IA son una trampa</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">MIT argues that talk of AI consciousness can distract from the real risks and capabilities of current systems.</span><span class="lang-text" data-lang="es">MIT sostiene que hablar de conciencia de la IA puede distraer de los riesgos y capacidades reales de los sistemas actuales.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: It pushes the conversation back toward what today’s models actually do.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Devuelve la conversación a lo que realmente hacen los modelos actuales.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">MIT Technology Review</span><span class="tag">AI</span><span class="tag">Opinion</span><span class="tag">Research</span>
+          <a href="https://www.technologyreview.com/2026/08/20/1142571/ai-consciousness-debate-trap" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-20"></span>
+        </div>
+      </article>
+
+      <article class="story-card" data-rank="24" data-published="2026-08-20" data-tags="Microsoft Developer,Azure,Networking,Hybrid" data-source="Microsoft Developer" data-importance="Medium" data-score="6" data-search="[Launched] Generally Available: Summarized advertised gateway prefixes for route advertisement Prefijos resumidos anunciados para la publicidad de rutas Microsoft Developer Medium 6 Azure ExpressRoute now supports summarized gateway prefixes for route advertisement. Azure ExpressRoute ahora admite prefijos resumidos del gateway para la publicidad de rutas. That can simplify routing plans for teams running hybrid and multicloud networks. Eso puede simplificar los planes de enrutamiento para equipos que operan redes híbridas y multicloud. Microsoft Developer Azure Networking Hybrid">
+        <div class="story-head">
+          <div class="rank">24</div>
+          <div>
+            <div class="story-meta-line">
               <div class="source">🪟 Microsoft Developer</div>
               <div class="importance importance-medium" aria-label="Medium importance">
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
                 <span>Medium</span>
               </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 6/10</span><span class="lang-text" data-lang="es">Puntuación 6/10</span></div>
             </div>
-            <div class="title"><a href="https://azure.microsoft.com/updates?id=569051" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">[Launched] Generally Available: vCore Customization: Disable Multithreading and Configurable Constrained Cores</span><span class="lang-text" data-lang="es">Personalización de vCore: desactivar multihilo y núcleos restringidos configurables</span></a></div>
+            <div class="title"><a href="https://azure.microsoft.com/updates?id=569743" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">[Launched] Generally Available: Summarized advertised gateway prefixes for route advertisement</span><span class="lang-text" data-lang="es">Prefijos resumidos anunciados para la publicidad de rutas</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Azure Virtual Machines get two new vCore customization capabilities.</span><span class="lang-text" data-lang="es">Las máquinas virtuales de Azure obtienen dos nuevas capacidades de personalización de vCore.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Azure ExpressRoute now supports summarized gateway prefixes for route advertisement.</span><span class="lang-text" data-lang="es">Azure ExpressRoute ahora admite prefijos resumidos del gateway para la publicidad de rutas.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Gives operators more knobs for performance and core-layout tuning.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Da a los operadores más controles para ajustar el rendimiento y la distribución de núcleos.</span>
+          <span class="lang-text" data-lang="en">Why it matters: That can simplify routing plans for teams running hybrid and multicloud networks.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Eso puede simplificar los planes de enrutamiento para equipos que operan redes híbridas y multicloud.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">Azure</span><span class="tag">VMs</span><span class="tag">Performance</span>
-          <a href="https://azure.microsoft.com/updates?id=569051" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-19">Aug 19</span>
+          <span class="tag">Microsoft Developer</span><span class="tag">Azure</span><span class="tag">Networking</span><span class="tag">Hybrid</span>
+          <a href="https://azure.microsoft.com/updates?id=569743" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-20"></span>
         </div>
       </article>
-      <article
-        class="story-card"
-        data-rank="21"
-        data-published="2026-08-20"
-        data-tags="AI,Routing,APIs"
-        data-source="TechCrunch AI"
-        data-importance="High"
-        data-search="Ramp launches its own AI model router, called Router Ramp lanza su propio router de modelos de IA, llamado Router TechCrunch AI High Ramp launched Router, an API service for switching between large language models. Ramp lanzó Router, un servicio de API para alternar entre modelos de lenguaje grandes. Adds another model-routing layer for teams working across multiple LLMs. Añade otra capa de enrutamiento de modelos para equipos que trabajan con varios LLM. AI Routing APIs"
-      >
-        <div class="story-head">
-          <div class="rank">21</div>
-          <div>
-            <div class="story-meta-line">
-              <div class="source">🚀 TechCrunch AI</div>
-              <div class="importance importance-high" aria-label="High importance">
-                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span>High</span>
-              </div>
-            </div>
-            <div class="title"><a href="https://techcrunch.com/2026/08/20/ramp-launches-its-own-ai-model-router-called-router" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Ramp launches its own AI model router, called Router</span><span class="lang-text" data-lang="es">Ramp lanza su propio router de modelos de IA, llamado Router</span></a></div>
-          </div>
-        </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Ramp launched Router, an API service for switching between large language models.</span><span class="lang-text" data-lang="es">Ramp lanzó Router, un servicio de API para alternar entre modelos de lenguaje grandes.</span></p>
-        <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Adds another model-routing layer for teams working across multiple LLMs.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Añade otra capa de enrutamiento de modelos para equipos que trabajan con varios LLM.</span>
-        </p>
-        <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">Routing</span><span class="tag">APIs</span>
-          <a href="https://techcrunch.com/2026/08/20/ramp-launches-its-own-ai-model-router-called-router" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-20">Aug 20</span>
-        </div>
-      </article>
-      <article
-        class="story-card"
-        data-rank="22"
-        data-published="2026-08-19"
-        data-tags="AI,Privacy,Enterprise"
-        data-source="TechCrunch AI"
-        data-importance="Medium"
-        data-search="OpenAI seeks to one-up Anthropic with new customer privacy protections OpenAI busca superar a Anthropic con nuevas protecciones de privacidad para clientes TechCrunch AI Medium OpenAI is introducing new privacy protections for enterprise customer data. OpenAI está introduciendo nuevas protecciones de privacidad para los datos de clientes empresariales. Shows how privacy controls are becoming a competitive feature in enterprise AI. Muestra cómo los controles de privacidad se están convirtiendo en una ventaja competitiva en la IA empresarial. AI Privacy Enterprise"
-      >
-        <div class="story-head">
-          <div class="rank">22</div>
-          <div>
-            <div class="story-meta-line">
-              <div class="source">🚀 TechCrunch AI</div>
-              <div class="importance importance-medium" aria-label="Medium importance">
-                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span>Medium</span>
-              </div>
-            </div>
-            <div class="title"><a href="https://techcrunch.com/2026/08/19/openai-seeks-to-one-up-anthropic-with-new-customer-privacy-protections" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">OpenAI seeks to one-up Anthropic with new customer privacy protections</span><span class="lang-text" data-lang="es">OpenAI busca superar a Anthropic con nuevas protecciones de privacidad para clientes</span></a></div>
-          </div>
-        </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">OpenAI is introducing new privacy protections for enterprise customer data.</span><span class="lang-text" data-lang="es">OpenAI está introduciendo nuevas protecciones de privacidad para los datos de clientes empresariales.</span></p>
-        <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Shows how privacy controls are becoming a competitive feature in enterprise AI.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Muestra cómo los controles de privacidad se están convirtiendo en una ventaja competitiva en la IA empresarial.</span>
-        </p>
-        <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">Privacy</span><span class="tag">Enterprise</span>
-          <a href="https://techcrunch.com/2026/08/19/openai-seeks-to-one-up-anthropic-with-new-customer-privacy-protections" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-19">Aug 19</span>
-        </div>
-      </article>
-      <article
-        class="story-card"
-        data-rank="23"
-        data-published="2026-08-20"
-        data-tags="AI,Games,Creator tools"
-        data-source="TechCrunch AI"
-        data-importance="Medium"
-        data-search="Meta brings Pocket, an app that lets you vibe-code and share games, to US users Meta lleva Pocket, una app para vibe-codear y compartir juegos, a usuarios de EE. UU. TechCrunch AI Medium Meta is expanding Pocket, its AI-powered app for creating and sharing interactive games, to the U.S. Meta está ampliando Pocket, su app impulsada por IA para crear y compartir juegos interactivos, a EE. UU. Signals continued experimentation around AI-assisted creation tools. Señala la experimentación continua con herramientas de creación asistidas por IA. AI Games Creator tools"
-      >
-        <div class="story-head">
-          <div class="rank">23</div>
-          <div>
-            <div class="story-meta-line">
-              <div class="source">🚀 TechCrunch AI</div>
-              <div class="importance importance-medium" aria-label="Medium importance">
-                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span>Medium</span>
-              </div>
-            </div>
-            <div class="title"><a href="https://techcrunch.com/2026/08/20/meta-brings-pocket-an-app-that-lets-you-vibe-code-and-share-games-to-us-users" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Meta brings Pocket, an app that lets you vibe-code and share games, to US users</span><span class="lang-text" data-lang="es">Meta lleva Pocket, una app para vibe-codear y compartir juegos, a usuarios de EE. UU.</span></a></div>
-          </div>
-        </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Meta is expanding Pocket, its AI-powered app for creating and sharing interactive games, to the U.S.</span><span class="lang-text" data-lang="es">Meta está ampliando Pocket, su app impulsada por IA para crear y compartir juegos interactivos, a EE. UU.</span></p>
-        <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Signals continued experimentation around AI-assisted creation tools.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Señala la experimentación continua con herramientas de creación asistidas por IA.</span>
-        </p>
-        <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">Games</span><span class="tag">Creator tools</span>
-          <a href="https://techcrunch.com/2026/08/20/meta-brings-pocket-an-app-that-lets-you-vibe-code-and-share-games-to-us-users" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-20">Aug 20</span>
-        </div>
-      </article>
-      <article
-        class="story-card"
-        data-rank="24"
-        data-published="2026-08-20"
-        data-tags="AI,Research,Publishing"
-        data-source="TechCrunch AI"
-        data-importance="Medium"
-        data-search="A third of web pages published since ChatGPT’s launch show signs of AI authorship, study finds Un tercio de las páginas web publicadas desde el lanzamiento de ChatGPT muestra signos de autoría por IA, según un estudio TechCrunch AI Medium A study says AI now authors or edits a large share of newly published web pages. Un estudio afirma que la IA ahora escribe o edita una gran parte de las páginas web nuevas. Useful context for anyone building content, search, or moderation systems. Contexto útil para quien construye sistemas de contenido, búsqueda o moderación. AI Research Publishing"
-      >
-        <div class="story-head">
-          <div class="rank">24</div>
-          <div>
-            <div class="story-meta-line">
-              <div class="source">🚀 TechCrunch AI</div>
-              <div class="importance importance-medium" aria-label="Medium importance">
-                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span>Medium</span>
-              </div>
-            </div>
-            <div class="title"><a href="https://techcrunch.com/2026/08/20/a-third-of-webpages-published-since-chatgpts-launch-show-signs-of-ai-authorship-study-finds" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">A third of web pages published since ChatGPT’s launch show signs of AI authorship, study finds</span><span class="lang-text" data-lang="es">Un tercio de las páginas web publicadas desde el lanzamiento de ChatGPT muestra signos de autoría por IA, según un estudio</span></a></div>
-          </div>
-        </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">A study says AI now authors or edits a large share of newly published web pages.</span><span class="lang-text" data-lang="es">Un estudio afirma que la IA ahora escribe o edita una gran parte de las páginas web nuevas.</span></p>
-        <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Useful context for anyone building content, search, or moderation systems.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Contexto útil para quien construye sistemas de contenido, búsqueda o moderación.</span>
-        </p>
-        <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">Research</span><span class="tag">Publishing</span>
-          <a href="https://techcrunch.com/2026/08/20/a-third-of-webpages-published-since-chatgpts-launch-show-signs-of-ai-authorship-study-finds" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-20">Aug 20</span>
-        </div>
-      </article>
-      <article
-        class="story-card"
-        data-rank="25"
-        data-published="2026-08-20"
-        data-tags="AI Security,Prompt injection,Data protection"
-        data-source="Ars Technica"
-        data-importance="High"
-        data-search="Grok exfiltrates user data when malicious instructions are encrypted Grok exfiltra datos de usuarios cuando las instrucciones maliciosas están cifradas Ars Technica High Encrypted malicious instructions can still trigger user-data exfiltration in Grok. Las instrucciones maliciosas cifradas aún pueden provocar exfiltración de datos de usuarios en Grok. Another reminder that prompt-injection defenses need to assume hostile inputs. Otro recordatorio de que las defensas contra prompt injection deben asumir entradas hostiles. AI Security Prompt injection Data protection"
-      >
+
+      <article class="story-card" data-rank="25" data-published="2026-08-19" data-tags="Microsoft Developer,Azure SQL,Databases,Release notes" data-source="Microsoft Developer" data-importance="Medium" data-score="6" data-search="[Launched] Generally Available: Azure SQL updates for mid-August 2026 Actualizaciones de Azure SQL para mediados de agosto de 2026 Microsoft Developer Medium 6 Azure SQL’s mid-August update bundles a set of tooling and database improvements. La actualización de mediados de agosto de Azure SQL agrupa un conjunto de mejoras de herramientas y base de datos. It signals steady iteration in one of Microsoft’s core database products. Indica una evolución constante en uno de los productos de base de datos clave de Microsoft. Microsoft Developer Azure SQL Databases Release notes">
         <div class="story-head">
           <div class="rank">25</div>
           <div>
             <div class="story-meta-line">
-              <div class="source">🛡️ Ars Technica</div>
-              <div class="importance importance-high" aria-label="High importance">
-                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span>High</span>
-              </div>
-            </div>
-            <div class="title"><a href="https://arstechnica.com/security/2026/08/grok-exfiltrates-user-data-when-malicious-instructions-are-encrypted" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Grok exfiltrates user data when malicious instructions are encrypted</span><span class="lang-text" data-lang="es">Grok exfiltra datos de usuarios cuando las instrucciones maliciosas están cifradas</span></a></div>
-          </div>
-        </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Encrypted malicious instructions can still trigger user-data exfiltration in Grok.</span><span class="lang-text" data-lang="es">Las instrucciones maliciosas cifradas aún pueden provocar exfiltración de datos de usuarios en Grok.</span></p>
-        <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Another reminder that prompt-injection defenses need to assume hostile inputs.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Otro recordatorio de que las defensas contra prompt injection deben asumir entradas hostiles.</span>
-        </p>
-        <div class="story-footer">
-          <span class="tag">AI Security</span><span class="tag">Prompt injection</span><span class="tag">Data protection</span>
-          <a href="https://arstechnica.com/security/2026/08/grok-exfiltrates-user-data-when-malicious-instructions-are-encrypted" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-20">Aug 20</span>
-        </div>
-      </article>
-      <article
-        class="story-card"
-        data-rank="26"
-        data-published="2026-08-18"
-        data-tags="Copilot,Security,Hugging Face"
-        data-source="Ars Technica"
-        data-importance="High"
-        data-search="Microsoft Copilot reveals secret input that allowed it to be hacked Microsoft Copilot revela una entrada secreta que permitió hackearlo Ars Technica High A secret parameter reportedly allowed attackers to steal passwords when a target clicked a link. Un parámetro secreto supuestamente permitió robar contraseñas cuando un objetivo hizo clic en un enlace. Shows how small implementation details can create big security exposure. Muestra cómo pequeños detalles de implementación pueden generar una gran exposición de seguridad. Copilot Security Hugging Face"
-      >
-        <div class="story-head">
-          <div class="rank">26</div>
-          <div>
-            <div class="story-meta-line">
-              <div class="source">🛡️ Ars Technica</div>
-              <div class="importance importance-high" aria-label="High importance">
-                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span>High</span>
-              </div>
-            </div>
-            <div class="title"><a href="https://arstechnica.com/security/2026/08/microsoft-copilot-reveals-secret-input-that-allowed-it-to-be-hacked" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Microsoft Copilot reveals secret input that allowed it to be hacked</span><span class="lang-text" data-lang="es">Microsoft Copilot revela una entrada secreta que permitió hackearlo</span></a></div>
-          </div>
-        </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">A secret parameter reportedly allowed attackers to steal passwords when a target clicked a link.</span><span class="lang-text" data-lang="es">Un parámetro secreto supuestamente permitió robar contraseñas cuando un objetivo hizo clic en un enlace.</span></p>
-        <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Shows how small implementation details can create big security exposure.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Muestra cómo pequeños detalles de implementación pueden generar una gran exposición de seguridad.</span>
-        </p>
-        <div class="story-footer">
-          <span class="tag">Copilot</span><span class="tag">Security</span><span class="tag">Hugging Face</span>
-          <a href="https://arstechnica.com/security/2026/08/microsoft-copilot-reveals-secret-input-that-allowed-it-to-be-hacked" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-18">Aug 18</span>
-        </div>
-      </article>
-      <article
-        class="story-card"
-        data-rank="27"
-        data-published="2026-08-12"
-        data-tags="Security,Supply chain,Credentials"
-        data-source="Ars Technica"
-        data-importance="High"
-        data-search="Terabytes of credentials leaked in massive supply-chain attack Terabytes de credenciales filtradas en un ataque masivo a la cadena de suministro Ars Technica High A compromised AI package reportedly exposed terabytes of credentials from thousands of users. Un paquete de IA comprometido supuestamente expuso terabytes de credenciales de miles de usuarios. A major reminder that dependency compromise can scale fast across systems. Un recordatorio importante de que la compromisión de dependencias puede escalar rápidamente entre sistemas. Security Supply chain Credentials"
-      >
-        <div class="story-head">
-          <div class="rank">27</div>
-          <div>
-            <div class="story-meta-line">
-              <div class="source">🛡️ Ars Technica</div>
-              <div class="importance importance-high" aria-label="High importance">
-                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span>High</span>
-              </div>
-            </div>
-            <div class="title"><a href="https://arstechnica.com/security/2026/08/terabytes-of-credentials-leaked-in-massive-supply-chain-attack" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Terabytes of credentials leaked in massive supply-chain attack</span><span class="lang-text" data-lang="es">Terabytes de credenciales filtradas en un ataque masivo a la cadena de suministro</span></a></div>
-          </div>
-        </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">A compromised AI package reportedly exposed terabytes of credentials from thousands of users.</span><span class="lang-text" data-lang="es">Un paquete de IA comprometido supuestamente expuso terabytes de credenciales de miles de usuarios.</span></p>
-        <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: A major reminder that dependency compromise can scale fast across systems.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Un recordatorio importante de que la compromisión de dependencias puede escalar rápidamente entre sistemas.</span>
-        </p>
-        <div class="story-footer">
-          <span class="tag">Security</span><span class="tag">Supply chain</span><span class="tag">Credentials</span>
-          <a href="https://arstechnica.com/security/2026/08/terabytes-of-credentials-leaked-in-massive-supply-chain-attack" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-12">Aug 12</span>
-        </div>
-      </article>
-      <article
-        class="story-card"
-        data-rank="28"
-        data-published="2026-08-20"
-        data-tags="Rust,Security,Supply chain"
-        data-source="Hacker News"
-        data-importance="High"
-        data-search="Malicious Rust crate Arrayref runs a build-time payload El crate malicioso de Rust Arrayref ejecuta una carga útil en compilación Hacker News High The Rust ecosystem is dealing with a build-time payload hiding in a malicious crate. El ecosistema de Rust está lidiando con una carga útil en compilación oculta en un crate malicioso. Supply-chain attacks on build tooling are especially relevant to developers. Los ataques a la cadena de suministro en herramientas de compilación son especialmente relevantes para los desarrolladores. Rust Security Supply chain"
-      >
-        <div class="story-head">
-          <div class="rank">28</div>
-          <div>
-            <div class="story-meta-line">
-              <div class="source">🟠 Hacker News</div>
-              <div class="importance importance-high" aria-label="High importance">
-                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span>High</span>
-              </div>
-            </div>
-            <div class="title"><a href="https://safedep.io/arrayref-proc-macro1-rust-build-time-malware" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Malicious Rust crate Arrayref runs a build-time payload</span><span class="lang-text" data-lang="es">El crate malicioso de Rust Arrayref ejecuta una carga útil en compilación</span></a></div>
-          </div>
-        </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">The Rust ecosystem is dealing with a build-time payload hiding in a malicious crate.</span><span class="lang-text" data-lang="es">El ecosistema de Rust está lidiando con una carga útil en compilación oculta en un crate malicioso.</span></p>
-        <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Supply-chain attacks on build tooling are especially relevant to developers.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Los ataques a la cadena de suministro en herramientas de compilación son especialmente relevantes para los desarrolladores.</span>
-        </p>
-        <div class="story-footer">
-          <span class="tag">Rust</span><span class="tag">Security</span><span class="tag">Supply chain</span>
-          <a href="https://safedep.io/arrayref-proc-macro1-rust-build-time-malware" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-20">Aug 20</span>
-        </div>
-      </article>
-      <article
-        class="story-card"
-        data-rank="29"
-        data-published="2026-08-20"
-        data-tags="Go,Language,Generics"
-        data-source="Hacker News"
-        data-importance="Medium"
-        data-search="Generic Methods in Go 1.27 Métodos genéricos en Go 1.27 Hacker News Medium Go 1.27 gets coverage around generic methods and their implications. Go 1.27 incorpora cobertura sobre métodos genéricos y sus implicaciones. Useful for Go developers tracking language evolution. Útil para desarrolladores de Go que siguen la evolución del lenguaje. Go Language Generics"
-      >
-        <div class="story-head">
-          <div class="rank">29</div>
-          <div>
-            <div class="story-meta-line">
-              <div class="source">🟠 Hacker News</div>
+              <div class="source">🪟 Microsoft Developer</div>
               <div class="importance importance-medium" aria-label="Medium importance">
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
                 <span>Medium</span>
               </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 6/10</span><span class="lang-text" data-lang="es">Puntuación 6/10</span></div>
             </div>
-            <div class="title"><a href="https://dominik.info/blog/go-generic-methods" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Generic Methods in Go 1.27</span><span class="lang-text" data-lang="es">Métodos genéricos en Go 1.27</span></a></div>
+            <div class="title"><a href="https://azure.microsoft.com/updates?id=569145" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">[Launched] Generally Available: Azure SQL updates for mid-August 2026</span><span class="lang-text" data-lang="es">Actualizaciones de Azure SQL para mediados de agosto de 2026</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Go 1.27 gets coverage around generic methods and their implications.</span><span class="lang-text" data-lang="es">Go 1.27 incorpora cobertura sobre métodos genéricos y sus implicaciones.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Azure SQL’s mid-August update bundles a set of tooling and database improvements.</span><span class="lang-text" data-lang="es">La actualización de mediados de agosto de Azure SQL agrupa un conjunto de mejoras de herramientas y base de datos.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Useful for Go developers tracking language evolution.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Útil para desarrolladores de Go que siguen la evolución del lenguaje.</span>
+          <span class="lang-text" data-lang="en">Why it matters: It signals steady iteration in one of Microsoft’s core database products.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Indica una evolución constante en uno de los productos de base de datos clave de Microsoft.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">Go</span><span class="tag">Language</span><span class="tag">Generics</span>
-          <a href="https://dominik.info/blog/go-generic-methods" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-20">Aug 20</span>
+          <span class="tag">Microsoft Developer</span><span class="tag">Azure SQL</span><span class="tag">Databases</span><span class="tag">Release notes</span>
+          <a href="https://azure.microsoft.com/updates?id=569145" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-19"></span>
         </div>
       </article>
-      <article
-        class="story-card"
-        data-rank="30"
-        data-published="2026-08-18"
-        data-tags="OpenAI,Security,AI research"
-        data-source="The Verge"
-        data-importance="High"
-        data-search="OpenAI lays out new security changes after its AI hacked Hugging Face OpenAI detalla nuevos cambios de seguridad tras el hackeo de Hugging Face por su IA The Verge High OpenAI says it is changing research environments, monitoring, and alignment after the Hugging Face incident. OpenAI dice que cambiará entornos de investigación, monitoreo y alineación tras el incidente de Hugging Face. Security hardening around research environments matters for teams shipping AI agents. El endurecimiento de seguridad en entornos de investigación importa para equipos que lanzan agentes de IA. OpenAI Security AI research"
-      >
+
+      <article class="story-card" data-rank="26" data-published="2026-08-19" data-tags="Microsoft Developer,Azure,Virtual machines,Performance" data-source="Microsoft Developer" data-importance="Medium" data-score="6" data-search="[Launched] Generally Available: vCore Customization: Disable Multithreading and Configurable Constrained Cores Personalización de vCore: desactivar multihilo y núcleos restringidos configurables Microsoft Developer Medium 6 Azure Virtual Machines now let teams disable simultaneous multithreading and configure constrained cores. Las máquinas virtuales de Azure ahora permiten desactivar el multihilo simultáneo y configurar núcleos restringidos. Those controls help tune VM performance and cost for specific workloads. Esos controles ayudan a ajustar el rendimiento y el coste de las VM para cargas concretas. Microsoft Developer Azure Virtual machines Performance">
         <div class="story-head">
-          <div class="rank">30</div>
+          <div class="rank">26</div>
           <div>
             <div class="story-meta-line">
-              <div class="source">🔷 The Verge</div>
+              <div class="source">🪟 Microsoft Developer</div>
+              <div class="importance importance-medium" aria-label="Medium importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>Medium</span>
+              </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 6/10</span><span class="lang-text" data-lang="es">Puntuación 6/10</span></div>
+            </div>
+            <div class="title"><a href="https://azure.microsoft.com/updates?id=569051" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">[Launched] Generally Available: vCore Customization: Disable Multithreading and Configurable Constrained Cores</span><span class="lang-text" data-lang="es">Personalización de vCore: desactivar multihilo y núcleos restringidos configurables</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">Azure Virtual Machines now let teams disable simultaneous multithreading and configure constrained cores.</span><span class="lang-text" data-lang="es">Las máquinas virtuales de Azure ahora permiten desactivar el multihilo simultáneo y configurar núcleos restringidos.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: Those controls help tune VM performance and cost for specific workloads.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Esos controles ayudan a ajustar el rendimiento y el coste de las VM para cargas concretas.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">Microsoft Developer</span><span class="tag">Azure</span><span class="tag">Virtual machines</span><span class="tag">Performance</span>
+          <a href="https://azure.microsoft.com/updates?id=569051" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-19"></span>
+        </div>
+      </article>
+
+      <article class="story-card" data-rank="27" data-published="2026-08-21" data-tags="TechCrunch AI,Startups,Data labeling,AI training" data-source="TechCrunch AI" data-importance="Medium" data-score="7" data-search="AI data startup Micro1 reaches $500M gross run rate amid AI training boom La startup de datos de IA Micro1 alcanza una tasa bruta anual de 500 millones de dólares en pleno auge del entrenamiento de IA TechCrunch AI Medium 7 Surging demand for AI training data is driving rapid growth for Micro1 and its rivals. La demanda creciente de datos para entrenamiento de IA está impulsando el rápido crecimiento de Micro1 y sus rivales. Training data remains a high-growth business line as model builders scale up. Los datos de entrenamiento siguen siendo una línea de negocio de alto crecimiento a medida que los constructores de modelos escalan. TechCrunch AI Startups Data labeling AI training">
+        <div class="story-head">
+          <div class="rank">27</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">📰 TechCrunch AI</div>
+              <div class="importance importance-medium" aria-label="Medium importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>Medium</span>
+              </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></div>
+            </div>
+            <div class="title"><a href="https://techcrunch.com/2026/08/20/ai-data-startup-micro1-reaches-500m-gross-run-rate-amid-ai-training-boom" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">AI data startup Micro1 reaches $500M gross run rate amid AI training boom</span><span class="lang-text" data-lang="es">La startup de datos de IA Micro1 alcanza una tasa bruta anual de 500 millones de dólares en pleno auge del entrenamiento de IA</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">Surging demand for AI training data is driving rapid growth for Micro1 and its rivals.</span><span class="lang-text" data-lang="es">La demanda creciente de datos para entrenamiento de IA está impulsando el rápido crecimiento de Micro1 y sus rivales.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: Training data remains a high-growth business line as model builders scale up.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Los datos de entrenamiento siguen siendo una línea de negocio de alto crecimiento a medida que los constructores de modelos escalan.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">TechCrunch AI</span><span class="tag">Startups</span><span class="tag">Data labeling</span><span class="tag">AI training</span>
+          <a href="https://techcrunch.com/2026/08/20/ai-data-startup-micro1-reaches-500m-gross-run-rate-amid-ai-training-boom" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-21"></span>
+        </div>
+      </article>
+
+      <article class="story-card" data-rank="28" data-published="2026-08-20" data-tags="GitHub Changelog,Code Quality,Audit log,Governance" data-source="GitHub Changelog" data-importance="High" data-score="8" data-search="Track GitHub Code Quality enablement changes in the audit log Seguimiento de los cambios de habilitación de GitHub Code Quality en el registro de auditoría GitHub Changelog High 8 GitHub now writes audit-log events when Code Quality is enabled, disabled, or changed on a repository. GitHub ahora escribe eventos en el registro de auditoría cuando Code Quality se habilita, deshabilita o cambia en un repositorio. Admins get more visibility into who changed repository-wide quality controls and when. Los administradores obtienen más visibilidad sobre quién cambió los controles de calidad del repositorio y cuándo. GitHub Changelog Code Quality Audit log Governance">
+        <div class="story-head">
+          <div class="rank">28</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">🐙 GitHub Changelog</div>
               <div class="importance importance-high" aria-label="High importance">
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
                 <span>High</span>
               </div>
+              <div class="score"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></div>
             </div>
-            <div class="title"><a href="https://www.theverge.com/ai-artificial-intelligence/981640/openai-security-changes-ai-hugging-face-hack" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">OpenAI lays out new security changes after its AI hacked Hugging Face</span><span class="lang-text" data-lang="es">OpenAI detalla nuevos cambios de seguridad tras el hackeo de Hugging Face por su IA</span></a></div>
+            <div class="title"><a href="https://github.blog/changelog/2026-08-20-track-github-code-quality-enablement-changes-in-the-audit-log" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Track GitHub Code Quality enablement changes in the audit log</span><span class="lang-text" data-lang="es">Seguimiento de los cambios de habilitación de GitHub Code Quality en el registro de auditoría</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">OpenAI says it is changing research environments, monitoring, and alignment after the Hugging Face incident.</span><span class="lang-text" data-lang="es">OpenAI dice que cambiará entornos de investigación, monitoreo y alineación tras el incidente de Hugging Face.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">GitHub now writes audit-log events when Code Quality is enabled, disabled, or changed on a repository.</span><span class="lang-text" data-lang="es">GitHub ahora escribe eventos en el registro de auditoría cuando Code Quality se habilita, deshabilita o cambia en un repositorio.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Security hardening around research environments matters for teams shipping AI agents.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: El endurecimiento de seguridad en entornos de investigación importa para equipos que lanzan agentes de IA.</span>
+          <span class="lang-text" data-lang="en">Why it matters: Admins get more visibility into who changed repository-wide quality controls and when.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Los administradores obtienen más visibilidad sobre quién cambió los controles de calidad del repositorio y cuándo.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">OpenAI</span><span class="tag">Security</span><span class="tag">AI research</span>
-          <a href="https://www.theverge.com/ai-artificial-intelligence/981640/openai-security-changes-ai-hugging-face-hack" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story →</span><span class="lang-text" data-lang="es">Leer noticia completa →</span></a>
-          <span class="date" data-date="2026-08-18">Aug 18</span>
+          <span class="tag">GitHub Changelog</span><span class="tag">Code Quality</span><span class="tag">Audit log</span><span class="tag">Governance</span>
+          <a href="https://github.blog/changelog/2026-08-20-track-github-code-quality-enablement-changes-in-the-audit-log" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-08-20"></span>
         </div>
       </article>
+
     </section>
   </main>
 
-    <footer>
+  <footer>
     <span class="lang-text" data-lang="en">Generated by </span><span class="lang-text" data-lang="es">Generado por </span>
     <a href="https://github.github.com/gh-aw/" target="_blank" rel="noopener">GitHub Agentic Workflows</a>
     · <span class="lang-text" data-lang="en">Source:</span><span class="lang-text" data-lang="es">Código fuente:</span>
@@ -1402,38 +967,10 @@
       var selectedImportance = new Set();
       var importanceOrder = { Low: 1, Medium: 2, High: 3 };
       var ui = {
-        en: {
-          searchPlaceholder: "keyword, source, tag...",
-          sources: "Sources",
-          all: "All",
-          importance: "Importance",
-          tags: "Tags",
-          search: "Search",
-          sort: "Sort",
-          activeFilters: "Active filters - ",
-          showing: "Showing",
-          of: "of",
-          stories: "stories"
-        },
-        es: {
-          searchPlaceholder: "palabra clave, fuente, etiqueta...",
-          sources: "Fuentes",
-          all: "Todas",
-          importance: "Importancia",
-          tags: "Etiquetas",
-          search: "Búsqueda",
-          sort: "Orden",
-          activeFilters: "Filtros activos - ",
-          showing: "Mostrando",
-          of: "de",
-          stories: "noticias"
-        }
+        en: { searchPlaceholder: "keyword, source, tag...", sources: "Sources", all: "All", importance: "Importance", tags: "Tags", search: "Search", sort: "Sort", activeFilters: "Active filters - ", showing: "Showing", of: "of", stories: "stories" },
+        es: { searchPlaceholder: "palabra clave, fuente, etiqueta...", sources: "Fuentes", all: "Todas", importance: "Importancia", tags: "Etiquetas", search: "Búsqueda", sort: "Orden", activeFilters: "Filtros activos - ", showing: "Mostrando", of: "de", stories: "noticias" }
       };
-
-      function currentLanguage() {
-        return languageSelect.value || "en";
-      }
-
+      function currentLanguage() { return languageSelect.value || "en"; }
       function updateDateLabels(lang) {
         cards.forEach(function (card) {
           var date = card.querySelector(".date");
@@ -1443,7 +980,6 @@
           date.textContent = parsed.toLocaleDateString(lang === "es" ? "es-ES" : "en-US", { month: "short", day: "numeric", timeZone: "UTC" });
         });
       }
-
       function applyLanguage(lang) {
         document.documentElement.lang = lang;
         document.documentElement.setAttribute("data-content-lang", lang);
@@ -1455,66 +991,43 @@
         updateDateLabels(lang);
         applyFilters();
       }
-
       function loadLanguage() {
         var saved = localStorage.getItem("digest-language") || "en";
         languageSelect.value = saved === "es" ? "es" : "en";
         applyLanguage(languageSelect.value);
       }
-
-      function systemTheme() {
-        return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-      }
-
+      function systemTheme() { return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; }
       function applyTheme(mode) {
         var resolved = mode === "system" ? systemTheme() : mode;
         document.documentElement.setAttribute("data-theme", resolved);
       }
-
       function loadTheme() {
         var saved = localStorage.getItem("digest-theme") || "system";
         themeSelect.value = saved;
         applyTheme(saved);
       }
-
       function collectValues(attribute) {
         var all = new Set();
         cards.forEach(function (card) {
-          (card.dataset[attribute] || "").split(",").map(function (value) {
-            return value.trim();
-          }).filter(Boolean).forEach(function (value) {
-            all.add(value);
-          });
+          (card.dataset[attribute] || "").split(",").map(function (value) { return value.trim(); }).filter(Boolean).forEach(function (value) { all.add(value); });
         });
         return Array.from(all).sort();
       }
-
       function isPrioritySource(source) {
         var value = (source || "").toLowerCase();
         return value.indexOf("github") !== -1 || value.indexOf("microsoft developer") !== -1;
       }
-
-      function collectSources() {
-        return collectValues("source");
-      }
-
-      function setChipState(button, active) {
-        button.classList.toggle("active", active);
-        button.setAttribute("aria-pressed", active ? "true" : "false");
-      }
-
+      function collectSources() { return collectValues("source"); }
+      function setChipState(button, active) { button.classList.toggle("active", active); button.setAttribute("aria-pressed", active ? "true" : "false"); }
       function resetSourceSelection() {
         var sources = collectSources();
+        var prioritySources = sources.filter(isPrioritySource);
         selectedSources.clear();
-        sources.forEach(function (source) {
-          selectedSources.add(source);
-        });
+        (prioritySources.length > 0 ? prioritySources : sources).forEach(function (source) { selectedSources.add(source); });
       }
-
       function renderSourceFilters() {
         var sources = collectSources();
         resetSourceSelection();
-
         sources.forEach(function (source) {
           var btn = document.createElement("button");
           btn.className = "chip";
@@ -1530,7 +1043,6 @@
           sourceFilters.appendChild(btn);
         });
       }
-
       function renderTagFilters() {
         collectValues("tags").forEach(function (tag) {
           var btn = document.createElement("button");
@@ -1547,7 +1059,6 @@
           labelFilters.appendChild(btn);
         });
       }
-
       function renderImportanceFilters() {
         ["Low", "Medium", "High"].forEach(function (importance) {
           var btn = document.createElement("button");
@@ -1564,7 +1075,6 @@
           importanceFilters.appendChild(btn);
         });
       }
-
       function sortCards() {
         var mode = sortSelect.value;
         cards.sort(function (a, b) {
@@ -1574,7 +1084,6 @@
           var importanceB = importanceOrder[b.dataset.importance] || 0;
           var dateA = Date.parse(a.dataset.published || "") || 0;
           var dateB = Date.parse(b.dataset.published || "") || 0;
-
           if (mode === "importance-desc") return (importanceB - importanceA) || (rankA - rankB);
           if (mode === "importance-asc") return (importanceA - importanceB) || (rankA - rankB);
           if (mode === "newest") return (dateB - dateA) || (rankA - rankB);
@@ -1583,7 +1092,6 @@
         });
         cards.forEach(function (card) { storyList.appendChild(card); });
       }
-
       function updateActiveFilters(query) {
         var labels = ui[currentLanguage()];
         var details = [];
@@ -1594,19 +1102,16 @@
         if (sortSelect.value !== "rank") details.push(labels.sort + ": " + sortSelect.options[sortSelect.selectedIndex].text);
         activeFilters.textContent = labels.activeFilters + details.join(" | ");
       }
-
       function applyFilters() {
         var rawQuery = (searchInput.value || "").trim();
         var query = rawQuery.toLowerCase();
         var visible = 0;
         sortCards();
-
         cards.forEach(function (card) {
           var text = (card.dataset.search || "").toLowerCase();
           var tags = (card.dataset.tags || "").split(",").map(function (t) { return t.trim(); }).filter(Boolean);
           var source = (card.dataset.source || "").trim();
           var importance = (card.dataset.importance || "").trim();
-
           var matchesQuery = query === "" || text.indexOf(query) !== -1;
           var matchesSource = selectedSources.size === 0 || selectedSources.has(source);
           var matchesTags = selectedTags.size === 0 || Array.from(selectedTags).every(function (tag) { return tags.indexOf(tag) !== -1; });
@@ -1615,51 +1120,28 @@
           card.style.display = show ? "" : "none";
           if (show) visible += 1;
         });
-
         var labels = ui[currentLanguage()];
         resultLine.textContent = labels.showing + " " + visible + " " + labels.of + " " + cards.length + " " + labels.stories;
         updateActiveFilters(rawQuery);
       }
-
       function resetFilters() {
         searchInput.value = "";
         sortSelect.value = "rank";
         selectedTags.clear();
         selectedImportance.clear();
         selectedSources.clear();
-        Array.prototype.forEach.call(sourceFilters.querySelectorAll(".chip"), function (button) {
-          setChipState(button, false);
-        });
-        Array.prototype.forEach.call(labelFilters.querySelectorAll(".chip"), function (button) {
-          setChipState(button, false);
-        });
-        Array.prototype.forEach.call(importanceFilters.querySelectorAll(".chip"), function (button) {
-          setChipState(button, false);
-        });
+        Array.prototype.forEach.call(sourceFilters.querySelectorAll(".chip"), function (button) { setChipState(button, false); });
+        Array.prototype.forEach.call(labelFilters.querySelectorAll(".chip"), function (button) { setChipState(button, false); });
+        Array.prototype.forEach.call(importanceFilters.querySelectorAll(".chip"), function (button) { setChipState(button, false); });
         applyFilters();
       }
-
-      themeSelect.addEventListener("change", function () {
-        var value = themeSelect.value;
-        localStorage.setItem("digest-theme", value);
-        applyTheme(value);
-      });
-      languageSelect.addEventListener("change", function () {
-        localStorage.setItem("digest-language", languageSelect.value);
-        applyLanguage(languageSelect.value);
-      });
-
+      themeSelect.addEventListener("change", function () { var value = themeSelect.value; localStorage.setItem("digest-theme", value); applyTheme(value); });
+      languageSelect.addEventListener("change", function () { localStorage.setItem("digest-language", languageSelect.value); applyLanguage(languageSelect.value); });
       var media = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
-      if (media) {
-        media.addEventListener("change", function () {
-          if ((localStorage.getItem("digest-theme") || "system") === "system") applyTheme("system");
-        });
-      }
-
+      if (media) { media.addEventListener("change", function () { if ((localStorage.getItem("digest-theme") || "system") === "system") applyTheme("system"); }); }
       searchInput.addEventListener("input", applyFilters);
       sortSelect.addEventListener("change", applyFilters);
       clearFilters.addEventListener("click", resetFilters);
-
       loadTheme();
       renderSourceFilters();
       renderImportanceFilters();
