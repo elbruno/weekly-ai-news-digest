@@ -65,7 +65,7 @@ The worker definitions are:
 
 Both import `.github/workflows/shared/digest-generation.md`, so they share the same curation rules, bilingual output requirements, page behavior, and validation checklist. Snapshot content is treated as untrusted data: workers cannot follow instructions from feed text, browse article URLs, replace facts from model memory, or fetch a different set of sources.
 
-Each worker is compiled by `gh-aw` into a `.lock.yml` workflow. The coordinator records the exact dispatched run IDs, waits for both runs to succeed, and only then explicitly dispatches the publisher.
+Each worker is compiled by `gh-aw` into a `.lock.yml` workflow. The coordinator records the exact dispatched run IDs and outcomes. It explicitly dispatches the publisher whenever at least one worker succeeds, so a transient failure in one variant does not block the other variant's digest.
 
 ### 3. Create isolated safe-output pull requests
 
@@ -77,7 +77,7 @@ The agents have read-only repository access. Repository changes are created thro
 
 Each page embeds the variant, model, snapshot ID, prompt version, and workflow run ID. It initially shows `Pending finalization` for AI Credit usage because the authoritative audit is available only after the agent run completes.
 
-### 4. Validate and publish a complete pair
+### 4. Validate and publish each successful digest
 
 `.github/workflows/auto-merge-digest.yml` serializes publication. Before merging, it verifies:
 
@@ -86,9 +86,9 @@ Each page embeds the variant, model, snapshot ID, prompt version, and workflow r
 - exactly one recognized variant label is present;
 - exactly one allowed page changed;
 - the title contains a valid snapshot ID; and
-- both control and economy pull requests exist for that same snapshot.
+- a matching variant pull request exists for the snapshot.
 
-A partial pair is left open rather than published. Duplicate or malformed candidates fail validation. A scheduled publisher run at 10:30 UTC remains as a recovery path in addition to explicit coordinator dispatch and manual dispatch.
+Each valid digest is merged independently. This keeps a transient failure in one worker from blocking the other model's published digest, while the ledger and comparison dashboard continue to show the incomplete pair. Duplicate or malformed candidates fail validation. A scheduled publisher run at 10:30 UTC remains as a recovery path in addition to explicit coordinator dispatch and manual dispatch.
 
 ### 5. Reconcile AI Credits and deploy
 
@@ -112,7 +112,7 @@ The page finalizer updates an AI Credit marker only when the current page belong
 - **Comparable inputs:** both models consume the same immutable snapshot.
 - **Comparable instructions:** both workers import one versioned prompt contract.
 - **No direct agent writes:** agents propose tightly scoped pull requests.
-- **Atomic publication:** only complete control/economy pairs are merged.
+- **Independent publication:** each validated variant can be merged without waiting for the other worker.
 - **Serialized publishing:** concurrent publisher runs cannot race each other.
 - **Strict page ownership:** a run can finalize only its own embedded marker.
 - **Auditable costs:** raw run-level records are committed to the repository.
@@ -124,8 +124,8 @@ The page finalizer updates an AI Credit marker only when the current page belong
 | Failure | Result | Recovery |
 | --- | --- | --- |
 | RSS collection or snapshot validation fails | No workers are dispatched | Fix the source or parser, then rerun the coordinator |
-| Either worker fails | Coordinator fails and does not dispatch publication | Inspect that worker run, then rerun the complete experiment |
-| Only one digest pull request exists | Publisher leaves it open | Recover or rerun the missing variant |
+| One worker fails | Coordinator dispatches publication for any successful digest and records the failed run | Inspect and rerun the failed worker through a complete experiment when a comparable pair is required |
+| Only one digest pull request exists | Publisher validates and publishes that digest independently | Recover or rerun the missing variant to complete the comparison |
 | Pull request violates author, label, title, or file rules | Publisher fails validation | Correct the workflow; do not bypass the guard |
 | AI Credit audit is temporarily unavailable | Run remains in the ledger with `aic: null` | Rerun the publisher to reconcile later |
 | `main` changes during reconciliation | Publisher retries from the latest `main` | Automatic, up to three attempts |

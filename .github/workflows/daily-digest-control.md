@@ -34,7 +34,7 @@ engine:
   model: claude-sonnet-4.6
 
 strict: true
-timeout-minutes: 30
+timeout-minutes: 45
 
 concurrency:
   group: digest-control

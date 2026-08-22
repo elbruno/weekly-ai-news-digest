@@ -28,7 +28,7 @@ Traditional GitHub Actions (daily)
   -> Download, normalize, deduplicate, and checksum eight RSS feeds
   -> Upload one immutable news snapshot
   -> Dispatch both pinned agentic workflows with the snapshot ID
-  -> Wait for both workers to succeed, then dispatch the publisher
+  -> Record both worker results; publish each successful digest independently
 
 Paired GitHub Agentic Workflows
   -> Claude Sonnet 4.6 -> docs/index.html
