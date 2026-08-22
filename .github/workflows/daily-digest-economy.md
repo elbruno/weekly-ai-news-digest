@@ -34,7 +34,7 @@ engine:
   model: gpt-5-mini
 
 strict: true
-timeout-minutes: 30
+timeout-minutes: 45
 
 concurrency:
   group: digest-economy

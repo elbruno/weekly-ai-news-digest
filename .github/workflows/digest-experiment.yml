@@ -57,7 +57,7 @@ jobs:
           echo "Snapshot artifact was not visible after 30 seconds" >&2
           exit 1
 
-      - name: Dispatch and wait for paired digest workers
+      - name: Dispatch and wait for digest workers
         env:
           GH_TOKEN: ${{ github.token }}
           SNAPSHOT_ID: ${{ steps.snapshot.outputs.snapshot_id }}
@@ -116,19 +116,39 @@ jobs:
             fi
           done
 
+          successful_workers=0
           for index in "${!run_ids[@]}"; do
             variant="${variants[$index]}"
             run_id="${run_ids[$index]}"
             echo "Waiting for $variant run $run_id."
             gh run watch "$run_id" \
               --repo "$GITHUB_REPOSITORY" \
-              --exit-status \
-              --interval 10
+              --interval 10 || true
+
+            conclusion="$(
+              gh run view "$run_id" \
+                --repo "$GITHUB_REPOSITORY" \
+                --json conclusion \
+                --jq '.conclusion'
+            )"
+            if [[ "$conclusion" == "success" ]]; then
+              successful_workers=$((successful_workers + 1))
+            fi
+            echo "$variant run $run_id concluded: $conclusion"
           done
+
+          if [[ "$successful_workers" -eq 0 ]]; then
+            echo "Neither digest worker succeeded; publication will not be dispatched." >&2
+            exit 1
+          fi
 
           gh workflow run auto-merge-digest.yml \
             --repo "$GITHUB_REPOSITORY" \
             --ref "$GITHUB_REF_NAME"
+
+          if [[ "$successful_workers" -ne "${#run_ids[@]}" ]]; then
+            echo "One or more workers failed; successfully generated digests were sent for independent publication." >&2
+          fi
 
       - name: Write experiment summary
         env:
@@ -136,12 +156,12 @@ jobs:
           ARTICLE_COUNT: ${{ steps.snapshot.outputs.article_count }}
         run: |
           {
-            echo "## Paired digest workers completed"
+            echo "## Digest workers completed"
             echo
             echo "- Snapshot: \`$SNAPSHOT_ID\`"
             echo "- Articles: $ARTICLE_COUNT"
             echo "- Control model: \`claude-sonnet-4.6\`"
             echo "- Economy model: \`gpt-5-mini\`"
             echo "- Prompt: \`v1\`"
-            echo "- Publisher: dispatched"
+            echo "- Publisher: dispatched when at least one worker succeeded"
           } >> "$GITHUB_STEP_SUMMARY"

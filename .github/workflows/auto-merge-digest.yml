@@ -17,7 +17,7 @@ concurrency:
 jobs:
   auto-merge:
     name: Merge validated digest PRs
-    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion != 'cancelled'
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -139,22 +139,26 @@ jobs:
             exit 1
           fi
 
-          merged_pairs=0
+          merged_digests=0
           for snapshot_id in "${snapshots[@]}"; do
             control_pr="${control_prs[$snapshot_id]:-}"
             economy_pr="${economy_prs[$snapshot_id]:-}"
-            if [[ -z "$control_pr" || -z "$economy_pr" ]]; then
-              echo "Waiting for the complete digest pair for $snapshot_id."
-              continue
-            fi
 
-            echo "Merging validated digest pair for $snapshot_id"
-            gh pr merge "$control_pr" --repo "$REPO" --squash --delete-branch
-            gh pr merge "$economy_pr" --repo "$REPO" --squash --delete-branch
-            merged_pairs=$((merged_pairs + 1))
+            for variant in control economy; do
+              pr="${variant}_pr"
+              pr="${!pr}"
+              if [[ -z "$pr" ]]; then
+                echo "No validated $variant digest is available for $snapshot_id."
+                continue
+              fi
+
+              echo "Merging validated $variant digest for $snapshot_id"
+              gh pr merge "$pr" --repo "$REPO" --squash --delete-branch
+              merged_digests=$((merged_digests + 1))
+            done
           done
 
-          echo "Merged $merged_pairs complete digest pair(s)."
+          echo "Merged $merged_digests validated digest(s)."
 
   update-usage:
     name: Reconcile experiment ledger
