@@ -1,0 +1,55 @@
+name: Digest freshness check
+
+on:
+  schedule:
+    # Run after the coordinator's 10:17 UTC slot and its 75-minute timeout.
+    - cron: "17 13 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: digest-freshness
+  cancel-in-progress: false
+
+jobs:
+  check-primary-digest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout primary digest
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          sparse-checkout: docs/index.html
+
+      - name: Fail when the digest is more than one business day old
+        shell: bash
+        run: |
+          set -euo pipefail
+          published_date="$(grep -oE 'data-published="[0-9]{4}-[0-9]{2}-[0-9]{2}"' docs/index.html | head -n 1 | cut -d '"' -f 2)"
+          if [[ -z "$published_date" ]]; then
+            echo "Unable to find the primary digest publication date." >&2
+            exit 1
+          fi
+
+          python - "$published_date" <<'PY'
+          from datetime import date, timedelta
+          import sys
+
+          published = date.fromisoformat(sys.argv[1])
+          today = date.today()
+          business_days_old = 0
+          day = published
+          while day < today:
+              day += timedelta(days=1)
+              if day.weekday() < 5:
+                  business_days_old += 1
+
+          print(f"Primary digest date: {published}; business days old: {business_days_old}")
+          if business_days_old > 1:
+              raise SystemExit(
+                  "Primary digest is more than one business day old. "
+                  "Dispatch Daily Digest Experiment to recover publication."
+              )
+          PY

@@ -3,7 +3,8 @@ run-name: "Collect and dispatch paired digest"
 
 on:
   schedule:
-    - cron: "0 10 * * 1-5"
+    # Avoid top-of-hour GitHub Actions scheduler congestion.
+    - cron: "17 10 * * 1-5"
   workflow_dispatch:
 
 permissions:
