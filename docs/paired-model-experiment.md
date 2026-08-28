@@ -43,7 +43,7 @@ flowchart TD
 
 ### 1. Collect one deterministic snapshot
 
-`.github/workflows/digest-experiment.yml` runs every day at 10:00 UTC or through manual dispatch. It invokes `scripts/collect-news-snapshot.py`, which:
+`.github/workflows/digest-experiment.yml` runs on weekdays at 10:17 UTC or through manual dispatch. It invokes `scripts/collect-news-snapshot.py`, which:
 
 1. downloads the eight approved RSS or Atom feeds;
 2. rejects oversized feeds and malformed entries;
@@ -105,7 +105,7 @@ After merging a pair, the publisher audits completed worker runs with `gh aw aud
 
 Failed or incomplete runs remain visible even when cost data is unavailable. This avoids hiding reliability differences between models.
 
-The page finalizer updates an AI Credit marker only when the current page belongs to that exact workflow run. Historical records remain in the ledger but cannot rewrite a newer digest. The publisher commits the reconciled ledger and page markers, then deploys that exact commit from `docs/` to GitHub Pages.
+The page finalizer updates an AI Credit marker only when the current page belongs to that exact workflow run. Historical records remain in the ledger but cannot rewrite a newer digest. The publisher commits the reconciled ledger and page markers, then deploys that exact commit from `docs/` to GitHub Pages. When reconciliation finds no page or ledger changes, it skips the redundant Pages deployment.
 
 ## Reliability and safety properties
 
@@ -118,6 +118,7 @@ The page finalizer updates an AI Credit marker only when the current page belong
 - **Auditable costs:** raw run-level records are committed to the repository.
 - **Deterministic dashboards:** browser JavaScript calculates comparisons without another AI call.
 - **Exact deployment:** Pages deploys the reconciliation commit, not a moving branch head.
+- **Freshness monitoring:** `.github/workflows/digest-freshness.yml` fails on weekdays when the primary digest is more than one business day old.
 
 ## Failure and recovery behavior
 
@@ -129,6 +130,7 @@ The page finalizer updates an AI Credit marker only when the current page belong
 | Pull request violates author, label, title, or file rules | Publisher fails validation | Correct the workflow; do not bypass the guard |
 | AI Credit audit is temporarily unavailable | Run remains in the ledger with `aic: null` | Rerun the publisher to reconcile later |
 | `main` changes during reconciliation | Publisher retries from the latest `main` | Automatic, up to three attempts |
+| Coordinator schedule is delayed or missed | The current digest remains live | The 13:17 UTC weekday freshness check fails; dispatch the coordinator manually and investigate the missed schedule |
 | Explicit publisher dispatch is missed | Pair remains queued | The 10:30 UTC fallback or manual publisher run processes it |
 
 ## Operating the experiment

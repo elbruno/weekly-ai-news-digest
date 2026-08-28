@@ -171,6 +171,7 @@ jobs:
       contents: write
     outputs:
       commit_sha: ${{ steps.reconcile.outputs.commit_sha }}
+      should_deploy: ${{ steps.reconcile.outputs.should_deploy }}
     steps:
       - name: Checkout main
         uses: actions/checkout@v6
@@ -264,8 +265,9 @@ jobs:
           VARIANTS
 
             if git diff --quiet -- docs/index.html docs/economy/index.html docs/data/ai-credits.json; then
-              echo "Experiment ledger is already current."
+              echo "Experiment ledger is already current; skipping Pages deployment."
               echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+              echo "should_deploy=false" >> "$GITHUB_OUTPUT"
               exit 0
             fi
 
@@ -273,6 +275,7 @@ jobs:
             git commit -m "chore: update digest experiment usage"
             if git push origin HEAD:main; then
               echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+              echo "should_deploy=true" >> "$GITHUB_OUTPUT"
               exit 0
             fi
 
@@ -285,6 +288,7 @@ jobs:
   deploy:
     name: Deploy finalized GitHub Pages
     needs: update-usage
+    if: needs.update-usage.outputs.should_deploy == 'true'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

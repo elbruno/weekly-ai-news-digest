@@ -19,7 +19,7 @@
 
 This repository runs a controlled model experiment, not two unrelated news jobs. A traditional GitHub Actions coordinator collects the RSS feeds once, freezes them into an immutable snapshot, and gives that same snapshot and prompt to Claude Sonnet 4.6 and GPT-5 Mini. The goal is to measure whether the smaller model can preserve a useful digest while reducing AI Credit usage, with deterministic accounting and a guarded publication path. See [Paired Model Experiment: Architecture and Operations](docs/paired-model-experiment.md) for the rationale, data flow, safety controls, telemetry, and recovery procedure.
 
-The experiment runs daily and can also be started from the [Daily Digest Experiment workflow](https://github.com/elbruno/weekly-ai-news-digest/actions/workflows/digest-experiment.yml).
+The experiment runs on weekdays at 10:17 UTC and can also be started from the [Daily Digest Experiment workflow](https://github.com/elbruno/weekly-ai-news-digest/actions/workflows/digest-experiment.yml). A weekday [freshness check](https://github.com/elbruno/weekly-ai-news-digest/actions/workflows/digest-freshness.yml) fails if the primary digest is more than one business day old.
 
 ## How It Works
 
