@@ -363,6 +363,10 @@
     <section class="stats">
       <div class="stat"><span class="lang-text" data-lang="en">{{ story_count }} stories</span><span class="lang-text" data-lang="es">{{ story_count }} noticias</span></div>
       <!-- AI_CREDITS_START --><div class="stat" data-ai-credits-run-id="{{ workflow_run_id }}">AI Credits: <span data-ai-credits-value>Pending finalization</span> · <a href="./ai-credits.html"><span class="lang-text" data-lang="en">Usage history</span><span class="lang-text" data-lang="es">Historial de uso</span></a> · <a href="./model-comparison.html"><span class="lang-text" data-lang="en">Model comparison</span><span class="lang-text" data-lang="es">Comparación de modelos</span></a></div><!-- AI_CREDITS_END -->
+      <div class="stat" id="webmcpSupport" role="status" aria-live="polite">
+        <span class="lang-text" data-lang="en">WebMCP: Checking browser support...</span>
+        <span class="lang-text" data-lang="es">WebMCP: Comprobando compatibilidad del navegador...</span>
+      </div>
       {% for source, count in sources.items() %}
       <div class="stat"><span class="lang-text" data-lang="en">{{ count }} from {{ source }}</span><span class="lang-text" data-lang="es">{{ count }} de {{ source }}</span></div>
       {% endfor %}
@@ -466,6 +470,7 @@
       var labelFilters = document.getElementById("labelFilters");
       var activeFilters = document.getElementById("activeFilters");
       var resultLine = document.getElementById("resultLine");
+      var webmcpSupport = document.getElementById("webmcpSupport");
       var storyList = document.getElementById("storyList");
       var cards = Array.prototype.slice.call(document.querySelectorAll(".story-card"));
       var selectedSources = new Set();
@@ -756,6 +761,14 @@
         };
       }
 
+      function updateWebMcpSupport() {
+        var supported = !!(document.modelContext && typeof document.modelContext.registerTool === "function");
+        webmcpSupport.innerHTML = supported
+          ? '<span class="lang-text" data-lang="en">WebMCP: Supported</span><span class="lang-text" data-lang="es">WebMCP: Compatible</span>'
+          : '<span class="lang-text" data-lang="en">WebMCP: Not supported</span><span class="lang-text" data-lang="es">WebMCP: No compatible</span>';
+        return supported;
+      }
+
       function registerWebMcpTools() {
         if (!document.modelContext || typeof document.modelContext.registerTool !== "function") return;
 
@@ -902,6 +915,7 @@
       renderImportanceFilters();
       renderTagFilters();
       loadLanguage();
+      updateWebMcpSupport();
       registerWebMcpTools();
     })();
   </script>

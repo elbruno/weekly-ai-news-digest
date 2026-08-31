@@ -26,6 +26,15 @@ test("the digest template progressively registers the WebMCP tool set", () => {
   }
 });
 
+test("the digest template displays the current browser's WebMCP support", () => {
+  assert.match(template, /id="webmcpSupport"/);
+  assert.match(template, /WebMCP: Checking browser support/);
+  assert.match(template, /WebMCP: Supported/);
+  assert.match(template, /WebMCP: Not supported/);
+  assert.match(template, /function updateWebMcpSupport\(\)/);
+  assert.match(template, /updateWebMcpSupport\(\);/);
+});
+
 test("WebMCP tools retain the digest's local story data contract", () => {
   for (const attribute of [
     "data-rank",
