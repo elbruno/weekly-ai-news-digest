@@ -55,6 +55,7 @@ The publisher serializes merges, AI Credit reconciliation, and deployment. The C
 - A GitHub-only TL;DR highlights section.
 - Concise summaries, developer impact notes, and Low/Medium/High importance indicators for every story.
 - Source, tag, and importance filters; rank/importance/date sorting; clear-all controls; full-text search; and a responsive dark, light, or system theme.
+- Progressive [WebMCP](https://developer.chrome.com/docs/ai/webmcp) tools for browser agents to search, filter, list visible stories, retrieve story details or URLs, reset filters, and set language or sorting. They operate only on the rendered digest; browsers without experimental WebMCP support retain the full standard interface.
 - The exact AI Credits used by each workflow run, when its audit is available.
 - A no-AI control usage dashboard with UTC daily, ISO-weekly, and monthly totals.
 - A deterministic paired-model dashboard for cost and publication comparisons.
