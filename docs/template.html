@@ -711,6 +711,171 @@
         applyFilters();
       }
 
+      function storyMetadata(card) {
+        var title = card.querySelector(".title a");
+        var titleEn = card.querySelector('.title .lang-text[data-lang="en"]');
+        var titleEs = card.querySelector('.title .lang-text[data-lang="es"]');
+        var summaryEn = card.querySelector('.tldr .lang-text[data-lang="en"]');
+        var summaryEs = card.querySelector('.tldr .lang-text[data-lang="es"]');
+        return {
+          rank: Number(card.dataset.rank),
+          title: {
+            en: titleEn ? titleEn.textContent.trim() : "",
+            es: titleEs ? titleEs.textContent.trim() : ""
+          },
+          summary: {
+            en: summaryEn ? summaryEn.textContent.trim() : "",
+            es: summaryEs ? summaryEs.textContent.trim() : ""
+          },
+          source: card.dataset.source || "",
+          tags: (card.dataset.tags || "").split(",").map(function (tag) { return tag.trim(); }).filter(Boolean),
+          importance: card.dataset.importance || "",
+          published: card.dataset.published || "",
+          url: title ? title.href : ""
+        };
+      }
+
+      function visibleStories() {
+        return cards.filter(function (card) { return card.style.display !== "none"; }).map(storyMetadata);
+      }
+
+      function updateChipSelections(container, selected, attribute) {
+        Array.prototype.forEach.call(container.querySelectorAll(".chip"), function (button) {
+          setChipState(button, selected.has(button.dataset[attribute]));
+        });
+      }
+
+      function filterState() {
+        return {
+          query: searchInput.value.trim(),
+          sources: Array.from(selectedSources),
+          tags: Array.from(selectedTags),
+          importance: Array.from(selectedImportance),
+          sort: sortSelect.value,
+          matchingStories: visibleStories().length
+        };
+      }
+
+      function registerWebMcpTools() {
+        if (!document.modelContext || typeof document.modelContext.registerTool !== "function") return;
+
+        var untrustedReadOnly = { readOnlyHint: true, untrustedContentHint: true };
+        var tools = [
+          {
+            name: "search_digest",
+            description: "Search the already published AI and developer news digest. Updates the visible story list and returns matching story metadata; it does not fetch external articles.",
+            inputSchema: { type: "object", properties: { query: { type: "string", description: "Text to match against titles, summaries, sources, importance, and tags." } }, required: ["query"] },
+            annotations: { readOnlyHint: false, untrustedContentHint: true },
+            execute: function (args) {
+              searchInput.value = args.query.trim();
+              applyFilters();
+              return { state: filterState(), stories: visibleStories() };
+            }
+          },
+          {
+            name: "filter_digest",
+            description: "Filter the already published digest by source, tag, and importance. Updates the visible story list and does not fetch external articles.",
+            inputSchema: {
+              type: "object",
+              properties: {
+                sources: { type: "array", items: { type: "string" }, description: "Exact source names to include. An empty array includes all sources." },
+                tags: { type: "array", items: { type: "string" }, description: "Exact tags that every matching story must contain. An empty array removes tag filtering." },
+                importance: { type: "array", items: { type: "string", enum: ["Low", "Medium", "High"] }, description: "Importance levels to include. An empty array includes all levels." }
+              }
+            },
+            annotations: { readOnlyHint: false, untrustedContentHint: true },
+            execute: function (args) {
+              if (Array.isArray(args.sources)) {
+                selectedSources.clear();
+                args.sources.forEach(function (source) { if (collectSources().indexOf(source) !== -1) selectedSources.add(source); });
+                updateChipSelections(sourceFilters, selectedSources, "source");
+              }
+              if (Array.isArray(args.tags)) {
+                selectedTags.clear();
+                args.tags.forEach(function (tag) { if (collectValues("tags").indexOf(tag) !== -1) selectedTags.add(tag); });
+                updateChipSelections(labelFilters, selectedTags, "tag");
+              }
+              if (Array.isArray(args.importance)) {
+                selectedImportance.clear();
+                args.importance.forEach(function (value) { if (importanceOrder[value]) selectedImportance.add(value); });
+                updateChipSelections(importanceFilters, selectedImportance, "importance");
+              }
+              applyFilters();
+              return { state: filterState(), stories: visibleStories() };
+            }
+          },
+          {
+            name: "list_visible_stories",
+            description: "Return metadata for the stories currently visible in the digest without changing the page.",
+            inputSchema: { type: "object", properties: {} },
+            annotations: untrustedReadOnly,
+            execute: function () { return { state: filterState(), stories: visibleStories() }; }
+          },
+          {
+            name: "get_story_details",
+            description: "Return metadata and the canonical HTTPS article URL for one digest story by its displayed rank without navigating to or fetching the article.",
+            inputSchema: { type: "object", properties: { rank: { type: "integer", minimum: 1, description: "The story's displayed curated rank." } }, required: ["rank"] },
+            annotations: untrustedReadOnly,
+            execute: function (args) {
+              var card = cards.find(function (item) { return Number(item.dataset.rank) === args.rank; });
+              if (!card) throw new Error("No story exists for rank " + args.rank + ".");
+              return storyMetadata(card);
+            }
+          },
+          {
+            name: "get_story_url",
+            description: "Return the canonical HTTPS article URL for one digest story by its displayed rank without navigating to or fetching the article.",
+            inputSchema: { type: "object", properties: { rank: { type: "integer", minimum: 1, description: "The story's displayed curated rank." } }, required: ["rank"] },
+            annotations: untrustedReadOnly,
+            execute: function (args) {
+              var card = cards.find(function (item) { return Number(item.dataset.rank) === args.rank; });
+              if (!card) throw new Error("No story exists for rank " + args.rank + ".");
+              return { rank: args.rank, url: storyMetadata(card).url };
+            }
+          },
+          {
+            name: "reset_digest_filters",
+            description: "Clear the digest search and all filters and restore curated-rank sorting.",
+            inputSchema: { type: "object", properties: {} },
+            annotations: { readOnlyHint: false },
+            execute: function () { resetFilters(); return filterState(); }
+          },
+          {
+            name: "set_digest_language",
+            description: "Set the digest reader language to English or Spanish.",
+            inputSchema: { type: "object", properties: { language: { type: "string", enum: ["en", "es"] } }, required: ["language"] },
+            annotations: { readOnlyHint: false },
+            execute: function (args) {
+              languageSelect.value = args.language;
+              localStorage.setItem("digest-language", args.language);
+              applyLanguage(args.language);
+              return { language: args.language };
+            }
+          },
+          {
+            name: "set_digest_sort",
+            description: "Set the order of the visible digest stories.",
+            inputSchema: { type: "object", properties: { sort: { type: "string", enum: ["rank", "importance-desc", "importance-asc", "newest", "oldest"] } }, required: ["sort"] },
+            annotations: { readOnlyHint: false },
+            execute: function (args) {
+              sortSelect.value = args.sort;
+              applyFilters();
+              return filterState();
+            }
+          }
+        ];
+
+        tools.forEach(function (tool) {
+          try {
+            Promise.resolve(document.modelContext.registerTool(tool)).catch(function () {
+              // WebMCP is optional; an unsupported or disallowed browser must retain the normal UI.
+            });
+          } catch (error) {
+            // Registration can also be rejected synchronously by a browser policy.
+          }
+        });
+      }
+
       themeSelect.addEventListener("change", function () {
         var value = themeSelect.value;
         localStorage.setItem("digest-theme", value);
@@ -737,6 +902,7 @@
       renderImportanceFilters();
       renderTagFilters();
       loadLanguage();
+      registerWebMcpTools();
     })();
   </script>
 </body>
