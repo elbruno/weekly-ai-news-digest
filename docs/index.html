@@ -368,6 +368,10 @@
     <section class="stats">
       <div class="stat"><span class="lang-text" data-lang="en">30 stories</span><span class="lang-text" data-lang="es">30 noticias</span></div>
       <!-- AI_CREDITS_START --><div class="stat" data-ai-credits-run-id="33395754518">AI Credits: <span data-ai-credits-value>75.76</span> · <a href="./ai-credits.html">Usage history</a> · <a href="./model-comparison.html">Model comparison</a></div><!-- AI_CREDITS_END -->
+      <div class="stat" id="webmcpSupport" role="status" aria-live="polite">
+        <span class="lang-text" data-lang="en">WebMCP: Checking browser support...</span>
+        <span class="lang-text" data-lang="es">WebMCP: Comprobando compatibilidad del navegador...</span>
+      </div>
       <div class="stat"><span class="lang-text" data-lang="en">17 from GitHub Changelog</span><span class="lang-text" data-lang="es">17 de GitHub Changelog</span></div><div class="stat"><span class="lang-text" data-lang="en">4 from Microsoft Developer</span><span class="lang-text" data-lang="es">4 de Microsoft Developer</span></div><div class="stat"><span class="lang-text" data-lang="en">4 from Ars Technica</span><span class="lang-text" data-lang="es">4 de Ars Technica</span></div><div class="stat"><span class="lang-text" data-lang="en">3 from TechCrunch AI</span><span class="lang-text" data-lang="es">3 de TechCrunch AI</span></div><div class="stat"><span class="lang-text" data-lang="en">1 from MIT Technology Review</span><span class="lang-text" data-lang="es">1 de MIT Technology Review</span></div><div class="stat"><span class="lang-text" data-lang="en">1 from VentureBeat AI</span><span class="lang-text" data-lang="es">1 de VentureBeat AI</span></div>
     </section>
     <p class="credit-note">
@@ -1423,6 +1427,7 @@
       var labelFilters = document.getElementById("labelFilters");
       var activeFilters = document.getElementById("activeFilters");
       var resultLine = document.getElementById("resultLine");
+      var webmcpSupport = document.getElementById("webmcpSupport");
       var storyList = document.getElementById("storyList");
       var cards = Array.prototype.slice.call(document.querySelectorAll(".story-card"));
       var selectedSources = new Set();
@@ -1713,6 +1718,14 @@
         };
       }
 
+      function updateWebMcpSupport() {
+        var supported = !!(document.modelContext && typeof document.modelContext.registerTool === "function");
+        webmcpSupport.innerHTML = supported
+          ? '<span class="lang-text" data-lang="en">WebMCP: Supported</span><span class="lang-text" data-lang="es">WebMCP: Compatible</span>'
+          : '<span class="lang-text" data-lang="en">WebMCP: Not supported</span><span class="lang-text" data-lang="es">WebMCP: No compatible</span>';
+        return supported;
+      }
+
       function registerWebMcpTools() {
         if (!document.modelContext || typeof document.modelContext.registerTool !== "function") return;
 
@@ -1859,6 +1872,7 @@
       renderImportanceFilters();
       renderTagFilters();
       loadLanguage();
+      updateWebMcpSupport();
       registerWebMcpTools();
     })();
   </script>
