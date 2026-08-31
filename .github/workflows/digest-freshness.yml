@@ -7,6 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
+  actions: write
   contents: read
 
 concurrency:
@@ -53,3 +54,11 @@ jobs:
                   "Dispatch Daily Digest Experiment to recover publication."
               )
           PY
+
+      - name: Dispatch a recovery digest when stale
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh workflow run digest-experiment.yml --repo "$GITHUB_REPOSITORY" --ref main
