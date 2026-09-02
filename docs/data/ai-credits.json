@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-09-02T14:41:27.536Z",
+  "updatedAt": "2026-09-02T14:43:37.758Z",
   "runs": [
     {
       "runId": 32397785518,
@@ -643,8 +643,8 @@
       "aic": 113.783655,
       "durationSeconds": 544,
       "conclusion": "success",
-      "published": false,
-      "quality": "not-published",
+      "published": true,
+      "quality": "published",
       "pagePath": "docs/economy/index.html",
       "url": "https://github.com/elbruno/weekly-ai-news-digest/actions/runs/33642467350"
     }
