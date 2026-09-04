@@ -31,7 +31,7 @@ permissions:
 
 engine:
   id: copilot
-  model: claude-sonnet-4.5
+  model: sonnet
 
 strict: true
 timeout-minutes: 45
@@ -71,7 +71,7 @@ imports:
     with:
       variant: control
       variant_label: Control
-      model: claude-sonnet-4.5
+      model: sonnet
       output_path: docs/index.html
       usage_path: ./ai-credits.html
       comparison_path: ./model-comparison.html
