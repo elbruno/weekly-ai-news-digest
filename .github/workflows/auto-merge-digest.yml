@@ -260,7 +260,7 @@ jobs:
                   --digest "$digest_path"
               done
             done <<'VARIANTS'
-          daily-digest-control.lock.yml|control|claude-sonnet-4.5|docs/index.html
+          daily-digest-control.lock.yml|control|gpt-5.4|docs/index.html
           daily-digest-economy.lock.yml|economy|gpt-5-mini|docs/economy/index.html
           VARIANTS
 

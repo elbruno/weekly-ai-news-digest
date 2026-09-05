@@ -31,7 +31,7 @@ permissions:
 
 engine:
   id: copilot
-  model: sonnet
+  model: gpt-5.4
 
 strict: true
 timeout-minutes: 45
@@ -71,7 +71,7 @@ imports:
     with:
       variant: control
       variant_label: Control
-      model: sonnet
+      model: gpt-5.4
       output_path: docs/index.html
       usage_path: ./ai-credits.html
       comparison_path: ./model-comparison.html
