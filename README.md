@@ -43,6 +43,44 @@ Deterministic publisher
   -> Deploy the exact reconciled commit to GitHub Pages
 ```
 
+### Agentic Workflow Architecture
+
+The two agentic workflow source files are intentionally thin, model-specific wrappers:
+
+- [`.github/workflows/daily-digest-control.md`](.github/workflows/daily-digest-control.md) pins the control model and its output path.
+- [`.github/workflows/daily-digest-economy.md`](.github/workflows/daily-digest-economy.md) pins the economy model and its output path.
+- Both import [`.github/workflows/shared/digest-generation.md`](.github/workflows/shared/digest-generation.md), which contains the shared curation, safety, page, validation, and publication instructions.
+
+`gh aw compile` combines each wrapper with the shared contract and generates the corresponding `.lock.yml` GitHub Actions workflow. At runtime, both compiled workers receive the same immutable snapshot and create separate, tightly scoped pull requests. The deterministic publisher validates each available compatible result, merges the variants independently, and reconciles the experiment ledger.
+
+```mermaid
+flowchart TD
+    Shared["Shared prompt contract<br/>shared/digest-generation.md"]
+    Control["Control wrapper<br/>daily-digest-control.md<br/>model: gpt-5.4"]
+    Economy["Economy wrapper<br/>daily-digest-economy.md<br/>model: gpt-5-mini"]
+    ControlLock["Compiled control workflow<br/>daily-digest-control.lock.yml"]
+    EconomyLock["Compiled economy workflow<br/>daily-digest-economy.lock.yml"]
+    Snapshot["Traditional Actions coordinator<br/>one immutable news snapshot"]
+    ControlPR["Scoped control PR<br/>docs/index.html"]
+    EconomyPR["Scoped economy PR<br/>docs/economy/index.html"]
+    Publisher["Deterministic publisher<br/>validate and independently merge<br/>available variants, reconcile credits"]
+    Pages["Reconciled commit<br/>GitHub Pages"]
+
+    Shared -->|imported at compile time| ControlLock
+    Shared -->|imported at compile time| EconomyLock
+    Control -->|gh aw compile| ControlLock
+    Economy -->|gh aw compile| EconomyLock
+    Snapshot -->|same snapshot ID| ControlLock
+    Snapshot -->|same snapshot ID| EconomyLock
+    ControlLock -->|safe output| ControlPR
+    EconomyLock -->|safe output| EconomyPR
+    ControlPR --> Publisher
+    EconomyPR --> Publisher
+    Publisher --> Pages
+```
+
+For a deliberately self-contained teaching example, see [`.github/workflows/agentic-workflow-single-file.md`](.github/workflows/agentic-workflow-single-file.md). It places all explanatory instructions in one workflow file, uses the configured default model, runs only when manually dispatched, and has no imports or repository write outputs.
+
 The coordinator performs all network retrieval without AI. Each agent receives the resulting artifact, verifies its checksum, and curates only those articles. The agents have read-only repository permissions in sandboxed containers; separate `safe_outputs` jobs create tightly scoped pull requests after threat detection.
 
 The publisher serializes merges, AI Credit reconciliation, and deployment. The control-model usage dashboard retains its original URL and reporting behavior. The [comparison dashboard](https://elbruno.github.io/weekly-ai-news-digest/model-comparison.html) pairs runs by snapshot ID to show cost, savings, publication status, and experiment completeness without using AI.
@@ -96,6 +134,7 @@ weekly-ai-news-digest/
 │       ├── digest-experiment.yml          # Snapshot coordinator
 │       ├── daily-digest-control.md        # Control agent definition
 │       ├── daily-digest-economy.md        # Economy agent definition
+│       ├── agentic-workflow-single-file.md # Self-contained teaching example
 │       └── auto-merge-digest.yml          # Merge, reconciliation, and deploy
 ├── docs/
 │   ├── assets/                           # README media
