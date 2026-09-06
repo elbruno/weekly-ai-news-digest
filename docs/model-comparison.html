@@ -96,7 +96,7 @@
   <header>
     <div class="container">
       <h1>Model comparison</h1>
-      <p class="subtitle">Paired runs use one immutable RSS snapshot and one prompt contract. The digests are generated with <code>claude-sonnet-4.6</code> and <code>gpt-5-mini</code>.</p>
+      <p class="subtitle">Paired runs use one immutable RSS snapshot and one prompt contract. The digests are generated with <code id="controlModelCode">the control model</code> and <code id="economyModelCode">the economy model</code>.</p>
       <div class="toolbar">
         <label>Theme:
           <select id="theme">
@@ -105,9 +105,9 @@
             <option value="dark">Dark</option>
           </select>
         </label>
-        <a href="./index.html">Claude Sonnet 4.6 digest</a>
-        <a href="./economy/index.html">GPT-5 Mini digest</a>
-        <a href="./ai-credits.html">Claude Sonnet 4.6 usage history</a>
+        <a href="./index.html" id="controlDigestLink">Control digest</a>
+        <a href="./economy/index.html" id="economyDigestLink">Economy digest</a>
+        <a href="./ai-credits.html" id="controlUsageLink">Control usage history</a>
       </div>
     </div>
   </header>
@@ -115,16 +115,18 @@
   <main class="container">
     <section class="summary" aria-label="Experiment summary">
       <div class="card"><div class="metric-label">Complete pairs</div><div class="metric-value" id="pairs">-</div></div>
-      <div class="card"><div class="metric-label">Claude Sonnet 4.6 average</div><div class="metric-value" id="controlAverage">-</div></div>
-      <div class="card"><div class="metric-label">GPT-5 Mini average</div><div class="metric-value" id="economyAverage">-</div></div>
+      <div class="card"><div class="metric-label" id="controlAverageLabel">Control average</div><div class="metric-value" id="controlAverage">-</div></div>
+      <div class="card"><div class="metric-label" id="economyAverageLabel">Economy average</div><div class="metric-value" id="economyAverage">-</div></div>
       <div class="card"><div class="metric-label">Paired savings</div><div class="metric-value" id="savings">-</div></div>
     </section>
+
+    <p id="modelHistoryNote" class="note" hidden></p>
 
     <section class="card chart-card" aria-labelledby="chartTitle">
       <h2 id="chartTitle">AI Credits by snapshot</h2>
       <div class="legend">
-        <span><span class="swatch" style="background: var(--control)"></span>Claude Sonnet 4.6</span>
-        <span><span class="swatch" style="background: var(--economy)"></span>GPT-5 Mini</span>
+        <span><span class="swatch" style="background: var(--control)"></span><span id="controlLegend">Control</span></span>
+        <span><span class="swatch" style="background: var(--economy)"></span><span id="economyLegend">Economy</span></span>
       </div>
       <svg id="chart" role="img" aria-labelledby="chartTitle chartDescription"></svg>
       <p id="chartDescription" class="note">Loading paired usage history...</p>
@@ -134,7 +136,7 @@
       <h2>Snapshot details</h2>
       <table>
         <thead>
-          <tr><th>Snapshot</th><th>Claude Sonnet 4.6</th><th>GPT-5 Mini</th><th>Savings</th><th>Publication</th></tr>
+          <tr><th>Snapshot</th><th>Control model</th><th id="controlColumnHeader">Control</th><th id="economyColumnHeader">Economy</th><th>Savings</th><th>Publication</th></tr>
         </thead>
         <tbody id="pairRows"></tbody>
       </table>
@@ -148,6 +150,80 @@
     (function () {
       var formatter = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
       var theme = document.getElementById("theme");
+
+      // Display names are derived from the ledger, never hardcoded, so the page
+      // stays correct whenever a variant switches to a different model.
+      var MODEL_NAMES = {
+        "claude-sonnet-4.6": "Claude Sonnet 4.6",
+        "claude-sonnet-4.5": "Claude Sonnet 4.5",
+        "gpt-5-mini": "GPT-5 Mini",
+        "gpt-5.4": "GPT-5.4",
+      };
+
+      function modelName(id) {
+        if (!id) return "Unknown model";
+        return MODEL_NAMES[id] || id;
+      }
+
+      // Latest model per variant, plus every model that variant has ever used,
+      // ordered oldest to newest.
+      function modelsByVariant(runs) {
+        var ordered = runs.slice().sort(function (left, right) {
+          return Date.parse(left.timestamp) - Date.parse(right.timestamp);
+        });
+        var seen = { control: [], economy: [] };
+        ordered.forEach(function (run) {
+          var list = seen[run.variant];
+          if (list && run.model && list.indexOf(run.model) === -1) list.push(run.model);
+        });
+        return {
+          control: seen.control,
+          economy: seen.economy,
+          currentControl: seen.control[seen.control.length - 1] || null,
+          currentEconomy: seen.economy[seen.economy.length - 1] || null,
+        };
+      }
+
+      function applyModelLabels(models) {
+        var control = modelName(models.currentControl);
+        var economy = modelName(models.currentEconomy);
+        var mixedControl = models.control.length > 1;
+        var mixedEconomy = models.economy.length > 1;
+
+        function setText(id, text) {
+          var node = document.getElementById(id);
+          if (node) node.textContent = text;
+        }
+
+        setText("controlModelCode", models.currentControl || "unknown");
+        setText("economyModelCode", models.currentEconomy || "unknown");
+        setText("controlDigestLink", control + " digest");
+        setText("economyDigestLink", economy + " digest");
+        setText("controlUsageLink", control + " usage history");
+        // Aggregates span every model a variant has used, so they stay
+        // variant-labelled rather than claiming a single model.
+        setText("controlAverageLabel", mixedControl ? "Control average (all models)" : control + " average");
+        setText("economyAverageLabel", mixedEconomy ? "Economy average (all models)" : economy + " average");
+        setText("controlLegend", mixedControl ? "Control (per-run model)" : "Control (" + control + ")");
+        setText("economyLegend", mixedEconomy ? "Economy (per-run model)" : "Economy (" + economy + ")");
+        setText("controlColumnHeader", "Control AIC");
+        setText("economyColumnHeader", "Economy AIC");
+
+        var note = document.getElementById("modelHistoryNote");
+        if (!note) return;
+        var previous = models.control.slice(0, -1);
+        if (!previous.length) {
+          note.hidden = true;
+          return;
+        }
+        note.hidden = false;
+        note.textContent =
+          "The control variant previously ran " +
+          previous.map(modelName).join(", ") +
+          " and now runs " +
+          control +
+          ". Each row reports the model that actually produced that run, so averages and savings span more than one control model.";
+      }
       var chart = document.getElementById("chart");
       var description = document.getElementById("chartDescription");
 
@@ -217,8 +293,7 @@
             bar.setAttribute("rx", 3);
             bar.setAttribute("class", variant + "-bar");
             var title = document.createElementNS(namespace, "title");
-            var modelName = variant === "control" ? "Claude Sonnet 4.6" : "GPT-5 Mini";
-            title.textContent = modelName + ": " + formatter.format(run.aic) + " AI Credits";
+            title.textContent = modelName(run.model) + ": " + formatter.format(run.aic) + " AI Credits";
             bar.appendChild(title);
             chart.appendChild(bar);
           });
@@ -245,6 +320,8 @@
       function render(history) {
         var pairs = AiCreditUsage.pairBySnapshot(history.runs);
         var summary = AiCreditUsage.summarizePairs(pairs);
+        var models = modelsByVariant(history.runs);
+        applyModelLabels(models);
         document.getElementById("pairs").textContent = summary.complete + " / " + summary.total;
         document.getElementById("controlAverage").textContent = formatter.format(
           summary.complete ? summary.controlAic / summary.complete : 0
@@ -259,13 +336,14 @@
         pairs.slice().reverse().forEach(function (pair) {
           var row = document.createElement("tr");
           addCell(row, pair.snapshotId);
+          addCell(row, modelName((pair.control && pair.control.model) || models.currentControl));
           addCell(row, measured(pair.control) ? formatter.format(pair.control.aic) : "-", "number");
           addCell(row, measured(pair.economy) ? formatter.format(pair.economy.aic) : "-", "number");
           var saved = measured(pair.control) && measured(pair.economy) && Number(pair.control.aic) !== 0
             ? ((Number(pair.control.aic) - Number(pair.economy.aic)) / Number(pair.control.aic)) * 100
             : null;
           addCell(row, saved === null ? "-" : formatter.format(saved) + "%", "number");
-          var publication = "Claude Sonnet 4.6: " + status(pair.control) + "; GPT-5 Mini: " + status(pair.economy);
+          var publication = "Control: " + status(pair.control) + "; Economy: " + status(pair.economy);
           addCell(row, publication, measured(pair.control) && measured(pair.economy) ? "ok" : "missing");
           rows.appendChild(row);
         });

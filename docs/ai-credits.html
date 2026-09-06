@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Daily, weekly, and monthly AI Credit usage for the Claude Sonnet 4.6 AI news digest." />
-  <title>Claude Sonnet 4.6 AI Credit Usage - AI &amp; Developer News Digest</title>
+  <meta name="description" content="Daily, weekly, and monthly AI Credit usage for the control-model AI news digest." />
+  <title>Control Model AI Credit Usage - AI &amp; Developer News Digest</title>
   <style>
     :root {
       --bg: #0d1117;
@@ -97,8 +97,8 @@
 <body>
   <header>
     <div class="container">
-      <h1>Claude Sonnet 4.6 AI Credit Usage</h1>
-      <p class="subtitle">Usage for the AI &amp; Developer News Digest generated with <code>claude-sonnet-4.6</code>. One published run is selected per UTC day. ISO weeks start on Monday.</p>
+      <h1 id="pageHeading">Control model AI Credit Usage</h1>
+      <p class="subtitle">Usage for the AI &amp; Developer News Digest generated with the control model<span id="controlModelSuffix"></span>. One published run is selected per UTC day. ISO weeks start on Monday.</p>
       <div class="toolbar">
         <button type="button" data-period="daily" class="active">Daily</button>
         <button type="button" data-period="weekly">Weekly</button>
@@ -138,7 +138,7 @@
     </section>
   </main>
 
-  <footer><div class="container">This view filters the shared experiment ledger to published Claude Sonnet 4.6 runs. No AI is used to build this page.</div></footer>
+  <footer><div class="container">This view filters the shared experiment ledger to published control-variant runs. No AI is used to build this page.</div></footer>
 
   <script src="./assets/ai-credit-utils.js"></script>
   <script>
@@ -217,9 +217,43 @@
         description.textContent = "Showing the latest " + visible.length + " " + state.period + " periods. Hover or focus chart bars for exact totals.";
       }
 
+      // Model names come from the ledger so this page follows the control
+      // variant whenever it switches to a different model.
+      var MODEL_NAMES = {
+        "claude-sonnet-4.6": "Claude Sonnet 4.6",
+        "claude-sonnet-4.5": "Claude Sonnet 4.5",
+        "gpt-5-mini": "GPT-5 Mini",
+        "gpt-5.4": "GPT-5.4",
+      };
+
+      function applyControlModelLabels(runs) {
+        var models = [];
+        runs.slice()
+          .sort(function (left, right) {
+            return Date.parse(left.timestamp) - Date.parse(right.timestamp);
+          })
+          .forEach(function (run) {
+            if (run.variant === "control" && run.model && models.indexOf(run.model) === -1) {
+              models.push(run.model);
+            }
+          });
+        var current = models[models.length - 1];
+        if (!current) return;
+        var name = MODEL_NAMES[current] || current;
+        document.getElementById("pageHeading").textContent = name + " AI Credit Usage";
+        document.title = name + " AI Credit Usage - AI & Developer News Digest";
+        var suffix = document.getElementById("controlModelSuffix");
+        if (suffix) {
+          suffix.textContent =
+            models.length > 1
+              ? " (currently " + name + "; history also includes " +
+                models.slice(0, -1).map(function (id) { return MODEL_NAMES[id] || id; }).join(", ") + ")"
+              : " (" + name + ")";
+        }
+      }
+
       function render() {
-        var data = AiCreditUsage.aggregate(state.runs, state.period);
-        var total = state.runs.reduce(function (sum, run) { return sum + Number(run.aic); }, 0);
+        var data = AiCreditUsage.aggregate(state.runs, state.period);        var total = state.runs.reduce(function (sum, run) { return sum + Number(run.aic); }, 0);
         document.getElementById("total").textContent = formatter.format(total);
         document.getElementById("runs").textContent = String(state.runs.length);
         document.getElementById("average").textContent = formatter.format(state.runs.length ? total / state.runs.length : 0);
@@ -258,6 +292,7 @@
           }
           state.rawRuns = history.runs;
           state.runs = AiCreditUsage.selectDailyRuns(history.runs, "control");
+          applyControlModelLabels(history.runs);
           render();
         })
         .catch(function (error) {

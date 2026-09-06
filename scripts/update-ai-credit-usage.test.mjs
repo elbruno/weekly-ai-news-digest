@@ -102,8 +102,34 @@ test("upserts by run ID and preserves a prior publication", () => {
   assert.strictEqual(upsertHistory(history, retried), history);
 });
 
-test("sorts records chronologically", () => {
-  const later = makeRecord();
+test("keeps the originally recorded model when a run is reconciled again", () => {
+  const original = makeRecord({ model: "claude-sonnet-4.6" });
+  const replayed = { ...original, model: "gpt-5.4" };
+  const updated = upsertHistory(
+    { schemaVersion: 2, updatedAt: null, runs: [original] },
+    replayed,
+    new Date("2026-09-05T00:00:00Z"),
+  );
+
+  assert.equal(updated.runs[0].model, "claude-sonnet-4.6");
+});
+
+test("records the current model for a run the ledger has not seen", () => {
+  const existing = makeRecord({ model: "claude-sonnet-4.6" });
+  const fresh = { ...existing, runId: 456, model: "gpt-5.4" };
+  const updated = upsertHistory(
+    { schemaVersion: 2, updatedAt: null, runs: [existing] },
+    fresh,
+    new Date("2026-09-05T00:00:00Z"),
+  );
+
+  assert.deepEqual(
+    updated.runs.map(({ model }) => model),
+    ["claude-sonnet-4.6", "gpt-5.4"],
+  );
+});
+
+test("sorts records chronologically", () => {  const later = makeRecord();
   const earlier = {
     ...later,
     runId: 122,
