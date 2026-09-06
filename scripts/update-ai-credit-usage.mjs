@@ -87,6 +87,10 @@ export function upsertHistory(history, record, now = new Date()) {
     ? {
         ...existing,
         ...record,
+        // The model that produced a run is a historical fact. Reconciliation
+        // replays every past run with the variant's *current* model, so keep
+        // the originally recorded value instead of rewriting the ledger.
+        model: existing.model || record.model,
         aic: record.aic ?? existing.aic,
         published: existing.published || record.published,
         quality:
