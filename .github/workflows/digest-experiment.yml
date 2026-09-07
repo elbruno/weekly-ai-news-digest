@@ -3,8 +3,10 @@ run-name: "Collect and dispatch paired digest"
 
 on:
   schedule:
-    # Avoid top-of-hour GitHub Actions scheduler congestion.
-    - cron: "17 10 * * 1-5"
+    # GitHub Actions cron is UTC-only. The two slots cover Toronto daylight
+    # saving time (10:00 UTC) and standard time (11:00 UTC).
+    - cron: "0 10 * * 1-5"
+    - cron: "0 11 * * 1-5"
   workflow_dispatch:
 
 permissions:
@@ -16,7 +18,26 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  toronto-time-gate:
+    runs-on: ubuntu-latest
+    outputs:
+      should_run: ${{ steps.check.outputs.should_run }}
+    steps:
+      - name: Run only at 6:00 AM Toronto time
+        id: check
+        shell: bash
+        run: |
+          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ||
+                "$(TZ=America/Toronto date +%H:%M)" == "06:00" ]]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "should_run=false" >> "$GITHUB_OUTPUT"
+            echo "Ignoring the alternate UTC slot outside 6:00 AM Toronto time."
+          fi
+
   collect-and-dispatch:
+    needs: toronto-time-gate
+    if: needs.toronto-time-gate.outputs.should_run == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 75
     steps:
