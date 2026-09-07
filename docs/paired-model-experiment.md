@@ -45,7 +45,7 @@ flowchart TD
 
 ### 1. Collect one deterministic snapshot
 
-`.github/workflows/digest-experiment.yml` runs on weekdays at 10:17 UTC or through manual dispatch. It invokes `scripts/collect-news-snapshot.py`, which:
+`.github/workflows/digest-experiment.yml` runs on weekdays at 6:00 AM Toronto time or through manual dispatch. Because GitHub Actions schedules use UTC, it has daylight-saving and standard-time slots plus a Toronto-time gate. It invokes `scripts/collect-news-snapshot.py`, which:
 
 1. downloads the eight approved RSS or Atom feeds;
 2. rejects oversized feeds and malformed entries;

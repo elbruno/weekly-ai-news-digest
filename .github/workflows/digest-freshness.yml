@@ -2,8 +2,8 @@ name: Digest freshness check
 
 on:
   schedule:
-    # Run after the coordinator's 10:17 UTC slot and its 75-minute timeout.
-    - cron: "17 13 * * 1-5"
+    # Run after the coordinator's 10:00 UTC slot and its 75-minute timeout.
+    - cron: "0 13 * * 1-5"
   workflow_dispatch:
 
 permissions:
