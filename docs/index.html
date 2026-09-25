@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="A bilingual digest of the most important AI, developer tooling, cloud, and security updates selected from the approved snapshot." />
-  <meta property="og:title" content="AI &amp; Developer News Digest - Sep 10-24, 2026" />
+  <meta property="og:title" content="AI &amp; Developer News Digest - Sep 14-25, 2026" />
   <meta property="og:description" content="A bilingual digest of the most important AI, developer tooling, cloud, and security updates selected from the approved snapshot." />
   <meta property="og:url" content="https://elbruno.github.io/weekly-ai-news-digest/" />
   <meta property="og:type" content="website" />
-  <title>AI &amp; Developer News Digest - Sep 10-24, 2026</title>
+  <title>AI &amp; Developer News Digest - Sep 14-25, 2026</title>
 
   <style>
     :root {
@@ -310,9 +310,10 @@
       .clear-button { width: 100%; }
       .date { margin-left: 0; }
     }
+  
   </style>
 </head>
-<body data-digest-variant="control" data-digest-model="gpt-5.4" data-snapshot-id="2026-09-24-287d1ebc1412" data-prompt-version="v1">
+<body data-digest-variant="control" data-digest-model="gpt-5.4" data-snapshot-id="2026-09-25-c7ccbf631db2" data-prompt-version="v1">
   <header>
     <div class="container">
       <div class="badge">
@@ -324,8 +325,8 @@
         <span class="lang-text" data-lang="es">Resumen de noticias de IA y desarrollo</span>
       </h1>
       <p class="meta">
-        <span class="lang-text" data-lang="en">Sep 10-24, 2026 · 28 stories · curated from the approved snapshot</span>
-        <span class="lang-text" data-lang="es">10-24 sep 2026 · 28 noticias · seleccionadas del snapshot aprobado</span>
+        <span class="lang-text" data-lang="en">Sep 14-25, 2026 · 30 stories · curated from the approved snapshot</span>
+        <span class="lang-text" data-lang="es">14-25 sep 2026 · 30 noticias · seleccionadas del snapshot aprobado</span>
       </p>
 
       <div class="top-bar">
@@ -361,16 +362,13 @@
 
   <main class="container">
     <section class="stats">
-      <div class="stat"><span class="lang-text" data-lang="en">28 stories</span><span class="lang-text" data-lang="es">28 noticias</span></div>
-      <!-- AI_CREDITS_START --><div class="stat" data-ai-credits-run-id="36036182901">AI Credits: <span data-ai-credits-value>229.52</span> · <a href="./ai-credits.html">Usage history</a> · <a href="./model-comparison.html">Model comparison</a></div><!-- AI_CREDITS_END -->
-      <div class="stat" id="webmcpSupport" role="status" aria-live="polite">
-        <span class="lang-text" data-lang="en">WebMCP: Checking browser support...</span>
-        <span class="lang-text" data-lang="es">WebMCP: Comprobando compatibilidad del navegador...</span>
-      </div>
-            <div class="stat"><span class="lang-text" data-lang="en">13 from GitHub Changelog</span><span class="lang-text" data-lang="es">13 de GitHub Changelog</span></div>
-      <div class="stat"><span class="lang-text" data-lang="en">11 from Microsoft Developer</span><span class="lang-text" data-lang="es">11 de Microsoft Developer</span></div>
+      <div class="stat"><span class="lang-text" data-lang="en">30 stories</span><span class="lang-text" data-lang="es">30 noticias</span></div>
+      <!-- AI_CREDITS_START --><div class="stat" data-ai-credits-run-id="36168939866">AI Credits: <span data-ai-credits-value>Pending finalization</span> · <a href="./ai-credits.html">Usage history</a> · <a href="./model-comparison.html">Model comparison</a></div><!-- AI_CREDITS_END -->
+      <div class="stat" id="webmcpSupport" role="status" aria-live="polite"><span class="lang-text" data-lang="en">WebMCP: Checking browser support...</span><span class="lang-text" data-lang="es">WebMCP: Comprobando compatibilidad del navegador...</span></div>
+      <div class="stat"><span class="lang-text" data-lang="en">17 from GitHub Changelog</span><span class="lang-text" data-lang="es">17 de GitHub Changelog</span></div>
+      <div class="stat"><span class="lang-text" data-lang="en">10 from Microsoft Developer</span><span class="lang-text" data-lang="es">10 de Microsoft Developer</span></div>
       <div class="stat"><span class="lang-text" data-lang="en">2 from Ars Technica</span><span class="lang-text" data-lang="es">2 de Ars Technica</span></div>
-      <div class="stat"><span class="lang-text" data-lang="en">2 from TechCrunch AI</span><span class="lang-text" data-lang="es">2 de TechCrunch AI</span></div>
+      <div class="stat"><span class="lang-text" data-lang="en">1 from TechCrunch AI</span><span class="lang-text" data-lang="es">1 de TechCrunch AI</span></div>
     </section>
     <p class="credit-note">
       <span class="lang-text" data-lang="en">This digest is part of a paired model experiment. <a href="./model-comparison.html">Compare cost and publication results →</a></span>
@@ -380,22 +378,22 @@
     <section class="tldr-summary">
       <h2><span class="lang-text" data-lang="en">TL;DR - Top takeaways</span><span class="lang-text" data-lang="es">TL;DR - Resumen principal</span></h2>
       <ul>
-        <li><span class="lang-text" data-lang="en">GitHub and Microsoft both spent the week turning AI agents into governed platform features instead of standalone demos.</span><span class="lang-text" data-lang="es">GitHub y Microsoft dedicaron la semana a convertir los agentes de IA en funciones de plataforma gobernadas, no en demos aisladas.</span></li>
-        <li><span class="lang-text" data-lang="en">Runtime retirement pressure is rising across Actions and Azure, with fresh deadlines for Node.js and .NET workloads.</span><span class="lang-text" data-lang="es">La presión por retirar runtimes aumenta en Actions y Azure, con nuevas fechas límite para cargas en Node.js y .NET.</span></li>
-        <li><span class="lang-text" data-lang="en">Security controls moved closer to the default path through sandboxing, execution protections, scoped tokens, and network egress rules.</span><span class="lang-text" data-lang="es">Los controles de seguridad se acercaron al camino por defecto mediante aislamiento, protecciones de ejecución, tokens acotados y reglas de salida de red.</span></li>
-        <li><span class="lang-text" data-lang="en">Developer tooling is getting more specialized, from whole-codebase C++ indexing to database-focused MCP plugins.</span><span class="lang-text" data-lang="es">Las herramientas para desarrolladores se vuelven más especializadas, desde indexación C++ de todo el código hasta plugins MCP centrados en bases de datos.</span></li>
-        <li><span class="lang-text" data-lang="en">Outside the platform launches, RSA research and AI-assisted account abuse showed how fast the security landscape is shifting.</span><span class="lang-text" data-lang="es">Fuera de los lanzamientos de plataforma, la investigación sobre RSA y el abuso de cuentas asistido por IA mostraron lo rápido que cambia el panorama de seguridad.</span></li>
+        <li><span class="lang-text" data-lang="en">Copilot and Foundry launches pushed AI agents closer to production workflows with more model choice, guided app building, and distribution into collaboration surfaces.</span><span class="lang-text" data-lang="es">Los lanzamientos de Copilot y Foundry acercaron a los agentes de IA a flujos de producción con más opciones de modelo, creación guiada de apps y distribución en superficies de colaboración.</span></li>
+        <li><span class="lang-text" data-lang="en">Governance and safety moved forward through local sandboxing, proof-of-presence checks, agent egress rules, and workflow execution protections.</span><span class="lang-text" data-lang="es">El gobierno y la seguridad avanzaron con aislamiento local, comprobaciones de prueba de presencia, reglas de salida para agentes y protecciones de ejecución de workflows.</span></li>
+        <li><span class="lang-text" data-lang="en">Runtime deprecations are stacking up across GitHub Actions and Azure Functions, forcing near-term upgrades for Node.js and .NET workloads.</span><span class="lang-text" data-lang="es">Las retiradas de runtimes se acumulan en GitHub Actions y Azure Functions, forzando actualizaciones cercanas para cargas con Node.js y .NET.</span></li>
+        <li><span class="lang-text" data-lang="en">Developer tooling kept evolving, from VS Code 1.139 and Copilot inline model work to whole-codebase C++ indexing and PostgreSQL MCP plugins.</span><span class="lang-text" data-lang="es">Las herramientas de desarrollo siguieron evolucionando, desde VS Code 1.139 y el trabajo en el modelo inline de Copilot hasta la indexación completa para C++ y los plugins MCP para PostgreSQL.</span></li>
+        <li><span class="lang-text" data-lang="en">Security pressure stayed high outside the platform launches, with exposed Supabase apps, an AI-assisted account-compromise service disruption, and a faster RSA attack path.</span><span class="lang-text" data-lang="es">La presión de seguridad siguió alta fuera de los lanzamientos de plataforma, con apps sobre Supabase expuestas, la caída de un servicio de compromiso de cuentas asistido por IA y una vía más rápida para atacar RSA.</span></li>
       </ul>
     </section>
 
     <section class="tldr-summary">
       <h2><span class="lang-text" data-lang="en">TL;DR - GitHub highlights</span><span class="lang-text" data-lang="es">TL;DR - Destacados de GitHub</span></h2>
       <ul>
-        <li><span class="lang-text" data-lang="en">Copilot app local sandboxing puts a stronger safety boundary around files, network access, and credentials.</span><span class="lang-text" data-lang="es">El aislamiento local de la app de Copilot refuerza el límite de seguridad sobre archivos, red y credenciales.</span></li>
-        <li><span class="lang-text" data-lang="en">OpenTelemetry support gives enterprises a standard way to observe Copilot agent behavior.</span><span class="lang-text" data-lang="es">El soporte de OpenTelemetry da a las empresas una forma estándar de observar el comportamiento de los agentes de Copilot.</span></li>
-        <li><span class="lang-text" data-lang="en">Copilot code review and auto model selection both gained more tuning knobs for teams.</span><span class="lang-text" data-lang="es">Tanto la revisión de código de Copilot como la selección automática de modelos ganaron más opciones de ajuste para los equipos.</span></li>
-        <li><span class="lang-text" data-lang="en">GitHub Actions combined a runtime cutoff for Node 20 with generally available execution protections.</span><span class="lang-text" data-lang="es">GitHub Actions combinó el corte de Node 20 con protecciones de ejecución ya disponibles de forma general.</span></li>
-        <li><span class="lang-text" data-lang="en">GitHub security teams also widened access to AI Scan and credential visibility across enterprises and repositories.</span><span class="lang-text" data-lang="es">Los equipos de seguridad de GitHub también ampliaron el acceso a AI Scan y la visibilidad de credenciales en empresas y repositorios.</span></li>
+        <li><span class="lang-text" data-lang="en">Copilot kept adding models and controls, including GPT-6 Sol/Luna, Grok 4.7, smarter auto model selection, and broader admin defaults.</span><span class="lang-text" data-lang="es">Copilot siguió sumando modelos y controles, incluidos GPT-6 Sol/Luna, Grok 4.7, una selección automática más inteligente y ajustes administrativos más amplios por defecto.</span></li>
+        <li><span class="lang-text" data-lang="en">The Copilot app gained local sandboxing and OpenTelemetry so teams can constrain and observe agent behavior more directly.</span><span class="lang-text" data-lang="es">La app de Copilot ganó aislamiento local y OpenTelemetry para que los equipos puedan restringir y observar el comportamiento de los agentes con más claridad.</span></li>
+        <li><span class="lang-text" data-lang="en">GitHub expanded code review and IDE integrations across Slack, Teams, JetBrains, and C++ code intelligence workflows.</span><span class="lang-text" data-lang="es">GitHub amplió las integraciones de revisión de código e IDE en Slack, Teams, JetBrains y los flujos de inteligencia de código C++.</span></li>
+        <li><span class="lang-text" data-lang="en">Actions and security admins got workflow execution protections, Node 20 enforcement, proof-of-presence checks, and credential visibility exports.</span><span class="lang-text" data-lang="es">Los administradores de Actions y seguridad recibieron protecciones de ejecución, la retirada efectiva de Node 20, comprobaciones de presencia y exportaciones de visibilidad de credenciales.</span></li>
+        <li><span class="lang-text" data-lang="en">Code scanning updates stretched from CodeQL 2.27.1 to AI Scan on pull requests without CodeQL default setup.</span><span class="lang-text" data-lang="es">Las actualizaciones de code scanning fueron desde CodeQL 2.27.1 hasta AI Scan en pull requests sin necesidad de CodeQL default setup.</span></li>
       </ul>
     </section>
 
@@ -418,8 +416,8 @@
         data-tags="AI + Machine Learning,GitHub,Launched,Release,copilot"
         data-source="GitHub Changelog"
         data-importance="High"
-        data-score="9"
-        data-search="Local sandboxing in the GitHub Copilot app Aislamiento local en la app de GitHub Copilot GitHub Changelog High 9 GitHub added local sandboxing controls to the Copilot app so commands can be constrained around files, network resources, and credentials. GitHub añadió controles de aislamiento local a la app de Copilot para limitar los comandos sobre archivos, red y credenciales. This gives teams a clearer safety boundary for agentic workflows on developer machines. Esto da a los equipos un límite de seguridad más claro para flujos agénticos en los equipos de desarrollo. AI + Machine Learning GitHub Launched Release copilot"
+        data-score="10"
+        data-search="Local sandboxing in the GitHub Copilot app Aislamiento local en la app de GitHub Copilot GitHub Changelog High 10 GitHub added local sandboxing to its Copilot app so commands can be limited around files, network resources, and credentials. GitHub añadió aislamiento local a su app de Copilot para limitar los comandos sobre archivos, recursos de red y credenciales. That gives teams a clearer safety boundary when they run agentic workflows on developer machines. Eso da a los equipos un límite de seguridad más claro cuando ejecutan flujos agénticos en equipos de desarrollo. AI + Machine Learning GitHub Launched Release copilot"
       >
         <div class="story-head">
           <div class="rank">1</div>
@@ -434,14 +432,13 @@
             <div class="title"><a href="https://github.blog/changelog/2026-09-23-local-sandboxing-in-the-github-copilot-app" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Local sandboxing in the GitHub Copilot app</span><span class="lang-text" data-lang="es">Aislamiento local en la app de GitHub Copilot</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">GitHub added local sandboxing controls to the Copilot app so commands can be constrained around files, network resources, and credentials.</span><span class="lang-text" data-lang="es">GitHub añadió controles de aislamiento local a la app de Copilot para limitar los comandos sobre archivos, red y credenciales.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">GitHub added local sandboxing to its Copilot app so commands can be limited around files, network resources, and credentials.</span><span class="lang-text" data-lang="es">GitHub añadió aislamiento local a su app de Copilot para limitar los comandos sobre archivos, recursos de red y credenciales.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: This gives teams a clearer safety boundary for agentic workflows on developer machines.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Esto da a los equipos un límite de seguridad más claro para flujos agénticos en los equipos de desarrollo.</span>
+          <span class="lang-text" data-lang="en">Why it matters: That gives teams a clearer safety boundary when they run agentic workflows on developer machines.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Eso da a los equipos un límite de seguridad más claro cuando ejecutan flujos agénticos en equipos de desarrollo.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">AI + Machine Learning</span><span class="tag">GitHub</span><span class="tag">Launched</span><span class="tag">Release</span><span class="tag">copilot</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 9/10</span><span class="lang-text" data-lang="es">Puntuación 9/10</span></span>
+          <span class="tag">AI + Machine Learning</span><span class="tag">GitHub</span><span class="tag">Launched</span><span class="tag">Release</span><span class="tag">copilot</span><span class="tag"><span class="lang-text" data-lang="en">Score 10/10</span><span class="lang-text" data-lang="es">Puntuación 10/10</span></span>
           <a href="https://github.blog/changelog/2026-09-23-local-sandboxing-in-the-github-copilot-app" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
           <span class="date" data-date="2026-09-23">Sep 23</span>
         </div>
@@ -450,11 +447,11 @@
         class="story-card"
         data-rank="2"
         data-published="2026-09-22"
-        data-tags="AI + Machine Learning,GitHub,Launched,Release,copilot"
+        data-tags="AI + Machine Learning,GitHub,Launched"
         data-source="GitHub Changelog"
         data-importance="High"
         data-score="9"
-        data-search="OpenAI’s GPT-6 Sol and GPT-6 Luna now available OpenAI GPT-6 Sol y GPT-6 Luna ya están disponibles GitHub Changelog High 9 GitHub Copilot expanded its GPT-6 lineup with GPT-6 Sol and GPT-6 Luna as additional model options. GitHub Copilot amplió su familia GPT-6 con GPT-6 Sol y GPT-6 Luna como opciones adicionales de modelo. Developers get more model choice inside Copilot without changing tools or workflows. Los desarrolladores obtienen más opciones de modelo dentro de Copilot sin cambiar de herramienta ni de flujo. AI + Machine Learning GitHub Launched Release copilot"
+        data-search="OpenAI’s GPT-6 Sol and GPT-6 Luna now available OpenAI GPT-6 Sol y GPT-6 Luna ya están disponibles GitHub Changelog High 9 GitHub Copilot added GPT-6 Sol and GPT-6 Luna alongside the existing GPT-6 Astra option. GitHub Copilot añadió GPT-6 Sol y GPT-6 Luna junto con la opción existente GPT-6 Astra. More built-in model choice lets teams compare behavior without leaving the Copilot surface. Más opciones de modelo dentro de la herramienta permiten comparar comportamientos sin salir de la interfaz de Copilot. AI + Machine Learning GitHub Launched"
       >
         <div class="story-head">
           <div class="rank">2</div>
@@ -469,14 +466,13 @@
             <div class="title"><a href="https://github.blog/changelog/2026-09-22-openais-gpt-6-sol-and-gpt-6-luna-now-available" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">OpenAI’s GPT-6 Sol and GPT-6 Luna now available</span><span class="lang-text" data-lang="es">OpenAI GPT-6 Sol y GPT-6 Luna ya están disponibles</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">GitHub Copilot expanded its GPT-6 lineup with GPT-6 Sol and GPT-6 Luna as additional model options.</span><span class="lang-text" data-lang="es">GitHub Copilot amplió su familia GPT-6 con GPT-6 Sol y GPT-6 Luna como opciones adicionales de modelo.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">GitHub Copilot added GPT-6 Sol and GPT-6 Luna alongside the existing GPT-6 Astra option.</span><span class="lang-text" data-lang="es">GitHub Copilot añadió GPT-6 Sol y GPT-6 Luna junto con la opción existente GPT-6 Astra.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Developers get more model choice inside Copilot without changing tools or workflows.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Los desarrolladores obtienen más opciones de modelo dentro de Copilot sin cambiar de herramienta ni de flujo.</span>
+          <span class="lang-text" data-lang="en">Why it matters: More built-in model choice lets teams compare behavior without leaving the Copilot surface.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Más opciones de modelo dentro de la herramienta permiten comparar comportamientos sin salir de la interfaz de Copilot.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">AI + Machine Learning</span><span class="tag">GitHub</span><span class="tag">Launched</span><span class="tag">Release</span><span class="tag">copilot</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 9/10</span><span class="lang-text" data-lang="es">Puntuación 9/10</span></span>
+          <span class="tag">AI + Machine Learning</span><span class="tag">GitHub</span><span class="tag">Launched</span><span class="tag"><span class="lang-text" data-lang="en">Score 9/10</span><span class="lang-text" data-lang="es">Puntuación 9/10</span></span>
           <a href="https://github.blog/changelog/2026-09-22-openais-gpt-6-sol-and-gpt-6-luna-now-available" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
           <span class="date" data-date="2026-09-22">Sep 22</span>
         </div>
@@ -484,47 +480,46 @@
       <article
         class="story-card"
         data-rank="3"
-        data-published="2026-09-22"
-        data-tags="AI + Machine Learning,GitHub,Launched,Release,copilot"
-        data-source="GitHub Changelog"
+        data-published="2026-09-21"
+        data-tags="Azure,Developer Tools,Feature,Features,In preview"
+        data-source="Microsoft Developer"
         data-importance="High"
-        data-score="8"
-        data-search="Claude Opus 5.5 is now available in GitHub Copilot Claude Opus 5.5 ya está disponible en GitHub Copilot GitHub Changelog High 8 GitHub Copilot now includes Anthropic&#x27;s Claude Opus 5.5 for agentic coding, long-running tasks, and knowledge work. GitHub Copilot ahora incluye Claude Opus 5.5 de Anthropic para codificación agéntica, tareas largas y trabajo de conocimiento. Teams comparing model behavior can evaluate a new premium option in the same Copilot surface. Los equipos que comparan modelos pueden evaluar una nueva opción premium dentro de la misma interfaz de Copilot. AI + Machine Learning GitHub Launched Release copilot"
+        data-score="9"
+        data-search="[In preview] Public Preview: Introducing a Guided Copilot Experience for Building Azure Apps in VS Code Vista previa: experiencia guiada de Copilot para crear apps de Azure en VS Code Microsoft Developer High 9 Microsoft is previewing a guided Copilot workflow in VS Code that takes Azure app projects from idea to deployment through structured steps. Microsoft está probando en VS Code un flujo guiado de Copilot que lleva proyectos de apps de Azure desde la idea hasta el despliegue con pasos estructurados. A more predictable cloud-building flow could reduce prompt thrash for developers using Copilot to scaffold Azure apps. Un flujo de trabajo más predecible para la nube puede reducir el ir y venir de prompts al crear apps de Azure con Copilot. Azure Developer Tools Feature Features In preview"
       >
         <div class="story-head">
           <div class="rank">3</div>
           <div>
             <div class="story-meta-line">
-              <div class="source">🐙 GitHub Changelog</div>
+              <div class="source">🪟 Microsoft Developer</div>
               <div class="importance importance-high" aria-label="High importance">
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
                 <span>High</span>
               </div>
             </div>
-            <div class="title"><a href="https://github.blog/changelog/2026-09-22-claude-opus-5-5-is-now-available-in-github-copilot" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Claude Opus 5.5 is now available in GitHub Copilot</span><span class="lang-text" data-lang="es">Claude Opus 5.5 ya está disponible en GitHub Copilot</span></a></div>
+            <div class="title"><a href="https://azure.microsoft.com/updates?id=572214" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">[In preview] Public Preview: Introducing a Guided Copilot Experience for Building Azure Apps in VS Code</span><span class="lang-text" data-lang="es">Vista previa: experiencia guiada de Copilot para crear apps de Azure en VS Code</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">GitHub Copilot now includes Anthropic&#x27;s Claude Opus 5.5 for agentic coding, long-running tasks, and knowledge work.</span><span class="lang-text" data-lang="es">GitHub Copilot ahora incluye Claude Opus 5.5 de Anthropic para codificación agéntica, tareas largas y trabajo de conocimiento.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Microsoft is previewing a guided Copilot workflow in VS Code that takes Azure app projects from idea to deployment through structured steps.</span><span class="lang-text" data-lang="es">Microsoft está probando en VS Code un flujo guiado de Copilot que lleva proyectos de apps de Azure desde la idea hasta el despliegue con pasos estructurados.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Teams comparing model behavior can evaluate a new premium option in the same Copilot surface.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Los equipos que comparan modelos pueden evaluar una nueva opción premium dentro de la misma interfaz de Copilot.</span>
+          <span class="lang-text" data-lang="en">Why it matters: A more predictable cloud-building flow could reduce prompt thrash for developers using Copilot to scaffold Azure apps.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Un flujo de trabajo más predecible para la nube puede reducir el ir y venir de prompts al crear apps de Azure con Copilot.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">AI + Machine Learning</span><span class="tag">GitHub</span><span class="tag">Launched</span><span class="tag">Release</span><span class="tag">copilot</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></span>
-          <a href="https://github.blog/changelog/2026-09-22-claude-opus-5-5-is-now-available-in-github-copilot" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
-          <span class="date" data-date="2026-09-22">Sep 22</span>
+          <span class="tag">Azure</span><span class="tag">Developer Tools</span><span class="tag">Feature</span><span class="tag">Features</span><span class="tag">In preview</span><span class="tag"><span class="lang-text" data-lang="en">Score 9/10</span><span class="lang-text" data-lang="es">Puntuación 9/10</span></span>
+          <a href="https://azure.microsoft.com/updates?id=572214" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-09-21">Sep 21</span>
         </div>
       </article>
       <article
         class="story-card"
         data-rank="4"
-        data-published="2026-09-21"
-        data-tags="Azure,Developer Tools,Feature,Features,In preview,SDK and Tools,Visual Studio Code"
+        data-published="2026-09-18"
+        data-tags="AI + Machine Learning,Azure,Feature,In preview,Microsoft Build"
         data-source="Microsoft Developer"
         data-importance="High"
         data-score="8"
-        data-search="[In preview] Public Preview: Introducing a Guided Copilot Experience for Building Azure Apps in VS Code Vista previa pública: experiencia guiada con Copilot para crear apps de Azure en VS Code Microsoft Developer High 8 Microsoft previewed a guided Copilot flow in VS Code for taking Azure apps from idea to deployment through a structured workflow. Microsoft mostró en vista previa un flujo guiado con Copilot en VS Code para llevar apps de Azure desde la idea hasta el despliegue. That could make Azure app scaffolding and deployment more predictable for teams that want more than free-form chat. Eso puede hacer más predecible la creación y el despliegue de apps de Azure para equipos que quieren algo más que chat libre. Azure Developer Tools Feature Features In preview SDK and Tools Visual Studio Code"
+        data-search="[In preview] Public Preview: Foundry Routines in Foundry Agent Service Vista previa: Foundry Routines en Foundry Agent Service Microsoft Developer High 8 Foundry Agent Service now previews Routines, a native trigger primitive for running published agents on schedules or business events. Foundry Agent Service ahora prueba Routines, una primitiva nativa de activación para ejecutar agentes publicados según horarios o eventos de negocio. That moves agent automation closer to a first-class platform feature instead of a custom integration. Eso acerca la automatización de agentes a una función nativa de plataforma en lugar de una integración personalizada. AI + Machine Learning Azure Feature In preview Microsoft Build"
       >
         <div class="story-head">
           <div class="rank">4</div>
@@ -536,30 +531,29 @@
                 <span>High</span>
               </div>
             </div>
-            <div class="title"><a href="https://azure.microsoft.com/updates?id=572214" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">[In preview] Public Preview: Introducing a Guided Copilot Experience for Building Azure Apps in VS Code</span><span class="lang-text" data-lang="es">Vista previa pública: experiencia guiada con Copilot para crear apps de Azure en VS Code</span></a></div>
+            <div class="title"><a href="https://azure.microsoft.com/updates?id=563536" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">[In preview] Public Preview: Foundry Routines in Foundry Agent Service</span><span class="lang-text" data-lang="es">Vista previa: Foundry Routines en Foundry Agent Service</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Microsoft previewed a guided Copilot flow in VS Code for taking Azure apps from idea to deployment through a structured workflow.</span><span class="lang-text" data-lang="es">Microsoft mostró en vista previa un flujo guiado con Copilot en VS Code para llevar apps de Azure desde la idea hasta el despliegue.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Foundry Agent Service now previews Routines, a native trigger primitive for running published agents on schedules or business events.</span><span class="lang-text" data-lang="es">Foundry Agent Service ahora prueba Routines, una primitiva nativa de activación para ejecutar agentes publicados según horarios o eventos de negocio.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: That could make Azure app scaffolding and deployment more predictable for teams that want more than free-form chat.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Eso puede hacer más predecible la creación y el despliegue de apps de Azure para equipos que quieren algo más que chat libre.</span>
+          <span class="lang-text" data-lang="en">Why it matters: That moves agent automation closer to a first-class platform feature instead of a custom integration.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Eso acerca la automatización de agentes a una función nativa de plataforma en lugar de una integración personalizada.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">Azure</span><span class="tag">Developer Tools</span><span class="tag">Feature</span><span class="tag">Features</span><span class="tag">In preview</span><span class="tag">SDK and Tools</span><span class="tag">Visual Studio Code</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></span>
-          <a href="https://azure.microsoft.com/updates?id=572214" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
-          <span class="date" data-date="2026-09-21">Sep 21</span>
+          <span class="tag">AI + Machine Learning</span><span class="tag">Azure</span><span class="tag">Feature</span><span class="tag">In preview</span><span class="tag">Microsoft Build</span><span class="tag"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></span>
+          <a href="https://azure.microsoft.com/updates?id=563536" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-09-18">Sep 18</span>
         </div>
       </article>
       <article
         class="story-card"
         data-rank="5"
-        data-published="2026-09-23"
-        data-tags="AI + Machine Learning,GitHub,Update,copilot"
+        data-published="2026-09-25"
+        data-tags="Improvement,collaboration tools,copilot"
         data-source="GitHub Changelog"
         data-importance="High"
         data-score="8"
-        data-search="More ways to request and configure Copilot code reviews Más formas de solicitar y configurar revisiones de código de Copilot GitHub Changelog High 8 Copilot code review now offers more ways to request reviews plus broader personal and enterprise configuration controls. La revisión de código de Copilot ahora ofrece más formas de pedir revisiones y controles más amplios de configuración personal y empresarial. The update makes AI review easier to roll out as a default workflow instead of a niche opt-in feature. La actualización facilita desplegar la revisión con IA como flujo predeterminado en lugar de una función de nicho. AI + Machine Learning GitHub Update copilot"
+        data-search="Updates to GitHub Copilot for Slack and Microsoft Teams Actualizaciones de GitHub Copilot para Slack y Microsoft Teams GitHub Changelog High 8 Copilot in Slack and Microsoft Teams now offers more context, more control, and a clearer path from chat into GitHub work. Copilot en Slack y Microsoft Teams ahora ofrece más contexto, más control y un camino más claro desde el chat hasta el trabajo en GitHub. Teams collaborating outside the IDE get a tighter handoff from conversation to repo actions. Los equipos que colaboran fuera del IDE obtienen un traspaso más directo de la conversación a las acciones sobre el repositorio. Improvement collaboration tools copilot"
       >
         <div class="story-head">
           <div class="rank">5</div>
@@ -571,19 +565,18 @@
                 <span>High</span>
               </div>
             </div>
-            <div class="title"><a href="https://github.blog/changelog/2026-09-23-copilot-code-review-more-ways-to-request-and-configure-reviews" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">More ways to request and configure Copilot code reviews</span><span class="lang-text" data-lang="es">Más formas de solicitar y configurar revisiones de código de Copilot</span></a></div>
+            <div class="title"><a href="https://github.blog/changelog/2026-09-25-updates-to-github-copilot-for-slack-and-microsoft-teams" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Updates to GitHub Copilot for Slack and Microsoft Teams</span><span class="lang-text" data-lang="es">Actualizaciones de GitHub Copilot para Slack y Microsoft Teams</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Copilot code review now offers more ways to request reviews plus broader personal and enterprise configuration controls.</span><span class="lang-text" data-lang="es">La revisión de código de Copilot ahora ofrece más formas de pedir revisiones y controles más amplios de configuración personal y empresarial.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Copilot in Slack and Microsoft Teams now offers more context, more control, and a clearer path from chat into GitHub work.</span><span class="lang-text" data-lang="es">Copilot en Slack y Microsoft Teams ahora ofrece más contexto, más control y un camino más claro desde el chat hasta el trabajo en GitHub.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: The update makes AI review easier to roll out as a default workflow instead of a niche opt-in feature.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: La actualización facilita desplegar la revisión con IA como flujo predeterminado en lugar de una función de nicho.</span>
+          <span class="lang-text" data-lang="en">Why it matters: Teams collaborating outside the IDE get a tighter handoff from conversation to repo actions.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Los equipos que colaboran fuera del IDE obtienen un traspaso más directo de la conversación a las acciones sobre el repositorio.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">AI + Machine Learning</span><span class="tag">GitHub</span><span class="tag">Update</span><span class="tag">copilot</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></span>
-          <a href="https://github.blog/changelog/2026-09-23-copilot-code-review-more-ways-to-request-and-configure-reviews" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
-          <span class="date" data-date="2026-09-23">Sep 23</span>
+          <span class="tag">Improvement</span><span class="tag">collaboration tools</span><span class="tag">copilot</span><span class="tag"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></span>
+          <a href="https://github.blog/changelog/2026-09-25-updates-to-github-copilot-for-slack-and-microsoft-teams" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-09-25">Sep 25</span>
         </div>
       </article>
       <article
@@ -594,7 +587,7 @@
         data-source="GitHub Changelog"
         data-importance="High"
         data-score="8"
-        data-search="OpenTelemetry in the GitHub Copilot app OpenTelemetry en la app de GitHub Copilot GitHub Changelog High 8 The GitHub Copilot app now supports OpenTelemetry configuration through enterprise-managed settings. La app de GitHub Copilot ahora admite configuración de OpenTelemetry mediante ajustes gestionados por la empresa. That gives engineering leaders a standard path to observe how agents use models and tools. Eso da a los líderes de ingeniería una vía estándar para observar cómo los agentes usan modelos y herramientas. AI + Machine Learning GitHub Launched Release copilot"
+        data-search="OpenTelemetry in the GitHub Copilot app OpenTelemetry en la app de GitHub Copilot GitHub Changelog High 8 The GitHub Copilot app now supports OpenTelemetry configuration through enterprise-managed settings. La app de GitHub Copilot ahora admite configuración de OpenTelemetry mediante ajustes gestionados por la empresa. Shared observability signals can help enterprises inspect how Copilot agents use models and tools. Las señales compartidas de observabilidad pueden ayudar a las empresas a inspeccionar cómo los agentes de Copilot usan modelos y herramientas. AI + Machine Learning GitHub Launched Release copilot"
       >
         <div class="story-head">
           <div class="rank">6</div>
@@ -611,12 +604,11 @@
         </div>
         <p class="tldr"><span class="lang-text" data-lang="en">The GitHub Copilot app now supports OpenTelemetry configuration through enterprise-managed settings.</span><span class="lang-text" data-lang="es">La app de GitHub Copilot ahora admite configuración de OpenTelemetry mediante ajustes gestionados por la empresa.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: That gives engineering leaders a standard path to observe how agents use models and tools.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Eso da a los líderes de ingeniería una vía estándar para observar cómo los agentes usan modelos y herramientas.</span>
+          <span class="lang-text" data-lang="en">Why it matters: Shared observability signals can help enterprises inspect how Copilot agents use models and tools.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Las señales compartidas de observabilidad pueden ayudar a las empresas a inspeccionar cómo los agentes de Copilot usan modelos y herramientas.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">AI + Machine Learning</span><span class="tag">GitHub</span><span class="tag">Launched</span><span class="tag">Release</span><span class="tag">copilot</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></span>
+          <span class="tag">AI + Machine Learning</span><span class="tag">GitHub</span><span class="tag">Launched</span><span class="tag">Release</span><span class="tag">copilot</span><span class="tag"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></span>
           <a href="https://github.blog/changelog/2026-09-22-opentelemetry-in-the-github-copilot-app" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
           <span class="date" data-date="2026-09-23">Sep 23</span>
         </div>
@@ -624,12 +616,12 @@
       <article
         class="story-card"
         data-rank="7"
-        data-published="2026-09-14"
+        data-published="2026-09-23"
         data-tags="AI + Machine Learning,GitHub,Launched"
         data-source="GitHub Changelog"
         data-importance="High"
         data-score="8"
-        data-search="Configure cost and quality in Copilot auto model selection Configura costo y calidad en la selección automática de modelos de Copilot GitHub Changelog High 8 Copilot auto model selection now exposes efficiency, balance, and intelligence tiers for trading off cost, quality, and speed. La selección automática de modelos de Copilot ahora expone niveles de eficiencia, equilibrio e inteligencia para ajustar costo, calidad y velocidad. Platform owners can tune Copilot behavior to budget and latency targets instead of accepting one default policy. Los responsables de plataforma pueden ajustar el comportamiento de Copilot al presupuesto y la latencia en vez de aceptar una única política. AI + Machine Learning GitHub Launched"
+        data-search="New features and improvements in Copilot for JetBrains Nuevas funciones y mejoras en Copilot para JetBrains GitHub Changelog High 8 Copilot for JetBrains 1.18.0 adds AI-assisted tool approvals, more agent-conversation controls, and shared skills and instructions. Copilot para JetBrains 1.18.0 añade aprobaciones de herramientas asistidas por IA, más controles para conversaciones con agentes y habilidades e instrucciones compartidas. JetBrains teams get stronger governance and reuse for day-to-day assistant workflows. Los equipos que usan JetBrains ganan más gobierno y reutilización para los flujos cotidianos con asistentes. AI + Machine Learning GitHub Launched"
       >
         <div class="story-head">
           <div class="rank">7</div>
@@ -641,65 +633,63 @@
                 <span>High</span>
               </div>
             </div>
-            <div class="title"><a href="https://github.blog/changelog/2026-09-14-configure-cost-and-quality-in-copilot-auto-model-selection" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Configure cost and quality in Copilot auto model selection</span><span class="lang-text" data-lang="es">Configura costo y calidad en la selección automática de modelos de Copilot</span></a></div>
+            <div class="title"><a href="https://github.blog/changelog/2026-09-22-new-features-and-improvements-in-copilot-for-jetbrains" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">New features and improvements in Copilot for JetBrains</span><span class="lang-text" data-lang="es">Nuevas funciones y mejoras en Copilot para JetBrains</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Copilot auto model selection now exposes efficiency, balance, and intelligence tiers for trading off cost, quality, and speed.</span><span class="lang-text" data-lang="es">La selección automática de modelos de Copilot ahora expone niveles de eficiencia, equilibrio e inteligencia para ajustar costo, calidad y velocidad.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Copilot for JetBrains 1.18.0 adds AI-assisted tool approvals, more agent-conversation controls, and shared skills and instructions.</span><span class="lang-text" data-lang="es">Copilot para JetBrains 1.18.0 añade aprobaciones de herramientas asistidas por IA, más controles para conversaciones con agentes y habilidades e instrucciones compartidas.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Platform owners can tune Copilot behavior to budget and latency targets instead of accepting one default policy.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Los responsables de plataforma pueden ajustar el comportamiento de Copilot al presupuesto y la latencia en vez de aceptar una única política.</span>
+          <span class="lang-text" data-lang="en">Why it matters: JetBrains teams get stronger governance and reuse for day-to-day assistant workflows.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Los equipos que usan JetBrains ganan más gobierno y reutilización para los flujos cotidianos con asistentes.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">AI + Machine Learning</span><span class="tag">GitHub</span><span class="tag">Launched</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></span>
-          <a href="https://github.blog/changelog/2026-09-14-configure-cost-and-quality-in-copilot-auto-model-selection" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
-          <span class="date" data-date="2026-09-14">Sep 14</span>
-        </div>
-      </article>
-      <article
-        class="story-card"
-        data-rank="8"
-        data-published="2026-09-23"
-        data-tags="Developer Tools,Launched,Visual Studio Code"
-        data-source="Microsoft Developer"
-        data-importance="High"
-        data-score="8"
-        data-search="Visual Studio Code 1.139 Visual Studio Code 1.139 Microsoft Developer High 8 Microsoft published the Visual Studio Code 1.139 release with a new set of editor updates and tooling changes. Microsoft publicó la versión 1.139 de Visual Studio Code con una nueva ronda de cambios en el editor y las herramientas. Regular VS Code updates matter because they quickly shape the baseline developer experience across ecosystems. Las actualizaciones de VS Code importan porque cambian rápidamente la experiencia base de desarrollo en muchos ecosistemas. Developer Tools Launched Visual Studio Code"
-      >
-        <div class="story-head">
-          <div class="rank">8</div>
-          <div>
-            <div class="story-meta-line">
-              <div class="source">🪟 Microsoft Developer</div>
-              <div class="importance importance-high" aria-label="High importance">
-                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span>High</span>
-              </div>
-            </div>
-            <div class="title"><a href="https://code.visualstudio.com/updates/v1_139" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Visual Studio Code 1.139</span><span class="lang-text" data-lang="es">Visual Studio Code 1.139</span></a></div>
-          </div>
-        </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Microsoft published the Visual Studio Code 1.139 release with a new set of editor updates and tooling changes.</span><span class="lang-text" data-lang="es">Microsoft publicó la versión 1.139 de Visual Studio Code con una nueva ronda de cambios en el editor y las herramientas.</span></p>
-        <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Regular VS Code updates matter because they quickly shape the baseline developer experience across ecosystems.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Las actualizaciones de VS Code importan porque cambian rápidamente la experiencia base de desarrollo en muchos ecosistemas.</span>
-        </p>
-        <div class="story-footer">
-          <span class="tag">Developer Tools</span><span class="tag">Launched</span><span class="tag">Visual Studio Code</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></span>
-          <a href="https://code.visualstudio.com/updates/v1_139" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="tag">AI + Machine Learning</span><span class="tag">GitHub</span><span class="tag">Launched</span><span class="tag"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></span>
+          <a href="https://github.blog/changelog/2026-09-22-new-features-and-improvements-in-copilot-for-jetbrains" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
           <span class="date" data-date="2026-09-23">Sep 23</span>
         </div>
       </article>
       <article
         class="story-card"
-        data-rank="9"
+        data-rank="8"
         data-published="2026-09-22"
-        data-tags="AI + Machine Learning,GitHub,Launched,Release,copilot"
+        data-tags="AI + Machine Learning,GitHub,Launched"
         data-source="GitHub Changelog"
         data-importance="High"
         data-score="8"
-        data-search="Faster C++ code intelligence with whole codebase indexing Índices de todo el código para una inteligencia de C++ más rápida GitHub Changelog High 8 GitHub says C++ code intelligence in Copilot CLI is now faster thanks to whole-codebase indexing support. GitHub afirma que la inteligencia de código C++ en Copilot CLI ahora es más rápida gracias al soporte de indexación de todo el código. Large C++ repositories are a hard case for AI assistance, so better indexing can directly improve navigation and task quality. Los grandes repositorios de C++ son un caso difícil para la asistencia con IA, así que una mejor indexación puede mejorar navegación y calidad de tareas. AI + Machine Learning GitHub Launched Release copilot"
+        data-search="Faster C++ code intelligence with whole codebase indexing Inteligencia de código C++ más rápida con indexación de todo el código GitHub Changelog High 8 GitHub Copilot CLI now supports whole-codebase indexing for faster C++ code intelligence across large, interconnected repositories. GitHub Copilot CLI ahora admite indexación de todo el código para acelerar la inteligencia de código C++ en repositorios grandes e interconectados. That matters for C++ teams working in codebases where file-level context is not enough. Eso importa a los equipos de C++ que trabajan en bases de código donde el contexto de un solo archivo no alcanza. AI + Machine Learning GitHub Launched"
+      >
+        <div class="story-head">
+          <div class="rank">8</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">🐙 GitHub Changelog</div>
+              <div class="importance importance-high" aria-label="High importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>High</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://github.blog/changelog/2026-09-22-faster-c-code-intelligence-with-whole-codebase-indexing" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Faster C++ code intelligence with whole codebase indexing</span><span class="lang-text" data-lang="es">Inteligencia de código C++ más rápida con indexación de todo el código</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">GitHub Copilot CLI now supports whole-codebase indexing for faster C++ code intelligence across large, interconnected repositories.</span><span class="lang-text" data-lang="es">GitHub Copilot CLI ahora admite indexación de todo el código para acelerar la inteligencia de código C++ en repositorios grandes e interconectados.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: That matters for C++ teams working in codebases where file-level context is not enough.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Eso importa a los equipos de C++ que trabajan en bases de código donde el contexto de un solo archivo no alcanza.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">AI + Machine Learning</span><span class="tag">GitHub</span><span class="tag">Launched</span><span class="tag"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></span>
+          <a href="https://github.blog/changelog/2026-09-22-faster-c-code-intelligence-with-whole-codebase-indexing" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-09-22">Sep 22</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="9"
+        data-published="2026-09-21"
+        data-tags="AI + Machine Learning,GitHub,Launched"
+        data-source="GitHub Changelog"
+        data-importance="High"
+        data-score="8"
+        data-search="Grok 4.7 is now available in GitHub Copilot Grok 4.7 ya está disponible en GitHub Copilot GitHub Changelog High 8 Grok 4.7 is rolling out in GitHub Copilot as xAI’s latest reasoning model for agentic and multistep work. Grok 4.7 llega a GitHub Copilot como el último modelo de razonamiento de xAI para trabajo agéntico y de varios pasos. Another model option expands how teams can tune Copilot for different coding tasks. Otra opción de modelo amplía cómo los equipos pueden ajustar Copilot para distintas tareas de programación. AI + Machine Learning GitHub Launched"
       >
         <div class="story-head">
           <div class="rank">9</div>
@@ -711,100 +701,97 @@
                 <span>High</span>
               </div>
             </div>
-            <div class="title"><a href="https://github.blog/changelog/2026-09-22-faster-c-code-intelligence-with-whole-codebase-indexing" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Faster C++ code intelligence with whole codebase indexing</span><span class="lang-text" data-lang="es">Índices de todo el código para una inteligencia de C++ más rápida</span></a></div>
+            <div class="title"><a href="https://github.blog/changelog/2026-09-21-grok-4-7-is-now-available-in-github-copilot" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Grok 4.7 is now available in GitHub Copilot</span><span class="lang-text" data-lang="es">Grok 4.7 ya está disponible en GitHub Copilot</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">GitHub says C++ code intelligence in Copilot CLI is now faster thanks to whole-codebase indexing support.</span><span class="lang-text" data-lang="es">GitHub afirma que la inteligencia de código C++ en Copilot CLI ahora es más rápida gracias al soporte de indexación de todo el código.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Grok 4.7 is rolling out in GitHub Copilot as xAI’s latest reasoning model for agentic and multistep work.</span><span class="lang-text" data-lang="es">Grok 4.7 llega a GitHub Copilot como el último modelo de razonamiento de xAI para trabajo agéntico y de varios pasos.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Large C++ repositories are a hard case for AI assistance, so better indexing can directly improve navigation and task quality.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Los grandes repositorios de C++ son un caso difícil para la asistencia con IA, así que una mejor indexación puede mejorar navegación y calidad de tareas.</span>
+          <span class="lang-text" data-lang="en">Why it matters: Another model option expands how teams can tune Copilot for different coding tasks.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Otra opción de modelo amplía cómo los equipos pueden ajustar Copilot para distintas tareas de programación.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">AI + Machine Learning</span><span class="tag">GitHub</span><span class="tag">Launched</span><span class="tag">Release</span><span class="tag">copilot</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></span>
-          <a href="https://github.blog/changelog/2026-09-22-faster-c-code-intelligence-with-whole-codebase-indexing" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
-          <span class="date" data-date="2026-09-22">Sep 22</span>
+          <span class="tag">AI + Machine Learning</span><span class="tag">GitHub</span><span class="tag">Launched</span><span class="tag"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></span>
+          <a href="https://github.blog/changelog/2026-09-21-grok-4-7-is-now-available-in-github-copilot" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-09-21">Sep 21</span>
         </div>
       </article>
       <article
         class="story-card"
         data-rank="10"
-        data-published="2026-09-17"
-        data-tags="Developer Tools,GitHub,Launched,Security"
-        data-source="GitHub Changelog"
-        data-importance="High"
-        data-score="8"
-        data-search="Workflow execution protections in GitHub Actions generally available Las protecciones de ejecución de flujos en GitHub Actions ya son disponibilidad general GitHub Changelog High 8 Workflow execution protections are now generally available in GitHub Actions for enterprises, organizations, and repositories. Las protecciones de ejecución de flujos ya están disponibles de forma general en GitHub Actions para empresas, organizaciones y repositorios. This strengthens governance around who can run sensitive automation and under what conditions. Esto refuerza la gobernanza sobre quién puede ejecutar automatizaciones sensibles y en qué condiciones. Developer Tools GitHub Launched Security"
+        data-published="2026-09-23"
+        data-tags="Developer Tools,Launched,Visual Studio Code"
+        data-source="Microsoft Developer"
+        data-importance="Medium"
+        data-score="7"
+        data-search="Visual Studio Code 1.139 Visual Studio Code 1.139 Microsoft Developer Medium 7 Microsoft published the Visual Studio Code 1.139 release and its accompanying update notes. Microsoft publicó la versión 1.139 de Visual Studio Code junto con sus notas de actualización. Editor upgrades at this cadence are worth reviewing before teams roll them out broadly. Las actualizaciones del editor a este ritmo conviene revisarlas antes de desplegarlas de forma amplia en los equipos. Developer Tools Launched Visual Studio Code"
       >
         <div class="story-head">
           <div class="rank">10</div>
           <div>
             <div class="story-meta-line">
-              <div class="source">🐙 GitHub Changelog</div>
-              <div class="importance importance-high" aria-label="High importance">
+              <div class="source">🪟 Microsoft Developer</div>
+              <div class="importance importance-medium" aria-label="Medium importance">
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span>High</span>
+                <span>Medium</span>
               </div>
             </div>
-            <div class="title"><a href="https://github.blog/changelog/2026-09-17-workflow-execution-protections-in-github-actions-generally-available" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Workflow execution protections in GitHub Actions generally available</span><span class="lang-text" data-lang="es">Las protecciones de ejecución de flujos en GitHub Actions ya son disponibilidad general</span></a></div>
+            <div class="title"><a href="https://code.visualstudio.com/updates/v1_139" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Visual Studio Code 1.139</span><span class="lang-text" data-lang="es">Visual Studio Code 1.139</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Workflow execution protections are now generally available in GitHub Actions for enterprises, organizations, and repositories.</span><span class="lang-text" data-lang="es">Las protecciones de ejecución de flujos ya están disponibles de forma general en GitHub Actions para empresas, organizaciones y repositorios.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Microsoft published the Visual Studio Code 1.139 release and its accompanying update notes.</span><span class="lang-text" data-lang="es">Microsoft publicó la versión 1.139 de Visual Studio Code junto con sus notas de actualización.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: This strengthens governance around who can run sensitive automation and under what conditions.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Esto refuerza la gobernanza sobre quién puede ejecutar automatizaciones sensibles y en qué condiciones.</span>
+          <span class="lang-text" data-lang="en">Why it matters: Editor upgrades at this cadence are worth reviewing before teams roll them out broadly.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Las actualizaciones del editor a este ritmo conviene revisarlas antes de desplegarlas de forma amplia en los equipos.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">Developer Tools</span><span class="tag">GitHub</span><span class="tag">Launched</span><span class="tag">Security</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></span>
-          <a href="https://github.blog/changelog/2026-09-17-workflow-execution-protections-in-github-actions-generally-available" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
-          <span class="date" data-date="2026-09-17">Sep 17</span>
+          <span class="tag">Developer Tools</span><span class="tag">Launched</span><span class="tag">Visual Studio Code</span><span class="tag"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></span>
+          <a href="https://code.visualstudio.com/updates/v1_139" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-09-23">Sep 23</span>
         </div>
       </article>
       <article
         class="story-card"
         data-rank="11"
         data-published="2026-09-23"
-        data-tags="Developer Tools,GitHub,Retired,Retirements,Update,actions"
-        data-source="GitHub Changelog"
-        data-importance="High"
-        data-score="8"
-        data-search="Node 20 is no longer available in GitHub Actions Node 20 ya no está disponible en GitHub Actions GitHub Changelog High 8 GitHub Actions runners have removed Node 20 and now use Node 24 for JavaScript actions. Los runners de GitHub Actions retiraron Node 20 y ahora usan Node 24 para las acciones de JavaScript. Build and action maintainers need to review compatibility now that the old runtime and temporary opt-out are gone. Quienes mantienen builds y actions deben revisar la compatibilidad ahora que el runtime anterior y la salida temporal ya no existen. Developer Tools GitHub Retired Retirements Update actions"
+        data-tags="Developer Tools,Launched,Visual Studio Code"
+        data-source="Microsoft Developer"
+        data-importance="Medium"
+        data-score="7"
+        data-search="Building the new GitHub Copilot Inline Suggestions Model: Part Two Cómo se creó el nuevo modelo de sugerencias inline de GitHub Copilot: parte dos Microsoft Developer Medium 7 Microsoft detailed how GitHub Copilot’s new inline suggestions model added completions, refined ghost text, and improved user satisfaction. Microsoft detalló cómo el nuevo modelo de sugerencias inline de GitHub Copilot añadió completados, refinó el ghost text y mejoró la satisfacción de los usuarios. The write-up gives developers and tool builders a clearer view into how Copilot’s core editing experience is evolving. La explicación da a desarrolladores y creadores de herramientas una visión más clara de cómo evoluciona la experiencia central de edición de Copilot. Developer Tools Launched Visual Studio Code"
       >
         <div class="story-head">
           <div class="rank">11</div>
           <div>
             <div class="story-meta-line">
-              <div class="source">🐙 GitHub Changelog</div>
-              <div class="importance importance-high" aria-label="High importance">
+              <div class="source">🪟 Microsoft Developer</div>
+              <div class="importance importance-medium" aria-label="Medium importance">
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span>High</span>
+                <span>Medium</span>
               </div>
             </div>
-            <div class="title"><a href="https://github.blog/changelog/2026-09-23-node-20-is-no-longer-available-in-github-actions" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Node 20 is no longer available in GitHub Actions</span><span class="lang-text" data-lang="es">Node 20 ya no está disponible en GitHub Actions</span></a></div>
+            <div class="title"><a href="https://code.visualstudio.com/blogs/2026/09/23/building-the-github-copilot-inline-suggestions-model-part-two" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Building the new GitHub Copilot Inline Suggestions Model: Part Two</span><span class="lang-text" data-lang="es">Cómo se creó el nuevo modelo de sugerencias inline de GitHub Copilot: parte dos</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">GitHub Actions runners have removed Node 20 and now use Node 24 for JavaScript actions.</span><span class="lang-text" data-lang="es">Los runners de GitHub Actions retiraron Node 20 y ahora usan Node 24 para las acciones de JavaScript.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Microsoft detailed how GitHub Copilot’s new inline suggestions model added completions, refined ghost text, and improved user satisfaction.</span><span class="lang-text" data-lang="es">Microsoft detalló cómo el nuevo modelo de sugerencias inline de GitHub Copilot añadió completados, refinó el ghost text y mejoró la satisfacción de los usuarios.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Build and action maintainers need to review compatibility now that the old runtime and temporary opt-out are gone.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Quienes mantienen builds y actions deben revisar la compatibilidad ahora que el runtime anterior y la salida temporal ya no existen.</span>
+          <span class="lang-text" data-lang="en">Why it matters: The write-up gives developers and tool builders a clearer view into how Copilot’s core editing experience is evolving.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: La explicación da a desarrolladores y creadores de herramientas una visión más clara de cómo evoluciona la experiencia central de edición de Copilot.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">Developer Tools</span><span class="tag">GitHub</span><span class="tag">Retired</span><span class="tag">Retirements</span><span class="tag">Update</span><span class="tag">actions</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></span>
-          <a href="https://github.blog/changelog/2026-09-23-node-20-is-no-longer-available-in-github-actions" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="tag">Developer Tools</span><span class="tag">Launched</span><span class="tag">Visual Studio Code</span><span class="tag"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></span>
+          <a href="https://code.visualstudio.com/blogs/2026/09/23/building-the-github-copilot-inline-suggestions-model-part-two" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
           <span class="date" data-date="2026-09-23">Sep 23</span>
         </div>
       </article>
       <article
         class="story-card"
         data-rank="12"
-        data-published="2026-09-23"
-        data-tags="Azure,Azure Functions,Compliance,Compute,Containers,Internet of Things,Retirements,Security"
+        data-published="2026-09-18"
+        data-tags="AI + Machine Learning,Azure,Feature,In preview,Microsoft Foundry"
         data-source="Microsoft Developer"
         data-importance="High"
         data-score="8"
-        data-search="Retirement: Support for .NET 8 and .NET 9 ends on November 10, 2026—upgrade your apps to .NET 10 Retiro: el soporte de .NET 8 y .NET 9 termina el 10 de noviembre de 2026; actualiza tus apps a .NET 10 Microsoft Developer High 8 Microsoft says support for .NET 8 and .NET 9 ends on November 10, 2026 and recommends moving Azure Function Apps to .NET 10. Microsoft indica que el soporte de .NET 8 y .NET 9 termina el 10 de noviembre de 2026 y recomienda mover las Azure Function Apps a .NET 10. Teams on Azure Functions need upgrade plans to stay on supported runtimes and keep receiving security updates. Los equipos que usan Azure Functions necesitan planes de migración para seguir en runtimes soportados y recibir actualizaciones de seguridad. Azure Azure Functions Compliance Compute Containers Internet of Things Retirements Security"
+        data-search="[In preview] Public Preview: Network egress controls for hosted agents in Microsoft Foundry Vista previa: controles de salida de red para agentes hospedados en Microsoft Foundry Microsoft Developer High 8 Microsoft Foundry is previewing outbound network rules for hosted agents, including ordered allow and deny policies by destination host. Microsoft Foundry prueba reglas de salida de red para agentes hospedados, con políticas ordenadas de permitir y denegar por host de destino. Network egress policy is a core control for putting hosted agents into production safely. La política de salida de red es un control clave para llevar agentes hospedados a producción de forma segura. AI + Machine Learning Azure Feature In preview Microsoft Foundry"
       >
         <div class="story-head">
           <div class="rank">12</div>
@@ -816,65 +803,63 @@
                 <span>High</span>
               </div>
             </div>
-            <div class="title"><a href="https://azure.microsoft.com/updates?id=572838" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Retirement: Support for .NET 8 and .NET 9 ends on November 10, 2026—upgrade your apps to .NET 10</span><span class="lang-text" data-lang="es">Retiro: el soporte de .NET 8 y .NET 9 termina el 10 de noviembre de 2026; actualiza tus apps a .NET 10</span></a></div>
+            <div class="title"><a href="https://azure.microsoft.com/updates?id=571821" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">[In preview] Public Preview: Network egress controls for hosted agents in Microsoft Foundry</span><span class="lang-text" data-lang="es">Vista previa: controles de salida de red para agentes hospedados en Microsoft Foundry</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Microsoft says support for .NET 8 and .NET 9 ends on November 10, 2026 and recommends moving Azure Function Apps to .NET 10.</span><span class="lang-text" data-lang="es">Microsoft indica que el soporte de .NET 8 y .NET 9 termina el 10 de noviembre de 2026 y recomienda mover las Azure Function Apps a .NET 10.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Microsoft Foundry is previewing outbound network rules for hosted agents, including ordered allow and deny policies by destination host.</span><span class="lang-text" data-lang="es">Microsoft Foundry prueba reglas de salida de red para agentes hospedados, con políticas ordenadas de permitir y denegar por host de destino.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Teams on Azure Functions need upgrade plans to stay on supported runtimes and keep receiving security updates.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Los equipos que usan Azure Functions necesitan planes de migración para seguir en runtimes soportados y recibir actualizaciones de seguridad.</span>
+          <span class="lang-text" data-lang="en">Why it matters: Network egress policy is a core control for putting hosted agents into production safely.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: La política de salida de red es un control clave para llevar agentes hospedados a producción de forma segura.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">Azure</span><span class="tag">Azure Functions</span><span class="tag">Compliance</span><span class="tag">Compute</span><span class="tag">Containers</span><span class="tag">Internet of Things</span><span class="tag">Retirements</span><span class="tag">Security</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></span>
-          <a href="https://azure.microsoft.com/updates?id=572838" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
-          <span class="date" data-date="2026-09-23">Sep 23</span>
+          <span class="tag">AI + Machine Learning</span><span class="tag">Azure</span><span class="tag">Feature</span><span class="tag">In preview</span><span class="tag">Microsoft Foundry</span><span class="tag"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></span>
+          <a href="https://azure.microsoft.com/updates?id=571821" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-09-18">Sep 18</span>
         </div>
       </article>
       <article
         class="story-card"
         data-rank="13"
-        data-published="2026-09-22"
-        data-tags="Azure,Azure Functions,Compliance,Compute,Containers,Internet of Things,Retirements,Security"
+        data-published="2026-09-18"
+        data-tags="AI + Machine Learning,Azure,Feature,Launched,Microsoft Foundry"
         data-source="Microsoft Developer"
-        data-importance="Medium"
-        data-score="7"
-        data-search="Retirement: Support for Node.js 22 ends on April 30, 2027 Retiro: el soporte de Node.js 22 termina el 30 de abril de 2027 Microsoft Developer Medium 7 Microsoft announced that Node.js 22 support on Azure Functions ends on April 30, 2027 and points developers to Node.js 24. Microsoft anunció que el soporte de Node.js 22 en Azure Functions termina el 30 de abril de 2027 y orienta a los desarrolladores hacia Node.js 24. It is another runtime deadline that backend teams should add to their upgrade calendars early. Es otra fecha límite de runtime que los equipos backend deberían sumar pronto a sus calendarios de actualización. Azure Azure Functions Compliance Compute Containers Internet of Things Retirements Security"
+        data-importance="High"
+        data-score="8"
+        data-search="[Launched] Generally Available: Publishing Microsoft Foundry agents to Microsoft 365 Copilot and Teams Publicación de agentes de Microsoft Foundry en Microsoft 365 Copilot y Teams Microsoft Developer High 8 Publishing Microsoft Foundry agents to Microsoft 365 Copilot and Teams is now generally available. La publicación de agentes de Microsoft Foundry en Microsoft 365 Copilot y Teams ya está disponible de forma general. That gives Foundry-built agents a more direct route into the collaboration products where users already work. Eso da a los agentes creados con Foundry una ruta más directa hacia los productos de colaboración donde los usuarios ya trabajan. AI + Machine Learning Azure Feature Launched Microsoft Foundry"
       >
         <div class="story-head">
           <div class="rank">13</div>
           <div>
             <div class="story-meta-line">
               <div class="source">🪟 Microsoft Developer</div>
-              <div class="importance importance-medium" aria-label="Medium importance">
+              <div class="importance importance-high" aria-label="High importance">
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span>Medium</span>
+                <span>High</span>
               </div>
             </div>
-            <div class="title"><a href="https://azure.microsoft.com/updates?id=572771" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Retirement: Support for Node.js 22 ends on April 30, 2027</span><span class="lang-text" data-lang="es">Retiro: el soporte de Node.js 22 termina el 30 de abril de 2027</span></a></div>
+            <div class="title"><a href="https://azure.microsoft.com/updates?id=571816" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">[Launched] Generally Available: Publishing Microsoft Foundry agents to Microsoft 365 Copilot and Teams</span><span class="lang-text" data-lang="es">Publicación de agentes de Microsoft Foundry en Microsoft 365 Copilot y Teams</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Microsoft announced that Node.js 22 support on Azure Functions ends on April 30, 2027 and points developers to Node.js 24.</span><span class="lang-text" data-lang="es">Microsoft anunció que el soporte de Node.js 22 en Azure Functions termina el 30 de abril de 2027 y orienta a los desarrolladores hacia Node.js 24.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Publishing Microsoft Foundry agents to Microsoft 365 Copilot and Teams is now generally available.</span><span class="lang-text" data-lang="es">La publicación de agentes de Microsoft Foundry en Microsoft 365 Copilot y Teams ya está disponible de forma general.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: It is another runtime deadline that backend teams should add to their upgrade calendars early.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Es otra fecha límite de runtime que los equipos backend deberían sumar pronto a sus calendarios de actualización.</span>
+          <span class="lang-text" data-lang="en">Why it matters: That gives Foundry-built agents a more direct route into the collaboration products where users already work.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Eso da a los agentes creados con Foundry una ruta más directa hacia los productos de colaboración donde los usuarios ya trabajan.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">Azure</span><span class="tag">Azure Functions</span><span class="tag">Compliance</span><span class="tag">Compute</span><span class="tag">Containers</span><span class="tag">Internet of Things</span><span class="tag">Retirements</span><span class="tag">Security</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></span>
-          <a href="https://azure.microsoft.com/updates?id=572771" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
-          <span class="date" data-date="2026-09-22">Sep 22</span>
+          <span class="tag">AI + Machine Learning</span><span class="tag">Azure</span><span class="tag">Feature</span><span class="tag">Launched</span><span class="tag">Microsoft Foundry</span><span class="tag"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></span>
+          <a href="https://azure.microsoft.com/updates?id=571816" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-09-18">Sep 18</span>
         </div>
       </article>
       <article
         class="story-card"
         data-rank="14"
-        data-published="2026-09-22"
-        data-tags="Azure,Azure Kubernetes Service (AKS),Compute,Containers,Feature,In preview"
+        data-published="2026-09-18"
+        data-tags="AI + Machine Learning,Azure,Feature,Launched,Microsoft Foundry"
         data-source="Microsoft Developer"
         data-importance="Medium"
         data-score="7"
-        data-search="[In preview] Public Preview: Flex Nodes for AKS Vista previa pública: Flex Nodes para AKS Microsoft Developer Medium 7 Flex Nodes for AKS lets teams connect hybrid and edge worker nodes to an AKS control plane in Azure. Flex Nodes para AKS permite conectar nodos de trabajo híbridos y de edge a un plano de control de AKS en Azure. That expands Kubernetes options for organizations operating across cloud, on-premises, and edge environments. Eso amplía las opciones de Kubernetes para organizaciones que operan entre nube, on-premises y entornos edge. Azure Azure Kubernetes Service (AKS) Compute Containers Feature In preview"
+        data-search="[Launched] Generally Available: Enable and disable controls for Microsoft Foundry agents in Agent 365 Controles para habilitar y deshabilitar agentes de Microsoft Foundry en Agent 365 Microsoft Developer Medium 7 Agent 365 now generally provides enable and disable controls for Microsoft Foundry agents in the Microsoft Admin Center. Agent 365 ahora ofrece de forma general controles para habilitar y deshabilitar agentes de Microsoft Foundry en Microsoft Admin Center. Central admin controls make it easier to govern which agents stay available across an organization. Los controles centrales de administración facilitan gobernar qué agentes permanecen disponibles en toda la organización. AI + Machine Learning Azure Feature Launched Microsoft Foundry"
       >
         <div class="story-head">
           <div class="rank">14</div>
@@ -886,208 +871,32 @@
                 <span>Medium</span>
               </div>
             </div>
-            <div class="title"><a href="https://azure.microsoft.com/updates?id=571919" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">[In preview] Public Preview: Flex Nodes for AKS</span><span class="lang-text" data-lang="es">Vista previa pública: Flex Nodes para AKS</span></a></div>
+            <div class="title"><a href="https://azure.microsoft.com/updates?id=571826" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">[Launched] Generally Available: Enable and disable controls for Microsoft Foundry agents in Agent 365</span><span class="lang-text" data-lang="es">Controles para habilitar y deshabilitar agentes de Microsoft Foundry en Agent 365</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Flex Nodes for AKS lets teams connect hybrid and edge worker nodes to an AKS control plane in Azure.</span><span class="lang-text" data-lang="es">Flex Nodes para AKS permite conectar nodos de trabajo híbridos y de edge a un plano de control de AKS en Azure.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Agent 365 now generally provides enable and disable controls for Microsoft Foundry agents in the Microsoft Admin Center.</span><span class="lang-text" data-lang="es">Agent 365 ahora ofrece de forma general controles para habilitar y deshabilitar agentes de Microsoft Foundry en Microsoft Admin Center.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: That expands Kubernetes options for organizations operating across cloud, on-premises, and edge environments.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Eso amplía las opciones de Kubernetes para organizaciones que operan entre nube, on-premises y entornos edge.</span>
+          <span class="lang-text" data-lang="en">Why it matters: Central admin controls make it easier to govern which agents stay available across an organization.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Los controles centrales de administración facilitan gobernar qué agentes permanecen disponibles en toda la organización.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">Azure</span><span class="tag">Azure Kubernetes Service (AKS)</span><span class="tag">Compute</span><span class="tag">Containers</span><span class="tag">Feature</span><span class="tag">In preview</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></span>
-          <a href="https://azure.microsoft.com/updates?id=571919" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
-          <span class="date" data-date="2026-09-22">Sep 22</span>
+          <span class="tag">AI + Machine Learning</span><span class="tag">Azure</span><span class="tag">Feature</span><span class="tag">Launched</span><span class="tag">Microsoft Foundry</span><span class="tag"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></span>
+          <a href="https://azure.microsoft.com/updates?id=571826" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-09-18">Sep 18</span>
         </div>
       </article>
       <article
         class="story-card"
         data-rank="15"
-        data-published="2026-09-21"
-        data-tags="Azure,Azure Functions,Compute,Containers,Feature,Internet of Things,Launched,Security,Services"
-        data-source="Microsoft Developer"
-        data-importance="Medium"
-        data-score="7"
-        data-search="[Launched] Generally Available: Azure Functions support for PowerShell 7.6 Disponibilidad general: soporte de PowerShell 7.6 en Azure Functions Microsoft Developer Medium 7 Azure Functions now generally supports PowerShell 7.6 for local development and deployment. Azure Functions ya soporta de forma general PowerShell 7.6 para desarrollo local y despliegue. PowerShell-heavy teams can standardize on the newer version across local tooling and hosted execution. Los equipos con mucho PowerShell pueden estandarizar la versión más nueva entre el entorno local y la ejecución hospedada. Azure Azure Functions Compute Containers Feature Internet of Things Launched Security Services"
-      >
-        <div class="story-head">
-          <div class="rank">15</div>
-          <div>
-            <div class="story-meta-line">
-              <div class="source">🪟 Microsoft Developer</div>
-              <div class="importance importance-medium" aria-label="Medium importance">
-                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span>Medium</span>
-              </div>
-            </div>
-            <div class="title"><a href="https://azure.microsoft.com/updates?id=572219" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">[Launched] Generally Available: Azure Functions support for PowerShell 7.6</span><span class="lang-text" data-lang="es">Disponibilidad general: soporte de PowerShell 7.6 en Azure Functions</span></a></div>
-          </div>
-        </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Azure Functions now generally supports PowerShell 7.6 for local development and deployment.</span><span class="lang-text" data-lang="es">Azure Functions ya soporta de forma general PowerShell 7.6 para desarrollo local y despliegue.</span></p>
-        <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: PowerShell-heavy teams can standardize on the newer version across local tooling and hosted execution.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Los equipos con mucho PowerShell pueden estandarizar la versión más nueva entre el entorno local y la ejecución hospedada.</span>
-        </p>
-        <div class="story-footer">
-          <span class="tag">Azure</span><span class="tag">Azure Functions</span><span class="tag">Compute</span><span class="tag">Containers</span><span class="tag">Feature</span><span class="tag">Internet of Things</span><span class="tag">Launched</span><span class="tag">Security</span><span class="tag">Services</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></span>
-          <a href="https://azure.microsoft.com/updates?id=572219" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
-          <span class="date" data-date="2026-09-21">Sep 21</span>
-        </div>
-      </article>
-      <article
-        class="story-card"
-        data-rank="16"
-        data-published="2026-09-18"
-        data-tags="AI + Machine Learning,Azure,Feature,In preview,Microsoft Build,Microsoft Foundry"
-        data-source="Microsoft Developer"
-        data-importance="Medium"
-        data-score="7"
-        data-search="[In preview] Public Preview: Foundry Routines in Foundry Agent Service Vista previa pública: Foundry Routines en Foundry Agent Service Microsoft Developer Medium 7 Foundry Agent Service now previews Foundry Routines, a native trigger primitive for running published agents automatically. Foundry Agent Service muestra en vista previa Foundry Routines, un disparador nativo para ejecutar agentes publicados automáticamente. Native scheduling and event triggers reduce the glue code needed to operationalize agent workflows. La programación y los disparadores nativos reducen el código auxiliar necesario para poner en producción flujos con agentes. AI + Machine Learning Azure Feature In preview Microsoft Build Microsoft Foundry"
-      >
-        <div class="story-head">
-          <div class="rank">16</div>
-          <div>
-            <div class="story-meta-line">
-              <div class="source">🪟 Microsoft Developer</div>
-              <div class="importance importance-medium" aria-label="Medium importance">
-                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span>Medium</span>
-              </div>
-            </div>
-            <div class="title"><a href="https://azure.microsoft.com/updates?id=563536" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">[In preview] Public Preview: Foundry Routines in Foundry Agent Service</span><span class="lang-text" data-lang="es">Vista previa pública: Foundry Routines en Foundry Agent Service</span></a></div>
-          </div>
-        </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Foundry Agent Service now previews Foundry Routines, a native trigger primitive for running published agents automatically.</span><span class="lang-text" data-lang="es">Foundry Agent Service muestra en vista previa Foundry Routines, un disparador nativo para ejecutar agentes publicados automáticamente.</span></p>
-        <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Native scheduling and event triggers reduce the glue code needed to operationalize agent workflows.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: La programación y los disparadores nativos reducen el código auxiliar necesario para poner en producción flujos con agentes.</span>
-        </p>
-        <div class="story-footer">
-          <span class="tag">AI + Machine Learning</span><span class="tag">Azure</span><span class="tag">Feature</span><span class="tag">In preview</span><span class="tag">Microsoft Build</span><span class="tag">Microsoft Foundry</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></span>
-          <a href="https://azure.microsoft.com/updates?id=563536" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
-          <span class="date" data-date="2026-09-18">Sep 18</span>
-        </div>
-      </article>
-      <article
-        class="story-card"
-        data-rank="17"
-        data-published="2026-09-18"
-        data-tags="AI + Machine Learning,Azure,Feature,In preview,Microsoft Foundry"
-        data-source="Microsoft Developer"
-        data-importance="High"
-        data-score="8"
-        data-search="[In preview] Public Preview: Network egress controls for hosted agents in Microsoft Foundry Vista previa pública: controles de salida de red para agentes hospedados en Microsoft Foundry Microsoft Developer High 8 Microsoft Foundry is previewing outbound network rules for hosted agents, including host-based allow and deny controls. Microsoft Foundry muestra en vista previa reglas de salida de red para agentes hospedados, incluidas políticas de permitir y denegar por host. This is a practical governance feature for enterprises that need tighter control over where AI agents can connect. Es una función práctica de gobernanza para empresas que necesitan más control sobre adónde pueden conectarse los agentes de IA. AI + Machine Learning Azure Feature In preview Microsoft Foundry"
-      >
-        <div class="story-head">
-          <div class="rank">17</div>
-          <div>
-            <div class="story-meta-line">
-              <div class="source">🪟 Microsoft Developer</div>
-              <div class="importance importance-high" aria-label="High importance">
-                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span>High</span>
-              </div>
-            </div>
-            <div class="title"><a href="https://azure.microsoft.com/updates?id=571821" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">[In preview] Public Preview: Network egress controls for hosted agents in Microsoft Foundry</span><span class="lang-text" data-lang="es">Vista previa pública: controles de salida de red para agentes hospedados en Microsoft Foundry</span></a></div>
-          </div>
-        </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Microsoft Foundry is previewing outbound network rules for hosted agents, including host-based allow and deny controls.</span><span class="lang-text" data-lang="es">Microsoft Foundry muestra en vista previa reglas de salida de red para agentes hospedados, incluidas políticas de permitir y denegar por host.</span></p>
-        <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: This is a practical governance feature for enterprises that need tighter control over where AI agents can connect.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Es una función práctica de gobernanza para empresas que necesitan más control sobre adónde pueden conectarse los agentes de IA.</span>
-        </p>
-        <div class="story-footer">
-          <span class="tag">AI + Machine Learning</span><span class="tag">Azure</span><span class="tag">Feature</span><span class="tag">In preview</span><span class="tag">Microsoft Foundry</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></span>
-          <a href="https://azure.microsoft.com/updates?id=571821" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
-          <span class="date" data-date="2026-09-18">Sep 18</span>
-        </div>
-      </article>
-      <article
-        class="story-card"
-        data-rank="18"
-        data-published="2026-09-18"
-        data-tags="AI + Machine Learning,Azure,Feature,Launched,Microsoft Foundry"
-        data-source="Microsoft Developer"
-        data-importance="Medium"
-        data-score="7"
-        data-search="[Launched] Generally Available: Publishing Microsoft Foundry agents to Microsoft 365 Copilot and Teams Disponibilidad general: publicar agentes de Microsoft Foundry en Microsoft 365 Copilot y Teams Microsoft Developer Medium 7 Microsoft Foundry agents can now be published natively to Microsoft 365 Copilot and Teams. Los agentes de Microsoft Foundry ya pueden publicarse de forma nativa en Microsoft 365 Copilot y Teams. The release shortens the path from agent development to end-user distribution inside Microsoft&#x27;s workplace stack. La novedad acorta el camino entre el desarrollo de agentes y su distribución a usuarios finales dentro del stack laboral de Microsoft. AI + Machine Learning Azure Feature Launched Microsoft Foundry"
-      >
-        <div class="story-head">
-          <div class="rank">18</div>
-          <div>
-            <div class="story-meta-line">
-              <div class="source">🪟 Microsoft Developer</div>
-              <div class="importance importance-medium" aria-label="Medium importance">
-                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span>Medium</span>
-              </div>
-            </div>
-            <div class="title"><a href="https://azure.microsoft.com/updates?id=571816" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">[Launched] Generally Available: Publishing Microsoft Foundry agents to Microsoft 365 Copilot and Teams</span><span class="lang-text" data-lang="es">Disponibilidad general: publicar agentes de Microsoft Foundry en Microsoft 365 Copilot y Teams</span></a></div>
-          </div>
-        </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Microsoft Foundry agents can now be published natively to Microsoft 365 Copilot and Teams.</span><span class="lang-text" data-lang="es">Los agentes de Microsoft Foundry ya pueden publicarse de forma nativa en Microsoft 365 Copilot y Teams.</span></p>
-        <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: The release shortens the path from agent development to end-user distribution inside Microsoft&#x27;s workplace stack.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: La novedad acorta el camino entre el desarrollo de agentes y su distribución a usuarios finales dentro del stack laboral de Microsoft.</span>
-        </p>
-        <div class="story-footer">
-          <span class="tag">AI + Machine Learning</span><span class="tag">Azure</span><span class="tag">Feature</span><span class="tag">Launched</span><span class="tag">Microsoft Foundry</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></span>
-          <a href="https://azure.microsoft.com/updates?id=571816" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
-          <span class="date" data-date="2026-09-18">Sep 18</span>
-        </div>
-      </article>
-      <article
-        class="story-card"
-        data-rank="19"
-        data-published="2026-09-16"
-        data-tags="Azure,Azure Database for PostgreSQL,Databases,Features,Hybrid + Multicloud,In preview"
-        data-source="Microsoft Developer"
-        data-importance="Medium"
-        data-score="7"
-        data-search="[In preview] Public Preview: PostgreSQL skills and MCP plugin for Azure Database for PostgreSQL Vista previa pública: habilidades de PostgreSQL y plugin MCP para Azure Database for PostgreSQL Microsoft Developer Medium 7 Azure Database for PostgreSQL is previewing PostgreSQL skills and an MCP plugin for AI coding assistants. Azure Database for PostgreSQL muestra en vista previa habilidades de PostgreSQL y un plugin MCP para asistentes de codificación con IA. Database work is moving closer to context-aware AI tooling, not just generic code completion. El trabajo con bases de datos se acerca a herramientas de IA con contexto, no solo a autocompletado genérico. Azure Azure Database for PostgreSQL Databases Features Hybrid + Multicloud In preview"
-      >
-        <div class="story-head">
-          <div class="rank">19</div>
-          <div>
-            <div class="story-meta-line">
-              <div class="source">🪟 Microsoft Developer</div>
-              <div class="importance importance-medium" aria-label="Medium importance">
-                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span>Medium</span>
-              </div>
-            </div>
-            <div class="title"><a href="https://azure.microsoft.com/updates?id=569664" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">[In preview] Public Preview: PostgreSQL skills and MCP plugin for Azure Database for PostgreSQL</span><span class="lang-text" data-lang="es">Vista previa pública: habilidades de PostgreSQL y plugin MCP para Azure Database for PostgreSQL</span></a></div>
-          </div>
-        </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Azure Database for PostgreSQL is previewing PostgreSQL skills and an MCP plugin for AI coding assistants.</span><span class="lang-text" data-lang="es">Azure Database for PostgreSQL muestra en vista previa habilidades de PostgreSQL y un plugin MCP para asistentes de codificación con IA.</span></p>
-        <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Database work is moving closer to context-aware AI tooling, not just generic code completion.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: El trabajo con bases de datos se acerca a herramientas de IA con contexto, no solo a autocompletado genérico.</span>
-        </p>
-        <div class="story-footer">
-          <span class="tag">Azure</span><span class="tag">Azure Database for PostgreSQL</span><span class="tag">Databases</span><span class="tag">Features</span><span class="tag">Hybrid + Multicloud</span><span class="tag">In preview</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></span>
-          <a href="https://azure.microsoft.com/updates?id=569664" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
-          <span class="date" data-date="2026-09-16">Sep 16</span>
-        </div>
-      </article>
-      <article
-        class="story-card"
-        data-rank="20"
-        data-published="2026-09-16"
-        data-tags="GitHub,Launched,Security"
+        data-published="2026-09-25"
+        data-tags="AI + Machine Learning,GitHub,Improvement,Launched,Management and Governance"
         data-source="GitHub Changelog"
         data-importance="Medium"
         data-score="7"
-        data-search="Code scanning AI Scan no longer requires CodeQL default setup AI Scan de code scanning ya no requiere la configuración predeterminada de CodeQL GitHub Changelog Medium 7 GitHub removed the CodeQL default setup requirement for using AI Scan on pull requests. GitHub eliminó el requisito de configuración predeterminada de CodeQL para usar AI Scan en pull requests. That lowers the activation barrier for teams that want AI-assisted security checks in existing repositories. Eso reduce la barrera de entrada para equipos que quieren comprobaciones de seguridad asistidas por IA en repositorios existentes. GitHub Launched Security"
+        data-search="Default Enablement of Copilot features for Copilot Business and Enterprise Habilitación predeterminada de funciones de Copilot para Business y Enterprise GitHub Changelog Medium 7 GitHub is introducing a global default policy for generally available Copilot features and supported client capabilities in Business and Enterprise settings. GitHub está introduciendo una política global predeterminada para funciones de Copilot ya disponibles y capacidades compatibles de cliente en entornos Business y Enterprise. Admins get a stronger default posture for rolling out Copilot features across organizations. Los administradores obtienen una postura predeterminada más fuerte para desplegar funciones de Copilot en sus organizaciones. AI + Machine Learning GitHub Improvement Launched Management and Governance"
       >
         <div class="story-head">
-          <div class="rank">20</div>
+          <div class="rank">15</div>
           <div>
             <div class="story-meta-line">
               <div class="source">🐙 GitHub Changelog</div>
@@ -1096,30 +905,199 @@
                 <span>Medium</span>
               </div>
             </div>
-            <div class="title"><a href="https://github.blog/changelog/2026-09-16-code-scanning-ai-scan-no-longer-requires-codeql-default-setup" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Code scanning AI Scan no longer requires CodeQL default setup</span><span class="lang-text" data-lang="es">AI Scan de code scanning ya no requiere la configuración predeterminada de CodeQL</span></a></div>
+            <div class="title"><a href="https://github.blog/changelog/2026-09-24-default-enablement-of-copilot-features-for-copilot-business-and-enterprise" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Default Enablement of Copilot features for Copilot Business and Enterprise</span><span class="lang-text" data-lang="es">Habilitación predeterminada de funciones de Copilot para Business y Enterprise</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">GitHub removed the CodeQL default setup requirement for using AI Scan on pull requests.</span><span class="lang-text" data-lang="es">GitHub eliminó el requisito de configuración predeterminada de CodeQL para usar AI Scan en pull requests.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">GitHub is introducing a global default policy for generally available Copilot features and supported client capabilities in Business and Enterprise settings.</span><span class="lang-text" data-lang="es">GitHub está introduciendo una política global predeterminada para funciones de Copilot ya disponibles y capacidades compatibles de cliente en entornos Business y Enterprise.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: That lowers the activation barrier for teams that want AI-assisted security checks in existing repositories.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Eso reduce la barrera de entrada para equipos que quieren comprobaciones de seguridad asistidas por IA en repositorios existentes.</span>
+          <span class="lang-text" data-lang="en">Why it matters: Admins get a stronger default posture for rolling out Copilot features across organizations.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Los administradores obtienen una postura predeterminada más fuerte para desplegar funciones de Copilot en sus organizaciones.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">GitHub</span><span class="tag">Launched</span><span class="tag">Security</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></span>
-          <a href="https://github.blog/changelog/2026-09-16-code-scanning-ai-scan-no-longer-requires-codeql-default-setup" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
-          <span class="date" data-date="2026-09-16">Sep 16</span>
+          <span class="tag">AI + Machine Learning</span><span class="tag">GitHub</span><span class="tag">Improvement</span><span class="tag">Launched</span><span class="tag">Management and Governance</span><span class="tag"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></span>
+          <a href="https://github.blog/changelog/2026-09-24-default-enablement-of-copilot-features-for-copilot-business-and-enterprise" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-09-25">Sep 25</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="16"
+        data-published="2026-09-23"
+        data-tags="AI + Machine Learning,GitHub,Update,copilot"
+        data-source="GitHub Changelog"
+        data-importance="Medium"
+        data-score="7"
+        data-search="More ways to request and configure Copilot code reviews Más formas de solicitar y configurar revisiones de código de Copilot GitHub Changelog Medium 7 Copilot code review now adds more personal configuration options and an enterprise default setting to more plans. Copilot code review ahora añade más opciones de configuración personal y una configuración predeterminada empresarial a más planes. Review automation becomes easier to tune at both individual and org level. La automatización de revisiones se vuelve más fácil de ajustar tanto a nivel individual como organizacional. AI + Machine Learning GitHub Update copilot"
+      >
+        <div class="story-head">
+          <div class="rank">16</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">🐙 GitHub Changelog</div>
+              <div class="importance importance-medium" aria-label="Medium importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>Medium</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://github.blog/changelog/2026-09-23-copilot-code-review-more-ways-to-request-and-configure-reviews" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">More ways to request and configure Copilot code reviews</span><span class="lang-text" data-lang="es">Más formas de solicitar y configurar revisiones de código de Copilot</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">Copilot code review now adds more personal configuration options and an enterprise default setting to more plans.</span><span class="lang-text" data-lang="es">Copilot code review ahora añade más opciones de configuración personal y una configuración predeterminada empresarial a más planes.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: Review automation becomes easier to tune at both individual and org level.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: La automatización de revisiones se vuelve más fácil de ajustar tanto a nivel individual como organizacional.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">AI + Machine Learning</span><span class="tag">GitHub</span><span class="tag">Update</span><span class="tag">copilot</span><span class="tag"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></span>
+          <a href="https://github.blog/changelog/2026-09-23-copilot-code-review-more-ways-to-request-and-configure-reviews" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-09-23">Sep 23</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="17"
+        data-published="2026-09-14"
+        data-tags="AI + Machine Learning,GitHub,Launched"
+        data-source="GitHub Changelog"
+        data-importance="Medium"
+        data-score="7"
+        data-search="Configure cost and quality in Copilot auto model selection Configura costo y calidad en la selección automática de modelos de Copilot GitHub Changelog Medium 7 Copilot auto model selection now offers efficiency, balance, and intelligence tiers to trade off cost, quality, and response time. La selección automática de modelos de Copilot ahora ofrece niveles de eficiencia, equilibrio e inteligencia para equilibrar costo, calidad y tiempo de respuesta. That gives teams a simpler policy knob for aligning Copilot behavior with budgets and latency needs. Eso da a los equipos un ajuste de política más simple para alinear el comportamiento de Copilot con presupuestos y necesidades de latencia. AI + Machine Learning GitHub Launched"
+      >
+        <div class="story-head">
+          <div class="rank">17</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">🐙 GitHub Changelog</div>
+              <div class="importance importance-medium" aria-label="Medium importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>Medium</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://github.blog/changelog/2026-09-14-configure-cost-and-quality-in-copilot-auto-model-selection" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Configure cost and quality in Copilot auto model selection</span><span class="lang-text" data-lang="es">Configura costo y calidad en la selección automática de modelos de Copilot</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">Copilot auto model selection now offers efficiency, balance, and intelligence tiers to trade off cost, quality, and response time.</span><span class="lang-text" data-lang="es">La selección automática de modelos de Copilot ahora ofrece niveles de eficiencia, equilibrio e inteligencia para equilibrar costo, calidad y tiempo de respuesta.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: That gives teams a simpler policy knob for aligning Copilot behavior with budgets and latency needs.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Eso da a los equipos un ajuste de política más simple para alinear el comportamiento de Copilot con presupuestos y necesidades de latencia.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">AI + Machine Learning</span><span class="tag">GitHub</span><span class="tag">Launched</span><span class="tag"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></span>
+          <a href="https://github.blog/changelog/2026-09-14-configure-cost-and-quality-in-copilot-auto-model-selection" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-09-14">Sep 14</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="18"
+        data-published="2026-09-25"
+        data-tags="GitHub,Improvement,Launched,Security,application security"
+        data-source="GitHub Changelog"
+        data-importance="Medium"
+        data-score="7"
+        data-search="CodeQL 2.27.1 adds C and C++ query and Kotlin 2.4.20 support CodeQL 2.27.1 añade consultas para C y C++ y soporte para Kotlin 2.4.20 GitHub Changelog Medium 7 CodeQL 2.27.1 adds new C and C++ plus C# queries, Kotlin 2.4.20 support, and query-accuracy improvements. CodeQL 2.27.1 añade nuevas consultas para C, C++ y C#, soporte para Kotlin 2.4.20 y mejoras en la precisión de las consultas. Security teams get fresher language coverage and analysis quality without changing platforms. Los equipos de seguridad obtienen cobertura de lenguajes más actualizada y mejor calidad de análisis sin cambiar de plataforma. GitHub Improvement Launched Security application security"
+      >
+        <div class="story-head">
+          <div class="rank">18</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">🐙 GitHub Changelog</div>
+              <div class="importance importance-medium" aria-label="Medium importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>Medium</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://github.blog/changelog/2026-09-25-codeql-2-27-1-adds-c-and-c-query-and-kotlin-2-4-20-support" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">CodeQL 2.27.1 adds C and C++ query and Kotlin 2.4.20 support</span><span class="lang-text" data-lang="es">CodeQL 2.27.1 añade consultas para C y C++ y soporte para Kotlin 2.4.20</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">CodeQL 2.27.1 adds new C and C++ plus C# queries, Kotlin 2.4.20 support, and query-accuracy improvements.</span><span class="lang-text" data-lang="es">CodeQL 2.27.1 añade nuevas consultas para C, C++ y C#, soporte para Kotlin 2.4.20 y mejoras en la precisión de las consultas.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: Security teams get fresher language coverage and analysis quality without changing platforms.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Los equipos de seguridad obtienen cobertura de lenguajes más actualizada y mejor calidad de análisis sin cambiar de plataforma.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">GitHub</span><span class="tag">Improvement</span><span class="tag">Launched</span><span class="tag">Security</span><span class="tag">application security</span><span class="tag"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></span>
+          <a href="https://github.blog/changelog/2026-09-25-codeql-2-27-1-adds-c-and-c-query-and-kotlin-2-4-20-support" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-09-25">Sep 25</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="19"
+        data-published="2026-09-24"
+        data-tags="GitHub,Launched,Management and Governance,Release,Security"
+        data-source="GitHub Changelog"
+        data-importance="High"
+        data-score="8"
+        data-search="Require proof of presence for high-impact actions Exigir prueba de presencia para acciones de alto impacto GitHub Changelog High 8 GitHub Enterprise Cloud admins can now require interactive re-authentication or MFA challenges before high-impact actions. Los administradores de GitHub Enterprise Cloud ahora pueden exigir reautenticación interactiva o desafíos de MFA antes de acciones de alto impacto. Proof-of-presence checks reduce the chance that sensitive admin actions happen on stale or hijacked sessions. Las comprobaciones de prueba de presencia reducen la probabilidad de que acciones sensibles de administración ocurran en sesiones obsoletas o secuestradas. GitHub Launched Management and Governance Release Security"
+      >
+        <div class="story-head">
+          <div class="rank">19</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">🐙 GitHub Changelog</div>
+              <div class="importance importance-high" aria-label="High importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>High</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://github.blog/changelog/2026-09-24-require-proof-of-presence-for-high-impact-actions" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Require proof of presence for high-impact actions</span><span class="lang-text" data-lang="es">Exigir prueba de presencia para acciones de alto impacto</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">GitHub Enterprise Cloud admins can now require interactive re-authentication or MFA challenges before high-impact actions.</span><span class="lang-text" data-lang="es">Los administradores de GitHub Enterprise Cloud ahora pueden exigir reautenticación interactiva o desafíos de MFA antes de acciones de alto impacto.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: Proof-of-presence checks reduce the chance that sensitive admin actions happen on stale or hijacked sessions.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Las comprobaciones de prueba de presencia reducen la probabilidad de que acciones sensibles de administración ocurran en sesiones obsoletas o secuestradas.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">GitHub</span><span class="tag">Launched</span><span class="tag">Management and Governance</span><span class="tag">Release</span><span class="tag">Security</span><span class="tag"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></span>
+          <a href="https://github.blog/changelog/2026-09-24-require-proof-of-presence-for-high-impact-actions" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-09-24">Sep 24</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="20"
+        data-published="2026-09-17"
+        data-tags="Developer Tools,GitHub,Launched,Security"
+        data-source="GitHub Changelog"
+        data-importance="High"
+        data-score="8"
+        data-search="Workflow execution protections in GitHub Actions generally available Protecciones de ejecución de flujos en GitHub Actions ya disponibles GitHub Changelog High 8 GitHub Actions execution protections are now generally available with allowlists for who or what can run workflows. Las protecciones de ejecución de GitHub Actions ya están disponibles con listas de permitidos sobre quién o qué puede ejecutar flujos. That gives platform teams a stronger guardrail around automation entry points. Eso da a los equipos de plataforma una protección más fuerte alrededor de los puntos de entrada de la automatización. Developer Tools GitHub Launched Security"
+      >
+        <div class="story-head">
+          <div class="rank">20</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">🐙 GitHub Changelog</div>
+              <div class="importance importance-high" aria-label="High importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>High</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://github.blog/changelog/2026-09-17-workflow-execution-protections-in-github-actions-generally-available" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Workflow execution protections in GitHub Actions generally available</span><span class="lang-text" data-lang="es">Protecciones de ejecución de flujos en GitHub Actions ya disponibles</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">GitHub Actions execution protections are now generally available with allowlists for who or what can run workflows.</span><span class="lang-text" data-lang="es">Las protecciones de ejecución de GitHub Actions ya están disponibles con listas de permitidos sobre quién o qué puede ejecutar flujos.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: That gives platform teams a stronger guardrail around automation entry points.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Eso da a los equipos de plataforma una protección más fuerte alrededor de los puntos de entrada de la automatización.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">Developer Tools</span><span class="tag">GitHub</span><span class="tag">Launched</span><span class="tag">Security</span><span class="tag"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></span>
+          <a href="https://github.blog/changelog/2026-09-17-workflow-execution-protections-in-github-actions-generally-available" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-09-17">Sep 17</span>
         </div>
       </article>
       <article
         class="story-card"
         data-rank="21"
-        data-published="2026-09-21"
-        data-tags="GitHub,Launched,Management and Governance,Security"
+        data-published="2026-09-23"
+        data-tags="Developer Tools,GitHub,Retired,Retirements,Update"
         data-source="GitHub Changelog"
         data-importance="Medium"
         data-score="7"
-        data-search="GitHub Enterprise adds credential inventory exports GitHub Enterprise añade exportaciones del inventario de credenciales GitHub Changelog Medium 7 Enterprise owners can now export a consolidated inventory of credentials that can access their GitHub enterprise. Los administradores de empresa ahora pueden exportar un inventario consolidado de las credenciales que pueden acceder a su empresa de GitHub. The export simplifies access reviews and security audits across SSH keys, tokens, and app credentials. La exportación simplifica las revisiones de acceso y las auditorías de seguridad entre claves SSH, tokens y credenciales de apps. GitHub Launched Management and Governance Security"
+        data-search="Node 20 is no longer available in GitHub Actions Node 20 ya no está disponible en GitHub Actions GitHub Changelog Medium 7 Node 20 has been removed from GitHub Actions runners, which now use Node 24 for JavaScript actions. Node 20 se ha eliminado de los runners de GitHub Actions, que ahora usan Node 24 para acciones de JavaScript. Workflow owners need to catch incompatible actions before build pipelines break unexpectedly. Los responsables de workflows deben detectar acciones incompatibles antes de que sus pipelines fallen de forma inesperada. Developer Tools GitHub Retired Retirements Update"
       >
         <div class="story-head">
           <div class="rank">21</div>
@@ -1131,100 +1109,97 @@
                 <span>Medium</span>
               </div>
             </div>
-            <div class="title"><a href="https://github.blog/changelog/2026-09-21-github-enterprise-adds-credential-inventory-exports" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">GitHub Enterprise adds credential inventory exports</span><span class="lang-text" data-lang="es">GitHub Enterprise añade exportaciones del inventario de credenciales</span></a></div>
+            <div class="title"><a href="https://github.blog/changelog/2026-09-23-node-20-is-no-longer-available-in-github-actions" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Node 20 is no longer available in GitHub Actions</span><span class="lang-text" data-lang="es">Node 20 ya no está disponible en GitHub Actions</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Enterprise owners can now export a consolidated inventory of credentials that can access their GitHub enterprise.</span><span class="lang-text" data-lang="es">Los administradores de empresa ahora pueden exportar un inventario consolidado de las credenciales que pueden acceder a su empresa de GitHub.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Node 20 has been removed from GitHub Actions runners, which now use Node 24 for JavaScript actions.</span><span class="lang-text" data-lang="es">Node 20 se ha eliminado de los runners de GitHub Actions, que ahora usan Node 24 para acciones de JavaScript.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: The export simplifies access reviews and security audits across SSH keys, tokens, and app credentials.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: La exportación simplifica las revisiones de acceso y las auditorías de seguridad entre claves SSH, tokens y credenciales de apps.</span>
+          <span class="lang-text" data-lang="en">Why it matters: Workflow owners need to catch incompatible actions before build pipelines break unexpectedly.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Los responsables de workflows deben detectar acciones incompatibles antes de que sus pipelines fallen de forma inesperada.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">GitHub</span><span class="tag">Launched</span><span class="tag">Management and Governance</span><span class="tag">Security</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></span>
-          <a href="https://github.blog/changelog/2026-09-21-github-enterprise-adds-credential-inventory-exports" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
-          <span class="date" data-date="2026-09-21">Sep 21</span>
+          <span class="tag">Developer Tools</span><span class="tag">GitHub</span><span class="tag">Retired</span><span class="tag">Retirements</span><span class="tag">Update</span><span class="tag"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></span>
+          <a href="https://github.blog/changelog/2026-09-23-node-20-is-no-longer-available-in-github-actions" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-09-23">Sep 23</span>
         </div>
       </article>
       <article
         class="story-card"
         data-rank="22"
-        data-published="2026-09-18"
-        data-tags="GitHub,Launched,Security"
-        data-source="GitHub Changelog"
+        data-published="2026-09-23"
+        data-tags="Azure,Azure Functions,Compliance,Compute,Containers"
+        data-source="Microsoft Developer"
         data-importance="Medium"
         data-score="7"
-        data-search="Stage-only npm tokens for safer automation Tokens npm solo para stage para una automatización más segura GitHub Changelog Medium 7 npm granular access tokens now offer a read-and-write stage-only mode for staging package versions without publish rights. Los tokens granulares de acceso de npm ahora ofrecen un modo de lectura y escritura solo para stage, sin permisos de publicación. This lets teams narrow automation scope and reduce package publishing risk in CI pipelines. Esto permite limitar el alcance de la automatización y reducir el riesgo de publicación de paquetes en pipelines de CI. GitHub Launched Security"
+        data-search="Retirement: Support for .NET 8 and .NET 9 ends on November 10, 2026—upgrade your apps to .NET 10 Retiro: el soporte de .NET 8 y .NET 9 termina el 10 de noviembre de 2026; actualiza tus apps a .NET 10 Microsoft Developer Medium 7 Azure Functions support for .NET 8 and .NET 9 ends on November 10, 2026, and Microsoft is telling teams to move to .NET 10. El soporte de Azure Functions para .NET 8 y .NET 9 termina el 10 de noviembre de 2026 y Microsoft está indicando a los equipos que migren a .NET 10. Teams with Functions workloads have a near-term migration deadline tied to support and security updates. Los equipos con cargas en Functions tienen un plazo de migración cercano ligado al soporte y a las actualizaciones de seguridad. Azure Azure Functions Compliance Compute Containers"
       >
         <div class="story-head">
           <div class="rank">22</div>
           <div>
             <div class="story-meta-line">
-              <div class="source">🐙 GitHub Changelog</div>
+              <div class="source">🪟 Microsoft Developer</div>
               <div class="importance importance-medium" aria-label="Medium importance">
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
                 <span>Medium</span>
               </div>
             </div>
-            <div class="title"><a href="https://github.blog/changelog/2026-09-18-stage-only-npm-tokens-for-safer-automation" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Stage-only npm tokens for safer automation</span><span class="lang-text" data-lang="es">Tokens npm solo para stage para una automatización más segura</span></a></div>
+            <div class="title"><a href="https://azure.microsoft.com/updates?id=572838" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Retirement: Support for .NET 8 and .NET 9 ends on November 10, 2026—upgrade your apps to .NET 10</span><span class="lang-text" data-lang="es">Retiro: el soporte de .NET 8 y .NET 9 termina el 10 de noviembre de 2026; actualiza tus apps a .NET 10</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">npm granular access tokens now offer a read-and-write stage-only mode for staging package versions without publish rights.</span><span class="lang-text" data-lang="es">Los tokens granulares de acceso de npm ahora ofrecen un modo de lectura y escritura solo para stage, sin permisos de publicación.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Azure Functions support for .NET 8 and .NET 9 ends on November 10, 2026, and Microsoft is telling teams to move to .NET 10.</span><span class="lang-text" data-lang="es">El soporte de Azure Functions para .NET 8 y .NET 9 termina el 10 de noviembre de 2026 y Microsoft está indicando a los equipos que migren a .NET 10.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: This lets teams narrow automation scope and reduce package publishing risk in CI pipelines.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Esto permite limitar el alcance de la automatización y reducir el riesgo de publicación de paquetes en pipelines de CI.</span>
+          <span class="lang-text" data-lang="en">Why it matters: Teams with Functions workloads have a near-term migration deadline tied to support and security updates.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Los equipos con cargas en Functions tienen un plazo de migración cercano ligado al soporte y a las actualizaciones de seguridad.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">GitHub</span><span class="tag">Launched</span><span class="tag">Security</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></span>
-          <a href="https://github.blog/changelog/2026-09-18-stage-only-npm-tokens-for-safer-automation" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
-          <span class="date" data-date="2026-09-18">Sep 18</span>
+          <span class="tag">Azure</span><span class="tag">Azure Functions</span><span class="tag">Compliance</span><span class="tag">Compute</span><span class="tag">Containers</span><span class="tag"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></span>
+          <a href="https://azure.microsoft.com/updates?id=572838" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-09-23">Sep 23</span>
         </div>
       </article>
       <article
         class="story-card"
         data-rank="23"
-        data-published="2026-09-10"
-        data-tags="GitHub,Launched,Security"
-        data-source="GitHub Changelog"
+        data-published="2026-09-22"
+        data-tags="Azure,Azure Functions,Compliance,Compute,Containers"
+        data-source="Microsoft Developer"
         data-importance="Medium"
         data-score="6"
-        data-search="AI Scan for pull request APIs in public preview Las API de AI Scan para pull requests llegan a vista previa pública GitHub Changelog Medium 6 GitHub is previewing REST APIs for enabling and managing AI Scan for pull requests at org and repo scope. GitHub muestra en vista previa APIs REST para habilitar y administrar AI Scan para pull requests a nivel de organización y repositorio. Security programs get a more automatable path to standardize AI Scan across many repositories. Los programas de seguridad obtienen una vía más automatizable para estandarizar AI Scan en muchos repositorios. GitHub Launched Security"
+        data-search="Retirement: Support for Node.js 22 ends on April 30, 2027 Retiro: el soporte de Node.js 22 termina el 30 de abril de 2027 Microsoft Developer Medium 6 Azure Functions support for Node.js 22 ends on April 30, 2027, with Node.js 24 named as the upgrade target. El soporte de Azure Functions para Node.js 22 termina el 30 de abril de 2027 y Node.js 24 aparece como destino de actualización. Serverless teams should plan runtime testing early rather than wait for support to lapse. Los equipos serverless deberían planificar pronto las pruebas de runtime en lugar de esperar a que caduque el soporte. Azure Azure Functions Compliance Compute Containers"
       >
         <div class="story-head">
           <div class="rank">23</div>
           <div>
             <div class="story-meta-line">
-              <div class="source">🐙 GitHub Changelog</div>
+              <div class="source">🪟 Microsoft Developer</div>
               <div class="importance importance-medium" aria-label="Medium importance">
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
                 <span>Medium</span>
               </div>
             </div>
-            <div class="title"><a href="https://github.blog/changelog/2026-09-10-ai-scan-for-pull-request-apis-in-public-preview" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">AI Scan for pull request APIs in public preview</span><span class="lang-text" data-lang="es">Las API de AI Scan para pull requests llegan a vista previa pública</span></a></div>
+            <div class="title"><a href="https://azure.microsoft.com/updates?id=572771" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Retirement: Support for Node.js 22 ends on April 30, 2027</span><span class="lang-text" data-lang="es">Retiro: el soporte de Node.js 22 termina el 30 de abril de 2027</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">GitHub is previewing REST APIs for enabling and managing AI Scan for pull requests at org and repo scope.</span><span class="lang-text" data-lang="es">GitHub muestra en vista previa APIs REST para habilitar y administrar AI Scan para pull requests a nivel de organización y repositorio.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Azure Functions support for Node.js 22 ends on April 30, 2027, with Node.js 24 named as the upgrade target.</span><span class="lang-text" data-lang="es">El soporte de Azure Functions para Node.js 22 termina el 30 de abril de 2027 y Node.js 24 aparece como destino de actualización.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Security programs get a more automatable path to standardize AI Scan across many repositories.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Los programas de seguridad obtienen una vía más automatizable para estandarizar AI Scan en muchos repositorios.</span>
+          <span class="lang-text" data-lang="en">Why it matters: Serverless teams should plan runtime testing early rather than wait for support to lapse.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Los equipos serverless deberían planificar pronto las pruebas de runtime en lugar de esperar a que caduque el soporte.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">GitHub</span><span class="tag">Launched</span><span class="tag">Security</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 6/10</span><span class="lang-text" data-lang="es">Puntuación 6/10</span></span>
-          <a href="https://github.blog/changelog/2026-09-10-ai-scan-for-pull-request-apis-in-public-preview" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
-          <span class="date" data-date="2026-09-10">Sep 10</span>
+          <span class="tag">Azure</span><span class="tag">Azure Functions</span><span class="tag">Compliance</span><span class="tag">Compute</span><span class="tag">Containers</span><span class="tag"><span class="lang-text" data-lang="en">Score 6/10</span><span class="lang-text" data-lang="es">Puntuación 6/10</span></span>
+          <a href="https://azure.microsoft.com/updates?id=572771" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-09-22">Sep 22</span>
         </div>
       </article>
       <article
         class="story-card"
         data-rank="24"
-        data-published="2026-09-14"
-        data-tags="Application Gateway,Azure,Features,In preview,Networking,Security"
+        data-published="2026-09-16"
+        data-tags="Azure,Azure Database for PostgreSQL,Databases,Features,Hybrid + Multicloud"
         data-source="Microsoft Developer"
         data-importance="Medium"
-        data-score="6"
-        data-search="[In preview] Public Preview: HTTP/3 over QUIC support in Azure Application Gateway Vista previa pública: compatibilidad con HTTP/3 sobre QUIC en Azure Application Gateway Microsoft Developer Medium 6 Azure Application Gateway is previewing HTTP/3 over QUIC support to improve connection setup, latency, and resiliency. Azure Application Gateway muestra en vista previa soporte para HTTP/3 sobre QUIC para mejorar el establecimiento de conexiones, la latencia y la resiliencia. Teams building modern web apps and APIs can start planning for newer transport behavior in Azure front doors. Los equipos que crean apps web y APIs modernas pueden empezar a planificar el comportamiento de transporte más nuevo en los front doors de Azure. Application Gateway Azure Features In preview Networking Security"
+        data-score="7"
+        data-search="[In preview] Public Preview: PostgreSQL skills and MCP plugin for Azure Database for PostgreSQL Vista previa: habilidades de PostgreSQL y plugin MCP para Azure Database for PostgreSQL Microsoft Developer Medium 7 Microsoft is previewing PostgreSQL skills and an MCP plugin that make supported AI coding assistants context-aware about connected PostgreSQL databases. Microsoft prueba habilidades de PostgreSQL y un plugin MCP que hacen que los asistentes de programación compatibles tengan contexto sobre bases PostgreSQL conectadas. Database-aware assistant flows are becoming more operational, not just advisory. Los flujos con asistentes conscientes de la base de datos se están volviendo más operativos y no solo consultivos. Azure Azure Database for PostgreSQL Databases Features Hybrid + Multicloud"
       >
         <div class="story-head">
           <div class="rank">24</div>
@@ -1236,68 +1211,168 @@
                 <span>Medium</span>
               </div>
             </div>
-            <div class="title"><a href="https://azure.microsoft.com/updates?id=571123" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">[In preview] Public Preview: HTTP/3 over QUIC support in Azure Application Gateway</span><span class="lang-text" data-lang="es">Vista previa pública: compatibilidad con HTTP/3 sobre QUIC en Azure Application Gateway</span></a></div>
+            <div class="title"><a href="https://azure.microsoft.com/updates?id=569664" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">[In preview] Public Preview: PostgreSQL skills and MCP plugin for Azure Database for PostgreSQL</span><span class="lang-text" data-lang="es">Vista previa: habilidades de PostgreSQL y plugin MCP para Azure Database for PostgreSQL</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Azure Application Gateway is previewing HTTP/3 over QUIC support to improve connection setup, latency, and resiliency.</span><span class="lang-text" data-lang="es">Azure Application Gateway muestra en vista previa soporte para HTTP/3 sobre QUIC para mejorar el establecimiento de conexiones, la latencia y la resiliencia.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Microsoft is previewing PostgreSQL skills and an MCP plugin that make supported AI coding assistants context-aware about connected PostgreSQL databases.</span><span class="lang-text" data-lang="es">Microsoft prueba habilidades de PostgreSQL y un plugin MCP que hacen que los asistentes de programación compatibles tengan contexto sobre bases PostgreSQL conectadas.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Teams building modern web apps and APIs can start planning for newer transport behavior in Azure front doors.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Los equipos que crean apps web y APIs modernas pueden empezar a planificar el comportamiento de transporte más nuevo en los front doors de Azure.</span>
+          <span class="lang-text" data-lang="en">Why it matters: Database-aware assistant flows are becoming more operational, not just advisory.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Los flujos con asistentes conscientes de la base de datos se están volviendo más operativos y no solo consultivos.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">Application Gateway</span><span class="tag">Azure</span><span class="tag">Features</span><span class="tag">In preview</span><span class="tag">Networking</span><span class="tag">Security</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 6/10</span><span class="lang-text" data-lang="es">Puntuación 6/10</span></span>
-          <a href="https://azure.microsoft.com/updates?id=571123" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
-          <span class="date" data-date="2026-09-14">Sep 14</span>
+          <span class="tag">Azure</span><span class="tag">Azure Database for PostgreSQL</span><span class="tag">Databases</span><span class="tag">Features</span><span class="tag">Hybrid + Multicloud</span><span class="tag"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></span>
+          <a href="https://azure.microsoft.com/updates?id=569664" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-09-16">Sep 16</span>
         </div>
       </article>
       <article
         class="story-card"
         data-rank="25"
-        data-published="2026-09-24"
-        data-tags="Biz &amp; IT,RSA,Security,cryptanalysis,factoring,key forgery"
-        data-source="Ars Technica"
-        data-importance="High"
-        data-score="9"
-        data-search="There&#x27;s a new way to break RSA that&#x27;s faster than anything we&#x27;ve seen before Hay una nueva forma de romper RSA más rápida que cualquier otra vista hasta ahora Ars Technica High 9 Ars Technica reports on a newly described RSA attack path that does not rely on classic factoring assumptions. Ars Technica informa sobre una nueva vía descrita para atacar RSA que no depende de los supuestos clásicos de factorización. Even before practical fallout is clear, cryptography and security teams should pay attention when a core assumption around RSA shifts. Aunque aún no esté claro el impacto práctico, los equipos de criptografía y seguridad deberían prestar atención cuando cambia un supuesto central sobre RSA. Biz &amp; IT RSA Security cryptanalysis factoring key forgery"
+        data-published="2026-09-21"
+        data-tags="GitHub,Launched,Management and Governance,Security"
+        data-source="GitHub Changelog"
+        data-importance="Medium"
+        data-score="7"
+        data-search="GitHub Enterprise adds credential inventory exports GitHub Enterprise añade exportaciones del inventario de credenciales GitHub Changelog Medium 7 Enterprise owners can now export an inventory of credentials that can access their GitHub enterprise, including keys and tokens. Los propietarios de entornos Enterprise ahora pueden exportar un inventario de credenciales que pueden acceder a su GitHub Enterprise, incluidas claves y tokens. Centralized credential visibility helps security teams audit access before incidents force the question. La visibilidad centralizada de credenciales ayuda a los equipos de seguridad a auditar accesos antes de que un incidente obligue a hacerlo. GitHub Launched Management and Governance Security"
       >
         <div class="story-head">
           <div class="rank">25</div>
           <div>
             <div class="story-meta-line">
-              <div class="source">🛡️ Ars Technica</div>
-              <div class="importance importance-high" aria-label="High importance">
+              <div class="source">🐙 GitHub Changelog</div>
+              <div class="importance importance-medium" aria-label="Medium importance">
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span>High</span>
+                <span>Medium</span>
               </div>
             </div>
-            <div class="title"><a href="https://arstechnica.com/security/2026/09/theres-a-new-way-to-break-rsa-thats-faster-than-anything-weve-seen-before" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">There&#x27;s a new way to break RSA that&#x27;s faster than anything we&#x27;ve seen before</span><span class="lang-text" data-lang="es">Hay una nueva forma de romper RSA más rápida que cualquier otra vista hasta ahora</span></a></div>
+            <div class="title"><a href="https://github.blog/changelog/2026-09-21-github-enterprise-adds-credential-inventory-exports" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">GitHub Enterprise adds credential inventory exports</span><span class="lang-text" data-lang="es">GitHub Enterprise añade exportaciones del inventario de credenciales</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Ars Technica reports on a newly described RSA attack path that does not rely on classic factoring assumptions.</span><span class="lang-text" data-lang="es">Ars Technica informa sobre una nueva vía descrita para atacar RSA que no depende de los supuestos clásicos de factorización.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Enterprise owners can now export an inventory of credentials that can access their GitHub enterprise, including keys and tokens.</span><span class="lang-text" data-lang="es">Los propietarios de entornos Enterprise ahora pueden exportar un inventario de credenciales que pueden acceder a su GitHub Enterprise, incluidas claves y tokens.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Even before practical fallout is clear, cryptography and security teams should pay attention when a core assumption around RSA shifts.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Aunque aún no esté claro el impacto práctico, los equipos de criptografía y seguridad deberían prestar atención cuando cambia un supuesto central sobre RSA.</span>
+          <span class="lang-text" data-lang="en">Why it matters: Centralized credential visibility helps security teams audit access before incidents force the question.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: La visibilidad centralizada de credenciales ayuda a los equipos de seguridad a auditar accesos antes de que un incidente obligue a hacerlo.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">Biz &amp; IT</span><span class="tag">RSA</span><span class="tag">Security</span><span class="tag">cryptanalysis</span><span class="tag">factoring</span><span class="tag">key forgery</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 9/10</span><span class="lang-text" data-lang="es">Puntuación 9/10</span></span>
-          <a href="https://arstechnica.com/security/2026/09/theres-a-new-way-to-break-rsa-thats-faster-than-anything-weve-seen-before" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
-          <span class="date" data-date="2026-09-24">Sep 24</span>
+          <span class="tag">GitHub</span><span class="tag">Launched</span><span class="tag">Management and Governance</span><span class="tag">Security</span><span class="tag"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></span>
+          <a href="https://github.blog/changelog/2026-09-21-github-enterprise-adds-credential-inventory-exports" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-09-21">Sep 21</span>
         </div>
       </article>
       <article
         class="story-card"
         data-rank="26"
-        data-published="2026-09-22"
-        data-tags="AI,AI ATTACK,Biz &amp; IT,Security,chatbots,spam"
-        data-source="Ars Technica"
-        data-importance="High"
-        data-score="8"
-        data-search="Microsoft disrupts AI-assisted platform that compromised 12,000 accounts Microsoft desarticula una plataforma asistida por IA que comprometió 12.000 cuentas Ars Technica High 8 Microsoft says it disrupted an AI-assisted compromise platform that helped attackers scale account takeovers. Microsoft afirma que desarticuló una plataforma asistida por IA que ayudaba a los atacantes a escalar la toma de cuentas. It is another signal that defenders have to account for AI making abusive operations easier to run at volume. Es otra señal de que los defensores deben asumir que la IA hace más fácil ejecutar operaciones abusivas a gran escala. AI AI ATTACK Biz &amp; IT Security chatbots spam"
+        data-published="2026-09-16"
+        data-tags="GitHub,Launched,Security"
+        data-source="GitHub Changelog"
+        data-importance="Medium"
+        data-score="7"
+        data-search="Code scanning AI Scan no longer requires CodeQL default setup AI Scan de code scanning ya no requiere la configuración predeterminada de CodeQL GitHub Changelog Medium 7 AI Scan for pull requests can now find vulnerabilities even when CodeQL default setup is not enabled on the repository. AI Scan para pull requests ahora puede encontrar vulnerabilidades incluso cuando CodeQL default setup no está habilitado en el repositorio. That lowers the adoption barrier for AI-assisted security review on existing repos. Eso reduce la barrera de adopción de la revisión de seguridad asistida por IA en repositorios existentes. GitHub Launched Security"
       >
         <div class="story-head">
           <div class="rank">26</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">🐙 GitHub Changelog</div>
+              <div class="importance importance-medium" aria-label="Medium importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>Medium</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://github.blog/changelog/2026-09-16-code-scanning-ai-scan-no-longer-requires-codeql-default-setup" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Code scanning AI Scan no longer requires CodeQL default setup</span><span class="lang-text" data-lang="es">AI Scan de code scanning ya no requiere la configuración predeterminada de CodeQL</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">AI Scan for pull requests can now find vulnerabilities even when CodeQL default setup is not enabled on the repository.</span><span class="lang-text" data-lang="es">AI Scan para pull requests ahora puede encontrar vulnerabilidades incluso cuando CodeQL default setup no está habilitado en el repositorio.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: That lowers the adoption barrier for AI-assisted security review on existing repos.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Eso reduce la barrera de adopción de la revisión de seguridad asistida por IA en repositorios existentes.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">GitHub</span><span class="tag">Launched</span><span class="tag">Security</span><span class="tag"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></span>
+          <a href="https://github.blog/changelog/2026-09-16-code-scanning-ai-scan-no-longer-requires-codeql-default-setup" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-09-16">Sep 16</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="27"
+        data-published="2026-09-17"
+        data-tags="AI + Machine Learning,GitHub,Launched,Management and Governance"
+        data-source="GitHub Changelog"
+        data-importance="Medium"
+        data-score="7"
+        data-search="Agentic CLI customizations now in the usage metrics API Las personalizaciones del CLI agéntico ya están en la API de métricas de uso GitHub Changelog Medium 7 GitHub Copilot usage metrics now include agentic CLI activity for skills, custom agents, MCP servers, slash commands, and plugins. Las métricas de uso de GitHub Copilot ahora incluyen actividad del CLI agéntico para skills, agentes personalizados, servidores MCP, slash commands y plugins. Enterprise reporting can now measure whether deeper CLI customizations are actually being used. Los informes empresariales ahora pueden medir si las personalizaciones más profundas del CLI realmente se están usando. AI + Machine Learning GitHub Launched Management and Governance"
+      >
+        <div class="story-head">
+          <div class="rank">27</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">🐙 GitHub Changelog</div>
+              <div class="importance importance-medium" aria-label="Medium importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>Medium</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://github.blog/changelog/2026-09-17-agentic-cli-customizations-now-in-the-usage-metrics-api" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Agentic CLI customizations now in the usage metrics API</span><span class="lang-text" data-lang="es">Las personalizaciones del CLI agéntico ya están en la API de métricas de uso</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">GitHub Copilot usage metrics now include agentic CLI activity for skills, custom agents, MCP servers, slash commands, and plugins.</span><span class="lang-text" data-lang="es">Las métricas de uso de GitHub Copilot ahora incluyen actividad del CLI agéntico para skills, agentes personalizados, servidores MCP, slash commands y plugins.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: Enterprise reporting can now measure whether deeper CLI customizations are actually being used.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Los informes empresariales ahora pueden medir si las personalizaciones más profundas del CLI realmente se están usando.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">AI + Machine Learning</span><span class="tag">GitHub</span><span class="tag">Launched</span><span class="tag">Management and Governance</span><span class="tag"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></span>
+          <a href="https://github.blog/changelog/2026-09-17-agentic-cli-customizations-now-in-the-usage-metrics-api" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-09-17">Sep 17</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="28"
+        data-published="2026-09-25"
+        data-tags="AI,Security,Supabase,cybersecurity,data exposure"
+        data-source="TechCrunch AI"
+        data-importance="High"
+        data-score="8"
+        data-search="Some Supabase customers are publicly exposing reams of people’s data to the web Algunos clientes de Supabase están exponiendo públicamente grandes volúmenes de datos personales TechCrunch AI High 8 TechCrunch reports that some Supabase-backed apps are exposing large amounts of user data on the public web when apps are misconfigured. TechCrunch informa que algunas apps basadas en Supabase están exponiendo grandes cantidades de datos de usuarios en la web pública cuando están mal configuradas. Developers shipping fast with generated or vibe-coded apps still need hard security checks around default data exposure. Los desarrolladores que publican rápido con apps generadas o vibe-coded siguen necesitando controles de seguridad estrictos sobre la exposición de datos por defecto. AI Security Supabase cybersecurity data exposure"
+      >
+        <div class="story-head">
+          <div class="rank">28</div>
+          <div>
+            <div class="story-meta-line">
+              <div class="source">📰 TechCrunch AI</div>
+              <div class="importance importance-high" aria-label="High importance">
+                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span>High</span>
+              </div>
+            </div>
+            <div class="title"><a href="https://techcrunch.com/2026/09/25/some-supabase-customers-are-publicly-exposing-reams-of-peoples-data-to-the-web" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Some Supabase customers are publicly exposing reams of people’s data to the web</span><span class="lang-text" data-lang="es">Algunos clientes de Supabase están exponiendo públicamente grandes volúmenes de datos personales</span></a></div>
+          </div>
+        </div>
+        <p class="tldr"><span class="lang-text" data-lang="en">TechCrunch reports that some Supabase-backed apps are exposing large amounts of user data on the public web when apps are misconfigured.</span><span class="lang-text" data-lang="es">TechCrunch informa que algunas apps basadas en Supabase están exponiendo grandes cantidades de datos de usuarios en la web pública cuando están mal configuradas.</span></p>
+        <p class="why">
+          <span class="lang-text" data-lang="en">Why it matters: Developers shipping fast with generated or vibe-coded apps still need hard security checks around default data exposure.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Los desarrolladores que publican rápido con apps generadas o vibe-coded siguen necesitando controles de seguridad estrictos sobre la exposición de datos por defecto.</span>
+        </p>
+        <div class="story-footer">
+          <span class="tag">AI</span><span class="tag">Security</span><span class="tag">Supabase</span><span class="tag">cybersecurity</span><span class="tag">data exposure</span><span class="tag"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></span>
+          <a href="https://techcrunch.com/2026/09/25/some-supabase-customers-are-publicly-exposing-reams-of-peoples-data-to-the-web" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="date" data-date="2026-09-25">Sep 25</span>
+        </div>
+      </article>
+      <article
+        class="story-card"
+        data-rank="29"
+        data-published="2026-09-22"
+        data-tags="AI,AI ATTACK,Biz &amp; IT,Security,chatbots"
+        data-source="Ars Technica"
+        data-importance="High"
+        data-score="8"
+        data-search="Microsoft disrupts AI-assisted platform that compromised 12,000 accounts Microsoft desarticula una plataforma asistida por IA que comprometió 12.000 cuentas Ars Technica High 8 Microsoft says it disrupted EvilTokens, an AI-assisted platform that made mass account compromise faster and easier. Microsoft afirma haber desarticulado EvilTokens, una plataforma asistida por IA que hacía más rápidos y fáciles los compromisos masivos de cuentas. The story is a reminder that attacker tooling is being productized alongside legitimate AI developer tooling. La noticia recuerda que las herramientas para atacantes también se están convirtiendo en productos al mismo tiempo que las herramientas legítimas para desarrolladores con IA. AI AI ATTACK Biz &amp; IT Security chatbots"
+      >
+        <div class="story-head">
+          <div class="rank">29</div>
           <div>
             <div class="story-meta-line">
               <div class="source">🛡️ Ars Technica</div>
@@ -1309,85 +1384,48 @@
             <div class="title"><a href="https://arstechnica.com/security/2026/09/microsoft-disrupts-ai-assisted-platform-that-compromised-12000" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Microsoft disrupts AI-assisted platform that compromised 12,000 accounts</span><span class="lang-text" data-lang="es">Microsoft desarticula una plataforma asistida por IA que comprometió 12.000 cuentas</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">Microsoft says it disrupted an AI-assisted compromise platform that helped attackers scale account takeovers.</span><span class="lang-text" data-lang="es">Microsoft afirma que desarticuló una plataforma asistida por IA que ayudaba a los atacantes a escalar la toma de cuentas.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Microsoft says it disrupted EvilTokens, an AI-assisted platform that made mass account compromise faster and easier.</span><span class="lang-text" data-lang="es">Microsoft afirma haber desarticulado EvilTokens, una plataforma asistida por IA que hacía más rápidos y fáciles los compromisos masivos de cuentas.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: It is another signal that defenders have to account for AI making abusive operations easier to run at volume.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Es otra señal de que los defensores deben asumir que la IA hace más fácil ejecutar operaciones abusivas a gran escala.</span>
+          <span class="lang-text" data-lang="en">Why it matters: The story is a reminder that attacker tooling is being productized alongside legitimate AI developer tooling.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: La noticia recuerda que las herramientas para atacantes también se están convirtiendo en productos al mismo tiempo que las herramientas legítimas para desarrolladores con IA.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">AI ATTACK</span><span class="tag">Biz &amp; IT</span><span class="tag">Security</span><span class="tag">chatbots</span><span class="tag">spam</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></span>
+          <span class="tag">AI</span><span class="tag">AI ATTACK</span><span class="tag">Biz &amp; IT</span><span class="tag">Security</span><span class="tag">chatbots</span><span class="tag"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></span>
           <a href="https://arstechnica.com/security/2026/09/microsoft-disrupts-ai-assisted-platform-that-compromised-12000" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
           <span class="date" data-date="2026-09-22">Sep 22</span>
         </div>
       </article>
       <article
         class="story-card"
-        data-rank="27"
-        data-published="2026-09-23"
-        data-tags="AI,ChatGPT,OpenAI,voice"
-        data-source="TechCrunch AI"
-        data-importance="Medium"
-        data-score="7"
-        data-search="ChatGPT mobile app gets voice-based agentic features La app móvil de ChatGPT obtiene funciones agénticas por voz TechCrunch AI Medium 7 OpenAI is bringing voice-based agentic tasks to the ChatGPT mobile app for paid users. OpenAI lleva tareas agénticas por voz a la app móvil de ChatGPT para usuarios de pago. Agent workflows are continuing to spread from desktop chat into mobile execution surfaces. Los flujos con agentes siguen expandiéndose del chat de escritorio a superficies de ejecución móvil. AI ChatGPT OpenAI voice"
-      >
-        <div class="story-head">
-          <div class="rank">27</div>
-          <div>
-            <div class="story-meta-line">
-              <div class="source">⚡ TechCrunch AI</div>
-              <div class="importance importance-medium" aria-label="Medium importance">
-                <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span>Medium</span>
-              </div>
-            </div>
-            <div class="title"><a href="https://techcrunch.com/2026/09/23/chatgpt-mobile-app-gets-voice-based-agentic-features" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">ChatGPT mobile app gets voice-based agentic features</span><span class="lang-text" data-lang="es">La app móvil de ChatGPT obtiene funciones agénticas por voz</span></a></div>
-          </div>
-        </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">OpenAI is bringing voice-based agentic tasks to the ChatGPT mobile app for paid users.</span><span class="lang-text" data-lang="es">OpenAI lleva tareas agénticas por voz a la app móvil de ChatGPT para usuarios de pago.</span></p>
-        <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: Agent workflows are continuing to spread from desktop chat into mobile execution surfaces.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: Los flujos con agentes siguen expandiéndose del chat de escritorio a superficies de ejecución móvil.</span>
-        </p>
-        <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">ChatGPT</span><span class="tag">OpenAI</span><span class="tag">voice</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 7/10</span><span class="lang-text" data-lang="es">Puntuación 7/10</span></span>
-          <a href="https://techcrunch.com/2026/09/23/chatgpt-mobile-app-gets-voice-based-agentic-features" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
-          <span class="date" data-date="2026-09-23">Sep 23</span>
-        </div>
-      </article>
-      <article
-        class="story-card"
-        data-rank="28"
+        data-rank="30"
         data-published="2026-09-24"
-        data-tags="AI,Lovable,vibe coding"
-        data-source="TechCrunch AI"
-        data-importance="Medium"
-        data-score="6"
-        data-search="Lovable’s annualized revenue crosses $600M as vibe coding takes off Lovable supera los 600 millones de dólares de ingresos anualizados mientras despega el vibe coding TechCrunch AI Medium 6 TechCrunch says Lovable has passed a $600 million annualized revenue run rate as vibe coding demand grows. TechCrunch afirma que Lovable ya supera una tasa anualizada de 600 millones de dólares mientras crece la demanda de vibe coding. The number adds business weight to the market for fast, AI-assisted app creation tools. La cifra añade peso empresarial al mercado de herramientas rápidas de creación de apps asistida por IA. AI Lovable vibe coding"
+        data-tags="Biz &amp; IT,RSA,Security,cryptanalysis,factoring"
+        data-source="Ars Technica"
+        data-importance="High"
+        data-score="8"
+        data-search="There&#x27;s a new way to break RSA that&#x27;s faster than anything we&#x27;ve seen before Hay una nueva forma de romper RSA más rápida que cualquier otra conocida Ars Technica High 8 Ars reports a new RSA attack route that is faster than prior techniques and does not rely only on factoring. Ars informa de una nueva vía de ataque contra RSA que es más rápida que las técnicas anteriores y no depende solo de la factorización. Cryptography assumptions can shift faster than migration plans, so security teams need to watch this line of research closely. Las suposiciones criptográficas pueden cambiar más rápido que los planes de migración, así que los equipos de seguridad deben seguir de cerca esta línea de investigación. Biz &amp; IT RSA Security cryptanalysis factoring"
       >
         <div class="story-head">
-          <div class="rank">28</div>
+          <div class="rank">30</div>
           <div>
             <div class="story-meta-line">
-              <div class="source">⚡ TechCrunch AI</div>
-              <div class="importance importance-medium" aria-label="Medium importance">
+              <div class="source">🛡️ Ars Technica</div>
+              <div class="importance importance-high" aria-label="High importance">
                 <span class="importance-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-                <span>Medium</span>
+                <span>High</span>
               </div>
             </div>
-            <div class="title"><a href="https://techcrunch.com/2026/09/24/lovables-annualized-revenue-crosses-600m-as-vibe-coding-takes-off" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Lovable’s annualized revenue crosses $600M as vibe coding takes off</span><span class="lang-text" data-lang="es">Lovable supera los 600 millones de dólares de ingresos anualizados mientras despega el vibe coding</span></a></div>
+            <div class="title"><a href="https://arstechnica.com/security/2026/09/theres-a-new-way-to-break-rsa-thats-faster-than-anything-weve-seen-before" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">There&#x27;s a new way to break RSA that&#x27;s faster than anything we&#x27;ve seen before</span><span class="lang-text" data-lang="es">Hay una nueva forma de romper RSA más rápida que cualquier otra conocida</span></a></div>
           </div>
         </div>
-        <p class="tldr"><span class="lang-text" data-lang="en">TechCrunch says Lovable has passed a $600 million annualized revenue run rate as vibe coding demand grows.</span><span class="lang-text" data-lang="es">TechCrunch afirma que Lovable ya supera una tasa anualizada de 600 millones de dólares mientras crece la demanda de vibe coding.</span></p>
+        <p class="tldr"><span class="lang-text" data-lang="en">Ars reports a new RSA attack route that is faster than prior techniques and does not rely only on factoring.</span><span class="lang-text" data-lang="es">Ars informa de una nueva vía de ataque contra RSA que es más rápida que las técnicas anteriores y no depende solo de la factorización.</span></p>
         <p class="why">
-          <span class="lang-text" data-lang="en">Why it matters: The number adds business weight to the market for fast, AI-assisted app creation tools.</span>
-          <span class="lang-text" data-lang="es">Por qué importa: La cifra añade peso empresarial al mercado de herramientas rápidas de creación de apps asistida por IA.</span>
+          <span class="lang-text" data-lang="en">Why it matters: Cryptography assumptions can shift faster than migration plans, so security teams need to watch this line of research closely.</span>
+          <span class="lang-text" data-lang="es">Por qué importa: Las suposiciones criptográficas pueden cambiar más rápido que los planes de migración, así que los equipos de seguridad deben seguir de cerca esta línea de investigación.</span>
         </p>
         <div class="story-footer">
-          <span class="tag">AI</span><span class="tag">Lovable</span><span class="tag">vibe coding</span>
-          <span class="tag"><span class="lang-text" data-lang="en">Score 6/10</span><span class="lang-text" data-lang="es">Puntuación 6/10</span></span>
-          <a href="https://techcrunch.com/2026/09/24/lovables-annualized-revenue-crosses-600m-as-vibe-coding-takes-off" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
+          <span class="tag">Biz &amp; IT</span><span class="tag">RSA</span><span class="tag">Security</span><span class="tag">cryptanalysis</span><span class="tag">factoring</span><span class="tag"><span class="lang-text" data-lang="en">Score 8/10</span><span class="lang-text" data-lang="es">Puntuación 8/10</span></span>
+          <a href="https://arstechnica.com/security/2026/09/theres-a-new-way-to-break-rsa-thats-faster-than-anything-weve-seen-before" target="_blank" rel="noopener"><span class="lang-text" data-lang="en">Read full story -&gt;</span><span class="lang-text" data-lang="es">Leer noticia completa -&gt;</span></a>
           <span class="date" data-date="2026-09-24">Sep 24</span>
         </div>
       </article>
@@ -1524,7 +1562,12 @@
       }
 
       function resetSourceSelection() {
+        var sources = collectSources();
+        var prioritySources = sources.filter(isPrioritySource);
         selectedSources.clear();
+        (prioritySources.length > 0 ? prioritySources : sources).forEach(function (source) {
+          selectedSources.add(source);
+        });
       }
 
       function renderSourceFilters() {
@@ -1857,6 +1900,7 @@
       updateWebMcpSupport();
       registerWebMcpTools();
     })();
+  
   </script>
 </body>
 </html>
