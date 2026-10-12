@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "updatedAt": "2026-10-09T18:50:50.337Z",
+  "updatedAt": "2026-10-12T21:47:03.874Z",
   "runs": [
     {
       "runId": 32397785518,
@@ -1701,6 +1701,40 @@
       "quality": "published",
       "pagePath": "docs/index.html",
       "url": "https://github.com/elbruno/weekly-ai-news-digest/actions/runs/37974554053"
+    },
+    {
+      "runId": 38311110901,
+      "timestamp": "2026-10-12T21:38:34Z",
+      "event": "workflow_dispatch",
+      "workflow": "Daily Digest - Economy",
+      "variant": "economy",
+      "model": "gpt-5-mini",
+      "snapshotId": "2026-10-12-7f09f9dd08bb",
+      "promptVersion": "v1",
+      "aic": 135.90642,
+      "durationSeconds": 457,
+      "conclusion": "success",
+      "published": true,
+      "quality": "published",
+      "pagePath": "docs/economy/index.html",
+      "url": "https://github.com/elbruno/weekly-ai-news-digest/actions/runs/38311110901"
+    },
+    {
+      "runId": 38311108510,
+      "timestamp": "2026-10-12T21:44:21Z",
+      "event": "workflow_dispatch",
+      "workflow": "Daily Digest - Control",
+      "variant": "control",
+      "model": "gpt-5.4",
+      "snapshotId": "2026-10-12-7f09f9dd08bb",
+      "promptVersion": "v1",
+      "aic": 618.1228,
+      "durationSeconds": 805,
+      "conclusion": "success",
+      "published": true,
+      "quality": "published",
+      "pagePath": "docs/index.html",
+      "url": "https://github.com/elbruno/weekly-ai-news-digest/actions/runs/38311108510"
     }
   ]
 }
