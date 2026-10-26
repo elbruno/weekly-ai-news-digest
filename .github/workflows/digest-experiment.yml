@@ -193,7 +193,7 @@ jobs:
             echo "- Snapshot: \`$SNAPSHOT_ID\`"
             echo "- Articles: $ARTICLE_COUNT"
             echo "- Control model: \`gpt-5.4\` (temporary substitute for claude-sonnet; see docs/paired-model-experiment.md)"
-            echo "- Economy model: \`gpt-5.4-nano\`"
+            echo "- Economy model: \`gpt-5.4-mini\`"
             echo "- Prompt: \`v1\`"
             echo "- Publisher: dispatched when at least one worker succeeded"
           } >> "$GITHUB_STEP_SUMMARY"

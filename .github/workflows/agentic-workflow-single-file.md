@@ -38,7 +38,7 @@ permissions:
   pull-requests: read
 
 # The production workers compile this field separately: gpt-5.4 for Control
-# and gpt-5.4-nano for Economy. This reference file is not executed.
+# and gpt-5.4-mini for Economy. This reference file is not executed.
 engine:
   id: copilot
   model: gpt-5.4
@@ -94,7 +94,7 @@ its values consistently throughout the run:
 | --- | --- | --- |
 | `VARIANT` | `control` | `economy` |
 | `VARIANT_LABEL` | `Control` | `Economy` |
-| `MODEL` | `gpt-5.4` | `gpt-5.4-nano` |
+| `MODEL` | `gpt-5.4` | `gpt-5.4-mini` |
 | `OUTPUT_PATH` | `docs/index.html` | `docs/economy/index.html` |
 | `USAGE_PATH` | `./ai-credits.html` | `../ai-credits.html` |
 | `COMPARISON_PATH` | `./model-comparison.html` | `../model-comparison.html` |

@@ -5,9 +5,9 @@ This project publishes two versions of the same daily AI news digest:
 | Variant | Model | Published page |
 | --- | --- | --- |
 | Control | `gpt-5.4` | [Control AI & Developer News Digest](https://elbruno.github.io/weekly-ai-news-digest/) |
-| Economy | `gpt-5.4-nano` | [GPT-5.4 Nano AI & Developer News Digest](https://elbruno.github.io/weekly-ai-news-digest/economy/) |
+| Economy | `gpt-5.4-mini` | [GPT-5.4 Mini AI & Developer News Digest](https://elbruno.github.io/weekly-ai-news-digest/economy/) |
 
-> **Note:** The control variant used `claude-sonnet-4.6` until 2026-09. The Copilot API proxy now rejects every Claude/Anthropic model name for this account's Actions integration ("model unavailable for this subscription tier"), so the control variant temporarily runs `gpt-5.4`, a full-size flagship model, paired against the lower-cost `gpt-5.4-nano` economy model, until Claude access is restored.
+> **Note:** The control variant used `claude-sonnet-4.6` until 2026-09. The Copilot API proxy now rejects every Claude/Anthropic model name for this account's Actions integration ("model unavailable for this subscription tier"), so the control variant temporarily runs `gpt-5.4`, a full-size flagship model, paired against the lower-cost `gpt-5.4-mini` economy model, until Claude access is restored. Economy switched from `gpt-5.4-nano` after the Copilot runtime rejected that model as retired or unsupported and suggested `gpt-5.4-mini`.
 
 The [control model usage dashboard](https://elbruno.github.io/weekly-ai-news-digest/ai-credits.html) preserves the original baseline-model reporting. The [model comparison dashboard](https://elbruno.github.io/weekly-ai-news-digest/model-comparison.html) pairs both variants by snapshot and reports cost, savings, completion, and publication status. `control` and `economy` remain internal experiment identifiers; the published pages use descriptive digest titles and model attribution.
 
