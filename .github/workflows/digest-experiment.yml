@@ -20,19 +20,29 @@ concurrency:
 jobs:
   toronto-time-gate:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     outputs:
       should_run: ${{ steps.check.outputs.should_run }}
     steps:
-      - name: Run only at 6:00 AM Toronto time
+      - name: Checkout schedule helper
+        if: github.event_name == 'schedule'
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+      - name: Select the 6:00 AM Toronto schedule slot
         id: check
         shell: bash
+        env:
+          SCHEDULE: ${{ github.event.schedule }}
         run: |
-          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ||
-                "$(TZ=America/Toronto date +%H:%M)" == "06:00" ]]; then
-            echo "should_run=true" >> "$GITHUB_OUTPUT"
+          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
+            should_run=true
           else
-            echo "should_run=false" >> "$GITHUB_OUTPUT"
-            echo "Ignoring the alternate UTC slot outside 6:00 AM Toronto time."
+            should_run="$(python scripts/is-toronto-digest-slot.py "$SCHEDULE")"
+          fi
+
+          echo "should_run=$should_run" >> "$GITHUB_OUTPUT"
+          if [[ "$should_run" != "true" ]]; then
+            echo "Ignoring the alternate UTC schedule slot."
           fi
 
   collect-and-dispatch:
@@ -183,7 +193,7 @@ jobs:
             echo "- Snapshot: \`$SNAPSHOT_ID\`"
             echo "- Articles: $ARTICLE_COUNT"
             echo "- Control model: \`gpt-5.4\` (temporary substitute for claude-sonnet; see docs/paired-model-experiment.md)"
-            echo "- Economy model: \`gpt-5-mini\`"
+            echo "- Economy model: \`gpt-5.4-nano\`"
             echo "- Prompt: \`v1\`"
             echo "- Publisher: dispatched when at least one worker succeeded"
           } >> "$GITHUB_STEP_SUMMARY"

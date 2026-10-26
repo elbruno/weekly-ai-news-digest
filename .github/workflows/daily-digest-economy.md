@@ -31,7 +31,7 @@ permissions:
 
 engine:
   id: copilot
-  model: gpt-5-mini
+  model: gpt-5.4-nano
 
 strict: true
 timeout-minutes: 45
@@ -71,7 +71,7 @@ imports:
     with:
       variant: economy
       variant_label: Economy
-      model: gpt-5-mini
+      model: gpt-5.4-nano
       output_path: docs/economy/index.html
       usage_path: ../ai-credits.html
       comparison_path: ../model-comparison.html

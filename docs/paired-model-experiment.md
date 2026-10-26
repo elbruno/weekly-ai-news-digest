@@ -5,9 +5,9 @@ This project publishes two versions of the same daily AI news digest:
 | Variant | Model | Published page |
 | --- | --- | --- |
 | Control | `gpt-5.4` | [Control AI & Developer News Digest](https://elbruno.github.io/weekly-ai-news-digest/) |
-| Economy | `gpt-5-mini` | [GPT-5 Mini AI & Developer News Digest](https://elbruno.github.io/weekly-ai-news-digest/economy/) |
+| Economy | `gpt-5.4-nano` | [GPT-5.4 Nano AI & Developer News Digest](https://elbruno.github.io/weekly-ai-news-digest/economy/) |
 
-> **Note:** The control variant used `claude-sonnet-4.6` until 2026-09. The Copilot API proxy now rejects every Claude/Anthropic model name for this account's Actions integration ("model unavailable for this subscription tier"), so the control variant temporarily runs `gpt-5.4` — a full-size flagship model, paired against the small `gpt-5-mini` economy model — until Claude access is restored.
+> **Note:** The control variant used `claude-sonnet-4.6` until 2026-09. The Copilot API proxy now rejects every Claude/Anthropic model name for this account's Actions integration ("model unavailable for this subscription tier"), so the control variant temporarily runs `gpt-5.4`, a full-size flagship model, paired against the lower-cost `gpt-5.4-nano` economy model, until Claude access is restored.
 
 The [control model usage dashboard](https://elbruno.github.io/weekly-ai-news-digest/ai-credits.html) preserves the original baseline-model reporting. The [model comparison dashboard](https://elbruno.github.io/weekly-ai-news-digest/model-comparison.html) pairs both variants by snapshot and reports cost, savings, completion, and publication status. `control` and `economy` remain internal experiment identifiers; the published pages use descriptive digest titles and model attribution.
 
@@ -32,9 +32,9 @@ flowchart TD
     B --> C[Normalize, sanitize, deduplicate, and checksum]
     C --> D[Upload immutable snapshot artifact]
     D --> E[Control model worker]
-    D --> F[GPT-5 Mini worker]
+    D --> F[GPT-5.4 Nano worker]
     E --> G[Control digest pull request]
-    F --> H[GPT-5 Mini digest pull request]
+    F --> H[GPT-5.4 Nano digest pull request]
     G --> I[Validate complete snapshot pair]
     H --> I
     I --> J[Merge both digest pull requests]
@@ -45,7 +45,7 @@ flowchart TD
 
 ### 1. Collect one deterministic snapshot
 
-`.github/workflows/digest-experiment.yml` runs on weekdays at 6:00 AM Toronto time or through manual dispatch. Because GitHub Actions schedules use UTC, it has daylight-saving and standard-time slots plus a Toronto-time gate. It invokes `scripts/collect-news-snapshot.py`, which:
+`.github/workflows/digest-experiment.yml` runs on weekdays at 6:00 AM Toronto time or through manual dispatch. Because GitHub Actions schedules use UTC, it has daylight-saving and standard-time slots. The gate selects the correct slot from the event's cron expression and Toronto's date-specific offset, so scheduler delays do not discard a run. It invokes `scripts/collect-news-snapshot.py`, which:
 
 1. downloads the eight approved RSS or Atom feeds;
 2. rejects oversized feeds and malformed entries;

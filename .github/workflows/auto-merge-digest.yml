@@ -261,7 +261,7 @@ jobs:
               done
             done <<'VARIANTS'
           daily-digest-control.lock.yml|control|gpt-5.4|docs/index.html
-          daily-digest-economy.lock.yml|economy|gpt-5-mini|docs/economy/index.html
+          daily-digest-economy.lock.yml|economy|gpt-5.4-nano|docs/economy/index.html
           VARIANTS
 
             if git diff --quiet -- docs/index.html docs/economy/index.html docs/data/ai-credits.json; then
